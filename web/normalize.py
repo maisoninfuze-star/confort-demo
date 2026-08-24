@@ -147,26 +147,60 @@ def find_all(defs, hay):
     return out
 
 # ── naming ──────────────────────────────────────────────────────────────────
-SKU_RX = re.compile(r'^\s*(?:IF|I)[\s\-]?\d{3,4}', re.I)
-# Montréal street names, used only for the generic pieces that arrive SKU-named.
+# Monarch codes a title several ways: a bare pair ("T-1811 / C-1835"), a code
+# with a real description after it ("C-1541 – Chaise moderne en PU gris"), a
+# code buried at the end ("Table basse IF-2631"), and some carry a marketing
+# emoji. A customer should never see any of it.
+CODE = r'(?:IF|I|T|C|A|N|M)[\s\-]?\d{3,4}[A-Z]?'
+CODE_RUN = re.compile(r'\b' + CODE + r'(?:\s*[/&,+]\s*' + CODE + r')*', re.I)
+EMOJI = re.compile('[\U0001F300-\U0001FAFF\u2600-\u27BF\uFE0F\u2B00-\u2BFF]')
+LEAD_JUNK = re.compile(r'^[\s\-–—:|/·.]+|[\s\-–—:|/·.]+$')
+
+def strip_codes(title):
+    """Return (clean title, the codes that were in it)."""
+    codes = [m.group(0).strip() for m in CODE_RUN.finditer(title)]
+    clean = EMOJI.sub('', title)
+    clean = CODE_RUN.sub(' ', clean)
+    clean = re.sub(r'\s{2,}', ' ', clean)
+    clean = LEAD_JUNK.sub('', clean)
+    return clean.strip(), (codes[0] if codes else None)
+
 STREETS = ['Verdun','Rosemont','Villeray','Ahuntsic','Outremont','Lachine','Cartier',
            'Beaubien','Papineau','Fabre','Chabanel','Iberville','Boyer','Drolet','Christophe',
            'Marquette','Gaspé','Casgrain','Waverly','Clark','Jeanne-Mance','Esplanade',
            'Saint-Denis','Saint-Urbain','Saint-Zotique','Bélanger','Jarry','Everett','Dante']
 
+# rstrip('s') does not singularise "Ensembles de salle à manger".
+SINGULAR = {
+ 'Sectionnels':'Sectionnel','Canapés-lits':'Canapé-lit','Canapés':'Canapé','Causeuses':'Causeuse',
+ 'Fauteuils':'Fauteuil','Tables de salon':'Table de salon','Meubles TV':'Meuble TV',
+ 'Ensembles de chambre':'Ensemble de chambre','Lits':'Lit','Matelas':'Matelas','Commodes':'Commode',
+ 'Tables de chevet':'Table de chevet','Ensembles de salle à manger':'Ensemble de salle à manger',
+ 'Tables de salle à manger':'Table de salle à manger','Chaises':'Chaise','Buffets':'Buffet',
+ 'Bureaux':'Bureau','Bibliothèques':'Bibliothèque','Décoration':'Pièce',
+}
+def singular(label):
+    return SINGULAR.get(label, label.rstrip('s') if label.endswith('s') else label)
+
 def humanize(title, sub_fr, sub_en, colours, materials, idx):
-    """SKU-coded titles get a real name; already-human titles are just tidied."""
-    sku = None
-    m = re.match(r'^\s*((?:IF|I)[\s\-]?\d{3,4}[A-Z0-9\-/ ]*)', title, re.I)
-    if m:
-        sku = m.group(1).strip()
-    if not SKU_RX.match(title):
-        clean = title.strip()
+    """Codes and emoji come out. Whatever real words remain become the name; if
+    nothing remains, the piece is named after a Montréal street."""
+    clean, sku = strip_codes(title)
+    # Keep a leftover only if it reads like a product name: enough letters, but
+    # not a marketing sentence lifted out of the description.
+    letters = len(re.sub(r'[^A-Za-zÀ-ÿ]', '', clean))
+    words = len(clean.split())
+    sentence = bool(re.search(r"\b(est|sont|incarne|offre|apporte|combine|vous|votre|ce|cette)\b",
+                              clean, re.I))
+    meaningful = letters >= 4 and words <= 7 and not sentence
+    if meaningful:
         if clean.isupper():
-            clean = clean.title().replace('"L', '" L')
+            clean = clean.title()
+        clean = re.sub(r'\s*"\s*L\b', '" L', clean)
         return clean, clean, sku
-    piece_fr = sub_fr.rstrip('s') if sub_fr else 'Meuble'
-    piece_en = sub_en.rstrip('s') if sub_en else 'Piece'
+
+    piece_fr = singular(sub_fr) if sub_fr else 'Meuble'
+    piece_en = (sub_en.rstrip('s') if sub_en else 'Piece')
     name = STREETS[idx % len(STREETS)]
     qual_fr = qual_en = ''
     if materials:
