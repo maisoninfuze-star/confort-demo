@@ -177,7 +177,7 @@ SINGULAR = {
  'Ensembles de chambre':'Ensemble de chambre','Lits':'Lit','Matelas':'Matelas','Commodes':'Commode',
  'Tables de chevet':'Table de chevet','Ensembles de salle à manger':'Ensemble de salle à manger',
  'Tables de salle à manger':'Table de salle à manger','Chaises':'Chaise','Buffets':'Buffet',
- 'Bureaux':'Bureau','Bibliothèques':'Bibliothèque','Décoration':'Pièce',
+ 'Bureaux':'Bureau','Bibliothèques':'Bibliothèque','Décoration':'Meuble',
 }
 def singular(label):
     return SINGULAR.get(label, label.rstrip('s') if label.endswith('s') else label)
