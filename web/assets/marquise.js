@@ -126,6 +126,14 @@
     document.body.appendChild(t);
     setTimeout(function () { t.remove(); }, 2200);
   }
+  // The header cart has nowhere to go on a site with no checkout. Rather than
+  // a link that silently does nothing, say what is missing.
+  [].forEach.call(document.querySelectorAll('[data-cart-note]'), function (b) {
+    b.addEventListener('click', function () {
+      toast(window.MQ_CART_NOTE || 'Cart and checkout arrive at launch.');
+    });
+  });
+
   [].forEach.call(document.querySelectorAll('[data-add]'), function (b) {
     b.addEventListener('click', function () {
       count++; localStorage.setItem('mq-cart', count); paintCart(); toast(T.added);

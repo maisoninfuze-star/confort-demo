@@ -3,39 +3,33 @@
   "configurations": [
     {
       "name": "marquise",
-      "runtimeExecutable": "python3",
+      "runtimeExecutable": "sh",
       "runtimeArgs": [
-        "-m",
-        "http.server",
-        "4173",
-        "--directory",
-        "web/dist"
+        "-c",
+        "exec python3 -m http.server \"${PORT:-4173}\" --directory '/Users/inder/Claude/Projects/navcan meubles/web/dist'"
       ],
-      "port": 4173
+      "port": 4173,
+      "autoPort": true
     },
     {
       "name": "opera-site",
-      "runtimeExecutable": "python3",
+      "runtimeExecutable": "sh",
       "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8788",
-        "--directory",
-        "/Users/inder/Claude/Projects/opera rembourrage/site"
+        "-c",
+        "exec python3 -m http.server \"${PORT:-8788}\" --directory '/Users/inder/Claude/Projects/opera rembourrage/site'"
       ],
-      "port": 8788
+      "port": 8788,
+      "autoPort": true
     },
     {
       "name": "msf-concept",
-      "runtimeExecutable": "python3",
+      "runtimeExecutable": "sh",
       "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8712",
-        "--directory",
-        "/Users/inder/Claude/Projects/paving flex"
+        "-c",
+        "exec python3 -m http.server \"${PORT:-8712}\" --directory '/Users/inder/Claude/Projects/paving flex'"
       ],
-      "port": 8712
+      "port": 8712,
+      "autoPort": true
     }
   ]
 }

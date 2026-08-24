@@ -8,7 +8,13 @@ import json, os, re, html, shutil, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(HERE, 'dist')
-SITE = 'https://meubleconfort.com'
+# Where this build believes it lives. The demo must build with its own origin,
+# or every canonical, hreflang and share-preview points at a meubleconfort.com
+# path that does not exist yet — a canonical aimed at a 404, and a broken image
+# in every link someone pastes into Messenger.
+#   production : python3 build.py
+#   demo       : SITE_URL=https://confort-demo.vercel.app python3 build.py
+SITE = os.environ.get('SITE_URL', 'https://meubleconfort.com').rstrip('/')
 PHONE = '514-279-4600'
 PHONE2 = '438-879-8019'
 ADDR = '7566 rue Saint-Hubert'
@@ -66,6 +72,7 @@ COPY = {
    fin_cta='Voir le financement',
    add='Ajouter au panier', call='Appeler', mo='ou %s $/mois', was='Prix régulier',
    filters='Filtres', sort='Trier', clear='Tout effacer', cart='Panier',
+   cart_soon='Le panier et le paiement arrivent avec la mise en ligne.',
    sort_pop='Les plus populaires', sort_soon='En stock d’abord',
    sort_asc='Prix croissant', sort_desc='Prix décroissant',
    f_sub='Type', f_colour='Couleur', f_material='Matériau', f_price='Prix', f_stock='Disponibilité',
@@ -105,6 +112,7 @@ COPY = {
    fin_cta='See financing',
    add='Add to cart', call='Call us', mo='or $%s/month', was='Regular price',
    filters='Filters', sort='Sort', clear='Clear all', cart='Cart',
+   cart_soon='Cart and checkout arrive at launch.',
    sort_pop='Most popular', sort_soon='In stock first',
    sort_asc='Price, low to high', sort_desc='Price, high to low',
    f_sub='Type', f_colour='Colour', f_material='Material', f_price='Price', f_stock='Availability',
@@ -316,6 +324,7 @@ def shell(lang, title, desc, path, alt_path, body, jsonld=None, og_img=None, hea
 {body}
 </main>
 {footer(lang)}
+<script>window.MQ_CART_NOTE={json.dumps(COPY[lang]['cart_soon'], ensure_ascii=False)};</script>
 <script src="/assets/marquise.js" defer></script>
 </body>
 </html>'''
@@ -344,7 +353,7 @@ def header(lang, path, alt_path):
       <a href="{path if lang=='fr' else alt_path}"{' aria-current="true"' if lang=='fr' else ''}>FR</a>
       <a href="{alt_path if lang=='fr' else path}"{' aria-current="true"' if lang=='en' else ''}>EN</a>
     </span>
-    <a class="cart" href="#">{E(c['cart'])} <span data-cart-count>0</span></a>
+    <button class="cart" type="button" data-cart-note>{E(c['cart'])} <span data-cart-count>0</span></button>
   </div>
 </div></header>
 <div class="promise"><div class="wrap">

@@ -5,24 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Furniture in Montréal — delivered, assembled, up your stairs</title>
 <meta name="description" content="Furniture that is already in our Montréal warehouse. Free delivery, assembled, up your stairs — Montréal, Laval and Longueuil.">
-<link rel="canonical" href="https://meubleconfort.com/en/">
-<link rel="alternate" hreflang="fr-CA" href="https://meubleconfort.com/fr/">
-<link rel="alternate" hreflang="en-CA" href="https://meubleconfort.com/en/">
-<link rel="alternate" hreflang="x-default" href="https://meubleconfort.com/fr/">
+<link rel="canonical" href="https://confort-demo.vercel.app/en/">
+<link rel="alternate" hreflang="fr-CA" href="https://confort-demo.vercel.app/fr/">
+<link rel="alternate" hreflang="en-CA" href="https://confort-demo.vercel.app/en/">
+<link rel="alternate" hreflang="x-default" href="https://confort-demo.vercel.app/fr/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Meuble Confort &amp; Style">
 <meta property="og:locale" content="en_CA">
 <meta property="og:title" content="Furniture in Montréal — delivered, assembled, up your stairs">
 <meta property="og:description" content="Furniture that is already in our Montréal warehouse. Free delivery, assembled, up your stairs — Montréal, Laval and Longueuil.">
-<meta property="og:url" content="https://meubleconfort.com/en/">
-<meta property="og:image" content="https://meubleconfort.com/assets/img/salon-1400.webp">
+<meta property="og:url" content="https://confort-demo.vercel.app/en/">
+<meta property="og:image" content="https://confort-demo.vercel.app/assets/img/salon-1400.webp">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.shopify.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/assets/marquise.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FurnitureStore", "name": "Meuble Confort & Style", "url": "https://meubleconfort.com", "telephone": "+1-514-279-4600", "priceRange": "$$", "address": {"@type": "PostalAddress", "streetAddress": "7566 rue Saint-Hubert", "addressLocality": "Montréal", "addressRegion": "QC", "postalCode": "H2R 2N6", "addressCountry": "CA"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "79"}, "areaServed": ["Montréal", "Laval", "Longueuil"], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "10:00", "closes": "18:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "17:00"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FurnitureStore", "name": "Meuble Confort & Style", "url": "https://confort-demo.vercel.app", "telephone": "+1-514-279-4600", "priceRange": "$$", "address": {"@type": "PostalAddress", "streetAddress": "7566 rue Saint-Hubert", "addressLocality": "Montréal", "addressRegion": "QC", "postalCode": "H2R 2N6", "addressCountry": "CA"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "79"}, "areaServed": ["Montréal", "Laval", "Longueuil"], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "10:00", "closes": "18:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "17:00"}]}</script>
 <script>
 /* Runs before first paint. Skips the opener on repeat views in the same
    session and whenever the visitor asks for reduced motion.
@@ -52,7 +52,7 @@ try {
       <a href="/fr/">FR</a>
       <a href="/en/" aria-current="true">EN</a>
     </span>
-    <a class="cart" href="#">Cart <span data-cart-count>0</span></a>
+    <button class="cart" type="button" data-cart-note>Cart <span data-cart-count>0</span></button>
   </div>
 </div></header>
 <div class="promise"><div class="wrap">
@@ -514,6 +514,7 @@ try {
    <span>Prototype — prices and stock come from the current live catalogue.</span>
  </div>
 </div></footer>
+<script>window.MQ_CART_NOTE="Cart and checkout arrive at launch.";</script>
 <script src="/assets/marquise.js" defer></script>
 </body>
 </html>

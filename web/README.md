@@ -22,6 +22,20 @@ python3 normalize.py     # raw feed  -> catalogue.json
 python3 build.py         # catalogue -> dist/
 ```
 
+### Which origin the build claims
+
+Canonicals, hreflang, `og:` tags and the sitemap are absolute, so the build has
+to be told where it lives:
+
+```bash
+python3 build.py                                          # production
+SITE_URL=https://confort-demo.vercel.app python3 build.py # the demo
+```
+
+The committed `dist/` is built for the **demo** origin. Rebuild without
+`SITE_URL` before pointing the real domain at it, or every canonical will send
+crawlers to the demo.
+
 | File | What it does |
 |---|---|
 | `normalize.py` | Parses the live feed: human names for the 24 SKU-titled products, one canonical category per item, dimensions pulled out of the description prose, colours/materials/features, variant options split back into Colour + Size, and the break-down model the fit check runs on. |
