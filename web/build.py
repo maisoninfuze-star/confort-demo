@@ -874,11 +874,12 @@ def build_pdp(p, cat, lang):
                f"{p['monthly']} $/mois." if lang == 'fr' else
                "In stock in Montréal, delivered free, assembled and up your stairs. Or "
                f"${p['monthly']}/month."))
+    # Trim the brand, never the product name: two pieces can differ only by the
+    # finish at the end of the name, and cutting it makes their <title>s
+    # identical.
     base = p_name(p, lang)
     suffix = " | Meuble Confort & Style"
-    if len(base) + len(suffix) > 60:
-        base = base[:60 - len(suffix) - 1].rstrip(" —-·")
-    title = base + suffix
+    title = base if len(base) + len(suffix) > 60 else base + suffix
     return shell(lang, title, desc, p_url(p, lang), p_url(p, other), body, ld, img(imgs[0], 1200))
 
 # ── prose pages ─────────────────────────────────────────────────────────────
