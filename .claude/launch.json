@@ -1,0 +1,41 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "marquise",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4173",
+        "--directory",
+        "web/dist"
+      ],
+      "port": 4173
+    },
+    {
+      "name": "opera-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8788",
+        "--directory",
+        "/Users/inder/Claude/Projects/opera rembourrage/site"
+      ],
+      "port": 8788
+    },
+    {
+      "name": "msf-concept",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8712",
+        "--directory",
+        "/Users/inder/Claude/Projects/paving flex"
+      ],
+      "port": 8712
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# Meubles Navcan's product catalogue — 837 MB, and a DIFFERENT CLIENT's data.
+# It shares this folder for historical reasons only. It must never be published
+# in a Meuble Confort repository.
+catalog/
+
+# AI-generated hero source frames (2.7 MB each). The chosen three are committed
+# as optimised WebP in web/assets/img/; the small previews are kept so the
+# alternates can still be judged.
+web/gen/*.png
+
+.DS_Store
+**/.DS_Store

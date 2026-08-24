@@ -1,0 +1,685 @@
+<meta charset="utf-8">
+<title>Marquise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Familjen+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F1EFEC;
+  --surface:#FAF9F7;
+  --sunk:#E7E3DD;
+  --ink:#171717;
+  --ink-2:#4A4643;
+  --ink-3:#8C8681;
+  --line:#E0DBD4;
+  --line-2:#C9C2B9;
+  --brick:#BB3703;
+  --brick-soft:#F6E7DF;
+  --steel:#4E6570;
+  --steel-soft:#DDE4E5;
+  --signal:#2A5D48;
+  --signal-soft:#E1EBE4;
+  --warn:#8A5A12;
+  --warn-soft:#F0E4CE;
+
+  --f-display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+
+  --measure:74ch;
+  --wrap:1140px;
+  --pad:clamp(20px,5vw,64px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#14120F; --surface:#1C1A16; --sunk:#0C0B09;
+    --ink:#EDEAE4; --ink-2:#B3ADA4; --ink-3:#857F76;
+    --line:#2B2822; --line-2:#3E3A32;
+    --brick:#E5673A; --brick-soft:#33190E;
+    --steel:#9BB3BC; --steel-soft:#1E2A2E;
+    --signal:#6FBE9A; --signal-soft:#16281F;
+    --warn:#D9A959; --warn-soft:#2B2314;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14120F; --surface:#1C1A16; --sunk:#0C0B09;
+  --ink:#EDEAE4; --ink-2:#B3ADA4; --ink-3:#857F76;
+  --line:#2B2822; --line-2:#3E3A32;
+  --brick:#E5673A; --brick-soft:#33190E;
+  --steel:#9BB3BC; --steel-soft:#1E2A2E;
+  --signal:#6FBE9A; --signal-soft:#16281F;
+  --warn:#D9A959; --warn-soft:#2B2314;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--f-body); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--wrap); margin-inline:auto; padding-inline:var(--pad)}
+p{margin:0 0 1em; max-width:var(--measure)}
+a{color:var(--brick)}
+h1,h2,h3,h4{font-family:var(--f-display); font-weight:600; text-wrap:balance; margin:0; line-height:1.08; letter-spacing:-.02em}
+h2{font-size:clamp(28px,4vw,42px)}
+h3{font-size:clamp(19px,2.2vw,23px); letter-spacing:-.01em; line-height:1.2}
+h4{font-size:15px; letter-spacing:.01em}
+strong{font-weight:600; color:var(--ink)}
+em{font-style:italic}
+code,.mono{font-family:var(--f-mono); font-size:.86em; letter-spacing:-.01em}
+
+.eyebrow{
+  font-family:var(--f-mono); font-size:11px; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin:0;
+}
+
+/* ── masthead ─────────────────────────────── */
+.mast{border-bottom:1px solid var(--line); padding:clamp(48px,9vw,104px) 0 clamp(36px,6vw,64px); position:relative; overflow:hidden}
+.ribs{position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background:repeating-linear-gradient(90deg, transparent 0 79px, var(--line) 79px 80px);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 70%);
+  mask-image:linear-gradient(180deg,transparent,#000 70%);}
+.mast .wrap{position:relative}
+.mast h1{font-size:clamp(46px,10vw,104px); font-weight:700; letter-spacing:-.045em; line-height:.92}
+.mast h1 .fr{color:var(--brick)}
+.lede{font-size:clamp(19px,2.3vw,23px); line-height:1.5; color:var(--ink-2); max-width:60ch; margin-top:22px}
+.mast-meta{display:flex; flex-wrap:wrap; gap:10px 26px; margin-top:34px; font-family:var(--f-mono); font-size:11.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3)}
+
+/* ── sections ─────────────────────────────── */
+section{padding:clamp(48px,8vw,88px) 0; border-bottom:1px solid var(--line)}
+.sec-head{display:grid; grid-template-columns:minmax(0,1fr); gap:14px; margin-bottom:38px}
+@media(min-width:860px){ .sec-head{grid-template-columns:170px minmax(0,1fr); gap:0 40px; align-items:baseline} }
+.sec-head .eyebrow{padding-top:.7em}
+
+/* ── stat strip ───────────────────────────── */
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); margin:0 0 34px}
+.stat{background:var(--surface); padding:18px 20px}
+.stat b{display:block; font-family:var(--f-display); font-size:clamp(24px,3.4vw,31px); font-weight:600; letter-spacing:-.03em; line-height:1.05; font-variant-numeric:tabular-nums}
+.stat span{display:block; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:7px}
+.stat.neg b{color:var(--brick)}
+.stat.pos b{color:var(--signal)}
+
+/* ── findings ─────────────────────────────── */
+.finds{border-top:1px solid var(--line-2)}
+.find{display:grid; grid-template-columns:auto minmax(0,1fr); gap:0 18px; padding:16px 0; border-bottom:1px solid var(--line); align-items:start}
+@media(min-width:860px){ .find{grid-template-columns:90px 1fr 220px; gap:0 28px; align-items:baseline} }
+.sev{font-family:var(--f-mono); font-size:10px; font-weight:600; letter-spacing:.11em; text-transform:uppercase; padding:3px 8px; border-radius:2px; white-space:nowrap; justify-self:start}
+.sev.c{background:var(--brick); color:var(--paper)}
+.sev.h{background:var(--brick-soft); color:var(--brick)}
+.sev.m{background:var(--steel-soft); color:var(--steel)}
+.find-b{font-size:16px; line-height:1.5}
+.find-b b{font-weight:600}
+.find-e{font-family:var(--f-mono); font-size:11.5px; line-height:1.65; color:var(--ink-3); word-break:break-word; grid-column:2/-1}
+@media(min-width:860px){ .find-e{grid-column:3; text-align:right} }
+
+/* ── cards ────────────────────────────────── */
+.cards{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.card{background:var(--surface); border:1px solid var(--line); padding:26px 24px 24px; display:flex; flex-direction:column; gap:12px}
+.card .num{font-family:var(--f-mono); font-size:11px; letter-spacing:.14em; color:var(--brick); font-weight:600}
+.card p{font-size:15.5px; line-height:1.55; margin:0; color:var(--ink-2)}
+.card .fr-name{font-family:var(--f-display); font-size:24px; font-weight:600; letter-spacing:-.025em; line-height:1.1}
+.card .en-name{font-family:var(--f-mono); font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin-top:-6px}
+.card ul{margin:4px 0 0; padding-left:1.1em; font-size:14.5px; line-height:1.55; color:var(--ink-2)}
+.card li{margin-bottom:5px}
+.card li::marker{color:var(--line-2)}
+
+/* ── generic list ─────────────────────────── */
+ul.plain{list-style:none; padding:0; margin:0}
+ul.plain li{padding:11px 0; border-bottom:1px solid var(--line); font-size:16px; line-height:1.5; max-width:var(--measure)}
+
+/* ── tree ─────────────────────────────────── */
+.tree{font-family:var(--f-mono); font-size:13px; line-height:1.85; background:var(--surface); border:1px solid var(--line); padding:22px; overflow-x:auto; white-space:pre; color:var(--ink-2)}
+.tree b{color:var(--ink); font-weight:600}
+.tree i{color:var(--ink-3); font-style:normal}
+.tree u{color:var(--signal); text-decoration:none}
+
+/* ── mock UI ──────────────────────────────── */
+.mock{background:var(--surface); border:1px solid var(--line-2); padding:20px; display:flex; flex-direction:column; gap:14px}
+.mock-label{font-family:var(--f-mono); font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.pcard{background:var(--paper); border:1px solid var(--line)}
+.pshot{aspect-ratio:4/3; background:
+   radial-gradient(120% 90% at 30% 20%, var(--steel-soft), transparent 60%),
+   linear-gradient(160deg,var(--sunk),var(--line)); position:relative}
+.pshot::after{content:"IF-9085"; position:absolute; left:10px; bottom:9px; font-family:var(--f-mono); font-size:10px; letter-spacing:.1em; color:var(--ink-3)}
+.pbody{padding:13px 14px 15px; display:flex; flex-direction:column; gap:7px}
+.pname{font-family:var(--f-display); font-size:17px; font-weight:600; letter-spacing:-.02em; line-height:1.2}
+.psub{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3)}
+.prow{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
+.pprice{font-family:var(--f-display); font-size:21px; font-weight:600; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.pwas{font-family:var(--f-mono); font-size:12px; color:var(--ink-3); text-decoration:line-through}
+.pmo{font-family:var(--f-mono); font-size:12px; color:var(--steel); font-weight:500}
+.chip{display:inline-flex; align-items:center; gap:6px; font-family:var(--f-mono); font-size:11px; font-weight:500; letter-spacing:.02em; padding:5px 9px; border-radius:2px; line-height:1.3}
+.chip.go{background:var(--signal-soft); color:var(--signal)}
+.chip.tight{background:var(--warn-soft); color:var(--warn)}
+.chip.no{background:var(--brick-soft); color:var(--brick)}
+.chip .dot{width:6px; height:6px; border-radius:50%; background:currentColor; flex:none}
+.fitbox{border:1px solid var(--line); background:var(--paper); padding:15px; display:flex; flex-direction:column; gap:11px}
+.fitq{font-family:var(--f-display); font-size:16px; font-weight:600; letter-spacing:-.015em}
+.opts{display:flex; flex-wrap:wrap; gap:6px}
+.opt{font-family:var(--f-mono); font-size:11px; padding:6px 10px; border:1px solid var(--line-2); color:var(--ink-2); border-radius:2px}
+.opt.on{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.fitout{font-size:14.5px; line-height:1.5; color:var(--ink-2); border-top:1px dashed var(--line-2); padding-top:11px}
+
+/* ── swatches ─────────────────────────────── */
+.sw{display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line)}
+.swi{background:var(--surface); padding:0}
+.swc{height:80px}
+.swt{padding:10px 12px 13px; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.06em; line-height:1.7}
+.swt b{display:block; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); font-weight:600}
+.swt span{color:var(--ink-3)}
+
+.spec{border:1px solid var(--line); background:var(--surface); padding:24px; display:flex; flex-direction:column; gap:20px}
+.spec-row{display:flex; flex-direction:column; gap:5px; padding-bottom:18px; border-bottom:1px solid var(--line)}
+.spec-row:last-child{border:0; padding-bottom:0}
+.spec-row .tag{font-family:var(--f-mono); font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.sp-d{font-family:var(--f-display); font-size:clamp(30px,5vw,46px); font-weight:600; letter-spacing:-.04em; line-height:1}
+.sp-b{font-family:var(--f-body); font-size:18px; line-height:1.6; color:var(--ink-2); max-width:52ch}
+.sp-m{font-family:var(--f-mono); font-size:13px; letter-spacing:.02em; color:var(--ink-2)}
+
+/* ── copy table ───────────────────────────── */
+.tblwrap{overflow-x:auto; border:1px solid var(--line)}
+table{border-collapse:collapse; width:100%; min-width:640px; background:var(--surface)}
+th,td{text-align:left; padding:12px 16px; border-bottom:1px solid var(--line); vertical-align:top; font-size:15px; line-height:1.45}
+th{font-family:var(--f-mono); font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); font-weight:500; background:var(--sunk)}
+td:first-child{font-family:var(--f-mono); font-size:11.5px; color:var(--ink-3); letter-spacing:.04em; white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.fr-cell{font-family:var(--f-display); font-weight:500; letter-spacing:-.01em}
+
+/* ── phases ───────────────────────────────── */
+.phase{display:grid; grid-template-columns:minmax(0,1fr); gap:8px; padding:22px 0; border-bottom:1px solid var(--line)}
+@media(min-width:820px){ .phase{grid-template-columns:56px 210px minmax(0,1fr); gap:0 28px; align-items:baseline} }
+.phase .pn{font-family:var(--f-mono); font-size:12px; font-weight:600; color:var(--brick); letter-spacing:.1em}
+.phase .pt{font-family:var(--f-display); font-size:18px; font-weight:600; letter-spacing:-.02em}
+.phase .pd{font-size:15.5px; color:var(--ink-2); line-height:1.55; margin:0}
+.phase .pw{font-family:var(--f-mono); font-size:11px; color:var(--ink-3); letter-spacing:.06em; text-transform:uppercase; margin-top:4px; display:block}
+
+.note{border-left:2px solid var(--brick); padding:2px 0 2px 18px; margin:26px 0 0; color:var(--ink-2); font-size:15.5px; max-width:66ch}
+footer{padding:46px 0 70px; color:var(--ink-3); font-family:var(--f-mono); font-size:11.5px; letter-spacing:.07em; line-height:2}
+footer a{color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--brick); outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<div class="mast">
+  <div class="ribs" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow">Meuble Confort &amp; Style · 7566 rue Saint-Hubert, Montréal</p>
+    <h1>Marquise<span class="fr">.</span></h1>
+    <p class="lede">A new meubleconfort.com built on the one thing Wayfair, Amazon and Brault&nbsp;&amp;&nbsp;Martineau cannot copy: this store is fifteen minutes away, the sofa is already in the warehouse, and it arrives carried up and assembled by two people you can phone back.</p>
+    <div class="mast-meta">
+      <span>Audit · Concept · Build plan</span>
+      <span>FR / EN</span>
+      <span>Full e-commerce</span>
+      <span>23 August 2026</span>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The business</p>
+      <div>
+        <h2>A five-star store with a two-star website</h2>
+        <p style="margin-top:16px">A family furniture store on Plaza Saint-Hubert — Montréal's covered-marquee shopping strip. They sell sectionals, mattresses, bedroom sets and dining sets between $46 and $5,400, with a median ticket around $800. They deliver free across Montréal and Laval, carry it inside, assemble it, and finance it. People who buy from them rate them 5.0. People who find them online mostly don't buy at all.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat pos"><b>5.0★</b><span>79 Google reviews</span></div>
+      <div class="stat pos"><b>13,823</b><span>Facebook followers</span></div>
+      <div class="stat"><b>171</b><span>products online</span></div>
+      <div class="stat"><b>$800</b><span>median price</span></div>
+      <div class="stat neg"><b>0</b><span>reviews shown on site</span></div>
+      <div class="stat neg"><b>1</b><span>content page total</span></div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>What they actually sell</h3>
+        <p>Not furniture — <strong>a finished room, this week, without a truck rental or a friend with a dolly.</strong> 44% of the catalog is over $800, which is exactly the band where delivery, assembly and financing decide the sale, not the price tag.</p>
+      </div>
+      <div class="card">
+        <h3>Who buys</h3>
+        <p>Montréal households furnishing a 4½ or a first condo, and families replacing a set. Budget-aware but not cheap — they'll spend $2,400 on a sectional if it can be $67 a month. They search in French <em>and</em> in English, and half of them are on a phone.</p>
+      </div>
+      <div class="card">
+        <h3>Who they're up against</h3>
+        <p>Brault &amp; Martineau and Meubles RD on flyers and financing. Mobilia on taste. Wayfair and Amazon on selection. <strong>None of them are fifteen minutes away with the sofa already in the building.</strong> That's the whole opening.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The diagnosis</p>
+      <div>
+        <h2>23 findings, verified live</h2>
+        <p style="margin-top:16px">Every line below was checked against the running site on 23 August 2026 — the DOM, the product JSON, the sitemaps and the rendered pages. The theme is a lightly-dressed Shopify default whose placeholder content was never replaced.</p>
+      </div>
+    </div>
+
+    <div class="finds">
+      <div class="find"><span class="sev c">Critical</span><div class="find-b"><b>Three footer links go nowhere.</b> “À propos de nous”, “Politique de retour” and “Aide et questions” all render with no destination.</div><div class="find-e">href="null" ×3</div></div>
+      <div class="find"><span class="sev c">Critical</span><div class="find-b"><b>The social icons point at Shopify's own accounts.</b> Instagram, YouTube, TikTok, X and Threads all link to @shopify — theme defaults, never changed. Meanwhile their own Facebook page has 13,823 followers and gets no link at all.</div><div class="find-e">instagram.com/shopify<br>tiktok.com/@shopify</div></div>
+      <div class="find"><span class="sev c">Critical</span><div class="find-b"><b>No policy pages exist.</b> No return policy, no shipping policy, no privacy, no terms. On a store with a $2,400 sectional and free in-home delivery, the return terms are the purchase decision.</div><div class="find-e">sitemap_pages_1.xml<br>= 1 URL (/pages/contact)</div></div>
+      <div class="find"><span class="sev c">Critical</span><div class="find-b"><b>No meta description, no Open Graph tags.</b> Every link shared to Facebook, Messenger or WhatsApp — where their 13.8K audience lives — renders as a bare URL with no image and no text.</div><div class="find-e">0 og:* tags on /</div></div>
+      <div class="find"><span class="sev c">Critical</span><div class="find-b"><b>No Product or LocalBusiness structured data.</b> A single Organization block, nothing else. No price, no availability, no rating in search results; no store card for “magasin de meubles près de moi”.</div><div class="find-e">ld+json: Organization only</div></div>
+      <div class="find"><span class="sev h">High</span><div class="find-b"><b>Products are named by SKU.</b> “IF 8120”, “IF-9075 / IF-9076”, “IF-9085 / IF-9086”. The URLs match. Nobody has ever searched for IF-9075.</div><div class="find-e">24 / 171 products<br>/products/if-8120</div></div>
+      <div class="find"><span class="sev h">High</span><div class="find-b"><b>The bedroom collection is misspelled</b> — “Chanbre” — in the title, in the URL, in the main navigation and in the footer.</div><div class="find-e">/collections/chanbre</div></div>
+      <div class="find"><span class="sev h">High</span><div class="find-b"><b>An emoji in a URL.</b> The promotions collection handle contains 🔥, so every link to it is percent-encoded garbage that can't be typed, shared or read.</div><div class="find-e">%F0%9F%94%A5-promotions</div></div>
+      <div class="find"><span class="sev h">High</span><div class="find-b"><b>Variant options hold content instead of attributes.</b> The option name on a sofa is “salon”. Elsewhere: “Chaison”, “taile”, “ensembre salle a manger”, “Mirroir”, and both “salon” and “Salon” as separate names.</div><div class="find-e">23 distinct option names<br>where 3 are needed</div></div>
+      <div class="find"><span class="sev h">High</span><div class="find-b"><b>Six tags across the whole catalog</b> — salon, chambre, promo, salle a manger, matelas, Bureau. No colour, material, size, style, seating capacity or price facet is possible. Shoppers cannot filter, so they scroll 49 sofas or leave.</div><div class="find-e">6 tags / 171 products</div></div>
+      <div class="find"><span class="sev h">High</span><div class="find-b"><b>French only.</b> <code>lang="fr"</code> and zero hreflang. Every English search in this market — a large share of Montréal furniture demand — reaches a competitor.</div><div class="find-e">hreflang: 0</div></div>
+      <div class="find"><span class="sev h">High</span><div class="find-b"><b>The financing offer has no page.</b> “Appliquer pour financement” is the single strongest thing on the homepage for a $800-median store, and it leads nowhere. No rates, no terms, no application, no monthly figure anywhere on the site.</div><div class="find-e">no /pages/financement</div></div>
+      <div class="find"><span class="sev h">High</span><div class="find-b"><b>The contact page is four form fields.</b> No address, no hours, no map, no phone, no photo of the store — for a business whose main asset is a showroom you can sit down in.</div><div class="find-e">Nom · E-mail · Téléphone<br>· Commentaire · Submit</div></div>
+      <div class="find"><span class="sev m">Medium</span><div class="find-b"><b>The hero is a phone snapshot taken through the storefront glass</b> — the store's own window lettering is visible in mirror image. The headline sits directly on it with no scrim, so it half-disappears into the ceiling.</div><div class="find-e">hero, all breakpoints</div></div>
+      <div class="find"><span class="sev m">Medium</span><div class="find-b"><b>On a phone, roughly 800px of stacked bars come before any content</b> — logo row, phone-number row, promo banner — then the hero. The first product is four screens down.</div><div class="find-e">375×812 viewport</div></div>
+      <div class="find"><span class="sev m">Medium</span><div class="find-b"><b>A typo runs across every page of the site</b> in the sitewide banner: “TEMPS LIMITÉs”.</div><div class="find-e">announcement bar</div></div>
+      <div class="find"><span class="sev m">Medium</span><div class="find-b"><b>The logo is a PNG with a baked-in white box</b>, so it sits in a visible rectangle on every background.</div><div class="find-e">header logo</div></div>
+      <div class="find"><span class="sev m">Medium</span><div class="find-b"><b>Collections overlap and collapse.</b> Salon (49), Ensembles de Salon (42) and Canapés (27) largely duplicate each other; three collections hold one product; “Décoration” holds zero and is still live.</div><div class="find-e">20 collections<br>4 effectively empty</div></div>
+      <div class="find"><span class="sev m">Medium</span><div class="find-b"><b>Product titles are inconsistent.</b> ALL-CAPS (“BUREAU - 42&quot;L”) next to title case, and “Bureau” exists twice as two different products.</div><div class="find-e">duplicate titles</div></div>
+      <div class="find"><span class="sev m">Medium</span><div class="find-b"><b>23 products have a single photograph.</b> Furniture is bought from the back, the corner, the seam and the room shot. One angle is not a listing.</div><div class="find-e">avg 3.4 images</div></div>
+      <div class="find"><span class="sev m">Medium</span><div class="find-b"><b>The blog exists and is empty.</b> Live URL, zero posts — the entire local-search surface, unused.</div><div class="find-e">/blogs/actualites</div></div>
+      <div class="find"><span class="sev m">Medium</span><div class="find-b"><b>The 5.0★ / 79 reviews appear nowhere.</b> The best asset the business owns is invisible on the property it owns.</div><div class="find-e">0 review modules</div></div>
+      <div class="find"><span class="sev m">Medium</span><div class="find-b"><b>Everything is framed as a permanent liquidation.</b> “LIQUIDATION PRINTEMPS 40%” sitewide, while 44 of 171 products are actually discounted. Permanent sale teaches customers never to pay full price, and margin never recovers.</div><div class="find-e">44 / 171 on promo</div></div>
+    </div>
+
+    <p class="note">The encouraging half: the product <em>descriptions</em> are genuinely good — specific, well-written French with real dimensions, materials and use cases. Every one of the 171 products has one. The writing is already there; it's the structure around it that's missing.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The idea</p>
+      <div>
+        <h2>Stop selling discounts. Start selling certainty.</h2>
+        <p style="margin-top:16px">The current site competes on the one axis where a 171-product store can never win: price theatre. Amazon is cheaper, Wayfair has more, and Brault &amp; Martineau's flyer is louder. So the new site competes somewhere else entirely — on the three questions that actually stop a Montréal furniture purchase, which a local store with a warehouse and a truck is uniquely able to answer.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <p class="num">MECHANIC 01</p>
+        <div class="fr-name">Ça rentre-tu&nbsp;?</div>
+        <div class="en-name">The Montréal fit check</div>
+        <p>Montréal is a city of spiral staircases, outdoor triplex stairs, 30-inch doors and 4½s. The universal fear before buying a sectional here is not the price — it's whether it physically gets into the apartment. Every large product gets a three-tap check: entrance type, door width, floor. It answers in plain language.</p>
+        <ul>
+          <li><strong>Green</strong> — “Ça rentre. Livré monté.”</li>
+          <li><strong>Amber</strong> — “Serré. On le démonte en 3 pièces, la plus large fait 28 po.”</li>
+          <li><strong>Red</strong> — “Ne rentre pas — voici 3 sectionnels qui rentrent chez vous.”</li>
+        </ul>
+        <p style="margin-top:6px">The data already exists in their own product copy. It just has to move out of prose and into fields. No national retailer will ever build this, because it only makes sense for one city.</p>
+      </div>
+
+      <div class="card">
+        <p class="num">MECHANIC 02 · <span style="color:var(--ink-3)">HELD BACK</span></p>
+        <div class="fr-name">En stock à Montréal</div>
+        <div class="en-name">Certainty now, a date later</div>
+        <p>Wayfair says three to five weeks. Big-box says “in stock”. A local store with the sofa in the building could say a weekday — <strong>and the built site can, but does not.</strong> Naming a day requires inventory that is true at the SKU level and a delivery calendar the site can read. Neither exists yet, and a weekday the truck misses costs more trust than the vaguer line ever wins.</p>
+        <ul>
+          <li>Shipping today → <em>En stock à Montréal</em>, on the card and the product page</li>
+          <li>No stock → “Sur commande · 2 à 3 semaines”, honestly</li>
+          <li>Always → gratuit · monté · à l'étage</li>
+        </ul>
+        <p style="margin-top:6px">The date mechanic is built and wired end to end behind one flag — <code>SHOW_DELIVERY_DATES</code>. Turn it on the day stock and the delivery calendar are trustworthy; nothing else has to change. Until then the strongest true line is the one that beats a three-week wait anyway: <em>it is already in the building.</em></p>
+      </div>
+
+      <div class="card">
+        <p class="num">MECHANIC 03</p>
+        <div class="fr-name">67&nbsp;$&nbsp;/&nbsp;mois</div>
+        <div class="en-name">The price people actually shop</div>
+        <p>Median ticket $800; sectionals $2,400–$4,000. In this market that purchase is made in monthly payments — it's how Brault &amp; Martineau and Meubles RD sell, and this store already offers financing. Today the offer dead-ends in a link to nowhere.</p>
+        <ul>
+          <li>Monthly figure under every price, on every card</li>
+          <li>A real financing page: rates, terms, what you need to apply</li>
+          <li>Pre-approval before the cart, so the sofa is already affordable</li>
+        </ul>
+        <ul style="margin-top:4px">
+          <li><strong>Klarna</strong> and <strong>Afterpay</strong> — 4 payments, for the smaller basket</li>
+          <li><strong>Affirm</strong> — monthly, where a sectional actually lands</li>
+          <li>In-store financing — the existing offer, finally given a page</li>
+        </ul>
+        <p style="margin-top:6px">Eligibility is computed from the price and recomputed on every variant change, because pay-in-4 caps out below the price of a sectional and showing it anyway is a promise checkout would break. Lowest effort of the three mechanics, and on a catalog with 44% of products above $800, likely the fastest revenue.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:34px" class="cards">
+      <div class="card">
+        <h3>Supporting: the store as proof</h3>
+        <p>79 five-star reviews, quoted with names, on the homepage and on every product page. Real photography of the showroom, the delivery truck and the people who carry it up your stairs. A showroom page with hours, a map, parking, and a <em>“Réservez un essai — 20 min”</em> booking that turns an online browse into a visit.</p>
+      </div>
+      <div class="card">
+        <h3>Supporting: complete the room</h3>
+        <p>They sell sets, but the site sells pieces. On every bed: <em>“Complétez la chambre”</em> — add the nightstands, dresser and mirror, and watch the bundle price drop as you go. On every sectional: the coffee table and rug from the same photo. Direct lift on average order value at zero media cost.</p>
+      </div>
+      <div class="card">
+        <h3>Supporting: bilingual, properly</h3>
+        <p>Two real languages with hreflang, not a translate widget — <code>/fr/</code> and <code>/en/</code>, both indexed, both with native product titles and descriptions. The English half of Montréal's furniture demand currently cannot find this store at all.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Live components</p>
+      <div>
+        <h2>What the two signature moments look like</h2>
+        <p style="margin-top:16px">The product card carries the stock status, the price and what it costs per instalment. The fit check sits on the product page, above the fold, before the description. Both rendered here as they'd ship.</p>
+      </div>
+    </div>
+
+    <div style="display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+      <div class="mock">
+        <span class="mock-label">Product card · grid</span>
+        <div class="pcard">
+          <div class="pshot"></div>
+          <div class="pbody">
+            <div class="pname">Sectionnel Verdun — bouclé gris</div>
+            <div class="psub">Canapé-lit · rangement · 101 po</div>
+            <div class="prow">
+              <span class="pprice">2 200 $</span>
+              <span class="pwas">2 640 $</span>
+              <span class="pmo">ou 61 $/mois</span>
+            </div>
+            <div><span class="chip go"><span class="dot"></span>En stock à Montréal</span></div>
+            <div><span class="chip go" style="background:transparent;color:var(--ink-3);padding-left:0">Gratuit · monté · à l'étage</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mock">
+        <span class="mock-label">Fit check · product page</span>
+        <div class="fitbox">
+          <div class="fitq">Ça rentre-tu chez vous&nbsp;?</div>
+          <div>
+            <div class="mock-label" style="margin-bottom:6px">Votre entrée</div>
+            <div class="opts">
+              <span class="opt">Porte simple</span>
+              <span class="opt on">Escalier en colimaçon</span>
+              <span class="opt">Escalier extérieur</span>
+              <span class="opt">Ascenseur</span>
+            </div>
+          </div>
+          <div>
+            <div class="mock-label" style="margin-bottom:6px">Étage</div>
+            <div class="opts">
+              <span class="opt">RDC</span><span class="opt on">2<sup>e</sup></span><span class="opt">3<sup>e</sup></span><span class="opt">4<sup>e</sup>+</span>
+            </div>
+          </div>
+          <div class="fitout">
+            <span class="chip tight"><span class="dot"></span>Serré — mais ça passe</span>
+            <p style="margin:9px 0 0; font-size:14.5px">Ce sectionnel se démonte en <strong>3 pièces</strong>. La plus large mesure <strong>28 po</strong> — assez étroite pour un colimaçon standard. Nos livreurs le remontent chez vous, sans frais.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Architecture</p>
+      <div>
+        <h2>Twenty overlapping collections become one shopping path</h2>
+        <p style="margin-top:16px">Today the same sofa lives in Salon, Ensembles de Salon and Canapés, and four collections are effectively empty. The new structure has one canonical home per product, real facets instead of collections, and the trust pages the store currently doesn't have.</p>
+      </div>
+    </div>
+
+    <div class="tree">/fr/  ·  /en/            <i>← both indexed, hreflang paired</i>
+
+<b>Salon</b>            <i>Sectionnels · Canapés · Causeuses · Fauteuils</i>
+                 <i>Tables de salon · Meubles TV · Poufs</i>
+<b>Chambre</b>          <i>Ensembles · Lits · Matelas · Commodes</i>   <u>← “chanbre” retired w/ 301</u>
+                 <i>Tables de chevet · Miroirs</i>
+<b>Salle à manger</b>    <i>Ensembles · Tables · Chaises · Buffets · Tabourets</i>
+<b>Bureau</b>           <i>Bureaux · Chaises de bureau · Bibliothèques</i>
+<b>Aubaines</b>         <i>only what is genuinely reduced</i>              <u>← replaces 🔥-promotions</u>
+
+  <b>Facets</b> <i>(on every listing, replacing 16 collections)</i>
+     prix · budget mensuel · couleur · matériau
+     places assises · dimensions · rentre-chez-moi
+     en stock à Montréal · livrable cette semaine
+
+<b>La salle de montre</b>   <i>hours · map · parking · photos · book a 20-min visit</i>
+<b>Livraison</b>           <i>zones, dates, stairs, assembly, what happens on the day</i>
+<b>Financement</b>         <i>rates, terms, what you need, apply</i>       <u>← today: a dead link</u>
+<b>Retours et garantie</b>  <i>plain-language policy</i>                    <u>← today: does not exist</u>
+<b>À propos</b>            <i>the family, the store, 79 reviews</i>        <u>← today: href="null"</u>
+<b>Guides</b>             <i>“Quel sectionnel rentre dans un 4½ ?”</i>
+                    <i>“Matelas ferme ou moelleux ?”</i>
+                    <i>“Livraison à Villeray, Rosemont, Laval…”</i></div>
+
+    <p class="note">Every retired URL — <code>/collections/chanbre</code>, the emoji handle, the SKU product slugs — needs a 301 to its replacement on launch day. That is the single most common way a furniture site redesign loses a year of ranking.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Page blueprints</p>
+      <div>
+        <h2>Three pages carry the whole store</h2>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="fr-name">Accueil</div>
+        <div class="en-name">Home</div>
+        <ul>
+          <li><strong>One bar, not three.</strong> Logo, nav, search, phone, cart — the phone strip and promo banner fold into it.</li>
+          <li><strong>Hero:</strong> three rooms pinned as you scroll, each naming a room, its live piece count and a link into it. Product visible above the fold on a phone.</li>
+          <li><strong>Shop by room</strong> — four large tiles, real photos, piece counts.</li>
+          <li><strong>En stock à Montréal</strong> — a live row of what is actually in the warehouse. This is the homepage's engine.</li>
+          <li><strong>The store</strong> — storefront photo, hours, map, “Réservez un essai”.</li>
+          <li><strong>Reviews</strong> — three real ones with names, linked to Google.</li>
+          <li><strong>Financing</strong> — with an actual destination.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="fr-name">Listes de produits</div>
+        <div class="en-name">Category listing</div>
+        <ul>
+          <li><strong>Facets in a left rail</strong>, sticky on desktop, a sheet on mobile — price, monthly budget, colour, material, seats, and <em>rentre chez moi</em>.</li>
+          <li><strong>Every card</strong> carries: real name, price, monthly price, delivery chip, and a swatch row when colours exist.</li>
+          <li><strong>Sort by “livrable le plus tôt”</strong> as a first-class option.</li>
+          <li>A short, human intro paragraph — the current SEO wall of text moves to the bottom and gets cut in half.</li>
+          <li>Empty and near-empty collections retired rather than shown.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="fr-name">Fiche produit</div>
+        <div class="en-name">Product page</div>
+        <ul>
+          <li><strong>Real name and real URL</strong> — <code>/fr/salon/sectionnel-verdun-boucle-gris</code>, not <code>/products/if-9085</code>. SKU stays as a spec line.</li>
+          <li><strong>5+ photos</strong> — room shot, front, back, corner, fabric macro, folded-out.</li>
+          <li><strong>Above the fold:</strong> price, instalment options, stock status, fit check, add to cart.</li>
+          <li><strong>Dimensions as a labelled diagram</strong>, not a paragraph.</li>
+          <li><strong>“Complétez la pièce”</strong> bundle builder.</li>
+          <li><strong>Reviews, delivery terms and return policy</strong> inline — not a link away.</li>
+          <li>Product + Offer + AggregateRating schema on every one.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Design system</p>
+      <div>
+        <h2>Marquise</h2>
+        <p style="margin-top:16px">Named for the glass-and-steel canopy over Plaza Saint-Hubert — the thing that makes their street a room. The colour is <strong>their own</strong>: <code>#BB3703</code> is the rust sampled straight out of the MCS logo mark, and <code>#171717</code> is its lettering. The site currently runs three different reds at once — the logo's rust, a <code>#C62828</code> theme primary, and a <code>#B30000</code> announcement bar. Marquise keeps the mark's rust, because the logo is the most permanent asset the business owns, and retires the other two.</p>
+        <p>What makes it read expensive is not the palette but the restraint: the rust appears perhaps three times on a page — a hairline before a section label, one italic word in the headline, the underline on a link. Everything else is ink, paper and photography. The green is the site's other voice, and it means one thing only: <em>this one is already in the building</em>.</p>
+      </div>
+    </div>
+
+    <div class="sw">
+      <div class="swi"><div class="swc" style="background:#BB3703"></div><div class="swt"><b>Rouille</b><span>#BB3703 · from the mark</span></div></div>
+      <div class="swi"><div class="swc" style="background:#171717"></div><div class="swt"><b>Encre</b><span>#171717 · from the mark</span></div></div>
+      <div class="swi"><div class="swc" style="background:#F1EFEC"></div><div class="swt"><b>Papier</b><span>#F1EFEC · ground</span></div></div>
+      <div class="swi"><div class="swc" style="background:#FFFFFF"></div><div class="swt"><b>Surface</b><span>#FFFFFF · cards</span></div></div>
+      <div class="swi"><div class="swc" style="background:#2A5D48"></div><div class="swt"><b>Signal</b><span>#2A5D48 · en stock</span></div></div>
+      <div class="swi"><div class="swc" style="background:#8E2A05"></div><div class="swt"><b>Rouille foncée</b><span>#8E2A05 · press</span></div></div>
+    </div>
+
+    <p class="note" style="margin-top:18px">Retired: <code>#C62828</code> (theme primary) and <code>#B30000</code> (announcement bar). Neither appears in the logo, and running three reds is why the current site reads as a flyer rather than a brand.</p>
+
+    <div class="spec" style="margin-top:18px">
+      <div class="spec-row">
+        <span class="tag">Display · Fraunces · headlines, product names, reviews</span>
+        <div class="sp-d" style="font-family:Fraunces,Georgia,serif;font-weight:400;letter-spacing:-.03em">Livré et <em style="color:#BB3703">monté</em>.</div>
+      </div>
+      <div class="spec-row">
+        <span class="tag">Interface · Familjen Grotesk · navigation, prices, buttons, body</span>
+        <div class="sp-b" style="font-family:'Familjen Grotesk',Helvetica,Arial,sans-serif">Livraison gratuite, montés, à l’étage — Montréal, Laval et Longueuil. 2 200 $, ou 61 $/mois.</div>
+      </div>
+      <div class="spec-row">
+        <span class="tag">Utility · IBM Plex Mono · labels, specs, SKU, dates</span>
+        <div class="sp-m">SKU IF-9085 · 101 × 62 × 37 PO · CHEZ VOUS MERCREDI 26 AOÛT</div>
+      </div>
+    </div>
+
+    <p class="note">Fraunces carries the warmth — it has grain and a little wonk, which suits wood and upholstery — while Familjen Grotesk keeps every price, button and label plain and modern, and the mono keeps the specs technical rather than precious. The serif is for the things a person feels; the sans is for the things they have to read to buy. Photography does the selling; the interface stays quiet enough to let it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The words</p>
+      <div>
+        <h2>Copy, both languages, ready to set</h2>
+        <p style="margin-top:16px">Their existing product descriptions are good and stay. What changes is everything structural — the lines that currently say “Transformez votre maison aujourd'hui”, which is a line any furniture store on earth could run.</p>
+      </div>
+    </div>
+
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Slot</th><th>Français</th><th>English</th></tr></thead>
+        <tbody>
+          <tr><td>Hero headline</td><td class="fr-cell">Votre salon fini. Livré et monté.</td><td class="fr-cell">Your living room, delivered and assembled.</td></tr>
+          <tr><td>Hero sub</td><td>Meubles en stock à Montréal. Livraison gratuite, montés, à l'étage — Montréal, Laval, Longueuil.</td><td>Furniture in stock in Montréal. Free delivery, assembled, up your stairs — Montréal, Laval, Longueuil.</td></tr>
+          <tr><td>Hero CTA</td><td class="fr-cell">Voir ce qui part cette semaine</td><td class="fr-cell">See what ships this week</td></tr>
+          <tr><td>Stock chip</td><td class="fr-cell">En stock à Montréal</td><td class="fr-cell">In stock in Montréal</td></tr>
+          <tr><td>Instalments</td><td class="fr-cell">499,75 $ × 4 sans intérêts, aux 2 semaines</td><td class="fr-cell">$499.75 × 4 interest-free, every 2 weeks</td></tr>
+          <tr><td>Delivery sub</td><td>Gratuit · monté · à l'étage</td><td>Free · assembled · up your stairs</td></tr>
+          <tr><td>Backorder</td><td>Sur commande — 2 à 3 semaines</td><td>Made to order — 2 to 3 weeks</td></tr>
+          <tr><td>Fit check</td><td class="fr-cell">Ça rentre-tu chez vous ?</td><td class="fr-cell">Will it fit through your door?</td></tr>
+          <tr><td>Fit · pass</td><td>Ça rentre. Livré monté, rien à faire.</td><td>It fits. Delivered assembled — nothing for you to do.</td></tr>
+          <tr><td>Fit · tight</td><td>Serré, mais ça passe. On le démonte en 3 pièces et on le remonte chez vous.</td><td>Tight, but it goes. We take it apart in 3 and rebuild it inside.</td></tr>
+          <tr><td>Fit · fail</td><td>Ne rentre pas par un colimaçon. Voici 3 sectionnels qui rentrent.</td><td>Won't clear a spiral staircase. Here are 3 sectionals that will.</td></tr>
+          <tr><td>Financing</td><td class="fr-cell">Ou 61 $/mois. Approbation en 3 minutes, en ligne ou en magasin.</td><td class="fr-cell">Or $61/month. Approved in 3 minutes, online or in store.</td></tr>
+          <tr><td>Bundle</td><td class="fr-cell">Complétez la chambre</td><td class="fr-cell">Finish the bedroom</td></tr>
+          <tr><td>Showroom</td><td>Venez vous asseoir dessus. 7566 rue Saint-Hubert — ouvert 7 jours.</td><td>Come sit on it. 7566 rue Saint-Hubert — open 7 days.</td></tr>
+          <tr><td>Showroom CTA</td><td class="fr-cell">Réservez un essai — 20 min</td><td class="fr-cell">Book a 20-minute visit</td></tr>
+          <tr><td>Reviews</td><td>79 familles montréalaises nous ont donné 5 étoiles sur 5.</td><td>79 Montréal families have given us 5 out of 5.</td></tr>
+          <tr><td>Returns</td><td>14 jours pour changer d'avis. On vient le rechercher.</td><td>14 days to change your mind. We come and pick it up.</td></tr>
+          <tr><td>Empty search</td><td>Rien sous ce nom. Appelez-nous au 514-279-4600 — on l'a peut-être en entrepôt.</td><td>Nothing under that name. Call 514-279-4600 — we may have it in the warehouse.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">One decision to make before writing the returns line: the actual policy. It currently isn't written down anywhere, and it has to be, in both languages, before launch.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Being found</p>
+      <div>
+        <h2>The local search plan</h2>
+        <p style="margin-top:16px">A single-location furniture store doesn't beat Wayfair on “sectional sofa”. It beats everyone on “sofa lit Villeray”, “magasin de meubles ouvert dimanche Montréal”, and “furniture store near me” — searches with a buyer at the end of them.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Fix first</h3>
+        <ul>
+          <li>Meta descriptions and Open Graph on every template</li>
+          <li>Product + Offer + AggregateRating + LocalBusiness + Breadcrumb schema</li>
+          <li>Real product titles and slugs; SKU demoted to a spec</li>
+          <li><code>/fr/</code> ↔ <code>/en/</code> with reciprocal hreflang</li>
+          <li>301s for every retired URL, mapped before launch</li>
+          <li>Policy pages written — Google and Shopify both want them</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Then build</h3>
+        <ul>
+          <li>Neighbourhood delivery pages: Villeray, Rosemont, Plateau, Ahuntsic, Laval, Longueuil — real content about stairs and parking, not doorway spam</li>
+          <li>Buying guides answering the fit-check question in long form</li>
+          <li>Google Business Profile: products, photos, hours, Q&amp;A, weekly posts</li>
+          <li>Review requests at delivery — the 80th review is worth more than any ad</li>
+          <li>Point the 13,823 Facebook followers at the site, and fix the social links so the site points back</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Measure honestly</h3>
+        <p>Furniture e-commerce converts in roughly the <strong>1.2–1.6%</strong> band. For a store this size the numbers that matter are narrower and more useful:</p>
+        <ul>
+          <li>Fit-check completions → add-to-cart rate</li>
+          <li>Showroom visits booked online</li>
+          <li>Calls and WhatsApps from product pages</li>
+          <li>Financing applications started</li>
+          <li>Failed or refused deliveries — the fit check should drive this toward zero, and it's real money</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The build</p>
+      <div>
+        <h2>Four phases, cheapest wins first</h2>
+        <p style="margin-top:16px">Phase 1 is a week of work on the existing store and can ship before the redesign is even approved. Nothing in it is wasted — every fix carries into the new site.</p>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid var(--line-2)">
+      <div class="phase">
+        <span class="pn">01</span>
+        <div><div class="pt">Stop the bleeding</div><span class="pw">~1 week · existing site</span></div>
+        <p class="pd">Fix the three dead footer links. Repoint the social icons at their own accounts. Write and publish the four policy pages. Add meta descriptions and Open Graph. Build the financing page the homepage already promises. Fix “Chanbre”, the emoji URL and “TEMPS LIMITÉs”. Put the 5.0★ and the address, hours and map on the contact page.</p>
+      </div>
+      <div class="phase">
+        <span class="pn">02</span>
+        <div><div class="pt">Fix the data</div><span class="pw">~2–3 weeks</span></div>
+        <p class="pd">Rename all 171 products in human language, in both languages, with 301s from the SKU slugs. Rebuild variant options as Couleur / Configuration / Taille. Tag properly so faceted filtering becomes possible. Pull dimensions, disassembly and largest-piece width out of the descriptions into structured fields — this is the data the fit check runs on. Reshoot the 23 single-image products and the hero.</p>
+      </div>
+      <div class="phase">
+        <span class="pn">03</span>
+        <div><div class="pt">Build Marquise</div><span class="pw">~5–7 weeks</span></div>
+        <p class="pd">New theme on the design system above. Bilingual with hreflang. New IA and facets. Product card with stock status and instalment pricing. Klarna, Afterpay and Affirm, gated on price. Fit check on every large item. Bundle builder. Showroom page with booking. Reviews everywhere. Full schema. Redirect map executed on launch day.</p>
+      </div>
+      <div class="phase">
+        <span class="pn">04</span>
+        <div><div class="pt">Feed it</div><span class="pw">ongoing</span></div>
+        <p class="pd">Neighbourhood pages and buying guides. Google Business Profile worked weekly. Review capture at delivery. Expand the catalog beyond 171 — the store's floor holds far more than the site shows, and every product added is a page that can rank.</p>
+      </div>
+    </div>
+
+    <p class="note">One open question worth settling early: whether the online catalog stays at 171 products or grows. A 2,262-SKU photographed and described product library already exists inside the group. If the supply relationship allows it to be sold under this brand, the same build supports it with no extra engineering — and it changes what this store can rank for entirely.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Marquise — concept for meubleconfort.com · Meuble Confort &amp; Style, 7566 rue Saint-Hubert, Montréal<br>
+    Audit verified live 23 August 2026 · 171 products, 20 collections, 1 content page<br>
+    Conversion benchmark: <a href="https://www.ienhance.co/insights/furniture-ecommerce-conversion-rates">ienhance furniture e-commerce data</a>
+  </div>
+</footer>

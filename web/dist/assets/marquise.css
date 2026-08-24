@@ -1,0 +1,474 @@
+/* Marquise — Meuble Confort & Style
+   Brand rust #BB3703 sampled from the MCS logo mark; ink #171717 from its
+   lettering. The theme's stray #C62828 and the #B30000 banner are retired so
+   the identity reads as one colour, used rarely and deliberately. */
+
+:root{
+  --paper:#F1EFEC;          /* warm neutral ground, from the logo's field */
+  --surface:#FFFFFF;        /* cards sit white on it — the high-end move */
+  --sunk:#E7E3DD;
+  --field:#FFFFFF;
+  --ink:#171717;            /* logo lettering */
+  --ink-2:#4A4643;
+  --ink-3:#8C8681;
+  --line:#E0DBD4;
+  --line-2:#C9C2B9;
+
+  --brand:#BB3703;          /* the mark */
+  --brand-deep:#8E2A05;
+  --brand-ink:#FFFFFF;
+  --brand-soft:#F6E7DF;
+
+  --signal:#2A5D48;         /* in stock / delivered */
+  --signal-soft:#E1EBE4;
+  --warn:#7A5210;
+  --warn-soft:#F2E8D6;
+
+  --scrim-1:rgba(241,239,236,.97);
+  --scrim-2:rgba(241,239,236,.66);
+  --shadow:0 1px 1px rgba(23,23,23,.03), 0 12px 34px -18px rgba(23,23,23,.22);
+  --lift:0 2px 4px rgba(23,23,23,.04), 0 26px 54px -26px rgba(23,23,23,.3);
+
+  --f-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --f-ui:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+
+  --wrap:1360px;
+  --pad:clamp(20px,5vw,72px);
+  --gut:clamp(18px,2.4vw,34px);
+  --r:0px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#14120F; --surface:#1C1A16; --sunk:#0C0B09; --field:#221F1A;
+    --ink:#EDEAE4; --ink-2:#B3ADA4; --ink-3:#857F76;
+    --line:#2B2822; --line-2:#3E3A32;
+    --brand:#E5673A; --brand-deep:#F08055; --brand-ink:#1A0E08; --brand-soft:#33190E;
+    --signal:#6FBE9A; --signal-soft:#16281F;
+    --warn:#D6A85E; --warn-soft:#2B2214;
+    --scrim-1:rgba(20,18,15,.95);
+    --scrim-2:rgba(20,18,15,.62);
+    --scrim-1:rgba(20,18,15,.95);
+  --scrim-2:rgba(20,18,15,.62);
+  --shadow:0 1px 1px rgba(0,0,0,.5), 0 14px 36px -20px rgba(0,0,0,.8);
+    --lift:0 2px 6px rgba(0,0,0,.5), 0 30px 60px -28px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14120F; --surface:#1C1A16; --sunk:#0C0B09; --field:#221F1A;
+  --ink:#EDEAE4; --ink-2:#B3ADA4; --ink-3:#857F76;
+  --line:#2B2822; --line-2:#3E3A32;
+  --brand:#E5673A; --brand-deep:#F08055; --brand-ink:#1A0E08; --brand-soft:#33190E;
+  --signal:#6FBE9A; --signal-soft:#16281F;
+  --warn:#D6A85E; --warn-soft:#2B2214;
+  --scrim-1:rgba(20,18,15,.95);
+  --scrim-2:rgba(20,18,15,.62);
+  --shadow:0 1px 1px rgba(0,0,0,.5), 0 14px 36px -20px rgba(0,0,0,.8);
+  --lift:0 2px 6px rgba(0,0,0,.5), 0 30px 60px -28px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; overflow-x:clip}
+body{margin:0; background:var(--paper); color:var(--ink); overflow-x:clip; max-width:100%;
+  font-family:var(--f-body); font-size:16px; line-height:1.65; letter-spacing:-.005em;
+  -webkit-font-smoothing:antialiased}
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+h1,h2,h3,h4{font-family:var(--f-display); font-weight:400; margin:0; line-height:1.05;
+  letter-spacing:-.018em; text-wrap:balance;
+  font-variation-settings:"SOFT" 0,"WONK" 0,"opsz" 60}
+.wrap{max-width:var(--wrap); margin-inline:auto; padding-inline:var(--pad)}
+.mono{font-family:var(--f-mono)}
+:focus-visible{outline:1.5px solid var(--brand); outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* the one recurring ornament: a rust hairline that marks a section's start */
+.eyebrow{font-family:var(--f-mono); font-size:10px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--ink-3); margin:0 0 14px; display:flex; align-items:center; gap:12px}
+.eyebrow::before{content:""; width:22px; height:1px; background:var(--brand); flex:none}
+
+/* ── header ─────────────────────────────────────────── */
+.topbar{background:var(--ink); color:var(--paper); font-family:var(--f-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase}
+.topbar .wrap{display:flex; gap:6px 26px; align-items:center; justify-content:center; flex-wrap:wrap; padding-block:10px; text-align:center}
+.topbar b{font-weight:400; color:var(--paper)}
+.topbar .sep{opacity:.28}
+
+header.site{position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex; align-items:center; gap:clamp(14px,3vw,44px); padding-block:20px}
+.brand{font-family:var(--f-display); font-weight:400; font-size:21px; letter-spacing:-.03em; line-height:1; white-space:nowrap
+  ; font-variation-settings:"opsz" 40}
+.brand em{font-style:normal; color:var(--brand)}
+.brand small{display:block; font-family:var(--f-mono); font-size:8px; letter-spacing:.3em; color:var(--ink-3); margin-top:6px; text-transform:uppercase}
+nav.main{display:flex; gap:clamp(14px,2.2vw,32px); margin-inline:auto; flex-wrap:wrap}
+nav.main a{font-family:var(--f-ui); font-weight:500; font-size:14px; letter-spacing:.01em; padding:6px 0; position:relative}
+nav.main a::after{content:""; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--brand); transition:right .35s var(--ease)}
+nav.main a:hover::after{right:0}
+nav.main a[aria-current]::after{right:0; background:var(--ink)}
+.utils{display:flex; align-items:center; gap:16px; font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; white-space:nowrap}
+.lang{display:inline-flex; gap:1px}
+.lang a{padding:5px 7px; font-size:10px; letter-spacing:.16em; color:var(--ink-3)}
+.lang a[aria-current]{color:var(--ink); border-bottom:1px solid var(--brand)}
+.cart{display:inline-flex; align-items:center; gap:7px; border:1px solid var(--ink); padding:9px 15px;
+  font-size:10px; letter-spacing:.18em; text-transform:uppercase; transition:background .25s var(--ease), color .25s var(--ease)}
+.cart:hover{background:var(--ink); color:var(--paper)}
+@media(max-width:980px){
+  header.site .wrap{flex-wrap:wrap; row-gap:14px; padding-block:15px}
+  nav.main{order:3; width:100%; margin:0; flex-wrap:nowrap; overflow-x:auto; padding-bottom:3px;
+    scrollbar-width:none; -webkit-overflow-scrolling:touch}
+  nav.main::-webkit-scrollbar{display:none}
+  nav.main a{white-space:nowrap}
+  .utils{margin-left:auto}
+  .utils .tel{display:none}
+}
+
+/* ── promise strip: hairline, not a coloured band ───── */
+.promise{border-bottom:1px solid var(--line)}
+.promise .wrap{display:flex; gap:10px 40px; flex-wrap:wrap; justify-content:center; padding-block:13px;
+  font-family:var(--f-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3)}
+.promise span{display:inline-flex; align-items:center; gap:9px}
+.promise .dot{width:3px;height:3px;border-radius:50%;background:var(--brand);flex:none}
+
+/* ── buttons ────────────────────────────────────────── */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; font-family:var(--f-ui);
+  font-weight:500; font-size:11px; letter-spacing:.2em; text-transform:uppercase; padding:17px 30px;
+  border:1px solid transparent; cursor:pointer; border-radius:var(--r);
+  transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease)}
+.btn-primary{background:var(--ink); color:var(--paper)}
+.btn-primary:hover{background:var(--brand); border-color:var(--brand); color:var(--brand-ink)}
+.btn-ghost{border-color:var(--line-2); color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink); background:var(--ink); color:var(--paper)}
+.btn-block{width:100%}
+
+/* ── chips ──────────────────────────────────────────── */
+.chip{display:inline-flex; align-items:center; gap:7px; font-family:var(--f-mono); font-size:10px;
+  letter-spacing:.13em; text-transform:uppercase; padding:6px 0; line-height:1.3}
+.chip .dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}
+.chip.go{color:var(--signal)}
+.chip.tight{color:var(--warn)}
+.chip.no{color:var(--brand)}
+.chip.plain{color:var(--ink-3)}
+.chip.sale{background:var(--brand); color:var(--brand-ink); padding:6px 10px; letter-spacing:.12em}
+.chip.boxed{padding:7px 11px}
+.chip.boxed.go{background:var(--signal-soft)}
+.chip.boxed.tight{background:var(--warn-soft)}
+.chip.boxed.no{background:var(--brand-soft)}
+
+/* ── hero ───────────────────────────────────────────── */
+.hero{position:relative; border-bottom:1px solid var(--line); background:var(--paper)}
+.hero-grid{display:grid; grid-template-columns:1fr}
+@media(min-width:1000px){ .hero-grid{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr)} }
+.hero-copy{padding:clamp(40px,7vw,110px) var(--pad); display:flex; flex-direction:column; justify-content:center; gap:26px}
+@media(min-width:1000px){ .hero-copy{padding-right:clamp(30px,4vw,70px)} }
+.hero-copy h1{font-size:clamp(40px,5.6vw,74px); font-weight:400; letter-spacing:-.032em; line-height:.98;
+  font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+.hero-copy h1 em{font-style:italic; color:var(--brand); font-variation-settings:"opsz" 144,"WONK" 1}
+.hero-copy p{margin:0; font-size:clamp(16px,1.35vw,18px); color:var(--ink-2); max-width:40ch; line-height:1.6}
+.hero-cta{display:flex; gap:14px; flex-wrap:wrap; margin-top:6px}
+.hero-shot{position:relative; min-height:clamp(300px,52vw,660px); background:var(--sunk); overflow:hidden}
+.hero-shot img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0}
+.hero-tag{position:absolute; left:24px; bottom:24px; background:var(--surface); padding:16px 20px; box-shadow:var(--lift); max-width:min(340px,74%)}
+.hero-tag .n{font-family:var(--f-display); font-size:17px; letter-spacing:-.02em; line-height:1.2}
+.hero-tag .m{font-family:var(--f-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-top:7px}
+
+/* ── sections ───────────────────────────────────────── */
+section.band{padding:clamp(56px,8.5vw,124px) 0; border-bottom:1px solid var(--line)}
+.band-head{display:flex; align-items:flex-end; justify-content:space-between; gap:26px; flex-wrap:wrap; margin-bottom:clamp(28px,3.6vw,52px)}
+.band-head h2{font-size:clamp(28px,3.6vw,46px); font-variation-settings:"opsz" 96,"SOFT" 0,"WONK" 0}
+.band-head h2 em{font-style:italic; color:var(--brand)}
+.band-head p{margin:14px 0 0; color:var(--ink-2); font-size:16px; max-width:52ch}
+.more{font-family:var(--f-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink);
+  white-space:nowrap; padding-bottom:5px; border-bottom:1px solid var(--brand)}
+
+/* ── product grid ───────────────────────────────────── */
+.grid{display:grid; gap:var(--gut) clamp(14px,1.8vw,26px); grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.pc{display:flex; flex-direction:column; background:transparent; border-radius:var(--r)}
+.pc-shot{position:relative; aspect-ratio:4/5; background:var(--sunk); overflow:hidden}
+.pc-shot img{width:100%;height:100%;object-fit:cover; transition:transform .8s var(--ease)}
+.pc:hover .pc-shot img{transform:scale(1.045)}
+.pc-flags{position:absolute; top:0; left:0; display:flex; flex-direction:column; gap:5px; align-items:flex-start; z-index:2}
+.pc-body{padding:16px 2px 4px; display:flex; flex-direction:column; gap:8px; flex:1}
+.pc-sub{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3)}
+.pc-name{font-family:var(--f-display); font-size:19px; letter-spacing:-.017em; line-height:1.2;
+  font-variation-settings:"opsz" 30,"SOFT" 0,"WONK" 0}
+.pc-price{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-top:auto; padding-top:4px}
+.pc-price .now{font-family:var(--f-ui); font-size:16px; font-weight:600; letter-spacing:-.01em; font-variant-numeric:tabular-nums}
+.pc-price .was{font-family:var(--f-mono); font-size:11px; color:var(--ink-3); text-decoration:line-through}
+.pc-mo{font-family:var(--f-mono); font-size:10px; letter-spacing:.11em; color:var(--ink-3); text-transform:uppercase}
+.pc-sw{display:flex; gap:5px}
+.pc-sw i{width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14); display:block}
+
+/* ── room tiles ─────────────────────────────────────── */
+.rooms{display:grid; gap:clamp(14px,1.8vw,26px); grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.room{position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--sunk)}
+.room img{width:100%;height:100%;object-fit:cover; transition:transform .9s var(--ease)}
+.room:hover img{transform:scale(1.05)}
+.room-t{position:absolute; inset:auto 0 0 0; padding:60px 22px 22px; color:#fff;
+  background:linear-gradient(180deg,transparent,rgba(12,10,8,.78))}
+.room-t b{display:block; font-family:var(--f-display); font-size:26px; font-weight:400; letter-spacing:-.02em;
+  font-variation-settings:"opsz" 48}
+.room-t span{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; opacity:.78}
+
+/* ── listing ────────────────────────────────────────── */
+.listing{display:grid; grid-template-columns:1fr; gap:clamp(24px,3.4vw,56px); padding-block:clamp(28px,4vw,56px)}
+@media(min-width:1040px){ .listing{grid-template-columns:230px minmax(0,1fr)} }
+.facets{display:flex; flex-direction:column; gap:30px; align-self:start}
+@media(min-width:1040px){ .facets{position:sticky; top:104px; max-height:calc(100vh - 130px); overflow-y:auto; padding-right:8px} }
+.facet{border:0; margin:0; padding:0; min-width:0}
+.facet legend{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:400; padding:0 0 11px; margin-bottom:13px; width:100%; border-bottom:1px solid var(--line)}
+.facet label{display:flex; align-items:center; gap:11px; padding:6px 0; font-size:14px; cursor:pointer; color:var(--ink-2);
+  transition:color .2s var(--ease)}
+.facet label:hover{color:var(--ink)}
+.facet input{accent-color:var(--brand); width:14px;height:14px; flex:none}
+.facet .n{margin-left:auto; font-family:var(--f-mono); font-size:10px; color:var(--ink-3)}
+.facet .sw{width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.16); flex:none}
+.facet-bar{display:flex; align-items:center; gap:18px; flex-wrap:wrap; justify-content:space-between;
+  padding-bottom:18px; border-bottom:1px solid var(--line); margin-bottom:clamp(20px,2.6vw,34px)}
+.count{font-family:var(--f-mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3)}
+select.sort{font-family:var(--f-ui); font-size:13px; font-weight:500; padding:10px 13px; border:1px solid var(--line-2);
+  border-radius:var(--r); background:var(--field); color:var(--ink)}
+.clearf{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--brand);
+  background:none; border:0; cursor:pointer; padding:0}
+.facet-toggle{display:none}
+@media(max-width:1039px){
+  .facet-toggle{display:inline-flex}
+  .facets{display:none; border:1px solid var(--line); padding:24px; background:var(--surface)}
+  .facets.open{display:flex}
+}
+
+/* ── PDP ────────────────────────────────────────────── */
+/* The buy column leads the DOM so the <h1> is the page's first heading; grid
+   placement puts it back on the right, and `order` keeps the gallery first on
+   a phone. */
+.pdp{display:grid; grid-template-columns:1fr; gap:clamp(26px,4vw,64px); padding-block:clamp(20px,3vw,40px)}
+.pdp > .media{order:1}
+.pdp > .buy{order:2}
+@media(min-width:1000px){
+  .pdp{grid-template-columns:minmax(0,1.22fr) minmax(360px,.78fr)}
+  .pdp > .media{grid-column:1; grid-row:1; order:0}
+  .pdp > .buy{grid-column:2; grid-row:1; order:0}
+}
+.gal{display:grid; gap:10px; grid-template-columns:1fr}
+.gal-main{aspect-ratio:4/5; background:var(--sunk); overflow:hidden}
+.gal-main img{width:100%;height:100%;object-fit:cover}
+.gal-thumbs{display:grid; grid-template-columns:repeat(auto-fill,minmax(84px,1fr)); gap:10px}
+.gal-thumbs button{padding:0; border:0; background:var(--sunk); overflow:hidden; aspect-ratio:1/1; cursor:pointer;
+  opacity:.55; transition:opacity .3s var(--ease)}
+.gal-thumbs button:hover{opacity:.85}
+.gal-thumbs button[aria-current]{opacity:1; box-shadow:inset 0 -2px 0 var(--brand)}
+.gal-thumbs img{width:100%;height:100%;object-fit:cover}
+.buy{display:flex; flex-direction:column; gap:22px; align-self:start}
+@media(min-width:1000px){ .buy{position:sticky; top:108px} }
+.crumbs{font-family:var(--f-mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); padding-block:18px}
+.crumbs a:hover{color:var(--brand)}
+.buy h1{font-size:clamp(30px,3.5vw,44px); font-weight:400; font-variation-settings:"opsz" 72,"SOFT" 0,"WONK" 0}
+.buy .sub{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:12px}
+.priceline{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+.priceline .now{font-family:var(--f-ui); font-size:27px; font-weight:600; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.priceline .was{font-family:var(--f-mono); font-size:13px; color:var(--ink-3); text-decoration:line-through}
+.fin{font-family:var(--f-mono); font-size:11px; letter-spacing:.06em; color:var(--ink-2)}
+.fin a{border-bottom:1px solid var(--brand)}
+.opts{display:flex; flex-direction:column; gap:11px}
+.opts .lbl{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3)}
+.opts .row{display:flex; flex-wrap:wrap; gap:8px}
+.opt{font-family:var(--f-ui); font-weight:500; font-size:12.5px; padding:10px 15px; border:1px solid var(--line-2);
+  background:transparent; color:var(--ink-2); cursor:pointer; border-radius:var(--r);
+  transition:border-color .25s var(--ease), background .25s var(--ease), color .25s var(--ease)}
+.opt:hover{border-color:var(--ink-3)}
+.opt[aria-pressed="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.box{border:1px solid var(--line); background:var(--surface); padding:22px}
+.box h3{font-size:19px; margin-bottom:14px; font-variation-settings:"opsz" 30}
+.box p{margin:0; font-size:14px; color:var(--ink-2); line-height:1.6}
+.fitrow{display:flex; flex-direction:column; gap:16px}
+.fitout{border-top:1px solid var(--line); padding-top:15px; display:flex; flex-direction:column; gap:10px}
+.specs{width:100%; border-collapse:collapse; font-size:14px}
+.specs td{padding:12px 0; border-bottom:1px solid var(--line); vertical-align:top}
+.specs td:first-child{color:var(--ink-3); font-family:var(--f-mono); font-size:9.5px; letter-spacing:.18em;
+  width:42%; text-transform:uppercase; padding-top:14px}
+.desc{font-size:16px; line-height:1.75; color:var(--ink-2); max-width:62ch}
+.desc h3{color:var(--ink); margin:38px 0 14px; font-size:23px; font-variation-settings:"opsz" 40}
+.desc ul{padding-left:1.05em; margin:0 0 18px; list-style:none}
+.desc li{margin-bottom:8px; position:relative; padding-left:4px}
+.desc li::before{content:""; position:absolute; left:-14px; top:.72em; width:5px; height:1px; background:var(--brand)}
+.desc p{margin:0 0 15px}
+
+/* ── reviews ────────────────────────────────────────── */
+.revs{display:grid; gap:clamp(14px,1.8vw,26px); grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.rev{background:var(--surface); padding:32px 28px; display:flex; flex-direction:column; gap:16px}
+.stars{color:var(--brand); font-size:12px; letter-spacing:.3em}
+.rev p{margin:0; font-family:var(--f-display); font-size:19px; line-height:1.45; color:var(--ink); letter-spacing:-.012em;
+  font-variation-settings:"opsz" 24,"SOFT" 0,"WONK" 0}
+.rev cite{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); font-style:normal; margin-top:auto}
+
+/* ── store ──────────────────────────────────────────── */
+.store{display:grid; gap:clamp(22px,3.4vw,60px); grid-template-columns:1fr; align-items:center}
+@media(min-width:900px){ .store{grid-template-columns:1.05fr .95fr} }
+.store-shot{aspect-ratio:4/3; overflow:hidden; background:var(--sunk)}
+.store-shot img{width:100%;height:100%;object-fit:cover}
+.hours{width:100%; border-collapse:collapse; font-size:14px; margin:22px 0 26px; max-width:330px}
+.hours td{padding:9px 0; border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right; font-family:var(--f-mono); font-size:11px; letter-spacing:.08em; color:var(--ink-2)}
+
+/* ── prose ──────────────────────────────────────────── */
+.prose{max-width:66ch; padding-block:clamp(34px,5vw,80px)}
+.prose h1{font-size:clamp(34px,5vw,58px); font-weight:400; letter-spacing:-.028em; margin-bottom:24px;
+  font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+.prose h2{font-size:clamp(22px,2.6vw,30px); margin:48px 0 16px; font-variation-settings:"opsz" 48}
+.prose p,.prose li{color:var(--ink-2); font-size:16.5px; line-height:1.75}
+.prose ul{padding-left:1.05em; list-style:none}
+.prose li{margin-bottom:9px; position:relative}
+.prose li::before{content:""; position:absolute; left:-14px; top:.75em; width:5px; height:1px; background:var(--brand)}
+.prose strong{color:var(--ink); font-weight:600}
+.prose a{color:var(--brand); border-bottom:1px solid currentColor}
+.callout{border-left:1px solid var(--brand); padding:4px 0 4px 24px; margin:32px 0}
+.callout p{font-family:var(--f-display); font-size:18px; line-height:1.5; color:var(--ink); font-variation-settings:"opsz" 24}
+
+/* ── footer ─────────────────────────────────────────── */
+footer.site{background:var(--ink); color:var(--paper); padding:clamp(52px,7vw,96px) 0 34px}
+footer.site .cols{display:grid; gap:36px; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,.11)}
+footer.site .fh{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.24em; text-transform:uppercase;
+  color:rgba(255,255,255,.42); font-weight:400; margin:0 0 18px; line-height:1.4}
+footer.site a{display:block; padding:6px 0; font-size:14.5px; color:rgba(255,255,255,.82); transition:color .25s var(--ease)}
+footer.site a:hover{color:#fff}
+footer.site .fine{display:flex; gap:12px 30px; flex-wrap:wrap; justify-content:space-between; padding-top:26px;
+  font-family:var(--f-mono); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.36)}
+.skip{position:absolute; left:-9999px}
+.skip:focus{left:14px; top:14px; z-index:99; background:var(--paper); color:var(--ink); padding:12px 16px}
+
+
+/* ── scroll hero ─────────────────────────────────────
+   Three rooms pinned for the length of the section. Without JS the section is
+   an ordinary full-bleed hero showing the first room — the tall scroll and the
+   crossfade are added by script, never assumed by the markup. */
+.shero{position:relative; border-bottom:1px solid var(--line)}
+.shero-stage{position:relative; height:min(86vh,760px); overflow:hidden; background:var(--sunk)}
+.shero[data-scroll]{height:280vh}
+.shero[data-scroll] .shero-stage{position:sticky; top:0; height:100vh}
+.shero-slides{position:absolute; inset:0}
+.shero-slide{position:absolute; inset:0; margin:0; opacity:0; will-change:opacity,transform}
+.shero-slide:first-child{opacity:1}
+.shero-slide img{width:100%; height:100%; object-fit:cover}
+.shero-veil{position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(270deg,var(--scrim-1) 0%,var(--scrim-2) 9%,transparent 22%),
+    linear-gradient(100deg,var(--scrim-1) 0%,var(--scrim-1) 26%,var(--scrim-2) 46%,transparent 72%)}
+@media(max-width:860px){
+  .shero-veil{background:linear-gradient(180deg,var(--scrim-1) 0%,var(--scrim-2) 34%,transparent 58%,var(--scrim-2) 84%,var(--scrim-1) 100%)}
+}
+.shero-inner{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+  max-width:var(--wrap); margin-inline:auto; padding:clamp(28px,5vw,72px) var(--pad); gap:24px}
+.shero-inner h1{font-size:clamp(38px,5.4vw,76px); font-weight:400; letter-spacing:-.032em; line-height:.98; max-width:14ch;
+  font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+.shero-inner h1 em{font-style:italic; color:var(--brand); font-variation-settings:"opsz" 144,"WONK" 1}
+.shero-lede{margin:0; font-size:clamp(15px,1.3vw,17.5px); color:var(--ink-2); max-width:38ch; line-height:1.6}
+
+/* the caption that changes with the room */
+.shero-caps{position:relative; height:5.4em; margin-top:6px}
+/* Text cannot cross-fade over text the way photographs can — the outgoing
+   caption leaves first, the incoming one waits for it. */
+.shero-cap{position:absolute; inset:0; opacity:0; display:flex; flex-direction:column; gap:7px;
+  transition:opacity .16s var(--ease)}
+.shero-caps:not([data-js]) .shero-cap:first-child{opacity:1}
+.shero-cap[data-on]{opacity:1; transition:opacity .3s var(--ease) .17s}
+.shero-cap .rn{font-family:var(--f-display); font-size:clamp(21px,2.2vw,28px); letter-spacing:-.022em;
+  font-variation-settings:"opsz" 40}
+.shero-cap .rc{font-family:var(--f-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3)}
+.shero-cap .rl{font-family:var(--f-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink); border-bottom:1px solid var(--brand); padding-bottom:4px; align-self:flex-start}
+
+/* the rail — also the navigation */
+.shero-rail{position:absolute; right:var(--pad); top:50%; transform:translateY(-50%);
+  display:flex; flex-direction:column; gap:20px; z-index:3}
+.shero-rail a{display:flex; align-items:center; gap:12px; justify-content:flex-end; white-space:nowrap;
+  font-family:var(--f-mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-2)}
+.shero-rail a .bar{width:26px; height:1px; background:currentColor; opacity:.45; transition:width .4s var(--ease), opacity .4s var(--ease)}
+.shero-rail a[aria-current]{color:var(--ink)}
+.shero-rail a[aria-current] .bar{width:46px; opacity:1; background:var(--brand)}
+.shero-rail a:hover .bar{opacity:.9}
+@media(max-width:860px){ .shero-rail{display:none} }
+
+.shero-scrollcue{position:absolute; left:var(--pad); bottom:26px; display:flex; align-items:center; gap:10px;
+  font-family:var(--f-mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3)}
+.shero-scrollcue .ln{width:44px; height:1px; background:currentColor; opacity:.5}
+@media(prefers-reduced-motion:reduce){
+  .shero[data-scroll]{height:auto}
+  .shero[data-scroll] .shero-stage{position:relative; height:min(86vh,760px)}
+  .shero-slide{opacity:0}
+  .shero-slide:first-child{opacity:1}
+  .shero-scrollcue{display:none}
+}
+
+/* ── buy now, pay later ──────────────────────────────
+   Provider names are set as type, deliberately. Klarna, Afterpay and Affirm
+   each publish a brand kit with mandatory logo, clear-space and colour rules;
+   swap the official assets in here rather than approximating their marks. */
+.bnpl{border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:15px 0; display:flex; flex-direction:column; gap:11px}
+.bnpl-row{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; line-height:1.4}
+.bnpl-amt{font-family:var(--f-ui); font-size:15px; font-weight:600; letter-spacing:-.01em; font-variant-numeric:tabular-nums}
+.bnpl-txt{font-family:var(--f-ui); font-size:13.5px; color:var(--ink-2)}
+.bnpl-marks{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-3); margin-left:auto; white-space:nowrap}
+.bnpl-more{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink); border-bottom:1px solid var(--brand); padding-bottom:3px; align-self:flex-start}
+@media(max-width:420px){ .bnpl-marks{margin-left:0; width:100%} }
+
+/* footer payment row */
+.paybar{display:flex; align-items:center; gap:9px 12px; flex-wrap:wrap; padding:22px 0 0}
+.paybar-h{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.24em; text-transform:uppercase;
+  color:rgba(255,255,255,.42); margin-right:6px}
+.paymark{font-family:var(--f-mono); font-size:10px; letter-spacing:.1em; color:rgba(255,255,255,.8);
+  border:1px solid rgba(255,255,255,.2); padding:6px 10px; border-radius:2px; white-space:nowrap}
+
+/* comparison table on the financing page */
+.paytable{width:100%; border-collapse:collapse; margin:22px 0 26px; font-size:15px}
+.paytable th{text-align:left; font-family:var(--f-mono); font-size:9.5px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--ink-3); font-weight:400; padding:0 14px 10px 0; border-bottom:1px solid var(--line-2)}
+.paytable td{padding:13px 14px 13px 0; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-2)}
+.paytable td:first-child{color:var(--ink); white-space:nowrap}
+.prose .fineprint{font-size:13.5px; color:var(--ink-3); line-height:1.6}
+
+/* ── opening splash ──────────────────────────────────
+   The mark draws itself, the name arrives, the panel lifts. Runs once per
+   session; a pre-paint script in <head> adds .intro-skip before first paint so
+   a repeat visitor never sees a flash of it. */
+.splash{position:fixed; inset:0; z-index:200; display:grid; place-items:center; background:#14120F}
+.intro-skip .splash{display:none}
+html:not(.intro-skip) body:has(.splash:not(.done)){overflow:hidden}
+.splash-badge{width:min(52vh,78vw,420px)}
+.splash-badge svg{width:100%; height:auto; display:block}
+
+@media (prefers-reduced-motion:no-preference){
+  .splash{animation:splash-leave .8s cubic-bezier(.7,0,.3,1) 2.6s forwards}
+  .splash.hold{animation:none}                 /* #introhold: freeze for review */
+  @keyframes splash-leave{ to{ translate:0 -101%; } }
+
+  .splash-badge{animation:badge-settle 2.6s var(--ease) both}
+  @keyframes badge-settle{ from{ scale:.95 } 55%{ scale:1 } to{ scale:1 } }
+
+  /* 1 · the ring draws itself */
+  .splash #ring1,.splash #ring2{stroke-dasharray:1; stroke-dashoffset:1;
+    animation:ring-draw 1s var(--ease) forwards}
+  .splash #ring2{stroke-dasharray:.004 .020; animation:ring-fade .7s var(--ease) .5s both}
+  @keyframes ring-draw{ to{ stroke-dashoffset:0 } }
+  @keyframes ring-fade{ from{ opacity:0 } to{ opacity:.55 } }
+
+  /* 2 · the monogram letters land one at a time */
+  .splash .ch{opacity:0; transform-box:fill-box; transform-origin:center;
+    animation:mono-drop .42s cubic-bezier(.2,.7,.3,1) both;
+    animation-delay:calc(.75s + var(--i) * .11s)}
+  @keyframes mono-drop{
+    from{ opacity:0; translate:0 .2em; scale:1 .6 }
+    to{ opacity:1; translate:0 0; scale:1 1 }
+  }
+
+  /* 3 · the name, then the line under it */
+  .splash #wordmark,.splash #subline{opacity:0; animation:splash-rise .5s var(--ease) both}
+  .splash #wordmark{animation-delay:1.4s}
+  .splash #subline{animation-delay:1.6s}
+  @keyframes splash-rise{ from{ opacity:0; translate:0 12px } to{ opacity:1; translate:0 0 } }
+}
+@media (prefers-reduced-motion:reduce){ .splash{display:none} }
