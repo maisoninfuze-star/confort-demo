@@ -100,9 +100,9 @@ h1,h2,h3,h4{font-family:var(--f-display); font-weight:400; margin:0; line-height
 .eyebrow::before{content:""; width:22px; height:1px; background:var(--brand); flex:none}
 
 /* ── header ─────────────────────────────────────────── */
-.topbar{background:var(--ink); color:var(--paper); font-family:var(--f-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase}
+.topbar{background:var(--footer-bg); color:var(--footer-ink); font-family:var(--f-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase}
 .topbar .wrap{display:flex; gap:6px 26px; align-items:center; justify-content:center; flex-wrap:wrap; padding-block:10px; text-align:center}
-.topbar b{font-weight:400; color:var(--paper)}
+.topbar b{font-weight:400; color:#FFFFFF}
 .topbar .sep{opacity:.28}
 
 header.site{position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:1px solid var(--line)}
