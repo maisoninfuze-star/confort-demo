@@ -193,6 +193,14 @@ BNPL = [
 ]
 BNPL_TERM = 12   # months used for the Affirm monthly illustration
 
+# IFDC supply the dealer COST, not retail. Retail = cost × margin, and the
+# margin is the store's to set — so nothing derived from that file is published
+# until this is a number. Observed across the 33 products already priced against
+# a known cost: median ×2.00, quartiles ×1.76–×2.00.
+#   IFDC_MARGIN = None -> catalogue stays "prix sur demande" (current)
+#   IFDC_MARGIN = 2.0  -> catalogue prices itself at keystone
+IFDC_MARGIN = None
+
 # Date-certain delivery ("At your place Wednesday 26 August") is switched off.
 # It needs two things the business does not have yet: inventory that is true at
 # the SKU level, and a delivery calendar the site can read. Promising a weekday
