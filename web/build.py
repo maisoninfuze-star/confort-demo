@@ -490,10 +490,16 @@ try {
 </script>"""
 
 def splash(lang):
+    """The mark opens out of its own circle, the wordmark wipes in beside it,
+    a red rule draws under both. Two halves of the supplied logo, animated
+    separately — a single raster can only fade."""
     tag = 'Meubles · Matelas · Montréal' if lang == 'fr' else 'Furniture · Mattresses · Montréal'
     return f"""<div class="splash" id="splash" aria-hidden="true">
   <div class="splash-badge">
-    <img src="/assets/img/logo-light-900.png" width="900" height="267" alt="">
+    <div class="splash-lockup">
+      <img class="splash-mark" src="/assets/img/logo-mark-light.png" width="311" height="263" alt="">
+      <img class="splash-word" src="/assets/img/logo-word-light.png" width="570" height="184" alt="">
+    </div>
     <span class="splash-rule"></span>
     <span class="splash-sub">{E(tag.upper())}</span>
   </div>

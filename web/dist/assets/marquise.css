@@ -462,22 +462,36 @@ footer.site .fine{display:flex; gap:12px 30px; flex-wrap:wrap; justify-content:s
 .splash{position:fixed; inset:0; z-index:200; display:grid; place-items:center; background:#14120F}
 .intro-skip .splash{display:none}
 html:not(.intro-skip) body:has(.splash:not(.done)){overflow:hidden}
-.splash-badge{width:min(60vw,440px); display:flex; flex-direction:column; align-items:center; gap:18px}
-.splash-badge img{width:100%; height:auto; display:block}
+.splash-badge{width:min(70vw,520px); display:flex; flex-direction:column; align-items:center; gap:20px}
+.splash-lockup{display:flex; align-items:center; gap:clamp(10px,2.2vw,22px); width:100%}
+.splash-mark{width:34%; height:auto; flex:none}
+.splash-word{width:62%; height:auto; flex:none}
 .splash-rule{display:block; width:100%; height:2px; background:var(--brand); transform-origin:left center}
 .splash-sub{font-family:var(--f-mono); font-size:10px; letter-spacing:.3em; color:rgba(255,255,255,.55)}
 
 @media (prefers-reduced-motion:no-preference){
-  .splash{animation:splash-leave .8s cubic-bezier(.7,0,.3,1) 2.3s forwards}
+  .splash{animation:splash-leave .8s cubic-bezier(.7,0,.3,1) 2.7s forwards}
   .splash.hold{animation:none}                 /* #introhold: freeze for review */
   @keyframes splash-leave{ to{ translate:0 -101%; } }
 
-  /* the mark settles, a red rule draws under it, the line arrives */
-  .splash-badge img{opacity:0; animation:mark-in .9s var(--ease) .15s both}
-  @keyframes mark-in{ from{ opacity:0; scale:.94 } to{ opacity:1; scale:1 } }
-  .splash-rule{scale:0 1; animation:rule-sweep .7s cubic-bezier(.2,.7,.3,1) .95s forwards}
+  /* 1 · the circular mark opens out of its own centre */
+  .splash-mark{clip-path:circle(0% at 50% 50%); opacity:0;
+    animation:mark-open .95s cubic-bezier(.2,.75,.3,1) .2s both}
+  @keyframes mark-open{
+    from{ clip-path:circle(0% at 50% 50%); opacity:0; scale:.9 }
+    60% { opacity:1 }
+    to  { clip-path:circle(75% at 50% 50%); opacity:1; scale:1 }
+  }
+
+  /* 2 · the wordmark wipes in beside it, left to right */
+  .splash-word{clip-path:inset(0 100% 0 0);
+    animation:word-wipe .8s cubic-bezier(.25,.7,.25,1) .85s both}
+  @keyframes word-wipe{ to{ clip-path:inset(0 0 0 0) } }
+
+  /* 3 · a red rule draws under the lockup, then the line arrives */
+  .splash-rule{scale:0 1; animation:rule-sweep .65s cubic-bezier(.2,.7,.3,1) 1.5s forwards}
   @keyframes rule-sweep{ to{ scale:1 1 } }
-  .splash-sub{opacity:0; animation:splash-rise .5s var(--ease) 1.35s both}
+  .splash-sub{opacity:0; animation:splash-rise .5s var(--ease) 1.85s both}
   @keyframes splash-rise{ from{ opacity:0; translate:0 10px } to{ opacity:1; translate:0 0 } }
 }
 @media (prefers-reduced-motion:reduce){ .splash{display:none} }
