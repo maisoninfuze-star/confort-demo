@@ -89,7 +89,7 @@ def main():
             if demoted:
                 sets = [v for v in sets if v['price'] >= top]
                 pieces = pieces + [v for v in demoted if piece_of(v['label'])]
-        if len(pieces) < 2 and not (sets and pieces):
+        if len(pieces) < 2 and not (sets and pieces) and not (sets and len(sets) < len(vs)):
             # every variant is a set line: it is a set, whatever it was filed as
             if sets and len(sets) == len(vs) and not prod['sub'].startswith('ensemble'):
                 key, fr, en = SET_SUB.get(prod['cat'],
@@ -99,10 +99,29 @@ def main():
             out.append(prod); continue
 
         # group components of the same kind (a bed in two sizes is one product)
-        groups = collections.OrderedDict()
+        groups, group_meta = collections.OrderedDict(), {}
         for v in pieces:
-            key = piece_of(v['label'])[0]
-            groups.setdefault(key, []).append(v)
+            meta = piece_of(v['label'])
+            groups.setdefault(meta[0], []).append(v)
+            group_meta[meta[0]] = meta
+
+        # Variants that are neither a set line nor a recognised piece still
+        # belong to something: under a bedroom set, a bare "Queen" is the bed.
+        # Without this, "Logan – Silver" priced itself at 880 (bed only) while
+        # its Set King line said 3480.
+        DEFAULT_PIECE = {'chambre': ('lit', 'Lits', 'Beds'),
+                         'salon': ('canape', 'Canapés', 'Sofas'),
+                         'salle-a-manger': ('table-manger', 'Tables de salle à manger',
+                                            'Dining tables')}
+        if sets and not pieces:
+            leftover = [v for v in vs if v not in sets]
+            meta = DEFAULT_PIECE.get(prod['cat'])
+            if leftover and meta:
+                groups_extra = meta
+            else:
+                groups_extra = None
+        else:
+            groups_extra = None
 
         made = []
         if sets:
@@ -116,8 +135,12 @@ def main():
             out.append(parent)
             made.append(('set', parent['name_fr'], parent['price']))
 
+        if groups_extra:
+            groups[groups_extra[0]] = [v for v in vs if v not in sets]
+            group_meta[groups_extra[0]] = groups_extra
+
         for key, vlist in groups.items():
-            meta = piece_of(vlist[0]['label'])
+            meta = group_meta.get(key) or piece_of(vlist[0]['label'])
             child = dict(prod)
             child['variants'] = vlist
             child['price'] = min(v['price'] for v in vlist)

@@ -316,10 +316,17 @@ def main():
         variants = []
         vcolours, vsizes = [], []
         for v in p['variants']:
-            label = (v.get('option1') or v['title'] or '').strip()
+            # A product can carry several option dimensions. "Chambre Moderne
+            # Blanche" keeps the real configuration in option3 ("Set Queen",
+            # "Lit Double"); reading only option1 left every variant labelled
+            # with its size and priced from the cheapest row.
+            label = ' · '.join(x.strip() for x in
+                               (v.get('option1'), v.get('option2'), v.get('option3'))
+                               if x and str(x).strip()) or (v['title'] or '').strip()
             c, s = split_option(label)
             variants.append(dict(
                 id=v['id'], label=label, price=float(v['price']),
+                accessory=bool(ACCESSORY_RX.search(label)),
                 compare=float(v['compare_at_price']) if v.get('compare_at_price') else None,
                 available=bool(v['available']),
                 colour=c[0] if c else None, colour_en=c[1] if c else None,

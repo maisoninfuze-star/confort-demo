@@ -111,15 +111,27 @@ def main():
         p['price'] = new
         p['price_max'] = max(new, p.get('price_max') or new)
         p['monthly'] = round(new / 36) if new else 0
-        if p.get('compare') and p['compare'] <= new:
-            p['compare'] = None                      # a stale "was" below the new price
+        # The old "was" belonged to the old pricing. Once the list moves a
+        # price, keeping it invents a discount: Lit Verdun went to 149.99 and
+        # kept a 600.00 "was", advertising -75%.
+        if abs(new - old) > 0.005:
+            p['compare'] = None
+        elif p.get('compare') and p['compare'] <= new:
+            p['compare'] = None
         # Give each variant its own line where the list has one for that size;
         # writing the single picked price onto every variant flattened
         # Simple / Double / Queen to one number.
         for v in p.get('variants', []):
-            vs = size_of(v.get('label') or '') or v.get('size')
-            line = next((e for e in by[k] if vs and e['size'] == vs), None)
+            lbl = v.get('label') or ''
+            # a set variant takes a set line, a single takes a single line —
+            # otherwise a "Set 7pcs" is priced off the table-only row
+            want_set = bool(SET_RX.search(lbl))
+            pool = [e for e in by[k] if bool(SET_RX.search(e['desc'])) == want_set] or by[k]
+            vs = size_of(lbl) or v.get('size')
+            line = next((e for e in pool if vs and e['size'] == vs), None) \
+                   or (min(pool, key=lambda e: e['price']) if pool else None)
             v['price'] = round(line['price'], 2) if line else new
+            v['compare'] = None
     json.dump(cat, open(os.path.join(HERE, 'catalogue.json'), 'w', encoding='utf-8'),
               ensure_ascii=False, indent=1)
 

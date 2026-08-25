@@ -824,9 +824,12 @@ def build_pdp(p, cat, lang):
             row += (f'<button class="opt" data-price="{pr}" aria-pressed="{str(i==0).lower()}">'
                     f'{E(v)} · {money(pr, lang)}</button>')
         optblocks += f'<div class="opts" data-optgroup><span class="lbl">{E(c["size"])}</span><div class="row">{row}</div></div>'
-    if not colours and not sizes and len(p['variants']) > 1:
+    # an add-on must never sit in the price picker: choosing "Option de
+    # rangement" would drop a $780 bed to $180 on screen
+    sellable = [v for v in p['variants'] if not v.get('accessory')]
+    if not colours and not sizes and len(sellable) > 1:
         row = ''.join(f'<button class="opt" data-price="{v["price"]}" aria-pressed="{str(i==0).lower()}">'
-                      f'{E(v["label"])}</button>' for i, v in enumerate(p['variants'][:6]))
+                      f'{E(v["label"])}</button>' for i, v in enumerate(sellable[:6]))
         optblocks += f'<div class="opts" data-optgroup><span class="lbl">{E(c["config"])}</span><div class="row">{row}</div></div>'
 
     fit = fit_payload(p, cat, lang)
