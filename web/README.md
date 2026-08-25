@@ -219,3 +219,34 @@ categories are not in the page source.
 **When the margins arrive**, these graduate into the main catalogue: add price
 and the parsed attributes to the importer and they become ordinary products,
 fit check and all.
+
+## Fitting the photography
+
+`measure_images.py` records the aspect ratio of every product's primary
+photograph into `catalogue.json`, and the grid fits the photographs rather than
+forcing them into a shape.
+
+The catalogue is shot landscape at a **median of 1.4**, so the tile is **7:5**.
+It used to be 4:5 portrait, which cut away **39.6% of every photo on average and
+up to 54%** — more than a third of each product invisible. Measured across 120
+photos, 7:5 is the tightest fit of the ratios considered:
+
+| Tile | Average of the photo cropped away |
+|---|---|
+| 4:5 (old) | 39.6% |
+| 1:1 | 28.3% |
+| 5:4 | 14.7% |
+| 4:3 | 11.5% |
+| **7:5** | **10.7%** |
+| 3:2 | 13.2% |
+
+The **17 pieces shot portrait or panoramic** (a floor lamp, a recliner, a vase)
+fall outside the 1.15–1.75 band and are shown whole on a white tile instead of
+being cropped to a ratio they were never shot for. Re-run `measure_images.py`
+whenever products are added.
+
+**Photographs are hotlinked**, not hosted: 1,495 from the store's Shopify CDN and
+973 from IFDC's Wix CDN. All 2,475 resolve today, but that is two third parties
+who can move or remove a file. Self-hosting the 171 primary product photos would
+cost roughly 10 MB in the repo and remove that risk on the shoppable range; the
+IFDC index is better left pointing at IFDC.

@@ -441,6 +441,15 @@ def footer(lang):
 </div></footer>'''
 
 # ── product card ────────────────────────────────────────────────────────────
+# The catalogue is shot landscape at a median of 1.4, so the tile is 7:5. The
+# 9% of pieces shot portrait or panoramic are shown whole on a neutral tile
+# rather than being cropped to fit a ratio they were never shot for.
+FIT_LO, FIT_HI = 1.15, 1.75
+
+def fit_class(p):
+    ar = p.get('img_ar')
+    return '' if ar is None or FIT_LO <= ar <= FIT_HI else ' is-contain'
+
 def card(p, lang, rank=0, lazy=True):
     c = COPY[lang]
     sale = p['compare'] and p['compare'] > p['price']
@@ -455,8 +464,8 @@ def card(p, lang, rank=0, lazy=True):
    data-colour="{E(' '.join(x['key'] for x in p['colours']))}"
    data-material="{E(' '.join(x['key'] for x in p['materials']))}"
    data-instock="{1 if p['available'] else 0}" data-sale="{1 if sale else 0}" data-rank="{rank}">
- <div class="pc-shot">{f'<div class="pc-flags">{flags}</div>' if flags else ''}
-   <img {'loading="lazy" ' if lazy else ''}src="{E(img(p['images'][0], 560))}" alt="{E(p_name(p, lang))}" width="560" height="700">
+ <div class="pc-shot{fit_class(p)}">{f'<div class="pc-flags">{flags}</div>' if flags else ''}
+   <img {'loading="lazy" ' if lazy else ''}src="{E(img(p['images'][0], 700))}" alt="{E(p_name(p, lang))}" width="700" height="500">
  </div>
  <div class="pc-body">
    <div class="pc-sub">{E(p['sub_fr'] if lang=='fr' else p['sub_en'])}</div>
@@ -874,7 +883,7 @@ def build_pdp(p, cat, lang):
   </div>
   <div class="media">
    <div class="gal">
-     <div class="gal-main"><img src="{E(img(imgs[0], 1100))}" alt="{E(p_name(p, lang))}" width="1100" height="1375" fetchpriority="high"></div>
+     <div class="gal-main{fit_class(p)}"><img src="{E(img(imgs[0], 1200))}" alt="{E(p_name(p, lang))}" width="1200" height="857" fetchpriority="high"></div>
      <div class="gal-thumbs">{thumbs}</div>
    </div>
    <div class="desc" style="margin-top:30px">

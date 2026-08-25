@@ -120,7 +120,8 @@
    "passage": 45,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.19
  },
  {
   "id": 9173436268780,
@@ -218,7 +219,8 @@
    "passage": 30,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.429
  },
  {
   "id": 9173433254124,
@@ -325,7 +327,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9173429420268,
@@ -429,7 +432,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9173092892908,
@@ -500,7 +504,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9172614185196,
@@ -576,7 +581,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9172609728748,
@@ -662,7 +668,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9172608385260,
@@ -743,7 +750,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9172541145324,
@@ -830,7 +838,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9172460339436,
@@ -912,7 +921,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9172452180204,
@@ -1103,7 +1113,8 @@
    "passage": 50,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.449
  },
  {
   "id": 9172445626604,
@@ -1222,7 +1233,8 @@
    "passage": 52,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.399
  },
  {
   "id": 9171928613100,
@@ -1326,7 +1338,8 @@
    "passage": 20,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.429
  },
  {
   "id": 9171926614252,
@@ -1421,7 +1434,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9171922813164,
@@ -1523,7 +1537,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9170575687916,
@@ -1596,7 +1611,8 @@
    "passage": 18,
    "split": 18,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.223
  },
  {
   "id": 9170565660908,
@@ -1673,7 +1689,8 @@
    "passage": 17,
    "split": 17,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.176
  },
  {
   "id": 9170564645100,
@@ -1751,7 +1768,8 @@
    "passage": 16,
    "split": 16,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.413
  },
  {
   "id": 9169991500012,
@@ -1830,7 +1848,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.399
  },
  {
   "id": 9169987272940,
@@ -1911,7 +1930,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.325
  },
  {
   "id": 9169985306860,
@@ -2007,7 +2027,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.299
  },
  {
   "id": 9169983078636,
@@ -2064,7 +2085,8 @@
     "size_en": "Queen"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.399
  },
  {
   "id": 9169981538540,
@@ -2121,7 +2143,8 @@
     "size_en": "Queen"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.399
  },
  {
   "id": 9169975410924,
@@ -2218,7 +2241,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9169972625644,
@@ -2280,7 +2304,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9169961582828,
@@ -2348,7 +2373,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.504
  },
  {
   "id": 9169933992172,
@@ -2438,7 +2464,8 @@
    "passage": 54,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.429
  },
  {
   "id": 9169928454380,
@@ -2525,7 +2552,8 @@
    "passage": 57,
    "split": 40,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.325
  },
  {
   "id": 9169898504428,
@@ -2613,7 +2641,8 @@
    "passage": 58,
    "split": 40,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.27
  },
  {
   "id": 9169897292012,
@@ -2706,7 +2735,8 @@
    "passage": 58,
    "split": 40,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.27
  },
  {
   "id": 9169896210668,
@@ -2749,7 +2779,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.504
  },
  {
   "id": 9169895325932,
@@ -2792,7 +2823,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.504
  },
  {
   "id": 9169893949676,
@@ -2835,7 +2867,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.498
  },
  {
   "id": 9169892933868,
@@ -2926,7 +2959,8 @@
    "passage": 46,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.365
  },
  {
   "id": 9169891983596,
@@ -3001,7 +3035,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.399
  },
  {
   "id": 9166138507500,
@@ -3083,7 +3118,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.246
  },
  {
   "id": 9166129496300,
@@ -3169,7 +3205,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.498
  },
  {
   "id": 9166117830892,
@@ -3275,7 +3312,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.399
  },
  {
   "id": 9166116716780,
@@ -3357,7 +3395,8 @@
     "size_en": "Full"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.294
  },
  {
   "id": 9166113865964,
@@ -3519,7 +3558,8 @@
    "passage": 50,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.747
  },
  {
   "id": 9166111604972,
@@ -3694,7 +3734,8 @@
    "passage": 16,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.498
  },
  {
   "id": 9166110294252,
@@ -3831,7 +3872,8 @@
    "passage": 57,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.498
  },
  {
   "id": 9164668535020,
@@ -3907,7 +3949,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.365
  },
  {
   "id": 9164668076268,
@@ -3983,7 +4026,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.316
  },
  {
   "id": 9164667453676,
@@ -4070,7 +4114,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.286
  },
  {
   "id": 9164658213100,
@@ -4153,7 +4198,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9164657721580,
@@ -4280,7 +4326,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.136
  },
  {
   "id": 9164374999276,
@@ -4369,7 +4416,8 @@
    "passage": 56,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 0.966
  },
  {
   "id": 9164367233260,
@@ -4472,7 +4520,8 @@
    "passage": 56,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 0.966
  },
  {
   "id": 9164362547436,
@@ -4544,7 +4593,8 @@
    "passage": 38,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.408
  },
  {
   "id": 9164357927148,
@@ -4654,7 +4704,8 @@
    "passage": 50,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.303
  },
  {
   "id": 9164355141868,
@@ -4726,7 +4777,8 @@
    "passage": 59,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.444
  },
  {
   "id": 9164354322668,
@@ -4824,7 +4876,8 @@
    "passage": 43,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.356
  },
  {
   "id": 9164352258284,
@@ -4923,7 +4976,8 @@
    "passage": 50,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.399
  },
  {
   "id": 9164301402348,
@@ -4985,7 +5039,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.347
  },
  {
   "id": 9164290719980,
@@ -5060,7 +5115,8 @@
     "size_en": "Queen"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.394
  },
  {
   "id": 9164289704172,
@@ -5135,7 +5191,8 @@
     "size_en": "Queen"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.606
  },
  {
   "id": 9164288229612,
@@ -5210,7 +5267,8 @@
     "size_en": "Queen"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.471
  },
  {
   "id": 9164286558444,
@@ -5302,7 +5360,8 @@
     "size_en": "Queen"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.444
  },
  {
   "id": 9163115266284,
@@ -5380,7 +5439,8 @@
    "passage": 36,
    "split": 36,
    "dismantles": false
-  }
+  },
+  "img_ar": 0.735
  },
  {
   "id": 9163109531884,
@@ -5437,7 +5497,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 0.667
  },
  {
   "id": 9163103994092,
@@ -5508,7 +5569,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 0.866
  },
  {
   "id": 9163102159084,
@@ -5574,7 +5636,8 @@
    "passage": 16,
    "split": 16,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.498
  },
  {
   "id": 9163100061932,
@@ -5630,7 +5693,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.307
  },
  {
   "id": 9162389946604,
@@ -5719,7 +5783,8 @@
    "passage": 37,
    "split": 37,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.587
  },
  {
   "id": 9162383163628,
@@ -5830,7 +5895,8 @@
    "passage": 36,
    "split": 36,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.6
  },
  {
   "id": 9162375987436,
@@ -5940,7 +6006,8 @@
    "passage": 37,
    "split": 37,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.581
  },
  {
   "id": 9162358817004,
@@ -6050,7 +6117,8 @@
    "passage": 37,
    "split": 37,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.575
  },
  {
   "id": 9162349576428,
@@ -6151,7 +6219,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.619
  },
  {
   "id": 9162346037484,
@@ -6222,7 +6291,8 @@
    "passage": 19,
    "split": 19,
    "dismantles": false
-  }
+  },
+  "img_ar": 0.667
  },
  {
   "id": 9162345611500,
@@ -6289,7 +6359,8 @@
    "passage": 25,
    "split": 25,
    "dismantles": false
-  }
+  },
+  "img_ar": 0.568
  },
  {
   "id": 9162344562924,
@@ -6404,7 +6475,8 @@
    "passage": 25,
    "split": 25,
    "dismantles": false
-  }
+  },
+  "img_ar": 0.62
  },
  {
   "id": 9162303570156,
@@ -6524,7 +6596,8 @@
    "passage": 23,
    "split": 23,
    "dismantles": false
-  }
+  },
+  "img_ar": 0.779
  },
  {
   "id": 9162298425580,
@@ -6630,7 +6703,8 @@
    "passage": 22,
    "split": 22,
    "dismantles": false
-  }
+  },
+  "img_ar": 0.702
  },
  {
   "id": 9162294886636,
@@ -6736,7 +6810,8 @@
    "passage": 23,
    "split": 23,
    "dismantles": false
-  }
+  },
+  "img_ar": 0.602
  },
  {
   "id": 9162292166892,
@@ -6814,7 +6889,8 @@
    "passage": 22,
    "split": 22,
    "dismantles": false
-  }
+  },
+  "img_ar": 0.752
  },
  {
   "id": 9162289873132,
@@ -6929,7 +7005,8 @@
    "passage": 21,
    "split": 21,
    "dismantles": false
-  }
+  },
+  "img_ar": 0.584
  },
  {
   "id": 9162284957932,
@@ -7030,7 +7107,8 @@
    "passage": 21,
    "split": 21,
    "dismantles": false
-  }
+  },
+  "img_ar": 0.54
  },
  {
   "id": 9162003611884,
@@ -7118,7 +7196,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9162000335084,
@@ -7206,7 +7285,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9161998041324,
@@ -7294,7 +7374,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9160903164140,
@@ -7378,7 +7459,8 @@
    "passage": 16,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.429
  },
  {
   "id": 9160902377708,
@@ -7478,7 +7560,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9160900083948,
@@ -7558,7 +7641,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9160899559660,
@@ -7620,7 +7704,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9160899035372,
@@ -7682,7 +7767,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9160897888492,
@@ -7745,7 +7831,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9158978797804,
@@ -7843,7 +7930,8 @@
    "passage": 37,
    "split": 37,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.333
  },
  {
   "id": 9158975389932,
@@ -7954,7 +8042,8 @@
    "passage": 38,
    "split": 38,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.544
  },
  {
   "id": 9158955434220,
@@ -8068,7 +8157,8 @@
    "passage": 37,
    "split": 37,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.399
  },
  {
   "id": 9158941966572,
@@ -8157,7 +8247,8 @@
    "passage": 37,
    "split": 37,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.587
  },
  {
   "id": 9158929318124,
@@ -8248,7 +8339,8 @@
    "passage": 37,
    "split": 20,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.587
  },
  {
   "id": 9158922600684,
@@ -8354,7 +8446,8 @@
    "passage": 30,
    "split": 30,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.274
  },
  {
   "id": 9158919782636,
@@ -8458,7 +8551,8 @@
    "passage": 17,
    "split": 17,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.29
  },
  {
   "id": 9158891405548,
@@ -8571,7 +8665,8 @@
    "passage": 30,
    "split": 30,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.325
  },
  {
   "id": 9158849036524,
@@ -8683,7 +8778,8 @@
    "passage": 30,
    "split": 30,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.325
  },
  {
   "id": 9158847660268,
@@ -8791,7 +8887,8 @@
    "passage": 30,
    "split": 30,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.29
  },
  {
   "id": 9158846578924,
@@ -8891,7 +8988,8 @@
    "passage": 30,
    "split": 30,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.303
  },
  {
   "id": 9158845202668,
@@ -8987,7 +9085,8 @@
    "passage": 25,
    "split": 25,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.099
  },
  {
   "id": 9158837534956,
@@ -9100,7 +9199,8 @@
    "passage": 30,
    "split": 30,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.307
  },
  {
   "id": 9158819905772,
@@ -9173,7 +9273,8 @@
    "passage": 19,
    "split": 19,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.544
  },
  {
   "id": 9158817317100,
@@ -9295,7 +9396,8 @@
    "passage": 18,
    "split": 18,
    "dismantles": false
-  }
+  },
+  "img_ar": 1.333
  },
  {
   "id": 9158814728428,
@@ -9377,7 +9479,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9158383239404,
@@ -9466,7 +9569,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.46
  },
  {
   "id": 9158382518508,
@@ -9576,7 +9680,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.455
  },
  {
   "id": 9158380716268,
@@ -9686,7 +9791,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.504
  },
  {
   "id": 9157276762348,
@@ -9759,7 +9865,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9157276434668,
@@ -9825,7 +9932,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9157276074220,
@@ -9898,7 +10006,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9157275615468,
@@ -9964,7 +10073,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9157274697964,
@@ -10037,7 +10147,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9157273452780,
@@ -10109,7 +10220,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9157272469740,
@@ -10176,7 +10288,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9157272142060,
@@ -10244,7 +10357,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.429
  },
  {
   "id": 9157080056044,
@@ -10322,7 +10436,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.254
  },
  {
   "id": 9157078155500,
@@ -10400,7 +10515,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.27
  },
  {
   "id": 9157077205228,
@@ -10477,7 +10593,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.674
  },
  {
   "id": 9157076386028,
@@ -10569,7 +10686,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.342
  },
  {
   "id": 9157074682092,
@@ -10654,7 +10772,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.303
  },
  {
   "id": 9157072126188,
@@ -10739,7 +10858,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.299
  },
  {
   "id": 9157070881004,
@@ -10824,7 +10944,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.299
  },
  {
   "id": 9157067899116,
@@ -10917,7 +11038,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9157066096876,
@@ -11012,7 +11134,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9157056233708,
@@ -11112,7 +11235,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9157013078252,
@@ -11205,7 +11329,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9156970643692,
@@ -11293,7 +11418,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9156965859564,
@@ -11381,7 +11507,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9156163829996,
@@ -11476,7 +11603,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9156137582828,
@@ -11570,7 +11698,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.778
  },
  {
   "id": 9156127391980,
@@ -11659,7 +11788,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.613
  },
  {
   "id": 9156118118636,
@@ -11758,7 +11888,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9156103405804,
@@ -11857,7 +11988,8 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.333
  },
  {
   "id": 9156081451244,
@@ -11968,7 +12100,8 @@
    "passage": 38,
    "split": 38,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.533
  },
  {
   "id": 9156080173292,
@@ -12079,7 +12212,8 @@
    "passage": 37,
    "split": 37,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.626
  },
  {
   "id": 9156077813996,
@@ -12191,7 +12325,8 @@
    "passage": 36,
    "split": 36,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.504
  },
  {
   "id": 9156073816300,
@@ -12292,7 +12427,8 @@
    "passage": 35,
    "split": 35,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.504
  },
  {
   "id": 9156072603884,
@@ -12392,7 +12528,8 @@
    "passage": 35,
    "split": 35,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.533
  },
  {
   "id": 9156068737260,
@@ -12471,7 +12608,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.46
  },
  {
   "id": 9156067557612,
@@ -12538,7 +12676,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.681
  },
  {
   "id": 9156066607340,
@@ -12616,7 +12755,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.476
  },
  {
   "id": 9156064870636,
@@ -12688,7 +12828,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.562
  },
  {
   "id": 9156063559916,
@@ -12765,7 +12906,8 @@
    "passage": 32,
    "split": 32,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.493
  },
  {
   "id": 9154086502636,
@@ -12844,7 +12986,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.504
  },
  {
   "id": 9154086043884,
@@ -12948,7 +13091,8 @@
    "passage": 36,
    "split": 36,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.667
  },
  {
   "id": 9154085388524,
@@ -13052,7 +13196,8 @@
    "passage": 36,
    "split": 36,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.639
  },
  {
   "id": 9154083782892,
@@ -13115,7 +13260,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.471
  },
  {
   "id": 9154083225836,
@@ -13193,7 +13339,8 @@
    "passage": 38,
    "split": 29,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.504
  },
  {
   "id": 9154082701548,
@@ -13270,7 +13417,8 @@
    "passage": 41,
    "split": 31,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.423
  },
  {
   "id": 9154082242796,
@@ -13347,7 +13495,8 @@
    "passage": 38,
    "split": 31,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.333
  },
  {
   "id": 9154079457516,
@@ -13429,7 +13578,8 @@
    "passage": 35,
    "split": 30,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.498
  },
  {
   "id": 9154076213484,
@@ -13501,7 +13651,8 @@
    "passage": 35,
    "split": 30,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.404
  },
  {
   "id": 9154061140204,
@@ -13584,7 +13735,8 @@
    "passage": 35,
    "split": 30,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.404
  },
  {
   "id": 9154059763948,
@@ -13661,7 +13813,8 @@
    "passage": 38,
    "split": 32,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.408
  },
  {
   "id": 9154055536876,
@@ -13755,7 +13908,8 @@
    "passage": 36,
    "split": 33,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.544
  },
  {
   "id": 9154053964012,
@@ -13833,7 +13987,8 @@
    "passage": 36,
    "split": 32,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.681
  },
  {
   "id": 9154039415020,
@@ -13937,7 +14092,8 @@
    "passage": 36,
    "split": 36,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.653
  },
  {
   "id": 9153976500460,
@@ -14032,7 +14188,8 @@
    "passage": 35,
    "split": 31,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.347
  },
  {
   "id": 9153975615724,
@@ -14118,7 +14275,8 @@
    "passage": 42,
    "split": 36,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.674
  },
  {
   "id": 9153974796524,
@@ -14218,7 +14376,8 @@
    "passage": 37,
    "split": 34,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.423
  },
  {
   "id": 9153966080236,
@@ -14333,7 +14492,8 @@
    "passage": 32,
    "split": 32,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.365
  },
  {
   "id": 9153523220716,
@@ -14421,7 +14581,8 @@
    "passage": 36,
    "split": 36,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.399
  },
  {
   "id": 9153521680620,
@@ -14498,7 +14659,8 @@
    "passage": 38,
    "split": 38,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.556
  },
  {
   "id": 9153519321324,
@@ -14603,7 +14765,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.613
  },
  {
   "id": 9153496121580,
@@ -14766,7 +14929,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.498
  },
  {
   "id": 9153482621164,
@@ -14935,7 +15099,8 @@
    "passage": 54,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.504
  },
  {
   "id": 9153475182828,
@@ -15096,7 +15261,8 @@
    "passage": 56,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.66
  },
  {
   "id": 9153471316204,
@@ -15259,7 +15425,8 @@
    "passage": 56,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.487
  },
  {
   "id": 9153465549036,
@@ -15436,7 +15603,8 @@
    "passage": 57,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.674
  },
  {
   "id": 9153402536172,
@@ -15604,7 +15772,8 @@
    "passage": 56,
    "split": 16,
    "dismantles": true
-  }
+  },
+  "img_ar": 1.674
  },
  {
   "id": 9153388642540,
@@ -15741,7 +15910,8 @@
     "size_en": null
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.504
  },
  {
   "id": 9149757128940,
@@ -16084,6 +16254,7 @@
     "size_en": "King"
    }
   ],
-  "fit": null
+  "fit": null,
+  "img_ar": 1.361
  }
 ]

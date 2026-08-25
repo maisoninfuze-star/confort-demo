@@ -206,7 +206,11 @@ section.band{padding:clamp(56px,8.5vw,124px) 0; border-bottom:1px solid var(--li
 /* ── product grid ───────────────────────────────────── */
 .grid{display:grid; gap:var(--gut) clamp(14px,1.8vw,26px); grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
 .pc{display:flex; flex-direction:column; background:transparent; border-radius:var(--r)}
-.pc-shot{position:relative; aspect-ratio:4/5; background:var(--sunk); overflow:hidden}
+.pc-shot{position:relative; aspect-ratio:7/5; background:var(--sunk); overflow:hidden}
+/* a piece shot portrait is shown whole rather than cropped to a ratio it was
+   never shot for */
+.pc-shot.is-contain{background:#FFFFFF}
+.pc-shot.is-contain img{object-fit:contain}
 .pc-shot img{width:100%;height:100%;object-fit:cover; transition:transform .8s var(--ease)}
 .pc:hover .pc-shot img{transform:scale(1.045)}
 .pc-flags{position:absolute; top:0; left:0; display:flex; flex-direction:column; gap:5px; align-items:flex-start; z-index:2}
@@ -224,7 +228,7 @@ section.band{padding:clamp(56px,8.5vw,124px) 0; border-bottom:1px solid var(--li
 
 /* ── room tiles ─────────────────────────────────────── */
 .rooms{display:grid; gap:clamp(14px,1.8vw,26px); grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-.room{position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--sunk)}
+.room{position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--sunk)}
 .room img{width:100%;height:100%;object-fit:cover; transition:transform .9s var(--ease)}
 .room:hover img{transform:scale(1.05)}
 .room-t{position:absolute; inset:auto 0 0 0; padding:60px 22px 22px; color:#fff;
@@ -274,7 +278,9 @@ select.sort{font-family:var(--f-ui); font-size:13px; font-weight:500; padding:10
   .pdp > .buy{grid-column:2; grid-row:1; order:0}
 }
 .gal{display:grid; gap:10px; grid-template-columns:1fr}
-.gal-main{aspect-ratio:4/5; background:var(--sunk); overflow:hidden}
+.gal-main{aspect-ratio:7/5; background:var(--sunk); overflow:hidden}
+.gal-main.is-contain{background:#FFFFFF}
+.gal-main.is-contain img{object-fit:contain}
 .gal-main img{width:100%;height:100%;object-fit:cover}
 .gal-thumbs{display:grid; grid-template-columns:repeat(auto-fill,minmax(84px,1fr)); gap:10px}
 .gal-thumbs button{padding:0; border:0; background:var(--sunk); overflow:hidden; aspect-ratio:1/1; cursor:pointer;
