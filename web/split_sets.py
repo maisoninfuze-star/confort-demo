@@ -49,8 +49,20 @@ def slugify(s):
     s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
     return re.sub(r'-{2,}', '-', re.sub(r'[^a-zA-Z0-9]+', '-', s).strip('-').lower())
 
+# IFDC codes name the piece on their own: T-1449 is a table, C-1712 a chair.
+# Without this a set whose variants are bare codes prices itself off a single
+# chair — "7 pc ensemble $699 / T-1449 $300 / C-1712 $70" showed $70.
+CODE_PIECES = [
+    (r'^\s*T[\s-]?\d{3,4}\b', ('table-manger', 'Tables de salle à manger', 'Dining tables')),
+    (r'^\s*C[\s-]?\d{3,4}\b', ('chaise', 'Chaises', 'Chairs')),
+    (r'^\s*B[\s-]?\d{3,4}\b', ('lit', 'Lits', 'Beds')),
+]
+
 def piece_of(label):
     for rx, meta in PIECES:
+        if re.search(rx, label or '', re.I):
+            return meta
+    for rx, meta in CODE_PIECES:
         if re.search(rx, label or '', re.I):
             return meta
     return None
@@ -127,6 +139,13 @@ def main():
             seen[x[field]] += 1
             if seen[x[field]] > 1:
                 x[field] = f"{x[field]}-{seen[x[field]]}"
+
+    # a "was" price only means something if it belongs to the variants this
+    # product actually keeps — inherited ones produce 699 marked down from 90
+    for x in out:
+        cmps = [v['compare'] for v in (x.get('variants') or []) if v.get('compare')]
+        best = max(cmps) if cmps else None
+        x['compare'] = best if (best and best > x['price']) else None
 
     json.dump(out, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(f'{len(cat)} products in, {len(out)} out  (+{len(out)-len(cat)})')

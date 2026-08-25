@@ -22,7 +22,10 @@ def slugify(s):
 # (subcategory key, FR label, EN label, regex over title+body+tags)
 SUBS = [
     ('sectionnel',    'Sectionnels',        'Sectionals',        r'sectionn|sectional|chaise longue|lhf|rhf'),
-    ('canape-lit',    'Canapés-lits',       'Sofa beds',         r'canap[eé].?lit|sofa.?bed|convertible'),
+    ('lit-superpose', 'Lits superposés',    'Bunk beds',         r'lit\s*superpos|bunk\s*bed|\bB-\d{3}'),
+    # "convertible" alone is not a sofa bed: a bunk bed is "convertible en
+    # 2 lits séparés". Require an actual sofa word.
+    ('canape-lit',    'Canapés-lits',       'Sofa beds',         r'canap[eé].?lit|sofa.?bed|(?:canap[eé]|sofa)[^.]{0,30}convertible'),
     ('canape',        'Canapés',            'Sofas',             r'\bcanap[eé]|\bsofa\b'),
     ('causeuse',      'Causeuses',          'Loveseats',         r'causeuse|loveseat'),
     ('fauteuil',      'Fauteuils',          'Armchairs',         r'fauteuil|inclinable|recliner|accent chair'),
@@ -42,7 +45,7 @@ SUBS = [
     ('decor',         'Décoration',         'Decor',             r'coussin|pillow|miroir|mirror|vase|tapis|lampe|horloge'),
 ]
 SUB_PARENT = {
-    'sectionnel':'salon','canape-lit':'salon','canape':'salon','causeuse':'salon','fauteuil':'salon',
+    'sectionnel':'salon','canape-lit':'salon','lit-superpose':'chambre','canape':'salon','causeuse':'salon','fauteuil':'salon',
     'table-salon':'salon','meuble-tv':'salon',
     'ensemble-chambre':'chambre','lit':'chambre','matelas':'chambre','commode':'chambre','chevet':'chambre',
     'ensemble-manger':'salle-a-manger','table-manger':'salle-a-manger','chaise':'salle-a-manger','buffet':'salle-a-manger',
@@ -214,6 +217,12 @@ def humanize(title, sub_fr, sub_en, colours, materials, idx):
     return fr, en, sku
 
 # ── variant option repair ───────────────────────────────────────────────────
+# An add-on is not the product. "Option de rangement (vendu séparément)" is the
+# cheapest variant on a bunk bed, so min(prices) advertised a $780 bed at $180.
+ACCESSORY_RX = re.compile(
+    r'vendu\s+s[ée]par[ée]ment|\boption\b|\btiroirs?\b|\bcoussins?\b|\bhousse\b|'
+    r'\bprotecteur\b|\bgarantie\b|\blivraison\b|\bsuppl[ée]ment', re.I)
+
 SIZE_RX = re.compile(r'\b(simple|double|full|queen|king|grand lit|tr[eè]s grand)\b', re.I)
 SIZE_MAP = {'simple':('Simple','Twin'),'double':('Double','Full'),'full':('Double','Full'),
             'queen':('Queen','Queen'),'king':('King','King'),
@@ -318,9 +327,13 @@ def main():
             if c and c[0] not in vcolours: vcolours.append(c[0])
             if s and s[0] not in vsizes:  vsizes.append(s[0])
 
-        prices  = [v['price'] for v in variants] or [0]
-        compare = [v['compare'] for v in variants if v['compare']]
-        price   = min(prices)
+        # price from the cheapest REAL variant, and take the "was" price from
+        # that same variant — max() across variants invents discounts
+        real = [v for v in variants if not ACCESSORY_RX.search(v['label'] or '')] or variants
+        lead = min(real, key=lambda v: v['price'])
+        prices  = [v['price'] for v in real] or [0]
+        price   = lead['price']
+        compare = [lead['compare']] if lead.get('compare') else []
 
         out.append(dict(
             id=p['id'], sku=sku, handle_old=p['handle'],

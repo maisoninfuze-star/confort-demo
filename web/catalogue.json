@@ -2498,10 +2498,10 @@
   "sub": "ensemble-manger",
   "sub_fr": "Ensembles de salle à manger",
   "sub_en": "Dining sets",
-  "price": 70.0,
+  "price": 699.0,
   "price_max": 699.0,
   "compare": 900.0,
-  "monthly": 2,
+  "monthly": 19,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_1f998acca0d7420e88a9db80ee6e1f5a_mv2_d_4200_3149_s_4_2.jpg?v=1772225653"
@@ -2557,7 +2557,72 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": null,
+  "img_ar": 1.333
+ },
+ {
+  "id": 9169975410924,
+  "sku": "T-1449 & C-1712",
+  "handle_old": "t-1449-c-1712",
+  "slug": "saint-urbain-bois-gris-tables-de-salle-a-manger",
+  "slug_en": "saint-urbain-dining-set-wood-grey-dining-table",
+  "name_fr": "Saint-Urbain — bois gris — Tables de salle à manger",
+  "name_en": "Saint-Urbain Dining set — wood grey — Dining table",
+  "cat": "salle-a-manger",
+  "sub": "table-manger",
+  "sub_fr": "Tables de salle à manger",
+  "sub_en": "Dining tables",
+  "price": 300.0,
+  "price_max": 300.0,
+  "compare": 340.0,
+  "monthly": 8,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_1f998acca0d7420e88a9db80ee6e1f5a_mv2_d_4200_3149_s_4_2.jpg?v=1772225653"
+  ],
+  "body_fr": "T-1449 & C-1712 – Ensemble de Salle à Manger Moderne \n Dimensions \n Table : \n60” L x 36” P x 30” H\n Chaises : \n22” L x 18” P x 34” H\n Description optimisée (version site) \n Apportez une touche moderne et élégante à votre salle à manger avec l’ensemble T-1449 & C-1712 .\n ✔ Plateau en verre trempé clair 10 mm\n✔ Pattes en bois gris avec accents chrome\n✔ Chaises rembourrées en PU gris\n✔ Détails de couture diamant (diamond stitching)\n✔ Pattes en métal noir robustes\n La combinaison du verre transparent et des finis gris crée un look contemporain, lumineux et sophistiqué. Les chaises offrent un excellent confort grâce à leur assise coussinée et leur design ergonomique.\n Idéal pour cuisines modernes, condos ou salles à manger minimalistes.",
+  "dims": null,
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "gris",
+    "fr": "Gris",
+    "en": "Grey"
    },
+   {
+    "key": "noir",
+    "fr": "Noir",
+    "en": "Black"
+   },
+   {
+    "key": "argent",
+    "fr": "Argent",
+    "en": "Silver"
+   }
+  ],
+  "materials": [
+   {
+    "key": "bois",
+    "fr": "Bois",
+    "en": "Wood"
+   },
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
+   },
+   {
+    "key": "verre",
+    "fr": "Verre",
+    "en": "Glass"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47343174418668,
     "label": "T-1449",
@@ -2568,7 +2633,72 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": null,
+  "img_ar": 1.333
+ },
+ {
+  "id": 9169975410924,
+  "sku": "T-1449 & C-1712",
+  "handle_old": "t-1449-c-1712",
+  "slug": "saint-urbain-bois-gris-chaise",
+  "slug_en": "saint-urbain-dining-set-wood-grey-chair",
+  "name_fr": "Saint-Urbain — bois gris — Chaise",
+  "name_en": "Saint-Urbain Dining set — wood grey — Chair",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "sub_fr": "Chaises",
+  "sub_en": "Chairs",
+  "price": 70.0,
+  "price_max": 70.0,
+  "compare": 90.0,
+  "monthly": 2,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_1f998acca0d7420e88a9db80ee6e1f5a_mv2_d_4200_3149_s_4_2.jpg?v=1772225653"
+  ],
+  "body_fr": "T-1449 & C-1712 – Ensemble de Salle à Manger Moderne \n Dimensions \n Table : \n60” L x 36” P x 30” H\n Chaises : \n22” L x 18” P x 34” H\n Description optimisée (version site) \n Apportez une touche moderne et élégante à votre salle à manger avec l’ensemble T-1449 & C-1712 .\n ✔ Plateau en verre trempé clair 10 mm\n✔ Pattes en bois gris avec accents chrome\n✔ Chaises rembourrées en PU gris\n✔ Détails de couture diamant (diamond stitching)\n✔ Pattes en métal noir robustes\n La combinaison du verre transparent et des finis gris crée un look contemporain, lumineux et sophistiqué. Les chaises offrent un excellent confort grâce à leur assise coussinée et leur design ergonomique.\n Idéal pour cuisines modernes, condos ou salles à manger minimalistes.",
+  "dims": null,
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "gris",
+    "fr": "Gris",
+    "en": "Grey"
    },
+   {
+    "key": "noir",
+    "fr": "Noir",
+    "en": "Black"
+   },
+   {
+    "key": "argent",
+    "fr": "Argent",
+    "en": "Silver"
+   }
+  ],
+  "materials": [
+   {
+    "key": "bois",
+    "fr": "Bois",
+    "en": "Wood"
+   },
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
+   },
+   {
+    "key": "verre",
+    "fr": "Verre",
+    "en": "Glass"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47343174451436,
     "label": "C-1712",
@@ -2593,9 +2723,9 @@
   "name_fr": "Fauteuil-Lit Convertible",
   "name_en": "Fauteuil-Lit Convertible",
   "cat": "salon",
-  "sub": "canape-lit",
-  "sub_fr": "Canapés-lits",
-  "sub_en": "Sofa beds",
+  "sub": "fauteuil",
+  "sub_fr": "Fauteuils",
+  "sub_en": "Armchairs",
   "price": 499.0,
   "price_max": 499.0,
   "compare": 780.0,
@@ -2815,14 +2945,14 @@
   "slug_en": "lit-superpose-black",
   "name_fr": "Lit Superposé — Noir",
   "name_en": "Lit Superposé — Black",
-  "cat": "salon",
-  "sub": "canape-lit",
-  "sub_fr": "Canapés-lits",
-  "sub_en": "Sofa beds",
-  "price": 180.0,
+  "cat": "chambre",
+  "sub": "lit-superpose",
+  "sub_fr": "Lits superposés",
+  "sub_en": "Bunk beds",
+  "price": 780.0,
   "price_max": 780.0,
   "compare": 980.0,
-  "monthly": 5,
+  "monthly": 22,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_fc383bb0bf8446f299ef8161cee8618d_mv2.png?v=1772218744"
@@ -2887,11 +3017,11 @@
    }
   ],
   "fit": {
-   "pieces": 2,
-   "kind": "module",
+   "pieces": 1,
+   "kind": "whole",
    "passage": 57,
-   "split": 40,
-   "dismantles": true
+   "split": 57,
+   "dismantles": false
   },
   "img_ar": 1.325
  },
@@ -2903,14 +3033,14 @@
   "slug_en": "lit-superpose-white",
   "name_fr": "Lit Superposé — Blanc",
   "name_en": "Lit Superposé — White",
-  "cat": "salon",
-  "sub": "canape-lit",
-  "sub_fr": "Canapés-lits",
-  "sub_en": "Sofa beds",
-  "price": 180.0,
+  "cat": "chambre",
+  "sub": "lit-superpose",
+  "sub_fr": "Lits superposés",
+  "sub_en": "Bunk beds",
+  "price": 750.0,
   "price_max": 750.0,
   "compare": 980.0,
-  "monthly": 5,
+  "monthly": 21,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_d32682966e07409eb423cb851bf9d20f_mv2.png?v=1772218339",
@@ -2976,11 +3106,11 @@
    }
   ],
   "fit": {
-   "pieces": 2,
-   "kind": "module",
+   "pieces": 1,
+   "kind": "whole",
    "passage": 58,
-   "split": 40,
-   "dismantles": true
+   "split": 58,
+   "dismantles": false
   },
   "img_ar": 1.27
  },
@@ -2992,14 +3122,14 @@
   "slug_en": "lit-superpose-grey",
   "name_fr": "Lit Superposé — Gris",
   "name_en": "Lit Superposé — Grey",
-  "cat": "salon",
-  "sub": "canape-lit",
-  "sub_fr": "Canapés-lits",
-  "sub_en": "Sofa beds",
-  "price": 180.0,
+  "cat": "chambre",
+  "sub": "lit-superpose",
+  "sub_fr": "Lits superposés",
+  "sub_en": "Bunk beds",
+  "price": 750.0,
   "price_max": 750.0,
   "compare": 980.0,
-  "monthly": 5,
+  "monthly": 21,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_47dbb4c87e984a95a14afd22e52f67d8_mv2.png?v=1772217830",
@@ -3070,11 +3200,11 @@
    }
   ],
   "fit": {
-   "pieces": 2,
-   "kind": "module",
+   "pieces": 1,
+   "kind": "whole",
    "passage": 58,
-   "split": 40,
-   "dismantles": true
+   "split": 58,
+   "dismantles": false
   },
   "img_ar": 1.27
  },
@@ -13149,10 +13279,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 359.99,
+  "price": 289.99,
   "price_max": 720.0,
   "compare": null,
-  "monthly": 10,
+  "monthly": 8,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_f395efb9adf04fd79f23ab648358f318_mv2.jpg?v=1770744650"
@@ -13196,7 +13326,7 @@
    {
     "id": 47294733877484,
     "label": "Double",
-    "price": 359.99,
+    "price": 289.99,
     "compare": null,
     "available": true,
     "colour": null,
@@ -13207,7 +13337,7 @@
    {
     "id": 47294733910252,
     "label": "Queen",
-    "price": 359.99,
+    "price": 289.99,
     "compare": null,
     "available": true,
     "colour": null,
@@ -13218,7 +13348,7 @@
    {
     "id": 47294733943020,
     "label": "King",
-    "price": 359.99,
+    "price": 289.99,
     "compare": null,
     "available": true,
     "colour": null,

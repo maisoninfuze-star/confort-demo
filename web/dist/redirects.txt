@@ -34,12 +34,14 @@
 /products/lit-king-en-velours-bleu	/fr/chambre/lit-king-en-velours-bleu/
 /products/lit-queen-en-velours-gris	/fr/chambre/lit-queen-en-velours-gris/
 /products/t-1449-c-1712	/fr/salle-a-manger/ensemble-de-salle-a-manger-saint-urbain-bois-gris/
+/products/t-1449-c-1712	/fr/salle-a-manger/saint-urbain-bois-gris-tables-de-salle-a-manger/
+/products/t-1449-c-1712	/fr/salle-a-manger/saint-urbain-bois-gris-chaise/
 /products/fauteuil-lit-convertible	/fr/salon/fauteuil-lit-convertible/
 /products/sofa-lit	/fr/salon/sofa-lit/
 /products/charlotte	/fr/chambre/charlotte/
-/products/lit-superpose-2	/fr/salon/lit-superpose-noir/
-/products/lit-superpose-1	/fr/salon/lit-superpose-blanc/
-/products/lit-superpose	/fr/salon/lit-superpose-gris/
+/products/lit-superpose-2	/fr/chambre/lit-superpose-noir/
+/products/lit-superpose-1	/fr/chambre/lit-superpose-blanc/
+/products/lit-superpose	/fr/chambre/lit-superpose-gris/
 /products/table-et-4-chaises-2	/fr/salle-a-manger/table-et-4-chaises/
 /products/table-et-4-chaises-1	/fr/salle-a-manger/table-et-4-chaises-2/
 /products/table-et-4-chaises	/fr/salle-a-manger/table-et-4-chaises-3/
