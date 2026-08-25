@@ -194,3 +194,28 @@ their trademarks.
 6. **Photography.** Product imagery is the store's own, from the Shopify CDN. The
    hero rooms are AI-generated stand-ins (see above) and the 23 single-image
    products still need a real shoot.
+
+## The IFDC catalogue
+
+`ifdc_fetch.py` harvests International Furniture Distribution Centre's dealer
+catalogue from their sitemap into `ifdc-raw.json` — **976 products, 948 of which
+are not on the site today.**
+
+Their product pages are a Wix store and carry a JSON-LD block with a code and a
+photograph **and nothing else**. Descriptions, dimensions, categories and prices
+load client-side and are not in the HTML. So these deliberately do *not* become
+product pages: with no dimensions there is no fit check, with no attributes there
+are no filters, and with no margins there is no price. 948 hollow product pages
+would bury the 171 real ones.
+
+They live at `/fr/catalogue/` and `/en/catalogue/` instead — one browsable index,
+filterable by SKU family and searchable by code, every tile marked *prix sur
+demande*. It shows the range honestly without pretending to be a shop.
+
+Families are derived from the SKU prefix (`IF` upholstery, `T` tables, `C`
+chairs, `B` bunk beds, `ST`, plus named collections), because IFDC's own room
+categories are not in the page source.
+
+**When the margins arrive**, these graduate into the main catalogue: add price
+and the parsed attributes to the importer and they become ordinary products,
+fit check and all.

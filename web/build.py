@@ -4,7 +4,7 @@
 Two fully-indexed languages, one canonical URL per product, real facets,
 delivery dates, the fit check, and schema.org on every page.
 """
-import json, os, re, html, shutil, datetime
+import json, os, re, html, shutil, datetime, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(HERE, 'dist')
@@ -23,6 +23,17 @@ TERM = 36  # financing term in months, shown as "or $x/month"
 
 E = lambda s: html.escape(str(s), quote=True)
 
+def asset(path):
+    """Stamp CSS/JS with a content hash. vercel.json caches these for an hour,
+    so without it a returning visitor keeps the old stylesheet after a deploy —
+    which is exactly how a half-updated page happens."""
+    import hashlib
+    f = os.path.join(HERE, 'assets', os.path.basename(path))
+    if not os.path.exists(f):
+        return path
+    h = hashlib.sha1(open(f, 'rb').read()).hexdigest()[:8]
+    return f'{path}?v={h}'
+
 # ── language furniture ──────────────────────────────────────────────────────
 CATS = ['salon', 'chambre', 'salle-a-manger', 'bureau']
 CAT = {
@@ -31,12 +42,27 @@ CAT = {
  'salle-a-manger': {'fr': ('Salle à manger', 'salle-a-manger'), 'en': ('Dining room', 'dining-room')},
  'bureau':         {'fr': ('Bureau', 'bureau'),             'en': ('Home office', 'home-office')},
 }
+# The IFDC dealer catalogue. Their product pages carry a code and a photograph
+# and nothing else — no description, dimensions, category or price — so these
+# cannot become full product pages without gutting what a product page means
+# here (no fit check, no filters, no price). They live in one browsable index
+# instead, clearly marked price-on-request, until the margins land.
+IFDC_FAMILIES = [
+    ('IF', {'fr': 'Salon — sofas, sectionnels, fauteuils', 'en': 'Living — sofas, sectionals, chairs'}),
+    ('T',  {'fr': 'Tables de salle à manger',              'en': 'Dining tables'}),
+    ('C',  {'fr': 'Chaises',                               'en': 'Chairs'}),
+    ('B',  {'fr': 'Lits superposés',                       'en': 'Bunk beds'}),
+    ('ST', {'fr': 'Série ST',                              'en': 'ST series'}),
+    ('*',  {'fr': 'Ensembles nommés',                      'en': 'Named collections'}),
+]
+
 PAGES = {
  'livraison':      {'fr': ('Livraison', 'livraison'),       'en': ('Delivery', 'delivery')},
  'financement':    {'fr': ('Financement', 'financement'),   'en': ('Financing', 'financing')},
  'salle-de-montre':{'fr': ('La salle de montre', 'salle-de-montre'), 'en': ('The showroom', 'showroom')},
  'retours':        {'fr': ('Retours et garantie', 'retours'),'en': ('Returns & warranty', 'returns')},
  'a-propos':       {'fr': ('À propos', 'a-propos'),         'en': ('About us', 'about')},
+ 'catalogue':      {'fr': ('Catalogue IFDC', 'catalogue'),  'en': ('IFDC catalogue', 'catalogue')},
 }
 CAT_BLURB = {
  'salon': {
@@ -92,6 +118,12 @@ COPY = {
    bnpl_mo='× %s mois, à partir de 0 %%',
    bnpl_more='Comment payer en versements →',
    pay_h='Modes de paiement',
+   ifdc_eyebrow='Distributeur autorisé IFDC',
+   ifdc_intro='La gamme complète de notre fournisseur IFDC — au-delà de ce qui est en stock au magasin. Repérez un code, appelez-nous, on vous donne le prix et le délai.',
+   ifdc_search='Chercher un code (ex. IF-6401)',
+   ifdc_ask='Prix sur demande',
+   ifdc_none='Aucun modèle ne correspond. Appelez-nous au 514-279-4600.',
+   ifdc_note='Ces modèles se commandent : ils ne sont pas au magasin aujourd’hui. Les photos et les codes viennent directement d’IFDC. Les prix, les dimensions et les descriptions complètes arrivent avec la mise à jour du catalogue — d’ici là, un appel donne la réponse en une minute.',
  ),
  'en': dict(
    tagline='Furniture · Mattresses · Montréal',
@@ -132,6 +164,12 @@ COPY = {
    bnpl_mo='× %s months, from 0%%',
    bnpl_more='How instalments work →',
    pay_h='Ways to pay',
+   ifdc_eyebrow='Authorised IFDC dealer',
+   ifdc_intro='Our supplier IFDC’s full range — beyond what is in stock at the store. Spot a code, call us, and we’ll give you the price and the lead time.',
+   ifdc_search='Search a code (e.g. IF-6401)',
+   ifdc_ask='Price on request',
+   ifdc_none='Nothing matches. Call us at 514-279-4600.',
+   ifdc_note='These are made to order — they are not in the store today. The photographs and codes come straight from IFDC. Prices, dimensions and full descriptions arrive with the catalogue update; until then a phone call answers it in a minute.',
  ),
 }
 # ── Buy now, pay later ──────────────────────────────────────────────────────
@@ -313,7 +351,7 @@ def shell(lang, title, desc, path, alt_path, body, jsonld=None, og_img=None, hea
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.shopify.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/marquise.css">
+<link rel="stylesheet" href="{asset('/assets/marquise.css')}">
 {f'<script type="application/ld+json">{ld}</script>' if ld else ''}
 {head_extra}
 </head>
@@ -325,7 +363,7 @@ def shell(lang, title, desc, path, alt_path, body, jsonld=None, og_img=None, hea
 </main>
 {footer(lang)}
 <script>window.MQ_CART_NOTE={json.dumps(COPY[lang]['cart_soon'], ensure_ascii=False)};</script>
-<script src="/assets/marquise.js" defer></script>
+<script src="{asset('/assets/marquise.js')}" defer></script>
 </body>
 </html>'''
 
@@ -337,6 +375,8 @@ def header(lang, path, alt_path):
         f'<a href="{url(lang, cat_slug(k, lang))}"'
         f'{CUR if path.startswith(url(lang, cat_slug(k, lang))) else ""}>'
         f'{E(cat_name(k, lang))}</a>' for k in CATS)
+    # the nav label stays short; the page keeps its full name in the <h1>
+    nav += f'<a href="{url(lang, PAGES["catalogue"][lang][1])}">{"Catalogue" if lang == "fr" else "Catalogue"}</a>'
     nav += f'<a href="{url(lang, PAGES["salle-de-montre"][lang][1])}">{E(PAGES["salle-de-montre"][lang][0])}</a>'
     nav += f'<a href="{url(lang, PAGES["financement"][lang][1])}">{E(PAGES["financement"][lang][0])}</a>'
     return f'''<div class="topbar"><div class="wrap">
@@ -370,7 +410,7 @@ def footer(lang):
     c = COPY[lang]
     shop = ''.join(f'<a href="{url(lang, cat_slug(k, lang))}">{E(cat_name(k, lang))}</a>' for k in CATS)
     help_ = ''.join(f'<a href="{url(lang, PAGES[k][lang][1])}">{E(PAGES[k][lang][0])}</a>'
-                    for k in ('livraison', 'financement', 'retours', 'a-propos'))
+                    for k in ('catalogue', 'livraison', 'financement', 'retours', 'a-propos'))
     return f'''<footer class="site"><div class="wrap">
  <div class="cols">
   <div><h2 class="fh">{E(c['foot_shop'])}</h2>{shop}</div>
@@ -1064,6 +1104,67 @@ PROSE = {
 <p>""" + ADDR + """, """ + CITY + """<br>""" + PHONE + """ · """ + PHONE2 + """</p>"""},
 }
 
+def load_ifdc():
+    p = os.path.join(HERE, 'ifdc-raw.json')
+    if not os.path.exists(p):
+        return []
+    rows = [r for r in json.load(open(p, encoding='utf-8'))
+            if not r.get('error') and r.get('image')]
+    for r in rows:
+        code = (r.get('name') or r['slug']).strip()
+        r['code'] = code
+        m = re.match(r'^([A-Za-z]+)', code)
+        fam = (m.group(1).upper() if m else '')
+        r['fam'] = fam if fam in ('IF', 'T', 'C', 'B', 'ST') else '*'
+    rows.sort(key=lambda r: (r['fam'] == '*', r['fam'], r['code']))
+    return rows
+
+def build_catalogue(lang):
+    c = COPY[lang]
+    rows = load_ifdc()
+    other = 'en' if lang == 'fr' else 'fr'
+    counts = collections.Counter(r['fam'] for r in rows)
+    chips = ''.join(
+        f'<button class="opt" data-fam="{k}" aria-pressed="false">{E(lab[lang])}'
+        f' <span class="n">{counts.get(k,0)}</span></button>'
+        for k, lab in IFDC_FAMILIES if counts.get(k))
+    cards = ''.join(
+        f'<article class="ic" data-fam="{r["fam"]}" data-code="{E(r["code"].lower())}">'
+        f'<div class="ic-shot"><img loading="lazy" src="{E(r["image"])}" '
+        f'alt="{E(r["code"])}" width="600" height="600"></div>'
+        f'<div class="ic-code">{E(r["code"])}</div>'
+        f'<div class="ic-ask">{E(c["ifdc_ask"])}</div></article>'
+        for r in rows)
+
+    body = f'''<div class="wrap">
+ <nav class="crumbs"><a href="{url(lang)}">{E(c['crumb_home'])}</a> · {E(PAGES['catalogue'][lang][0])}</nav>
+ <div style="padding-bottom:8px">
+   <p class="eyebrow">{E(c['ifdc_eyebrow'])}</p>
+   <h1 style="font-size:clamp(30px,4.4vw,46px)">{E(PAGES['catalogue'][lang][0])}</h1>
+   <p style="color:var(--ink-2);max-width:62ch;margin-top:12px">{E(c['ifdc_intro'])}</p>
+ </div>
+ <div class="ifdc-bar">
+   <div class="opts"><div class="row">{chips}</div></div>
+   <input class="ifdc-search" id="ifdc-search" type="search" placeholder="{E(c['ifdc_search'])}"
+          aria-label="{E(c['ifdc_search'])}">
+   <span class="count" id="ifdc-count">{len(rows)}</span>
+ </div>
+ <div class="ifdc-grid" id="ifdc-grid">{cards}</div>
+ <p id="ifdc-empty" hidden style="padding:40px 0;color:var(--ink-2)">{E(c['ifdc_none'])}</p>
+ <div class="box" style="margin:36px 0 8px;max-width:62ch">
+   <p>{E(c['ifdc_note'])}</p>
+ </div>
+</div>'''
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage",
+          "name": PAGES['catalogue'][lang][0],
+          "inLanguage": 'fr-CA' if lang == 'fr' else 'en-CA',
+          "url": SITE + url(lang, PAGES['catalogue'][lang][1]),
+          "numberOfItems": len(rows)}
+    return shell(lang, f"{PAGES['catalogue'][lang][0]} — {len(rows)} modèles" if lang == 'fr'
+                 else f"{PAGES['catalogue'][lang][0]} — {len(rows)} models",
+                 c['ifdc_intro'], url(lang, PAGES['catalogue'][lang][1]),
+                 url(other, PAGES['catalogue'][other][1]), body, ld)
+
 def build_prose(key, lang):
     other = 'en' if lang == 'fr' else 'fr'
     name = PAGES[key][lang][0]
@@ -1114,7 +1215,10 @@ def main():
             write(url(lang, cat_slug(k, lang)), build_listing(cat, k, lang))
             urls.append(url(lang, cat_slug(k, lang))); n += 1
         for key in PAGES:
-            write(url(lang, PAGES[key][lang][1]), build_prose(key, lang))
+            if key == 'catalogue':
+                write(url(lang, PAGES[key][lang][1]), build_catalogue(lang))
+            else:
+                write(url(lang, PAGES[key][lang][1]), build_prose(key, lang))
             urls.append(url(lang, PAGES[key][lang][1])); n += 1
         for p in cat:
             write(p_url(p, lang), build_pdp(p, cat, lang))

@@ -336,6 +336,43 @@
     }
   }
 
+
+  /* ── IFDC catalogue: family chips + code search ─────────────────── */
+  var icGrid = document.getElementById('ifdc-grid');
+  if (icGrid) {
+    var icCards = [].slice.call(icGrid.querySelectorAll('.ic'));
+    var icCount = document.getElementById('ifdc-count');
+    var icEmpty = document.getElementById('ifdc-empty');
+    var icSearch = document.getElementById('ifdc-search');
+    // scope to the filter bar: the cards carry data-fam too, and selecting
+    // them all wires a click handler onto every one of the 975 tiles
+    var fams = [].slice.call(document.querySelectorAll('.ifdc-bar [data-fam]'));
+    var active = null;
+
+    var applyIc = function () {
+      var q = (icSearch.value || '').trim().toLowerCase().replace(/[\s-]/g, '');
+      var shown = 0;
+      icCards.forEach(function (el) {
+        var okFam = !active || el.dataset.fam === active;
+        var okQ = !q || el.dataset.code.replace(/[\s-]/g, '').indexOf(q) > -1;
+        el.hidden = !(okFam && okQ);
+        if (!el.hidden) shown++;
+      });
+      icCount.textContent = shown;
+      icEmpty.hidden = shown > 0;
+    };
+    fams.forEach(function (b) {
+      b.addEventListener('click', function () {
+        active = active === b.dataset.fam ? null : b.dataset.fam;
+        fams.forEach(function (o) {
+          o.setAttribute('aria-pressed', String(o.dataset.fam === active));
+        });
+        applyIc();
+      });
+    });
+    icSearch.addEventListener('input', applyIc);
+  }
+
   /* ── facets ─────────────────────────────────────────────────── */
   var list = document.getElementById('results');
   if (list) {
