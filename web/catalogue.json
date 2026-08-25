@@ -16587,10 +16587,10 @@
   "sub": "canape",
   "sub_fr": "Canapés",
   "sub_en": "Sofas",
-  "price": 200.0,
-  "price_max": 200.0,
+  "price": 1800.0,
+  "price_max": 1800.0,
   "compare": null,
-  "monthly": 6,
+  "monthly": 50,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_a877e311741e476fabe951d0b08bf719_mv2_1_dcc178fe-ca28-44c4-b717-bf6176b309af.jpg?v=1770232789",
@@ -16636,7 +16636,7 @@
    {
     "id": 47292486254828,
     "label": "Sofa IF-8141",
-    "price": 200.0,
+    "price": 1800.0,
     "accessory": false,
     "compare": null,
     "available": true,
