@@ -217,7 +217,8 @@
 /products/if-8011-ensemble-de-salon-moderne-en-cuir-brun-chocolat	/fr/salon/milo-canape/
 /products/if-8011-ensemble-de-salon-moderne-en-cuir-brun-chocolat	/fr/salon/milo-causeuse/
 /products/if-8011-ensemble-de-salon-moderne-en-cuir-brun-chocolat	/fr/salon/milo-fauteuil/
-/products/if-9280-if-9281-sectionnel-avec-ottoman	/fr/salon/kova/
+/products/if-9280-if-9281-sectionnel-avec-ottoman	/fr/salon/kova-sectionnel/
+/products/if-9280-if-9281-sectionnel-avec-ottoman	/fr/salon/kova-poufs-et-ottomane/
 /products/if-9031-sectionnel-canape-lit-a-chaise-reversible-avec-rangement	/fr/salon/luno/
 /products/if-9027-sectionnel-canape-lit-a-chaise-reversible-avec-rangement	/fr/salon/drift/
 /products/if-9040-sectionnel-canape-lit-a-chaise-reversible-avec-rangement	/fr/salon/nido/

@@ -24,6 +24,7 @@ PIECES = [
     (r'\bsofa\b|\bcanap[eé]\b',         ('canape', 'Canapés', 'Sofas')),
     (r'\blove\b|\bloveseat\b|causeuse', ('causeuse', 'Causeuses', 'Loveseats')),
     (r'fauteuil|\brecliner\b|\barmchair\b', ('fauteuil', 'Fauteuils', 'Armchairs')),
+    (r'\bottomane?\b|\bpouf\b|\brepose.?pieds?\b', ('decor', 'Poufs et ottomanes', 'Ottomans')),
     (r'table de nuit|chevet|night.?stand', ('chevet', 'Tables de chevet', 'Nightstands')),
     (r'commode|dresser|\bchest\b',      ('commode', 'Commodes', 'Dressers')),
     (r'miroir|mirror',                  ('decor', 'Miroirs', 'Mirrors')),
@@ -89,6 +90,12 @@ def main():
                 sets = [v for v in sets if v['price'] >= top]
                 pieces = pieces + [v for v in demoted if piece_of(v['label'])]
         if len(pieces) < 2 and not (sets and pieces):
+            # every variant is a set line: it is a set, whatever it was filed as
+            if sets and len(sets) == len(vs) and not prod['sub'].startswith('ensemble'):
+                key, fr, en = SET_SUB.get(prod['cat'],
+                                          (prod['sub'], prod['sub_fr'], prod['sub_en']))
+                prod = dict(prod)
+                prod['sub'], prod['sub_fr'], prod['sub_en'] = key, fr, en
             out.append(prod); continue
 
         # group components of the same kind (a bed in two sizes is one product)
@@ -139,6 +146,18 @@ def main():
             seen[x[field]] += 1
             if seen[x[field]] > 1:
                 x[field] = f"{x[field]}-{seen[x[field]]}"
+
+    # Reclassification runs over everything, not just the products that split:
+    # a set whose variants are all one price never reaches the split logic at
+    # all, so "Table A Manger" stayed filed under dining tables.
+    for x in out:
+        vs = x.get('variants') or []
+        if not vs or x['sub'].startswith('ensemble'):
+            continue
+        if all(SET_RX.search(v['label'] or '') and not ACCESSORY_RX.search(v['label'] or '')
+               for v in vs):
+            key, fr, en = SET_SUB.get(x['cat'], (x['sub'], x['sub_fr'], x['sub_en']))
+            x['sub'], x['sub_fr'], x['sub_en'] = key, fr, en
 
     # a "was" price only means something if it belongs to the variants this
     # product actually keeps — inherited ones produce 699 marked down from 90

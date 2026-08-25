@@ -113,8 +113,13 @@ def main():
         p['monthly'] = round(new / 36) if new else 0
         if p.get('compare') and p['compare'] <= new:
             p['compare'] = None                      # a stale "was" below the new price
+        # Give each variant its own line where the list has one for that size;
+        # writing the single picked price onto every variant flattened
+        # Simple / Double / Queen to one number.
         for v in p.get('variants', []):
-            v['price'] = new
+            vs = size_of(v.get('label') or '') or v.get('size')
+            line = next((e for e in by[k] if vs and e['size'] == vs), None)
+            v['price'] = round(line['price'], 2) if line else new
     json.dump(cat, open(os.path.join(HERE, 'catalogue.json'), 'w', encoding='utf-8'),
               ensure_ascii=False, indent=1)
 
