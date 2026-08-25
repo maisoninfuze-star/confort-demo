@@ -1,37 +1,41 @@
 /* Marquise — Meuble Confort & Style
-   Brand rust #BB3703 sampled from the MCS logo mark; ink #171717 from its
-   lettering. The theme's stray #C62828 and the #B30000 banner are retired so
-   the identity reads as one colour, used rarely and deliberately. */
+   Black and red, per the client. The red is #C62828 — the store's own Shopify
+   theme primary, so it is still their colour, not an invented one. The #B30000
+   banner red is retired so the identity reads as a single red.
+
+   Red is the ONLY chroma in the system. Stock, fit and warning states are
+   carried by weight and neutral value instead of by hue, which is what keeps a
+   red-and-black site from reading as a clearance flyer. */
 
 :root{
-  --paper:#F1EFEC;          /* warm neutral ground, from the logo's field */
-  --surface:#FFFFFF;        /* cards sit white on it — the high-end move */
-  --sunk:#E7E3DD;
+  --paper:#F4F4F3;          /* neutral ground — no warmth competing with red */
+  --surface:#FFFFFF;        /* cards sit white on it */
+  --sunk:#E8E8E6;
   --field:#FFFFFF;
-  --ink:#171717;            /* logo lettering */
-  --ink-2:#4A4643;
-  --ink-3:#8C8681;
-  --line:#E0DBD4;
-  --line-2:#C9C2B9;
+  --ink:#0D0D0D;            /* true black, not a warm near-black */
+  --ink-2:#3D3D3D;
+  --ink-3:#6E6E6E;
+  --line:#E2E2E0;
+  --line-2:#C6C6C3;
 
-  --brand:#BB3703;          /* the mark */
-  --brand-deep:#8E2A05;
+  --brand:#C62828;          /* the store's own theme red */
+  --brand-deep:#8E1D1D;
   --brand-ink:#FFFFFF;
-  --brand-soft:#F6E7DF;
+  --brand-soft:#F8E6E6;
 
-  --signal:#2A5D48;         /* in stock / delivered */
-  --signal-soft:#E1EBE4;
-  --warn:#7A5210;
-  --warn-soft:#F2E8D6;
+  --signal:#0D0D0D;         /* in stock — stated in ink, not in green */
+  --signal-soft:#EAEAE8;
+  --warn:#6B6B6B;           /* "tight, but it goes" — muted, not amber */
+  --warn-soft:#EFEFED;
 
-  --footer-bg:#171717;
+  --footer-bg:#0D0D0D;
   --footer-ink:rgba(255,255,255,.86);
   --footer-dim:rgba(255,255,255,.46);
   --footer-line:rgba(255,255,255,.14);
-  --scrim-1:rgba(241,239,236,.97);
-  --scrim-2:rgba(241,239,236,.66);
-  --shadow:0 1px 1px rgba(23,23,23,.03), 0 12px 34px -18px rgba(23,23,23,.22);
-  --lift:0 2px 4px rgba(23,23,23,.04), 0 26px 54px -26px rgba(23,23,23,.3);
+  --scrim-1:rgba(244,244,243,.97);
+  --scrim-2:rgba(244,244,243,.66);
+  --shadow:0 1px 1px rgba(13,13,13,.04), 0 12px 34px -18px rgba(13,13,13,.24);
+  --lift:0 2px 4px rgba(13,13,13,.05), 0 26px 54px -26px rgba(13,13,13,.32);
 
   --f-display:"Fraunces",Georgia,"Times New Roman",serif;
   --f-ui:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
@@ -46,35 +50,35 @@
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --paper:#14120F; --surface:#1C1A16; --sunk:#0C0B09; --field:#221F1A;
-    --ink:#EDEAE4; --ink-2:#B3ADA4; --ink-3:#857F76;
-    --line:#2B2822; --line-2:#3E3A32;
-    --brand:#E5673A; --brand-deep:#F08055; --brand-ink:#1A0E08; --brand-soft:#33190E;
-    --signal:#6FBE9A; --signal-soft:#16281F;
-    --warn:#D6A85E; --warn-soft:#2B2214;
-    --footer-bg:#0B0A08;
+    --paper:#0E0E0E; --surface:#1A1A1A; --sunk:#050505; --field:#1F1F1F;
+    --ink:#F2F1F0; --ink-2:#ADADAA; --ink-3:#7E7E7B;
+    --line:#282828; --line-2:#3A3A3A;
+    --brand:#E85A5F; --brand-deep:#FF6369; --brand-ink:#120707; --brand-soft:#341315;
+    --signal:#F2F1F0; --signal-soft:#1F1F1F;
+    --warn:#9A9A97; --warn-soft:#1C1C1C;
+    --footer-bg:#050505;
     --footer-ink:rgba(255,255,255,.84);
     --footer-dim:rgba(255,255,255,.50);
     --footer-line:rgba(255,255,255,.12);
-    --scrim-1:rgba(20,18,15,.95);
-    --scrim-2:rgba(20,18,15,.62);
+    --scrim-1:rgba(14,14,14,.95);
+    --scrim-2:rgba(14,14,14,.62);
     --shadow:0 1px 1px rgba(0,0,0,.5), 0 14px 36px -20px rgba(0,0,0,.8);
     --lift:0 2px 6px rgba(0,0,0,.5), 0 30px 60px -28px rgba(0,0,0,.9);
   }
 }
 :root[data-theme="dark"]{
-  --paper:#14120F; --surface:#1C1A16; --sunk:#0C0B09; --field:#221F1A;
-  --ink:#EDEAE4; --ink-2:#B3ADA4; --ink-3:#857F76;
-  --line:#2B2822; --line-2:#3E3A32;
-  --brand:#E5673A; --brand-deep:#F08055; --brand-ink:#1A0E08; --brand-soft:#33190E;
-  --signal:#6FBE9A; --signal-soft:#16281F;
-  --warn:#D6A85E; --warn-soft:#2B2214;
-  --footer-bg:#0B0A08;
+  --paper:#0E0E0E; --surface:#1A1A1A; --sunk:#050505; --field:#1F1F1F;
+  --ink:#F2F1F0; --ink-2:#ADADAA; --ink-3:#7E7E7B;
+  --line:#282828; --line-2:#3A3A3A;
+  --brand:#E85A5F; --brand-deep:#FF6369; --brand-ink:#120707; --brand-soft:#341315;
+  --signal:#F2F1F0; --signal-soft:#1F1F1F;
+  --warn:#9A9A97; --warn-soft:#1C1C1C;
+  --footer-bg:#050505;
   --footer-ink:rgba(255,255,255,.84);
   --footer-dim:rgba(255,255,255,.50);
   --footer-line:rgba(255,255,255,.12);
-  --scrim-1:rgba(20,18,15,.95);
-  --scrim-2:rgba(20,18,15,.62);
+  --scrim-1:rgba(14,14,14,.95);
+  --scrim-2:rgba(14,14,14,.62);
   --shadow:0 1px 1px rgba(0,0,0,.5), 0 14px 36px -20px rgba(0,0,0,.8);
   --lift:0 2px 6px rgba(0,0,0,.5), 0 30px 60px -28px rgba(0,0,0,.9);
 }

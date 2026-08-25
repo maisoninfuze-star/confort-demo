@@ -47,16 +47,27 @@ crawlers to the demo.
 
 Colour is sampled from the store's own logo, not invented:
 
-| Token | Value | Source |
-|---|---|---|
-| `--brand` | `#BB3703` | the rust in the MCS logo mark |
-| `--ink` | `#171717` | the logo's lettering |
-| `--paper` | `#F1EFEC` | warm neutral ground |
-| `--signal` | `#2A5D48` | in stock / delivered |
+Black and red, at the client's request.
 
-The live site currently runs **three** different reds at once — the logo's rust,
-a `#C62828` theme primary, and a `#B30000` announcement bar. Marquise keeps the
-mark's rust and retires the other two, so the identity reads as one colour.
+| Token | Light | Dark | Role |
+|---|---|---|---|
+| `--brand` | `#C62828` | `#E85A5F` | the red — the store's own theme primary |
+| `--ink` | `#0D0D0D` | `#F2F1F0` | true black |
+| `--paper` | `#F4F4F3` | `#0E0E0E` | neutral ground |
+
+The red is not invented: `#C62828` is already the `--color-primary` in the
+store's live Shopify theme. The `#B30000` announcement-bar red is retired so the
+identity reads as a single red.
+
+**Red is the only chroma in the system.** Stock, fit and warning states are
+carried by weight and neutral value rather than by hue — the green "in stock"
+chip and the amber "tight, but it goes" state are gone. That restraint is what
+stops a red-and-black furniture site reading as a clearance flyer, which is
+exactly the trap the current site fell into. If the semantic green is wanted
+back for scannability, it is one token (`--signal`) in each theme block.
+
+Every text pair clears WCAG AA in both themes; the numbers are checked, not
+assumed.
 
 Type: **Fraunces** for headlines, product names and reviews; **Familjen Grotesk**
 for navigation, prices, buttons and body; **IBM Plex Mono** for labels, specs, SKUs

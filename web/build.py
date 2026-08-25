@@ -450,13 +450,13 @@ def splash(lang):
     return f"""<div class="splash" id="splash" aria-hidden="true">
   <div class="splash-badge">
     <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="presentation">
-      <circle id="ring1" cx="256" cy="196" r="150" fill="none" stroke="#BB3703" stroke-width="2.5" pathLength="1"/>
+      <circle id="ring1" cx="256" cy="196" r="150" fill="none" stroke="#C62828" stroke-width="2.5" pathLength="1"/>
       <circle id="ring2" cx="256" cy="196" r="136" fill="none" stroke="#8C8681" stroke-width="7"
               stroke-dasharray="0.004 0.020" opacity="0.55" pathLength="1"/>
       <g id="mono" fill="#F1EFEC" font-family="Fraunces, Georgia, serif" font-weight="500"
          text-anchor="middle">
         <text class="ch" style="--i:0" x="196" y="228" font-size="104">M</text>
-        <text class="ch" style="--i:1" x="256" y="228" font-size="104" fill="#BB3703">C</text>
+        <text class="ch" style="--i:1" x="256" y="228" font-size="104" fill="#C62828">C</text>
         <text class="ch" style="--i:2" x="316" y="228" font-size="104">S</text>
       </g>
       <text id="wordmark" x="256" y="404" text-anchor="middle" fill="#F1EFEC"

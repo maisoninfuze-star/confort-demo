@@ -30,6 +30,26 @@
       ],
       "port": 8712,
       "autoPort": true
+    },
+    {
+      "name": "clinique",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/inder/Claude/Projects/ clinique beaute plus' && exec npx next dev -p \"${PORT:-3210}\""
+      ],
+      "port": 3210,
+      "autoPort": true
+    },
+    {
+      "name": "hakka",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/inder/Claude/Projects/hakka grill' && exec npx next dev -p \"${PORT:-3311}\""
+      ],
+      "port": 3311,
+      "autoPort": true
     }
   ]
 }
