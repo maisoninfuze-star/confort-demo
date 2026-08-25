@@ -29,6 +29,8 @@ SUBS = [
     ('canape',        'Canapés',            'Sofas',             r'\bcanap[eé]|\bsofa\b'),
     ('causeuse',      'Causeuses',          'Loveseats',         r'causeuse|loveseat'),
     ('fauteuil',      'Fauteuils',          'Armchairs',         r'fauteuil|inclinable|recliner|accent chair'),
+    # a vase or a lamp is not a coffee table, however often its copy says "table"
+    ('decor',         'Décoration',         'Decor',             r'^\s*vase|\bvase d[ée]cor|\blampe\b|\bhorloge\b|\bmiroir mural\b|\bplante artificielle\b'),
     ('table-salon',   'Tables de salon',    'Coffee tables',     r'table basse|table de salon|coffee table|table d.appoint|tables? gigogne'),
     ('meuble-tv',     'Meubles TV',         'TV units',          r'meuble t[eé]l[eé]|meuble tv|tv stand|console'),
     ('ensemble-chambre','Ensembles de chambre','Bedroom sets',   r'ensemble.{0,12}chambre|bedroom set|set de chambre'),

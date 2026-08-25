@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Apply the supplier price list as RETAIL prices.
+"""Turn the supplier's cost list into retail prices.
 
-The spreadsheet's column is headed "Cost", but the client confirms these are
-their selling prices, margin already included. So they are written straight to
-the catalogue and to the supplier index as retail.
+The spreadsheet's column is headed "Cost" — dealer prices — and the client
+confirms the markup is x2. That matches what the store already charges: across
+the 33 products with both a live price and a listed cost, the median multiple
+was x2.00. Retail = cost x MARGIN, applied to the catalogue and to the full
+catalogue index.
 
 Every change is reported before it ships — a price list applied to the wrong
 column silently halves a catalogue, and that is not something to discover from
@@ -12,8 +14,22 @@ a customer.
 import json, os, re, openpyxl, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.expanduser(
-    '~/Downloads/supplier 2026 Price List-New Items + New Additions (v3) 03.03.26 (R).xlsx')
+
+# Dealer cost -> shelf price. One number, one place.
+MARGIN = 2.0
+# Located by pattern rather than by name: the supplier is not named anywhere in
+# this repository. Override with PRICE_LIST=/path/to/file.xlsx
+def _find_price_list():
+    import glob
+    if os.environ.get('PRICE_LIST'):
+        return os.environ['PRICE_LIST']
+    hits = glob.glob(os.path.expanduser('~/Downloads/*Price List*.xlsx'))
+    if not hits:
+        raise SystemExit('No price list found in ~/Downloads (expected "*Price List*.xlsx"). '
+                         'Set PRICE_LIST=/path/to/file.xlsx')
+    return max(hits, key=os.path.getmtime)
+
+XLSX = _find_price_list()
 
 def norm(s):
     return re.sub(r'[^A-Z0-9]', '', (s or '').upper())
@@ -50,7 +66,7 @@ def read_list():
             continue
         rows.append({'key': norm(m.group(1)), 'item': item,
                      'desc': str(desc).strip() if desc else '',
-                     'price': p, 'size': size_of(desc)})
+                     'cost': p, 'price': round(p * MARGIN, 2), 'size': size_of(desc)})
     by = collections.defaultdict(list)
     for r in rows:
         by[r['key']].append(r)
@@ -123,10 +139,37 @@ def main():
         # Simple / Double / Queen to one number.
         for v in p.get('variants', []):
             lbl = v.get('label') or ''
+            # A variant often names its own code — "Table-1274" beside
+            # "Chaise-1263". Look that up rather than the product's key, or the
+            # chair is priced off the table and both read $1,319.98.
+            own = None
+            for m in re.finditer(r'\b([A-Za-z]{1,2})[\s-]?(\d{3,4})\b', lbl):
+                cand = norm(m.group(1) + m.group(2))
+                if cand in by:
+                    own = by[cand]; break
+            if own is None:
+                # "Chaise -1263" gives the number without its letter. Infer the
+                # prefix from the word: a chair is a C, a table a T.
+                pref = ('C' if re.search(r'chaise|chair', lbl, re.I) else
+                        'T' if re.search(r'\btable\b', lbl, re.I) else None)
+                if pref:
+                    for m in re.finditer(r'(\d{3,4})', lbl):
+                        cand = norm(pref + m.group(1))
+                        if cand in by:
+                            own = by[cand]; break
+                    if own is None:
+                        # Some variants are just "Table" and "Chaise". The codes
+                        # are in the product's own copy — "T-1274 + C-1261".
+                        hay = f"{p.get('name_fr','')} {p.get('body_fr','')[:600]}"
+                        for m in re.finditer(rf'\b{pref}[\s-]?(\d{{3,4}})\b', hay, re.I):
+                            cand = norm(pref + m.group(1))
+                            if cand in by:
+                                own = by[cand]; break
+            src = own if own else by[k]
             # a set variant takes a set line, a single takes a single line —
             # otherwise a "Set 7pcs" is priced off the table-only row
             want_set = bool(SET_RX.search(lbl))
-            pool = [e for e in by[k] if bool(SET_RX.search(e['desc'])) == want_set] or by[k]
+            pool = [e for e in src if bool(SET_RX.search(e['desc'])) == want_set] or src
             vs = size_of(lbl) or v.get('size')
             line = next((e for e in pool if vs and e['size'] == vs), None) \
                    or (min(pool, key=lambda e: e['price']) if pool else None)
@@ -139,7 +182,7 @@ def main():
     idx = {k: round(min(e['price'] for e in v), 2) for k, v in by.items()}
     json.dump(idx, open(os.path.join(HERE, 'supplier-prices.json'), 'w'), indent=0)
 
-    print(f'price list: {len(by)} codes')
+    print(f'price list: {len(by)} codes, cost x {MARGIN:g}')
     print(f'catalogue : {len(cat)-unmatched} matched, {unmatched} left on their existing price')
     print(f'changed   : {len(changes)}\n')
     ups = [c for c in changes if c[3] > c[2]]

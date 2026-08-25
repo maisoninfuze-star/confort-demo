@@ -1071,11 +1071,11 @@
    }
   ],
   "fit": {
-   "pieces": 3,
-   "kind": "flat",
+   "pieces": 1,
+   "kind": "whole",
    "passage": 50,
-   "split": 16,
-   "dismantles": true
+   "split": 50,
+   "dismantles": false
   },
   "img_ar": 1.449
  },
@@ -1178,11 +1178,11 @@
    }
   ],
   "fit": {
-   "pieces": 3,
-   "kind": "flat",
+   "pieces": 1,
+   "kind": "whole",
    "passage": 50,
-   "split": 16,
-   "dismantles": true
+   "split": 50,
+   "dismantles": false
   },
   "img_ar": 1.449
  },
@@ -1257,11 +1257,11 @@
    }
   ],
   "fit": {
-   "pieces": 3,
-   "kind": "flat",
+   "pieces": 1,
+   "kind": "whole",
    "passage": 50,
-   "split": 16,
-   "dismantles": true
+   "split": 50,
+   "dismantles": false
   },
   "img_ar": 1.449
  },
@@ -1336,11 +1336,11 @@
    }
   ],
   "fit": {
-   "pieces": 3,
-   "kind": "flat",
+   "pieces": 1,
+   "kind": "whole",
    "passage": 50,
-   "split": 16,
-   "dismantles": true
+   "split": 50,
+   "dismantles": false
   },
   "img_ar": 1.449
  },
@@ -1939,10 +1939,10 @@
   "sub": "table-salon",
   "sub_fr": "Tables de salon",
   "sub_en": "Coffee tables",
-  "price": 99.99,
-  "price_max": 150.0,
+  "price": 199.98,
+  "price_max": 199.98,
   "compare": null,
-  "monthly": 3,
+  "monthly": 6,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_8ec20dc0272e4b458a179ad80d496c0b_mv2.jpg?v=1772311430",
@@ -1983,7 +1983,7 @@
    {
     "id": 47346021499116,
     "label": "IF-2631",
-    "price": 99.99,
+    "price": 199.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -2014,10 +2014,10 @@
   "sub": "table-salon",
   "sub_fr": "Tables de salon",
   "sub_en": "Coffee tables",
-  "price": 99.99,
-  "price_max": 150.0,
+  "price": 199.98,
+  "price_max": 199.98,
   "compare": null,
-  "monthly": 3,
+  "monthly": 6,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_280d27ca49b742238760d07f360aff2e_mv2.jpg?v=1772311126",
@@ -2062,7 +2062,7 @@
    {
     "id": 47346007703788,
     "label": "IF-3225",
-    "price": 99.99,
+    "price": 199.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -3599,10 +3599,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 269.99,
+  "price": 539.98,
   "price_max": 540.0,
   "compare": null,
-  "monthly": 7,
+  "monthly": 15,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_4384f32449ba4304a18ccce684340d37_mv2_f91b24ee-a6f3-4b28-9856-2f10152dbd0b.avif?v=1771893977",
@@ -3647,7 +3647,7 @@
    {
     "id": 47329853538540,
     "label": "Queen",
-    "price": 269.99,
+    "price": 539.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -3659,7 +3659,7 @@
    {
     "id": 47329853571308,
     "label": "King",
-    "price": 259.99,
+    "price": 519.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -3684,10 +3684,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 499.99,
+  "price": 999.98,
   "price_max": 1000.0,
   "compare": null,
-  "monthly": 14,
+  "monthly": 28,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_848526061a7d4fd2a484e8378488c424_mv2.jpg?v=1771893486",
@@ -3736,7 +3736,7 @@
    {
     "id": 47329842725100,
     "label": "Queen",
-    "price": 449.99,
+    "price": 899.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -3748,7 +3748,7 @@
    {
     "id": 47329842757868,
     "label": "King",
-    "price": 499.99,
+    "price": 999.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -3773,10 +3773,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 549.99,
+  "price": 1099.98,
   "price_max": 1100.0,
   "compare": null,
-  "monthly": 15,
+  "monthly": 31,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_76abd5256e2c48dea80711a9360120d4_mv2.jpg?v=1771893045",
@@ -3834,7 +3834,7 @@
    {
     "id": 47329822245100,
     "label": "Queen",
-    "price": 469.99,
+    "price": 939.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -3846,7 +3846,7 @@
    {
     "id": 47329822277868,
     "label": "king",
-    "price": 549.99,
+    "price": 1099.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -3858,7 +3858,7 @@
    {
     "id": 47329822310636,
     "label": "IF-3401",
-    "price": 469.99,
+    "price": 209.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -3883,10 +3883,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 269.99,
+  "price": 539.98,
   "price_max": 540.0,
   "compare": null,
-  "monthly": 7,
+  "monthly": 15,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_6233a2e3efcc466b8b8b8955955f364a_mv2.jpg?v=1771892673",
@@ -3931,7 +3931,7 @@
    {
     "id": 47329820049644,
     "label": "Queen",
-    "price": 269.99,
+    "price": 539.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -3943,7 +3943,7 @@
    {
     "id": 47329820082412,
     "label": "Double",
-    "price": 259.99,
+    "price": 519.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6374,10 +6374,10 @@
   "sub": "ensemble-manger",
   "sub_fr": "Ensembles de salle à manger",
   "sub_en": "Dining sets",
-  "price": 199.99,
-  "price_max": 350.0,
+  "price": 399.98,
+  "price_max": 399.98,
   "compare": null,
-  "monthly": 6,
+  "monthly": 11,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_cf854c3d628d47d5b0e9e67dae21ca3c_mv2.avif?v=1771613980",
@@ -6413,7 +6413,7 @@
    {
     "id": 47323993374956,
     "label": "5 pièces",
-    "price": 199.99,
+    "price": 399.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6438,10 +6438,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 149.99,
-  "price_max": 260.0,
+  "price": 299.98,
+  "price_max": 299.98,
   "compare": null,
-  "monthly": 4,
+  "monthly": 8,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_1a8659e969554b87abf97d34d2d97543_mv2.png?v=1771609559"
@@ -6468,7 +6468,7 @@
    {
     "id": 47323949269228,
     "label": "Simple",
-    "price": 124.99,
+    "price": 249.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6480,7 +6480,7 @@
    {
     "id": 47323949301996,
     "label": "Double",
-    "price": 139.99,
+    "price": 279.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6492,7 +6492,7 @@
    {
     "id": 47323949334764,
     "label": "Queen",
-    "price": 149.99,
+    "price": 299.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6517,10 +6517,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 139.99,
+  "price": 279.98,
   "price_max": 300.0,
   "compare": null,
-  "monthly": 4,
+  "monthly": 8,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_8ed8019ac8204d48a802626bbbc9bc62_mv2_d_3574_2222_s_2.png?v=1771609560"
@@ -6547,7 +6547,7 @@
    {
     "id": 47323937964268,
     "label": "Simple",
-    "price": 124.99,
+    "price": 249.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6559,7 +6559,7 @@
    {
     "id": 47323937997036,
     "label": "Double",
-    "price": 139.99,
+    "price": 279.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6571,7 +6571,7 @@
    {
     "id": 47323938029804,
     "label": "Queen",
-    "price": 149.99,
+    "price": 299.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6596,10 +6596,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 129.99,
+  "price": 259.98,
   "price_max": 280.0,
   "compare": null,
-  "monthly": 4,
+  "monthly": 7,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_e10ad11c7eef4736b1f73742d5b4a89f_mv2.png?v=1771609560"
@@ -6626,7 +6626,7 @@
    {
     "id": 47323936063724,
     "label": "Simple",
-    "price": 109.99,
+    "price": 219.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6638,7 +6638,7 @@
    {
     "id": 47323936096492,
     "label": "Double",
-    "price": 129.99,
+    "price": 259.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6650,7 +6650,7 @@
    {
     "id": 47323936129260,
     "label": "Queen",
-    "price": 139.99,
+    "price": 279.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6675,10 +6675,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 149.99,
+  "price": 299.98,
   "price_max": 499.0,
   "compare": null,
-  "monthly": 4,
+  "monthly": 8,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_5ece7fcccbd14b3b8fe3ca00a8ef8fc5_mv2_d_4953_3429_s_4_2_1.jpg?v=1771609559"
@@ -6711,7 +6711,7 @@
    {
     "id": 47323933409516,
     "label": "Simple",
-    "price": 124.99,
+    "price": 249.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6723,7 +6723,7 @@
    {
     "id": 47323933442284,
     "label": "Double",
-    "price": 139.99,
+    "price": 279.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6735,7 +6735,7 @@
    {
     "id": 47323933475052,
     "label": "Queen",
-    "price": 149.99,
+    "price": 299.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6747,7 +6747,7 @@
    {
     "id": 47323976728812,
     "label": "Queen Combo (Lit + Matelas)",
-    "price": 149.99,
+    "price": 299.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6772,10 +6772,10 @@
   "sub": "fauteuil",
   "sub_fr": "Fauteuils",
   "sub_en": "Armchairs",
-  "price": 450.0,
+  "price": 900.0,
   "price_max": 900.0,
   "compare": null,
-  "monthly": 12,
+  "monthly": 25,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_982273148ddd464f8c7a2dff0a94d6d3_mv2.avif?v=1771454927",
@@ -6821,7 +6821,7 @@
    {
     "id": 47319015817452,
     "label": "IF-8162",
-    "price": 450.0,
+    "price": 900.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -6849,9 +6849,9 @@
   "name_fr": "Vase décoratif circulaire noir – Design moderne",
   "name_en": "Vase décoratif circulaire noir – Design moderne",
   "cat": "salon",
-  "sub": "table-salon",
-  "sub_fr": "Tables de salon",
-  "sub_en": "Coffee tables",
+  "sub": "decor",
+  "sub_fr": "Décoration",
+  "sub_en": "Decor",
   "price": 45.99,
   "price_max": 45.99,
   "compare": null,
@@ -7052,10 +7052,10 @@
   "sub": "table-salon",
   "sub_fr": "Tables de salon",
   "sub_en": "Coffee tables",
-  "price": 119.99,
+  "price": 239.98,
   "price_max": 240.0,
   "compare": null,
-  "monthly": 3,
+  "monthly": 7,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ffa605eeb9a34f0796ee11ecde034e2e_mv2.jpg?v=1771451755",
@@ -7085,7 +7085,7 @@
    {
     "id": 47318934225132,
     "label": "IF-3530",
-    "price": 119.99,
+    "price": 239.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8502,10 +8502,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 72.5,
+  "price": 145.0,
   "price_max": 145.0,
   "compare": null,
-  "monthly": 2,
+  "monthly": 4,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_1582823563b64a8c9f2050c9da2d177d_mv2.avif?v=1771454887",
@@ -8544,7 +8544,7 @@
    {
     "id": 47315993460972,
     "label": "C-1541",
-    "price": 72.5,
+    "price": 145.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8575,10 +8575,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 90.0,
+  "price": 180.0,
   "price_max": 180.0,
   "compare": null,
-  "monthly": 2,
+  "monthly": 5,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c8296d5a01284574b7796345775fa2b5_mv2.avif?v=1771358322",
@@ -8613,7 +8613,7 @@
    {
     "id": 47315992215788,
     "label": "C-1546",
-    "price": 90.0,
+    "price": 180.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8644,10 +8644,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 75.0,
+  "price": 150.0,
   "price_max": 150.0,
   "compare": null,
-  "monthly": 2,
+  "monthly": 4,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_e083c1e411104808aeb43faba39d0871_mv2.avif?v=1771358359",
@@ -8697,7 +8697,7 @@
    {
     "id": 47315989168364,
     "label": "Velours Gris doux",
-    "price": 75.0,
+    "price": 150.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8709,7 +8709,7 @@
    {
     "id": 47315989201132,
     "label": "Velours Gris clair",
-    "price": 75.0,
+    "price": 150.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8721,7 +8721,7 @@
    {
     "id": 47315989233900,
     "label": "Velours Gris foncé",
-    "price": 75.0,
+    "price": 150.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8733,7 +8733,7 @@
    {
     "id": 47315989266668,
     "label": "PU gris doux",
-    "price": 75.0,
+    "price": 150.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8764,10 +8764,10 @@
   "sub": "matelas",
   "sub_fr": "Matelas",
   "sub_en": "Mattresses",
-  "price": 170.0,
+  "price": 340.0,
   "price_max": 340.0,
   "compare": null,
-  "monthly": 5,
+  "monthly": 9,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_895015498307438a97a95f994ed2eac4_mv2.jpg?v=1771355554",
@@ -8822,7 +8822,7 @@
    {
     "id": 47315639173356,
     "label": "Velours Bleu",
-    "price": 170.0,
+    "price": 340.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8834,7 +8834,7 @@
    {
     "id": 47315639206124,
     "label": "Velours Noir",
-    "price": 170.0,
+    "price": 340.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8846,7 +8846,7 @@
    {
     "id": 47315639238892,
     "label": "Velours Beige",
-    "price": 170.0,
+    "price": 340.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8858,7 +8858,7 @@
    {
     "id": 47315639271660,
     "label": "Velours Gris",
-    "price": 170.0,
+    "price": 340.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8889,10 +8889,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 145.0,
+  "price": 290.0,
   "price_max": 290.0,
   "compare": null,
-  "monthly": 4,
+  "monthly": 8,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_676a73463c4f4bb38396d699bc456165_mv2.avif?v=1771360921",
@@ -8944,7 +8944,7 @@
    {
     "id": 47315608305900,
     "label": "Velours Beige",
-    "price": 145.0,
+    "price": 290.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8956,7 +8956,7 @@
    {
     "id": 47315608338668,
     "label": "Velours Bleu",
-    "price": 145.0,
+    "price": 290.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8968,7 +8968,7 @@
    {
     "id": 47315608371436,
     "label": "Velours Noir",
-    "price": 145.0,
+    "price": 290.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -8999,10 +8999,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 150.0,
-  "price_max": 260.0,
+  "price": 300.0,
+  "price_max": 300.0,
   "compare": null,
-  "monthly": 4,
+  "monthly": 8,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_9faab0bf26d149fc8fdd9e6c615d3745_mv2.avif?v=1771360901",
@@ -9054,7 +9054,7 @@
    {
     "id": 47315598082284,
     "label": "velours crème",
-    "price": 150.0,
+    "price": 300.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -9066,7 +9066,7 @@
    {
     "id": 47315598115052,
     "label": "Velours Noir",
-    "price": 150.0,
+    "price": 300.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -9078,7 +9078,7 @@
    {
     "id": 47315598147820,
     "label": "Velours Gris",
-    "price": 150.0,
+    "price": 300.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -9109,10 +9109,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 175.0,
+  "price": 350.0,
   "price_max": 350.0,
   "compare": null,
-  "monthly": 5,
+  "monthly": 10,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_fcf317cbfafa4dd4a54bd663e5a9893e_mv2.jpg?v=1771353351",
@@ -9158,7 +9158,7 @@
    {
     "id": 47315588874476,
     "label": "La chaise C-1285",
-    "price": 175.0,
+    "price": 350.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11078,10 +11078,10 @@
   "sub": "canape",
   "sub_fr": "Canapés",
   "sub_en": "Sofas",
-  "price": 999.99,
-  "price_max": 1550.0,
+  "price": 1999.98,
+  "price_max": 1999.98,
   "compare": null,
-  "monthly": 28,
+  "monthly": 56,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_03809513903a428c8704ca6aed6d6000_mv2_1.jpg?v=1770933000",
@@ -11127,7 +11127,7 @@
    {
     "id": 47301360484588,
     "label": "IF-8030",
-    "price": 999.99,
+    "price": 1999.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11139,7 +11139,7 @@
    {
     "id": 47301360517356,
     "label": "Fauteuil IF-8030",
-    "price": 999.99,
+    "price": 1999.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11334,10 +11334,10 @@
   "sub": "ensemble-manger",
   "sub_fr": "Ensembles de salle à manger",
   "sub_en": "Dining sets",
-  "price": 469.99,
+  "price": 939.98,
   "price_max": 2080.0,
   "compare": null,
-  "monthly": 13,
+  "monthly": 26,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_cd6aacd7221b4370a40c406c52aa0b23_mv2.avif?v=1770931172",
@@ -11378,7 +11378,7 @@
    {
     "id": 47301317558508,
     "label": "7pcs T-1448 C-1263",
-    "price": 169.99,
+    "price": 339.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11390,7 +11390,7 @@
    {
     "id": 47301317591276,
     "label": "7pcs T-1448 C-1262",
-    "price": 169.99,
+    "price": 339.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11402,7 +11402,7 @@
    {
     "id": 47301317624044,
     "label": "7pcs T-1448 C-1260",
-    "price": 169.99,
+    "price": 339.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11414,7 +11414,7 @@
    {
     "id": 47301317656812,
     "label": "7pcs T-1448 C-1261",
-    "price": 169.99,
+    "price": 339.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11445,10 +11445,10 @@
   "sub": "decor",
   "sub_fr": "Décoration",
   "sub_en": "Decor",
-  "price": 499.99,
+  "price": 999.98,
   "price_max": 1000.0,
   "compare": null,
-  "monthly": 14,
+  "monthly": 28,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_97b48efe585549c6a7c3c344fdf459cf_mv2.jpg?v=1770930656",
@@ -11498,7 +11498,7 @@
    {
     "id": 47301306253548,
     "label": "T-1442 C-1878",
-    "price": 209.99,
+    "price": 419.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11510,7 +11510,7 @@
    {
     "id": 47301306286316,
     "label": "T-1442 C-1879",
-    "price": 209.99,
+    "price": 419.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11522,7 +11522,7 @@
    {
     "id": 47301306319084,
     "label": "T-1442 C-1877",
-    "price": 209.99,
+    "price": 419.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11550,13 +11550,13 @@
   "name_fr": "Meuble Beaubien — tissu gris",
   "name_en": "Beaubien Decor — fabric grey",
   "cat": "salle-a-manger",
-  "sub": "decor",
-  "sub_fr": "Décoration",
-  "sub_en": "Decor",
-  "price": 649.99,
-  "price_max": 1300.0,
+  "sub": "ensemble-manger",
+  "sub_fr": "Ensembles de salle à manger",
+  "sub_en": "Dining sets",
+  "price": 439.98,
+  "price_max": 439.98,
   "compare": null,
-  "monthly": 18,
+  "monthly": 12,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_6227fc5c69e34e8e8d545326720ed2d6_mv2_448dbd87-19b9-4096-9593-84e6810b6a79.jpg?v=1770929271",
@@ -11615,7 +11615,7 @@
    {
     "id": 47301249302764,
     "label": "7pcs T-1510 C-1512",
-    "price": 219.99,
+    "price": 439.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11623,11 +11623,92 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": {
+   "pieces": 1,
+   "kind": "whole",
+   "passage": 30,
+   "split": 30,
+   "dismantles": false
+  },
+  "img_ar": 1.325
+ },
+ {
+  "id": 9158891405548,
+  "sku": "T-1510",
+  "handle_old": "t-1510-c-1513",
+  "slug": "meuble-beaubien-tissu-gris-tables-de-salle-a-manger",
+  "slug_en": "beaubien-decor-fabric-grey-dining-table",
+  "name_fr": "Meuble Beaubien — tissu gris — Tables de salle à manger",
+  "name_en": "Beaubien Decor — fabric grey — Dining table",
+  "cat": "salle-a-manger",
+  "sub": "table-manger",
+  "sub_fr": "Tables de salle à manger",
+  "sub_en": "Dining tables",
+  "price": 439.98,
+  "price_max": 439.98,
+  "compare": null,
+  "monthly": 12,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_6227fc5c69e34e8e8d545326720ed2d6_mv2_448dbd87-19b9-4096-9593-84e6810b6a79.jpg?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7e524ec6da2a4f7a880d822d8787b45d_mv2_1_88d26ce9-077f-4924-a9bb-b5cbd0179482.png?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_cb174b850f384faa90e8dbb692e90606_mv2_b49d9cde-16ce-4182-86fd-df6172034247.jpg?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_2451473e17d6490293fc774fed454e21_mv2_5d146235-2d58-46bd-91c7-11abd3a5a301.jpg?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ed9e242e02b942baaebf224d10eebc68_mv2_782cc204-13f0-48f5-b713-2abc9f16d2a7.jpg?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_391ca72a72054205b2bf9fc49447a995_mv2_f42efd34-0386-4672-903f-79ba7227390e.png?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7e524ec6da2a4f7a880d822d8787b45d_mv2_6a83d25c-008c-4e07-83c5-bcac5a638922.png?v=1770929271"
+  ],
+  "body_fr": "T-1510 C-1512 \n Description \n Table : Plateau en bois avec pieds en acier noir.\n Chaises : tissu gris/beige avec des coutures, pieds en acier noir.\n Dimensions \n Table : 71\"L 36\"W 30\"H\n Chaises : 21\"L 18\"W 31\"H",
+  "dims": {
+   "w": 71.0,
+   "d": 36.0,
+   "h": 30.0
+  },
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "gris",
+    "fr": "Gris",
+    "en": "Grey"
    },
+   {
+    "key": "beige",
+    "fr": "Beige",
+    "en": "Beige"
+   },
+   {
+    "key": "noir",
+    "fr": "Noir",
+    "en": "Black"
+   }
+  ],
+  "materials": [
+   {
+    "key": "tissu",
+    "fr": "Tissu",
+    "en": "Fabric"
+   },
+   {
+    "key": "bois",
+    "fr": "Bois",
+    "en": "Wood"
+   },
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47301249335532,
     "label": "T-1510",
-    "price": 219.99,
+    "price": 439.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11635,11 +11716,92 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": {
+   "pieces": 1,
+   "kind": "whole",
+   "passage": 30,
+   "split": 30,
+   "dismantles": false
+  },
+  "img_ar": 1.325
+ },
+ {
+  "id": 9158891405548,
+  "sku": "T-1510",
+  "handle_old": "t-1510-c-1513",
+  "slug": "meuble-beaubien-tissu-gris-chaise",
+  "slug_en": "beaubien-decor-fabric-grey-chair",
+  "name_fr": "Meuble Beaubien — tissu gris — Chaise",
+  "name_en": "Beaubien Decor — fabric grey — Chair",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "sub_fr": "Chaises",
+  "sub_en": "Chairs",
+  "price": 145.0,
+  "price_max": 145.0,
+  "compare": null,
+  "monthly": 4,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_6227fc5c69e34e8e8d545326720ed2d6_mv2_448dbd87-19b9-4096-9593-84e6810b6a79.jpg?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7e524ec6da2a4f7a880d822d8787b45d_mv2_1_88d26ce9-077f-4924-a9bb-b5cbd0179482.png?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_cb174b850f384faa90e8dbb692e90606_mv2_b49d9cde-16ce-4182-86fd-df6172034247.jpg?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_2451473e17d6490293fc774fed454e21_mv2_5d146235-2d58-46bd-91c7-11abd3a5a301.jpg?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ed9e242e02b942baaebf224d10eebc68_mv2_782cc204-13f0-48f5-b713-2abc9f16d2a7.jpg?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_391ca72a72054205b2bf9fc49447a995_mv2_f42efd34-0386-4672-903f-79ba7227390e.png?v=1770929271",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7e524ec6da2a4f7a880d822d8787b45d_mv2_6a83d25c-008c-4e07-83c5-bcac5a638922.png?v=1770929271"
+  ],
+  "body_fr": "T-1510 C-1512 \n Description \n Table : Plateau en bois avec pieds en acier noir.\n Chaises : tissu gris/beige avec des coutures, pieds en acier noir.\n Dimensions \n Table : 71\"L 36\"W 30\"H\n Chaises : 21\"L 18\"W 31\"H",
+  "dims": {
+   "w": 71.0,
+   "d": 36.0,
+   "h": 30.0
+  },
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "gris",
+    "fr": "Gris",
+    "en": "Grey"
    },
+   {
+    "key": "beige",
+    "fr": "Beige",
+    "en": "Beige"
+   },
+   {
+    "key": "noir",
+    "fr": "Noir",
+    "en": "Black"
+   }
+  ],
+  "materials": [
+   {
+    "key": "tissu",
+    "fr": "Tissu",
+    "en": "Fabric"
+   },
+   {
+    "key": "bois",
+    "fr": "Bois",
+    "en": "Wood"
+   },
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47301249368300,
     "label": "C-1512",
-    "price": 219.99,
+    "price": 145.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11667,13 +11829,13 @@
   "name_fr": "Meuble Papineau — tissu gris",
   "name_en": "Papineau Decor — fabric grey",
   "cat": "salle-a-manger",
-  "sub": "decor",
-  "sub_fr": "Décoration",
-  "sub_en": "Decor",
-  "price": 649.99,
-  "price_max": 1300.0,
+  "sub": "ensemble-manger",
+  "sub_fr": "Ensembles de salle à manger",
+  "sub_en": "Dining sets",
+  "price": 439.98,
+  "price_max": 439.98,
   "compare": null,
-  "monthly": 18,
+  "monthly": 12,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_6227fc5c69e34e8e8d545326720ed2d6_mv2.jpg?v=1770926080",
@@ -11731,7 +11893,7 @@
    {
     "id": 47301136351468,
     "label": "7pcs T-1510 C-1512",
-    "price": 219.99,
+    "price": 439.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11739,11 +11901,91 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": {
+   "pieces": 1,
+   "kind": "whole",
+   "passage": 30,
+   "split": 30,
+   "dismantles": false
+  },
+  "img_ar": 1.325
+ },
+ {
+  "id": 9158849036524,
+  "sku": "T-1510",
+  "handle_old": "t-1510-c-1512",
+  "slug": "meuble-papineau-tissu-gris-tables-de-salle-a-manger",
+  "slug_en": "papineau-decor-fabric-grey-dining-table",
+  "name_fr": "Meuble Papineau — tissu gris — Tables de salle à manger",
+  "name_en": "Papineau Decor — fabric grey — Dining table",
+  "cat": "salle-a-manger",
+  "sub": "table-manger",
+  "sub_fr": "Tables de salle à manger",
+  "sub_en": "Dining tables",
+  "price": 439.98,
+  "price_max": 439.98,
+  "compare": null,
+  "monthly": 12,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_6227fc5c69e34e8e8d545326720ed2d6_mv2.jpg?v=1770926080",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7e524ec6da2a4f7a880d822d8787b45d_mv2_1.png?v=1770926080",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_cb174b850f384faa90e8dbb692e90606_mv2.jpg?v=1770926080",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_2451473e17d6490293fc774fed454e21_mv2.jpg?v=1770926080",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ed9e242e02b942baaebf224d10eebc68_mv2.jpg?v=1770926080",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_391ca72a72054205b2bf9fc49447a995_mv2_c369af51-a8b4-4b28-93b7-4eb54e3c833c.png?v=1770926080"
+  ],
+  "body_fr": "T-1510 C-1512 \n Description \n Table : Plateau en bois avec pieds en acier noir.\n Chaises : tissu gris/beige avec des coutures, pieds en acier noir.\n Dimensions \n Table : 71\"L 36\"W 30\"H\n Chaises : 21\"L 18\"W 31\"H",
+  "dims": {
+   "w": 71.0,
+   "d": 36.0,
+   "h": 30.0
+  },
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "gris",
+    "fr": "Gris",
+    "en": "Grey"
    },
+   {
+    "key": "beige",
+    "fr": "Beige",
+    "en": "Beige"
+   },
+   {
+    "key": "noir",
+    "fr": "Noir",
+    "en": "Black"
+   }
+  ],
+  "materials": [
+   {
+    "key": "tissu",
+    "fr": "Tissu",
+    "en": "Fabric"
+   },
+   {
+    "key": "bois",
+    "fr": "Bois",
+    "en": "Wood"
+   },
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47301136384236,
     "label": "T-1510",
-    "price": 219.99,
+    "price": 439.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11751,11 +11993,91 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": {
+   "pieces": 1,
+   "kind": "whole",
+   "passage": 30,
+   "split": 30,
+   "dismantles": false
+  },
+  "img_ar": 1.325
+ },
+ {
+  "id": 9158849036524,
+  "sku": "T-1510",
+  "handle_old": "t-1510-c-1512",
+  "slug": "meuble-papineau-tissu-gris-chaise",
+  "slug_en": "papineau-decor-fabric-grey-chair",
+  "name_fr": "Meuble Papineau — tissu gris — Chaise",
+  "name_en": "Papineau Decor — fabric grey — Chair",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "sub_fr": "Chaises",
+  "sub_en": "Chairs",
+  "price": 145.0,
+  "price_max": 145.0,
+  "compare": null,
+  "monthly": 4,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_6227fc5c69e34e8e8d545326720ed2d6_mv2.jpg?v=1770926080",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7e524ec6da2a4f7a880d822d8787b45d_mv2_1.png?v=1770926080",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_cb174b850f384faa90e8dbb692e90606_mv2.jpg?v=1770926080",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_2451473e17d6490293fc774fed454e21_mv2.jpg?v=1770926080",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ed9e242e02b942baaebf224d10eebc68_mv2.jpg?v=1770926080",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_391ca72a72054205b2bf9fc49447a995_mv2_c369af51-a8b4-4b28-93b7-4eb54e3c833c.png?v=1770926080"
+  ],
+  "body_fr": "T-1510 C-1512 \n Description \n Table : Plateau en bois avec pieds en acier noir.\n Chaises : tissu gris/beige avec des coutures, pieds en acier noir.\n Dimensions \n Table : 71\"L 36\"W 30\"H\n Chaises : 21\"L 18\"W 31\"H",
+  "dims": {
+   "w": 71.0,
+   "d": 36.0,
+   "h": 30.0
+  },
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "gris",
+    "fr": "Gris",
+    "en": "Grey"
    },
+   {
+    "key": "beige",
+    "fr": "Beige",
+    "en": "Beige"
+   },
+   {
+    "key": "noir",
+    "fr": "Noir",
+    "en": "Black"
+   }
+  ],
+  "materials": [
+   {
+    "key": "tissu",
+    "fr": "Tissu",
+    "en": "Fabric"
+   },
+   {
+    "key": "bois",
+    "fr": "Bois",
+    "en": "Wood"
+   },
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47301136417004,
     "label": "C-1512",
-    "price": 219.99,
+    "price": 145.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11783,13 +12105,13 @@
   "name_fr": "Meuble Fabre — velours beige",
   "name_en": "Fabre Decor — velvet beige",
   "cat": "salle-a-manger",
-  "sub": "decor",
-  "sub_fr": "Décoration",
-  "sub_en": "Decor",
-  "price": 649.99,
-  "price_max": 1300.0,
+  "sub": "ensemble-manger",
+  "sub_fr": "Ensembles de salle à manger",
+  "sub_en": "Dining sets",
+  "price": 439.98,
+  "price_max": 439.98,
   "compare": null,
-  "monthly": 18,
+  "monthly": 12,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_8829fae9e1804234babfb1a99c72ea05_mv2.jpg?v=1770925820",
@@ -11843,7 +12165,7 @@
    {
     "id": 47301130682604,
     "label": "7Pcs T-1510 C-1511",
-    "price": 219.99,
+    "price": 439.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11851,11 +12173,87 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": {
+   "pieces": 1,
+   "kind": "whole",
+   "passage": 30,
+   "split": 30,
+   "dismantles": false
+  },
+  "img_ar": 1.29
+ },
+ {
+  "id": 9158847660268,
+  "sku": "T-1510",
+  "handle_old": "t-1510-c-1511",
+  "slug": "meuble-fabre-velours-beige-tables-de-salle-a-manger",
+  "slug_en": "fabre-decor-velvet-beige-dining-table",
+  "name_fr": "Meuble Fabre — velours beige — Tables de salle à manger",
+  "name_en": "Fabre Decor — velvet beige — Dining table",
+  "cat": "salle-a-manger",
+  "sub": "table-manger",
+  "sub_fr": "Tables de salle à manger",
+  "sub_en": "Dining tables",
+  "price": 439.98,
+  "price_max": 439.98,
+  "compare": null,
+  "monthly": 12,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_8829fae9e1804234babfb1a99c72ea05_mv2.jpg?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_391ca72a72054205b2bf9fc49447a995_mv2.png?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7e524ec6da2a4f7a880d822d8787b45d_mv2.png?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_3df11b19b6aa4f0e8ff00f0411e1c866_mv2.jpg?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_9b30b45cf2bd4aa4a34cb2d95a4a04c3_mv2.jpg?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_01d556a55d7a4e87b75c31a3b0f57bf4_mv2.jpg?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c3effb22b4414c16b8ef57c7a400fa41_mv2_2_209a1fc4-0863-4f1b-bfad-efba4af66c46.jpg?v=1770925820"
+  ],
+  "body_fr": "T-1510 C-1511 \n Description \n Table : Plateau en bois avec pieds en acier noir.\n Chaises : velours beige avec des coutures, pieds en acier noir.\n Dimensions \n Table : 71\"L 36\"W 30\"H\n Chaises : 23\"L, 21\"E, 36\"H",
+  "dims": {
+   "w": 71.0,
+   "d": 36.0,
+   "h": 30.0
+  },
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "beige",
+    "fr": "Beige",
+    "en": "Beige"
    },
+   {
+    "key": "noir",
+    "fr": "Noir",
+    "en": "Black"
+   }
+  ],
+  "materials": [
+   {
+    "key": "velours",
+    "fr": "Velours",
+    "en": "Velvet"
+   },
+   {
+    "key": "bois",
+    "fr": "Bois",
+    "en": "Wood"
+   },
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47301130715372,
     "label": "T-1510",
-    "price": 219.99,
+    "price": 439.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11863,11 +12261,87 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": {
+   "pieces": 1,
+   "kind": "whole",
+   "passage": 30,
+   "split": 30,
+   "dismantles": false
+  },
+  "img_ar": 1.29
+ },
+ {
+  "id": 9158847660268,
+  "sku": "T-1510",
+  "handle_old": "t-1510-c-1511",
+  "slug": "meuble-fabre-velours-beige-chaise",
+  "slug_en": "fabre-decor-velvet-beige-chair",
+  "name_fr": "Meuble Fabre — velours beige — Chaise",
+  "name_en": "Fabre Decor — velvet beige — Chair",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "sub_fr": "Chaises",
+  "sub_en": "Chairs",
+  "price": 145.0,
+  "price_max": 145.0,
+  "compare": null,
+  "monthly": 4,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_8829fae9e1804234babfb1a99c72ea05_mv2.jpg?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_391ca72a72054205b2bf9fc49447a995_mv2.png?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7e524ec6da2a4f7a880d822d8787b45d_mv2.png?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_3df11b19b6aa4f0e8ff00f0411e1c866_mv2.jpg?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_9b30b45cf2bd4aa4a34cb2d95a4a04c3_mv2.jpg?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_01d556a55d7a4e87b75c31a3b0f57bf4_mv2.jpg?v=1770925820",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c3effb22b4414c16b8ef57c7a400fa41_mv2_2_209a1fc4-0863-4f1b-bfad-efba4af66c46.jpg?v=1770925820"
+  ],
+  "body_fr": "T-1510 C-1511 \n Description \n Table : Plateau en bois avec pieds en acier noir.\n Chaises : velours beige avec des coutures, pieds en acier noir.\n Dimensions \n Table : 71\"L 36\"W 30\"H\n Chaises : 23\"L, 21\"E, 36\"H",
+  "dims": {
+   "w": 71.0,
+   "d": 36.0,
+   "h": 30.0
+  },
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "beige",
+    "fr": "Beige",
+    "en": "Beige"
    },
+   {
+    "key": "noir",
+    "fr": "Noir",
+    "en": "Black"
+   }
+  ],
+  "materials": [
+   {
+    "key": "velours",
+    "fr": "Velours",
+    "en": "Velvet"
+   },
+   {
+    "key": "bois",
+    "fr": "Bois",
+    "en": "Wood"
+   },
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47301130748140,
     "label": "C-1511",
-    "price": 219.99,
+    "price": 145.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11895,13 +12369,13 @@
   "name_fr": "Meuble Chabanel — métal gris",
   "name_en": "Chabanel Decor — metal grey",
   "cat": "salle-a-manger",
-  "sub": "decor",
-  "sub_fr": "Décoration",
-  "sub_en": "Decor",
-  "price": 1149.99,
-  "price_max": 2300.0,
+  "sub": "ensemble-manger",
+  "sub_fr": "Ensembles de salle à manger",
+  "sub_en": "Dining sets",
+  "price": 1539.98,
+  "price_max": 1539.98,
   "compare": null,
-  "monthly": 32,
+  "monthly": 43,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c056718fb17c48cabc3979fe4ef78da4_mv2_2_c7c5e0fe-ea31-458a-ac52-48f92262033e.jpg?v=1770925553",
@@ -11947,7 +12421,7 @@
    {
     "id": 47301124718828,
     "label": "7pcs T-1540 C-1541",
-    "price": 769.99,
+    "price": 1539.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11955,11 +12429,79 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": {
+   "pieces": 1,
+   "kind": "whole",
+   "passage": 30,
+   "split": 30,
+   "dismantles": false
+  },
+  "img_ar": 1.303
+ },
+ {
+  "id": 9158846578924,
+  "sku": "T-1540",
+  "handle_old": "t-1540-c-1541",
+  "slug": "meuble-chabanel-metal-gris-tables-de-salle-a-manger",
+  "slug_en": "chabanel-decor-metal-grey-dining-table",
+  "name_fr": "Meuble Chabanel — métal gris — Tables de salle à manger",
+  "name_en": "Chabanel Decor — metal grey — Dining table",
+  "cat": "salle-a-manger",
+  "sub": "table-manger",
+  "sub_fr": "Tables de salle à manger",
+  "sub_en": "Dining tables",
+  "price": 1539.98,
+  "price_max": 1539.98,
+  "compare": null,
+  "monthly": 43,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c056718fb17c48cabc3979fe4ef78da4_mv2_2_c7c5e0fe-ea31-458a-ac52-48f92262033e.jpg?v=1770925553",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c3effb22b4414c16b8ef57c7a400fa41_mv2_2_37c79f90-12cd-4ac9-a053-18fa0a770ee5.jpg?v=1770925553",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_1582823563b64a8c9f2050c9da2d177d_mv2_2_9b9c252b-1804-4ecf-af21-c7d6e2b88d21.jpg?v=1770925553",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_2de401ba3ddb4916ac1adc4e960df1e2_mv2_ab698b89-f409-4904-86e8-bf45e302a300.jpg?v=1770925553"
+  ],
+  "body_fr": "T-1540 C-1541 \n Description \n Table : Surface en pierre murée mate en marbre blanc neige avec fond en acier inoxydable.\n Chaises : PU gris doux, pieds en acier inoxydable.\n Dimensions \n Table : 71\"L 36\"W 30\"H\n Chaises : 19\"L 22\"W 33\"",
+  "dims": {
+   "w": 71.0,
+   "d": 36.0,
+   "h": 30.0
+  },
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "gris",
+    "fr": "Gris",
+    "en": "Grey"
    },
+   {
+    "key": "blanc",
+    "fr": "Blanc",
+    "en": "White"
+   }
+  ],
+  "materials": [
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
+   },
+   {
+    "key": "marbre",
+    "fr": "Marbre",
+    "en": "Marble"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47301124751596,
     "label": "T-1540",
-    "price": 769.99,
+    "price": 1539.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11967,11 +12509,79 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": {
+   "pieces": 1,
+   "kind": "whole",
+   "passage": 30,
+   "split": 30,
+   "dismantles": false
+  },
+  "img_ar": 1.303
+ },
+ {
+  "id": 9158846578924,
+  "sku": "T-1540",
+  "handle_old": "t-1540-c-1541",
+  "slug": "meuble-chabanel-metal-gris-chaise",
+  "slug_en": "chabanel-decor-metal-grey-chair",
+  "name_fr": "Meuble Chabanel — métal gris — Chaise",
+  "name_en": "Chabanel Decor — metal grey — Chair",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "sub_fr": "Chaises",
+  "sub_en": "Chairs",
+  "price": 145.0,
+  "price_max": 145.0,
+  "compare": null,
+  "monthly": 4,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c056718fb17c48cabc3979fe4ef78da4_mv2_2_c7c5e0fe-ea31-458a-ac52-48f92262033e.jpg?v=1770925553",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c3effb22b4414c16b8ef57c7a400fa41_mv2_2_37c79f90-12cd-4ac9-a053-18fa0a770ee5.jpg?v=1770925553",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_1582823563b64a8c9f2050c9da2d177d_mv2_2_9b9c252b-1804-4ecf-af21-c7d6e2b88d21.jpg?v=1770925553",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_2de401ba3ddb4916ac1adc4e960df1e2_mv2_ab698b89-f409-4904-86e8-bf45e302a300.jpg?v=1770925553"
+  ],
+  "body_fr": "T-1540 C-1541 \n Description \n Table : Surface en pierre murée mate en marbre blanc neige avec fond en acier inoxydable.\n Chaises : PU gris doux, pieds en acier inoxydable.\n Dimensions \n Table : 71\"L 36\"W 30\"H\n Chaises : 19\"L 22\"W 33\"",
+  "dims": {
+   "w": 71.0,
+   "d": 36.0,
+   "h": 30.0
+  },
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "gris",
+    "fr": "Gris",
+    "en": "Grey"
    },
+   {
+    "key": "blanc",
+    "fr": "Blanc",
+    "en": "White"
+   }
+  ],
+  "materials": [
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
+   },
+   {
+    "key": "marbre",
+    "fr": "Marbre",
+    "en": "Marble"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47301124784364,
     "label": "C-1541",
-    "price": 769.99,
+    "price": 145.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -11999,13 +12609,13 @@
   "name_fr": "Meuble Iberville — métal noir",
   "name_en": "Iberville Decor — metal black",
   "cat": "salle-a-manger",
-  "sub": "decor",
-  "sub_fr": "Décoration",
-  "sub_en": "Decor",
-  "price": 939.99,
-  "price_max": 2200.0,
+  "sub": "ensemble-manger",
+  "sub_fr": "Ensembles de salle à manger",
+  "sub_en": "Dining sets",
+  "price": 1099.98,
+  "price_max": 1099.98,
   "compare": null,
-  "monthly": 26,
+  "monthly": 31,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_5ea9f27db4a64febaac85e0da4532a28_mv2.jpg?v=1770925004",
@@ -12047,7 +12657,7 @@
    {
     "id": 47301121343724,
     "label": "7pcs T-1545 C-1546",
-    "price": 549.99,
+    "price": 1099.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12055,11 +12665,75 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": {
+   "pieces": 1,
+   "kind": "whole",
+   "passage": 25,
+   "split": 25,
+   "dismantles": false
+  },
+  "img_ar": 1.099
+ },
+ {
+  "id": 9158845202668,
+  "sku": "T-1545",
+  "handle_old": "t-1545-c-1546",
+  "slug": "meuble-iberville-metal-noir-tables-de-salle-a-manger",
+  "slug_en": "iberville-decor-metal-black-dining-table",
+  "name_fr": "Meuble Iberville — métal noir — Tables de salle à manger",
+  "name_en": "Iberville Decor — metal black — Dining table",
+  "cat": "salle-a-manger",
+  "sub": "table-manger",
+  "sub_fr": "Tables de salle à manger",
+  "sub_en": "Dining tables",
+  "price": 1099.98,
+  "price_max": 1099.98,
+  "compare": null,
+  "monthly": 31,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_5ea9f27db4a64febaac85e0da4532a28_mv2.jpg?v=1770925004",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_2de401ba3ddb4916ac1adc4e960df1e2_mv2.jpg?v=1770925004",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c8296d5a01284574b7796345775fa2b5_mv2.jpg?v=1770925004",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_72bcd9013b184541b1bd1211e1448ed6_mv2_1.jpg?v=1770925004",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7bc56c2f95aa410ba0cbb52444ee2816_mv2.jpg?v=1770925004"
+  ],
+  "body_fr": "Description \n Tableau d’extension : Plateau en pierre frittée en marbre Chanel avec une base en acier noir en forme de X.\n Présente un plateau en marbre assorti aux veines , avec des veines naturelles continues qui créent un look haut de gamme sans couture.\n Chaises : PU à texture douce couleur champignon avec des coutures, accoudoirs intégrés pour un confort accru et base en acier noir\n Dimensions \n Tableau : 63 »-87\"L 36\"D’H 30\"H\n La table s’étend de 63 » à 87 » de longueur.\n Chaises : 25\"L, 27\"W 36\"H",
+  "dims": {
+   "w": 25.0,
+   "d": 27.0,
+   "h": 36.0
+  },
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "noir",
+    "fr": "Noir",
+    "en": "Black"
+   }
+  ],
+  "materials": [
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
    },
+   {
+    "key": "marbre",
+    "fr": "Marbre",
+    "en": "Marble"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47301121376492,
     "label": "T-1545",
-    "price": 549.99,
+    "price": 1099.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12067,11 +12741,75 @@
     "colour_en": null,
     "size": null,
     "size_en": null
+   }
+  ],
+  "fit": {
+   "pieces": 1,
+   "kind": "whole",
+   "passage": 25,
+   "split": 25,
+   "dismantles": false
+  },
+  "img_ar": 1.099
+ },
+ {
+  "id": 9158845202668,
+  "sku": "T-1545",
+  "handle_old": "t-1545-c-1546",
+  "slug": "meuble-iberville-metal-noir-chaise",
+  "slug_en": "iberville-decor-metal-black-chair",
+  "name_fr": "Meuble Iberville — métal noir — Chaise",
+  "name_en": "Iberville Decor — metal black — Chair",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "sub_fr": "Chaises",
+  "sub_en": "Chairs",
+  "price": 180.0,
+  "price_max": 180.0,
+  "compare": null,
+  "monthly": 5,
+  "available": true,
+  "images": [
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_5ea9f27db4a64febaac85e0da4532a28_mv2.jpg?v=1770925004",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_2de401ba3ddb4916ac1adc4e960df1e2_mv2.jpg?v=1770925004",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c8296d5a01284574b7796345775fa2b5_mv2.jpg?v=1770925004",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_72bcd9013b184541b1bd1211e1448ed6_mv2_1.jpg?v=1770925004",
+   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7bc56c2f95aa410ba0cbb52444ee2816_mv2.jpg?v=1770925004"
+  ],
+  "body_fr": "Description \n Tableau d’extension : Plateau en pierre frittée en marbre Chanel avec une base en acier noir en forme de X.\n Présente un plateau en marbre assorti aux veines , avec des veines naturelles continues qui créent un look haut de gamme sans couture.\n Chaises : PU à texture douce couleur champignon avec des coutures, accoudoirs intégrés pour un confort accru et base en acier noir\n Dimensions \n Tableau : 63 »-87\"L 36\"D’H 30\"H\n La table s’étend de 63 » à 87 » de longueur.\n Chaises : 25\"L, 27\"W 36\"H",
+  "dims": {
+   "w": 25.0,
+   "d": 27.0,
+   "h": 36.0
+  },
+  "seat_h": null,
+  "colours": [
+   {
+    "key": "noir",
+    "fr": "Noir",
+    "en": "Black"
+   }
+  ],
+  "materials": [
+   {
+    "key": "metal",
+    "fr": "Métal",
+    "en": "Metal"
    },
+   {
+    "key": "marbre",
+    "fr": "Marbre",
+    "en": "Marble"
+   }
+  ],
+  "feats": [],
+  "variant_colours": [],
+  "variant_sizes": [],
+  "variants": [
    {
     "id": 47301121409260,
     "label": "C-1546",
-    "price": 549.99,
+    "price": 180.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12102,10 +12840,10 @@
   "sub": "ensemble-manger",
   "sub_fr": "Ensembles de salle à manger",
   "sub_en": "Dining sets",
-  "price": 899.99,
-  "price_max": 899.99,
+  "price": 1799.98,
+  "price_max": 1799.98,
   "compare": null,
-  "monthly": 25,
+  "monthly": 50,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_9ed51894d08d4bc1be48067a17e375bc_mv2.jpg?v=1770924096",
@@ -12164,7 +12902,7 @@
    {
     "id": 47301092802796,
     "label": "set pcs",
-    "price": 899.99,
+    "price": 1799.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12195,10 +12933,10 @@
   "sub": "table-manger",
   "sub_fr": "Tables de salle à manger",
   "sub_en": "Dining tables",
-  "price": 449.99,
-  "price_max": 449.99,
+  "price": 899.98,
+  "price_max": 899.98,
   "compare": null,
-  "monthly": 12,
+  "monthly": 25,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_9ed51894d08d4bc1be48067a17e375bc_mv2.jpg?v=1770924096",
@@ -12257,7 +12995,7 @@
    {
     "id": 47301092835564,
     "label": "T-1415",
-    "price": 449.99,
+    "price": 899.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12288,10 +13026,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 449.99,
-  "price_max": 449.99,
+  "price": 150.0,
+  "price_max": 150.0,
   "compare": null,
-  "monthly": 12,
+  "monthly": 4,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_9ed51894d08d4bc1be48067a17e375bc_mv2.jpg?v=1770924096",
@@ -12350,7 +13088,7 @@
    {
     "id": 47301092868332,
     "label": "C-1416",
-    "price": 449.99,
+    "price": 150.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12381,10 +13119,10 @@
   "sub": "ensemble-manger",
   "sub_fr": "Ensembles de salle à manger",
   "sub_en": "Dining sets",
-  "price": 1199.99,
-  "price_max": 2299.98,
+  "price": 2399.98,
+  "price_max": 2399.98,
   "compare": null,
-  "monthly": 33,
+  "monthly": 67,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_e2ee1538f6fd43208570cc9ee1996132_mv2.jpg?v=1770923661",
@@ -12425,7 +13163,7 @@
    {
     "id": 47301046403308,
     "label": "IF-1620 7PCS",
-    "price": 1199.99,
+    "price": 2399.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12456,10 +13194,10 @@
   "sub": "ensemble-manger",
   "sub_fr": "Ensembles de salle à manger",
   "sub_en": "Dining sets",
-  "price": 699.99,
-  "price_max": 699.99,
+  "price": 1399.98,
+  "price_max": 1399.98,
   "compare": null,
-  "monthly": 19,
+  "monthly": 39,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c862d77927c743f2b5d8bb46de2d5576_mv2.jpg?v=1770923070",
@@ -12516,7 +13254,7 @@
    {
     "id": 47301034082540,
     "label": "Set 7pcs T-1402 C-1782",
-    "price": 699.99,
+    "price": 1399.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12528,7 +13266,7 @@
    {
     "id": 47301034115308,
     "label": "Set 5pcs T-1402 C-1782",
-    "price": 699.99,
+    "price": 1399.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12559,10 +13297,10 @@
   "sub": "table-manger",
   "sub_fr": "Tables de salle à manger",
   "sub_en": "Dining tables",
-  "price": 299.99,
-  "price_max": 299.99,
+  "price": 599.98,
+  "price_max": 599.98,
   "compare": null,
-  "monthly": 8,
+  "monthly": 17,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c862d77927c743f2b5d8bb46de2d5576_mv2.jpg?v=1770923070",
@@ -12619,7 +13357,7 @@
    {
     "id": 47301034148076,
     "label": "T-1402",
-    "price": 299.99,
+    "price": 599.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12650,10 +13388,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 299.99,
-  "price_max": 299.99,
+  "price": 200.0,
+  "price_max": 200.0,
   "compare": null,
-  "monthly": 8,
+  "monthly": 6,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_c862d77927c743f2b5d8bb46de2d5576_mv2.jpg?v=1770923070",
@@ -12710,7 +13448,7 @@
    {
     "id": 47301034180844,
     "label": "C-1782",
-    "price": 299.99,
+    "price": 200.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12819,75 +13557,6 @@
   "id": 9158383239404,
   "sku": "T-1275",
   "handle_old": "t-1275-c-1285",
-  "slug": "ensemble-de-salle-a-manger-gaspe-velours-beige",
-  "slug_en": "gaspe-dining-set-velvet-beige",
-  "name_fr": "Ensemble de salle à manger Gaspé — velours beige",
-  "name_en": "Gaspé Dining set — velvet beige",
-  "cat": "salle-a-manger",
-  "sub": "ensemble-manger",
-  "sub_fr": "Ensembles de salle à manger",
-  "sub_en": "Dining sets",
-  "price": 1709.99,
-  "price_max": 1709.99,
-  "compare": null,
-  "monthly": 47,
-  "available": true,
-  "images": [
-   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/T1275_38ec62c1-47d4-4b5e-ada2-dc2c1e8df6f2.jpg?v=1770232689",
-   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/chaise.jpg?v=1770232687",
-   "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_3ba14a03d4294bfea7183786bc5c6858_mv2_1.jpg?v=1770232400"
-  ],
-  "body_fr": "Ensemble salle à manger haut de gamme – Marbre céramique & velours crème \n Transformez votre salle à manger avec cet ensemble luxueux et sophistiqué alliant une table en marbre céramique et des chaises en velours crème avec finition dorée. Le contraste entre le plateau effet marbre et la structure dorée brillante crée un look chic, moderne et intemporel — parfait pour les intérieurs élégants.\n Table — caractéristiques \n Plateau en marbre céramique premium :\n résistant aux rayures\n résistant à la chaleur\n facile à nettoyer\n Pieds en acier inoxydable finition or poli : robustes et raffinés\n Design moderne et minimaliste , idéal pour salle à manger contemporaine\n Dimensions : 71” L × 36” P × 30” H \n Chaises — caractéristiques \n Revêtement en velours crème haut de gamme — doux et confortable\n Dossier capitonné profond (deep tufting) pour un look luxueux\n Large anneau décoratif (Large Knocker) à l’arrière\n Détails cloutés (nail head trim) sur le pourtour\n Structure en or poli stable et élégante\n Dimensions : 22” L × 25” P × 40” H \n Idéal pour : \n Salle à manger moderne ou glamour\n Condo ou maison haut de gamme\n Espaces ouverts (open concept)\n Clients recherchant un style chic et durable\n Table marbre céramique avec pieds or + 4 chaises velours crème capitonnées, large knocker décoratif et finition or poli. Style luxe contemporain.\n Ensemble salle à manger luxe – Table marbre céramique + chaises velours crème or\nEnsemble salle à manger haut de gamme avec table en marbre céramique et chaises velours crème capitonnées. Structure en or poli, design moderne et élégant.\nsalle à manger luxe, table marbre céramique, chaises velours crème, ensemble salle à manger or, mobilier contemporain, table repas design",
-  "dims": null,
-  "seat_h": null,
-  "colours": [
-   {
-    "key": "beige",
-    "fr": "Beige",
-    "en": "Beige"
-   }
-  ],
-  "materials": [
-   {
-    "key": "velours",
-    "fr": "Velours",
-    "en": "Velvet"
-   },
-   {
-    "key": "metal",
-    "fr": "Métal",
-    "en": "Metal"
-   },
-   {
-    "key": "marbre",
-    "fr": "Marbre",
-    "en": "Marble"
-   }
-  ],
-  "feats": [],
-  "variant_colours": [],
-  "variant_sizes": [],
-  "variants": [
-   {
-    "id": 47299161882860,
-    "label": "Set de cuisine-1274-c-1263",
-    "price": 1709.99,
-    "accessory": false,
-    "compare": null,
-    "available": true,
-    "colour": null,
-    "colour_en": null,
-    "size": null,
-    "size_en": null
-   }
-  ],
-  "fit": null,
-  "img_ar": 1.46
- },
- {
-  "id": 9158383239404,
-  "sku": "T-1275",
-  "handle_old": "t-1275-c-1285",
   "slug": "gaspe-velours-beige-tables-de-salle-a-manger",
   "slug_en": "gaspe-dining-set-velvet-beige-dining-table",
   "name_fr": "Gaspé — velours beige — Tables de salle à manger",
@@ -12896,10 +13565,10 @@
   "sub": "table-manger",
   "sub_fr": "Tables de salle à manger",
   "sub_en": "Dining tables",
-  "price": 659.99,
-  "price_max": 659.99,
+  "price": 1199.98,
+  "price_max": 1199.98,
   "compare": null,
-  "monthly": 18,
+  "monthly": 33,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/T1275_38ec62c1-47d4-4b5e-ada2-dc2c1e8df6f2.jpg?v=1770232689",
@@ -12940,7 +13609,7 @@
    {
     "id": 47299161915628,
     "label": "Table-1274",
-    "price": 659.99,
+    "price": 1199.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -12965,10 +13634,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 659.99,
-  "price_max": 659.99,
+  "price": 290.0,
+  "price_max": 290.0,
   "compare": null,
-  "monthly": 18,
+  "monthly": 8,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/T1275_38ec62c1-47d4-4b5e-ada2-dc2c1e8df6f2.jpg?v=1770232689",
@@ -13009,7 +13678,7 @@
    {
     "id": 47299161948396,
     "label": "Chaise -1263",
-    "price": 659.99,
+    "price": 290.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -13034,10 +13703,10 @@
   "sub": "ensemble-manger",
   "sub_fr": "Ensembles de salle à manger",
   "sub_en": "Dining sets",
-  "price": 1469.99,
-  "price_max": 1469.99,
+  "price": 2939.98,
+  "price_max": 2939.98,
   "compare": null,
-  "monthly": 41,
+  "monthly": 82,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_0554033f8f9a47e492ab683927e9e995_mv2.jpg?v=1770852376",
@@ -13099,7 +13768,7 @@
    {
     "id": 47299160604908,
     "label": "Set de table-T-1274-1261",
-    "price": 1469.99,
+    "price": 2939.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -13124,10 +13793,10 @@
   "sub": "table-manger",
   "sub_fr": "Tables de salle à manger",
   "sub_en": "Dining tables",
-  "price": 599.99,
-  "price_max": 599.99,
+  "price": 1199.98,
+  "price_max": 1199.98,
   "compare": null,
-  "monthly": 17,
+  "monthly": 33,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_0554033f8f9a47e492ab683927e9e995_mv2.jpg?v=1770852376",
@@ -13189,7 +13858,7 @@
    {
     "id": 47299160637676,
     "label": "Table-1274",
-    "price": 599.99,
+    "price": 1199.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -13214,10 +13883,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 599.99,
-  "price_max": 599.99,
+  "price": 290.0,
+  "price_max": 290.0,
   "compare": null,
-  "monthly": 17,
+  "monthly": 8,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_0554033f8f9a47e492ab683927e9e995_mv2.jpg?v=1770852376",
@@ -13279,7 +13948,7 @@
    {
     "id": 47299160670444,
     "label": "Chaise-1261",
-    "price": 599.99,
+    "price": 290.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -13304,10 +13973,10 @@
   "sub": "ensemble-manger",
   "sub_fr": "Ensembles de salle à manger",
   "sub_en": "Dining sets",
-  "price": 1469.99,
-  "price_max": 1469.99,
+  "price": 2939.98,
+  "price_max": 2939.98,
   "compare": null,
-  "monthly": 41,
+  "monthly": 82,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_e5ff4279edf94f9c82aa2cf27b4afd52_mv2.jpg?v=1770851722",
@@ -13369,7 +14038,7 @@
    {
     "id": 47299156738284,
     "label": "Set de cuisine",
-    "price": 1469.99,
+    "price": 2939.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -13394,10 +14063,10 @@
   "sub": "table-manger",
   "sub_fr": "Tables de salle à manger",
   "sub_en": "Dining tables",
-  "price": 599.99,
-  "price_max": 599.99,
+  "price": 1199.98,
+  "price_max": 1199.98,
   "compare": null,
-  "monthly": 17,
+  "monthly": 33,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_e5ff4279edf94f9c82aa2cf27b4afd52_mv2.jpg?v=1770851722",
@@ -13459,7 +14128,7 @@
    {
     "id": 47299156771052,
     "label": "Table",
-    "price": 599.99,
+    "price": 1199.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -13484,10 +14153,10 @@
   "sub": "chaise",
   "sub_fr": "Chaises",
   "sub_en": "Chairs",
-  "price": 599.99,
-  "price_max": 599.99,
+  "price": 290.0,
+  "price_max": 290.0,
   "compare": null,
-  "monthly": 17,
+  "monthly": 8,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_e5ff4279edf94f9c82aa2cf27b4afd52_mv2.jpg?v=1770851722",
@@ -13549,7 +14218,7 @@
    {
     "id": 47299156803820,
     "label": "Chaise",
-    "price": 599.99,
+    "price": 290.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14148,10 +14817,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 699.99,
-  "price_max": 1099.0,
+  "price": 1259.98,
+  "price_max": 1259.98,
   "compare": null,
-  "monthly": 19,
+  "monthly": 35,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_9bcfed44d589426687916fe38a7450b5_mv2.jpg?v=1770744649",
@@ -14192,7 +14861,7 @@
    {
     "id": 47294760911084,
     "label": "Queen",
-    "price": 629.99,
+    "price": 1259.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14204,7 +14873,7 @@
    {
     "id": 47294760943852,
     "label": "King",
-    "price": 699.99,
+    "price": 1399.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14229,10 +14898,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 699.99,
-  "price_max": 1099.0,
+  "price": 1259.98,
+  "price_max": 1259.98,
   "compare": null,
-  "monthly": 19,
+  "monthly": 35,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_58421a8386e54c09b805fe0339cb2580_mv2.avif?v=1770744649",
@@ -14273,7 +14942,7 @@
    {
     "id": 47294748066028,
     "label": "Queen",
-    "price": 629.99,
+    "price": 1259.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14285,7 +14954,7 @@
    {
     "id": 47294748098796,
     "label": "King",
-    "price": 699.99,
+    "price": 1399.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14310,10 +14979,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 699.99,
-  "price_max": 1099.0,
+  "price": 1259.98,
+  "price_max": 1259.98,
   "compare": null,
-  "monthly": 19,
+  "monthly": 35,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_5a8965411a2e4ddd8c9a6c2ecc391d50_mv2_1.jpg?v=1770744650",
@@ -14353,7 +15022,7 @@
    {
     "id": 47294734926060,
     "label": "Queen",
-    "price": 629.99,
+    "price": 1259.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14365,7 +15034,7 @@
    {
     "id": 47294734958828,
     "label": "King",
-    "price": 699.99,
+    "price": 1399.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14390,10 +15059,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 289.99,
+  "price": 599.98,
   "price_max": 720.0,
   "compare": null,
-  "monthly": 8,
+  "monthly": 17,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_f395efb9adf04fd79f23ab648358f318_mv2.jpg?v=1770744650"
@@ -14437,7 +15106,7 @@
    {
     "id": 47294733877484,
     "label": "Double",
-    "price": 289.99,
+    "price": 579.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14449,7 +15118,7 @@
    {
     "id": 47294733910252,
     "label": "Queen",
-    "price": 299.99,
+    "price": 599.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14461,7 +15130,7 @@
    {
     "id": 47294733943020,
     "label": "King",
-    "price": 359.99,
+    "price": 719.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14486,10 +15155,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 479.99,
+  "price": 839.98,
   "price_max": 960.0,
   "compare": null,
-  "monthly": 13,
+  "monthly": 23,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_4f090a1c3e2e40b99480bd81c5409e85_mv2.avif?v=1770232400",
@@ -14537,7 +15206,7 @@
    {
     "id": 47294724047084,
     "label": "Queen",
-    "price": 419.99,
+    "price": 839.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14549,7 +15218,7 @@
    {
     "id": 47294724079852,
     "label": "King",
-    "price": 479.99,
+    "price": 959.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14574,10 +15243,10 @@
   "sub": "lit",
   "sub_fr": "Lits",
   "sub_en": "Beds",
-  "price": 479.99,
+  "price": 839.98,
   "price_max": 960.0,
   "compare": null,
-  "monthly": 13,
+  "monthly": 23,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_d1cb185225eb42828e346fd857743455_mv2_6c2616c7-cf9b-49fc-aa6a-641fa02704ed.avif?v=1770232789",
@@ -14625,7 +15294,7 @@
    {
     "id": 47294718279916,
     "label": "Queen",
-    "price": 419.99,
+    "price": 839.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -14637,7 +15306,7 @@
    {
     "id": 47294718312684,
     "label": "King",
-    "price": 479.99,
+    "price": 959.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -19210,10 +19879,10 @@
   "sub": "sectionnel",
   "sub_fr": "Sectionnels",
   "sub_en": "Sectionals",
-  "price": 1199.99,
+  "price": 2399.98,
   "price_max": 2400.0,
   "compare": null,
-  "monthly": 33,
+  "monthly": 67,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_7a23600bc07246909b900160c4dad864_mv2.avif?v=1770489526",
@@ -19259,7 +19928,7 @@
    {
     "id": 47287731192044,
     "label": "sectionnel canapé-lit IF-9035",
-    "price": 1199.99,
+    "price": 2399.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -19290,10 +19959,10 @@
   "sub": "ensemble-salon",
   "sub_fr": "Ensembles de salon",
   "sub_en": "Living room sets",
-  "price": 1099.99,
-  "price_max": 1099.99,
+  "price": 2199.98,
+  "price_max": 2199.98,
   "compare": null,
-  "monthly": 31,
+  "monthly": 61,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ca191a94f1e24bdda71b75d62a8eb220_mv2.avif?v=1770489524",
@@ -19332,7 +20001,7 @@
    {
     "id": 47287691051244,
     "label": "IF-8012 — Ensemble de salon",
-    "price": 1099.99,
+    "price": 2199.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -19363,10 +20032,10 @@
   "sub": "canape",
   "sub_fr": "Canapés",
   "sub_en": "Sofas",
-  "price": 229.99,
-  "price_max": 229.99,
+  "price": 459.98,
+  "price_max": 459.98,
   "compare": null,
-  "monthly": 6,
+  "monthly": 13,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ca191a94f1e24bdda71b75d62a8eb220_mv2.avif?v=1770489524",
@@ -19405,7 +20074,7 @@
    {
     "id": 47287691084012,
     "label": "Canapé IF-8012-S",
-    "price": 229.99,
+    "price": 459.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -19436,10 +20105,10 @@
   "sub": "causeuse",
   "sub_fr": "Causeuses",
   "sub_en": "Loveseats",
-  "price": 229.99,
-  "price_max": 229.99,
+  "price": 459.98,
+  "price_max": 459.98,
   "compare": null,
-  "monthly": 6,
+  "monthly": 13,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ca191a94f1e24bdda71b75d62a8eb220_mv2.avif?v=1770489524",
@@ -19478,7 +20147,7 @@
    {
     "id": 47287691116780,
     "label": "Causeuse IF-8012-L",
-    "price": 229.99,
+    "price": 459.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -19509,10 +20178,10 @@
   "sub": "fauteuil",
   "sub_fr": "Fauteuils",
   "sub_en": "Armchairs",
-  "price": 229.99,
-  "price_max": 229.99,
+  "price": 459.98,
+  "price_max": 459.98,
   "compare": null,
-  "monthly": 6,
+  "monthly": 13,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ca191a94f1e24bdda71b75d62a8eb220_mv2.avif?v=1770489524",
@@ -19551,7 +20220,7 @@
    {
     "id": 47287691149548,
     "label": "Fauteuil IF-8012-C",
-    "price": 229.99,
+    "price": 459.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -19680,10 +20349,10 @@
   "sub": "sectionnel",
   "sub_fr": "Sectionnels",
   "sub_en": "Sectionals",
-  "price": 1999.99,
+  "price": 3999.98,
   "price_max": 4000.0,
   "compare": null,
-  "monthly": 56,
+  "monthly": 111,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_d9ba4979eb9a4108ae04279f1e0ab708_mv2.avif?v=1770489522",
@@ -19737,7 +20406,7 @@
    {
     "id": 47287453712620,
     "label": "IF-8500 — Sectionnel inclinable en cuir brun chocolat",
-    "price": 1999.99,
+    "price": 3999.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -19871,10 +20540,10 @@
   "sub": "ensemble-salon",
   "sub_fr": "Ensembles de salon",
   "sub_en": "Living room sets",
-  "price": 1299.99,
-  "price_max": 1299.99,
+  "price": 2599.98,
+  "price_max": 2599.98,
   "compare": null,
-  "monthly": 36,
+  "monthly": 72,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/salon_a60f568f-849b-440f-98d5-0bad47bd633b.jpg?v=1770232789",
@@ -19913,7 +20582,7 @@
    {
     "id": 47287407149292,
     "label": "Canapé Set de 4 pcsw",
-    "price": 1299.99,
+    "price": 2599.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -19944,10 +20613,10 @@
   "sub": "canape",
   "sub_fr": "Canapés",
   "sub_en": "Sofas",
-  "price": 350.0,
-  "price_max": 350.0,
+  "price": 700.0,
+  "price_max": 700.0,
   "compare": null,
-  "monthly": 10,
+  "monthly": 19,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/salon_a60f568f-849b-440f-98d5-0bad47bd633b.jpg?v=1770232789",
@@ -19986,7 +20655,7 @@
    {
     "id": 47287407182060,
     "label": "Canapé (IF-8007-S",
-    "price": 350.0,
+    "price": 700.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -20017,10 +20686,10 @@
   "sub": "causeuse",
   "sub_fr": "Causeuses",
   "sub_en": "Loveseats",
-  "price": 350.0,
-  "price_max": 350.0,
+  "price": 700.0,
+  "price_max": 700.0,
   "compare": null,
-  "monthly": 10,
+  "monthly": 19,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/salon_a60f568f-849b-440f-98d5-0bad47bd633b.jpg?v=1770232789",
@@ -20059,7 +20728,7 @@
    {
     "id": 47287407214828,
     "label": "Causeuse (IF-8007-L)",
-    "price": 350.0,
+    "price": 700.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -20090,10 +20759,10 @@
   "sub": "fauteuil",
   "sub_fr": "Fauteuils",
   "sub_en": "Armchairs",
-  "price": 350.0,
-  "price_max": 350.0,
+  "price": 700.0,
+  "price_max": 700.0,
   "compare": null,
-  "monthly": 10,
+  "monthly": 19,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/salon_a60f568f-849b-440f-98d5-0bad47bd633b.jpg?v=1770232789",
@@ -20132,7 +20801,7 @@
    {
     "id": 47287407247596,
     "label": "Fauteuil (IF-8007-C)",
-    "price": 350.0,
+    "price": 700.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -20163,10 +20832,10 @@
   "sub": "decor",
   "sub_fr": "Poufs et ottomanes",
   "sub_en": "Ottomans",
-  "price": 350.0,
-  "price_max": 350.0,
+  "price": 280.0,
+  "price_max": 280.0,
   "compare": null,
-  "monthly": 10,
+  "monthly": 8,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/salon_a60f568f-849b-440f-98d5-0bad47bd633b.jpg?v=1770232789",
@@ -20205,7 +20874,7 @@
    {
     "id": 47287407280364,
     "label": "Ottoman (IF-9283)",
-    "price": 350.0,
+    "price": 280.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -20236,10 +20905,10 @@
   "sub": "sectionnel",
   "sub_fr": "Sectionnels",
   "sub_en": "Sectionals",
-  "price": 1499.99,
+  "price": 2999.98,
   "price_max": 3000.0,
   "compare": null,
-  "monthly": 42,
+  "monthly": 83,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_f79a39b3b3424e3f8c0d1b3366d818b3_mv2.jpg?v=1770421986",
@@ -20295,7 +20964,7 @@
    {
     "id": 47287392829676,
     "label": "Canapé lit",
-    "price": 1499.99,
+    "price": 2999.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -20326,10 +20995,10 @@
   "sub": "sectionnel",
   "sub_fr": "Sectionnels",
   "sub_en": "Sectionals",
-  "price": 1649.99,
-  "price_max": 3000.0,
+  "price": 3299.98,
+  "price_max": 3299.98,
   "compare": null,
-  "monthly": 46,
+  "monthly": 92,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_3e368fa5ba304768ae601b0708dddaaamv2.jpg?v=1770421636",
@@ -20374,7 +21043,7 @@
    {
     "id": 47287391977708,
     "label": "Canapé lit",
-    "price": 1649.99,
+    "price": 3299.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -20405,10 +21074,10 @@
   "sub": "ensemble-salon",
   "sub_fr": "Ensembles de salon",
   "sub_en": "Living room sets",
-  "price": 2099.99,
-  "price_max": 2099.99,
+  "price": 4199.98,
+  "price_max": 4199.98,
   "compare": null,
-  "monthly": 58,
+  "monthly": 117,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_14d02053dd394e0a8b1c399caf7a061a_mv2_1.jpg?v=1770232472",
@@ -20454,7 +21123,7 @@
    {
     "id": 47285795520748,
     "label": "Set 3 pcs",
-    "price": 2099.99,
+    "price": 4199.98,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -20479,10 +21148,10 @@
   "sub": "canape",
   "sub_fr": "Canapés",
   "sub_en": "Sofas",
-  "price": 450.0,
-  "price_max": 450.0,
+  "price": 900.0,
+  "price_max": 900.0,
   "compare": null,
-  "monthly": 12,
+  "monthly": 25,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_14d02053dd394e0a8b1c399caf7a061a_mv2_1.jpg?v=1770232472",
@@ -20528,7 +21197,7 @@
    {
     "id": 47285795553516,
     "label": "Sofa",
-    "price": 450.0,
+    "price": 900.0,
     "accessory": false,
     "compare": null,
     "available": true,
@@ -20553,10 +21222,10 @@
   "sub": "fauteuil",
   "sub_fr": "Fauteuils",
   "sub_en": "Armchairs",
-  "price": 450.0,
-  "price_max": 450.0,
+  "price": 900.0,
+  "price_max": 900.0,
   "compare": null,
-  "monthly": 12,
+  "monthly": 25,
   "available": true,
   "images": [
    "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_14d02053dd394e0a8b1c399caf7a061a_mv2_1.jpg?v=1770232472",
@@ -20602,7 +21271,7 @@
    {
     "id": 47285795619052,
     "label": "fauteuil",
-    "price": 450.0,
+    "price": 900.0,
     "accessory": false,
     "compare": null,
     "available": true,

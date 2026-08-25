@@ -50,6 +50,16 @@
       ],
       "port": 3311,
       "autoPort": true
+    },
+    {
+      "name": "grand-optical",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/inder/Claude/Projects/optical go/app' && exec npx next dev -p \"${PORT:-4310}\""
+      ],
+      "port": 4310,
+      "autoPort": true
     }
   ]
 }
