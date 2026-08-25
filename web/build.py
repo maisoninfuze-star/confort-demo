@@ -1131,6 +1131,8 @@ def load_ifdc():
     p = os.path.join(HERE, 'ifdc-raw.json')
     if not os.path.exists(p):
         return []
+    pf = os.path.join(HERE, 'ifdc-prices.json')
+    prices = json.load(open(pf, encoding='utf-8')) if os.path.exists(pf) else {}
     rows = [r for r in json.load(open(p, encoding='utf-8'))
             if not r.get('error') and r.get('image')]
     for r in rows:
@@ -1139,6 +1141,7 @@ def load_ifdc():
         m = re.match(r'^([A-Za-z]+)', code)
         fam = (m.group(1).upper() if m else '')
         r['fam'] = fam if fam in ('IF', 'T', 'C', 'B', 'ST') else '*'
+        r['price'] = prices.get(re.sub(r'[^A-Z0-9]', '', code.upper()))
     rows.sort(key=lambda r: (r['fam'] == '*', r['fam'], r['code']))
     return rows
 
@@ -1156,7 +1159,9 @@ def build_catalogue(lang):
         f'<div class="ic-shot"><img loading="lazy" src="{E(r["image"])}" '
         f'alt="{E(r["code"])}" width="600" height="600"></div>'
         f'<div class="ic-code">{E(r["code"])}</div>'
-        f'<div class="ic-ask">{E(c["ifdc_ask"])}</div></article>'
+        + (f'<div class="ic-price">{money(r["price"], lang)}</div>'
+           if r.get('price') else f'<div class="ic-ask">{E(c["ifdc_ask"])}</div>')
+        + '</article>'
         for r in rows)
 
     body = f'''<div class="wrap">
