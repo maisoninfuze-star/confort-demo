@@ -1,7 +1,8 @@
 /* Marquise — Meuble Confort & Style
-   Black and red, per the client. The red is #C62828 — the store's own Shopify
-   theme primary, so it is still their colour, not an invented one. The #B30000
-   banner red is retired so the identity reads as a single red.
+   Black and red. The red is #BB3500, sampled from the circle in the MCS logo
+   itself — so the mark in the header and every accent on the page are the same
+   colour. Running a truer red (#C62828) alongside a rust logo would put two
+   reds in one identity, which is the defect the current site already has.
 
    Red is the ONLY chroma in the system. Stock, fit and warning states are
    carried by weight and neutral value instead of by hue, which is what keeps a
@@ -18,10 +19,10 @@
   --line:#E2E2E0;
   --line-2:#C6C6C3;
 
-  --brand:#C62828;          /* the store's own theme red */
-  --brand-deep:#8E1D1D;
+  --brand:#BB3500;          /* the circle in the logo */
+  --brand-deep:#8E2800;
   --brand-ink:#FFFFFF;
-  --brand-soft:#F8E6E6;
+  --brand-soft:#F8E7DF;
 
   --signal:#0D0D0D;         /* in stock — stated in ink, not in green */
   --signal-soft:#EAEAE8;
@@ -53,7 +54,7 @@
     --paper:#0E0E0E; --surface:#1A1A1A; --sunk:#050505; --field:#1F1F1F;
     --ink:#F2F1F0; --ink-2:#ADADAA; --ink-3:#7E7E7B;
     --line:#282828; --line-2:#3A3A3A;
-    --brand:#E85A5F; --brand-deep:#FF6369; --brand-ink:#120707; --brand-soft:#341315;
+    --brand:#E8724A; --brand-deep:#FF8A63; --brand-ink:#120707; --brand-soft:#33190E;
     --signal:#F2F1F0; --signal-soft:#1F1F1F;
     --warn:#9A9A97; --warn-soft:#1C1C1C;
     --footer-bg:#050505;
@@ -70,7 +71,7 @@
   --paper:#0E0E0E; --surface:#1A1A1A; --sunk:#050505; --field:#1F1F1F;
   --ink:#F2F1F0; --ink-2:#ADADAA; --ink-3:#7E7E7B;
   --line:#282828; --line-2:#3A3A3A;
-  --brand:#E85A5F; --brand-deep:#FF6369; --brand-ink:#120707; --brand-soft:#341315;
+  --brand:#E8724A; --brand-deep:#FF8A63; --brand-ink:#120707; --brand-soft:#33190E;
   --signal:#F2F1F0; --signal-soft:#1F1F1F;
   --warn:#9A9A97; --warn-soft:#1C1C1C;
   --footer-bg:#050505;
@@ -104,17 +105,24 @@ h1,h2,h3,h4{font-family:var(--f-display); font-weight:400; margin:0; line-height
 .eyebrow::before{content:""; width:22px; height:1px; background:var(--brand); flex:none}
 
 /* ── header ─────────────────────────────────────────── */
-.topbar{background:var(--footer-bg); color:var(--footer-ink); font-family:var(--f-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase}
+.topbar{background:var(--footer-bg); color:var(--footer-ink); border-bottom:2px solid var(--brand); font-family:var(--f-mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase}
 .topbar .wrap{display:flex; gap:6px 26px; align-items:center; justify-content:center; flex-wrap:wrap; padding-block:10px; text-align:center}
 .topbar b{font-weight:400; color:#FFFFFF}
 .topbar .sep{opacity:.28}
 
 header.site{position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:1px solid var(--line)}
-header.site .wrap{display:flex; align-items:center; gap:clamp(14px,3vw,44px); padding-block:20px}
-.brand{font-family:var(--f-display); font-weight:400; font-size:21px; letter-spacing:-.03em; line-height:1; white-space:nowrap
-  ; font-variation-settings:"opsz" 40}
-.brand em{font-style:normal; color:var(--brand)}
-.brand small{display:block; font-family:var(--f-mono); font-size:8px; letter-spacing:.3em; color:var(--ink-3); margin-top:6px; text-transform:uppercase}
+header.site .wrap{display:flex; align-items:center; gap:clamp(14px,3vw,44px); padding-block:16px}
+.brand{display:block; line-height:0; flex:none}
+.brand img{height:clamp(38px,4.4vw,54px); width:auto}
+.brand .on-light{display:block}
+.brand .on-dark{display:none}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .brand .on-light{display:none}
+  :root:not([data-theme="light"]) .brand .on-dark{display:block}
+}
+:root[data-theme="dark"] .brand .on-light{display:none}
+:root[data-theme="dark"] .brand .on-dark{display:block}
+.vh{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
 nav.main{display:flex; gap:clamp(14px,2.2vw,32px); margin-inline:auto; flex-wrap:wrap}
 nav.main a{font-family:var(--f-ui); font-weight:500; font-size:14px; letter-spacing:.01em; padding:6px 0; position:relative}
 nav.main a::after{content:""; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--brand); transition:right .35s var(--ease)}
@@ -126,7 +134,7 @@ nav.main a[aria-current]::after{right:0; background:var(--ink)}
 .lang a[aria-current]{color:var(--ink); border-bottom:1px solid var(--brand)}
 .cart{display:inline-flex; align-items:center; gap:7px; border:1px solid var(--ink); padding:9px 15px;
   font-size:10px; letter-spacing:.18em; text-transform:uppercase; transition:background .25s var(--ease), color .25s var(--ease)}
-.cart:hover{background:var(--ink); color:var(--paper)}
+.cart:hover{background:var(--brand); border-color:var(--brand); color:var(--brand-ink)}
 @media(max-width:980px){
   header.site .wrap{flex-wrap:wrap; row-gap:14px; padding-block:15px}
   nav.main{order:3; width:100%; margin:0; flex-wrap:nowrap; overflow-x:auto; padding-bottom:3px;
@@ -149,10 +157,10 @@ nav.main a[aria-current]::after{right:0; background:var(--ink)}
   font-weight:500; font-size:11px; letter-spacing:.2em; text-transform:uppercase; padding:17px 30px;
   border:1px solid transparent; cursor:pointer; border-radius:var(--r);
   transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease)}
-.btn-primary{background:var(--ink); color:var(--paper)}
-.btn-primary:hover{background:var(--brand); border-color:var(--brand); color:var(--brand-ink)}
+.btn-primary{background:var(--brand); color:var(--brand-ink); border-color:var(--brand)}
+.btn-primary:hover{background:var(--brand-deep); border-color:var(--brand-deep)}
 .btn-ghost{border-color:var(--line-2); color:var(--ink)}
-.btn-ghost:hover{border-color:var(--ink); background:var(--ink); color:var(--paper)}
+.btn-ghost:hover{border-color:var(--brand); background:var(--brand); color:var(--brand-ink)}
 .btn-block{width:100%}
 
 /* ── chips ──────────────────────────────────────────── */
@@ -208,6 +216,7 @@ section.band{padding:clamp(56px,8.5vw,124px) 0; border-bottom:1px solid var(--li
   font-variation-settings:"opsz" 30,"SOFT" 0,"WONK" 0}
 .pc-price{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-top:auto; padding-top:4px}
 .pc-price .now{font-family:var(--f-ui); font-size:16px; font-weight:600; letter-spacing:-.01em; font-variant-numeric:tabular-nums}
+.pc-price .now.is-sale{color:var(--brand)}
 .pc-price .was{font-family:var(--f-mono); font-size:11px; color:var(--ink-3); text-decoration:line-through}
 .pc-mo{font-family:var(--f-mono); font-size:10px; letter-spacing:.11em; color:var(--ink-3); text-transform:uppercase}
 .pc-sw{display:flex; gap:5px}
@@ -344,7 +353,7 @@ footer.site{background:var(--footer-bg); color:var(--footer-ink);
   border-top:1px solid var(--line); padding:clamp(52px,7vw,96px) 0 34px}
 footer.site .cols{display:grid; gap:36px; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
   padding-bottom:44px; border-bottom:1px solid var(--footer-line)}
-footer.site .fh{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.24em; text-transform:uppercase;
+footer.site .fh{border-top:2px solid var(--brand); padding-top:14px; font-family:var(--f-mono); font-size:9.5px; letter-spacing:.24em; text-transform:uppercase;
   color:var(--footer-dim); font-weight:400; margin:0 0 18px; line-height:1.4}
 footer.site a{display:block; padding:6px 0; font-size:14.5px; color:var(--footer-ink); transition:color .25s var(--ease)}
 footer.site a:hover{color:#fff}
@@ -453,37 +462,22 @@ footer.site .fine{display:flex; gap:12px 30px; flex-wrap:wrap; justify-content:s
 .splash{position:fixed; inset:0; z-index:200; display:grid; place-items:center; background:#14120F}
 .intro-skip .splash{display:none}
 html:not(.intro-skip) body:has(.splash:not(.done)){overflow:hidden}
-.splash-badge{width:min(52vh,78vw,420px)}
-.splash-badge svg{width:100%; height:auto; display:block}
+.splash-badge{width:min(60vw,440px); display:flex; flex-direction:column; align-items:center; gap:18px}
+.splash-badge img{width:100%; height:auto; display:block}
+.splash-rule{display:block; width:100%; height:2px; background:var(--brand); transform-origin:left center}
+.splash-sub{font-family:var(--f-mono); font-size:10px; letter-spacing:.3em; color:rgba(255,255,255,.55)}
 
 @media (prefers-reduced-motion:no-preference){
-  .splash{animation:splash-leave .8s cubic-bezier(.7,0,.3,1) 2.6s forwards}
+  .splash{animation:splash-leave .8s cubic-bezier(.7,0,.3,1) 2.3s forwards}
   .splash.hold{animation:none}                 /* #introhold: freeze for review */
   @keyframes splash-leave{ to{ translate:0 -101%; } }
 
-  .splash-badge{animation:badge-settle 2.6s var(--ease) both}
-  @keyframes badge-settle{ from{ scale:.95 } 55%{ scale:1 } to{ scale:1 } }
-
-  /* 1 · the ring draws itself */
-  .splash #ring1,.splash #ring2{stroke-dasharray:1; stroke-dashoffset:1;
-    animation:ring-draw 1s var(--ease) forwards}
-  .splash #ring2{stroke-dasharray:.004 .020; animation:ring-fade .7s var(--ease) .5s both}
-  @keyframes ring-draw{ to{ stroke-dashoffset:0 } }
-  @keyframes ring-fade{ from{ opacity:0 } to{ opacity:.55 } }
-
-  /* 2 · the monogram letters land one at a time */
-  .splash .ch{opacity:0; transform-box:fill-box; transform-origin:center;
-    animation:mono-drop .42s cubic-bezier(.2,.7,.3,1) both;
-    animation-delay:calc(.75s + var(--i) * .11s)}
-  @keyframes mono-drop{
-    from{ opacity:0; translate:0 .2em; scale:1 .6 }
-    to{ opacity:1; translate:0 0; scale:1 1 }
-  }
-
-  /* 3 · the name, then the line under it */
-  .splash #wordmark,.splash #subline{opacity:0; animation:splash-rise .5s var(--ease) both}
-  .splash #wordmark{animation-delay:1.4s}
-  .splash #subline{animation-delay:1.6s}
-  @keyframes splash-rise{ from{ opacity:0; translate:0 12px } to{ opacity:1; translate:0 0 } }
+  /* the mark settles, a red rule draws under it, the line arrives */
+  .splash-badge img{opacity:0; animation:mark-in .9s var(--ease) .15s both}
+  @keyframes mark-in{ from{ opacity:0; scale:.94 } to{ opacity:1; scale:1 } }
+  .splash-rule{scale:0 1; animation:rule-sweep .7s cubic-bezier(.2,.7,.3,1) .95s forwards}
+  @keyframes rule-sweep{ to{ scale:1 1 } }
+  .splash-sub{opacity:0; animation:splash-rise .5s var(--ease) 1.35s both}
+  @keyframes splash-rise{ from{ opacity:0; translate:0 10px } to{ opacity:1; translate:0 0 } }
 }
 @media (prefers-reduced-motion:reduce){ .splash{display:none} }

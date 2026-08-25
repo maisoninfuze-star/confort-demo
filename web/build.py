@@ -345,7 +345,11 @@ def header(lang, path, alt_path):
   <span>{E(c['foot_hours'])} · 10 h – 18 h</span>
 </div></div>
 <header class="site"><div class="wrap">
-  <a class="brand" href="{url(lang)}">Meuble Confort <em>&amp;</em> Style<small>{E(c['tagline'])}</small></a>
+  <a class="brand" href="{url(lang)}">
+      <img class="on-light" src="/assets/img/logo-dark-450.png" width="450" height="134"
+           alt="Meuble Confort &amp; Style">
+      <img class="on-dark" src="/assets/img/logo-light-450.png" width="450" height="134" alt="">
+    </a>
   <nav class="main">{nav}</nav>
   <div class="utils">
     <a class="tel" href="tel:+1{PHONE.replace('-','')}">{PHONE}</a>
@@ -449,23 +453,9 @@ def splash(lang):
     tag = 'Meubles · Matelas · Montréal' if lang == 'fr' else 'Furniture · Mattresses · Montréal'
     return f"""<div class="splash" id="splash" aria-hidden="true">
   <div class="splash-badge">
-    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="presentation">
-      <circle id="ring1" cx="256" cy="196" r="150" fill="none" stroke="#C62828" stroke-width="2.5" pathLength="1"/>
-      <circle id="ring2" cx="256" cy="196" r="136" fill="none" stroke="#8C8681" stroke-width="7"
-              stroke-dasharray="0.004 0.020" opacity="0.55" pathLength="1"/>
-      <g id="mono" fill="#F1EFEC" font-family="Fraunces, Georgia, serif" font-weight="500"
-         text-anchor="middle">
-        <text class="ch" style="--i:0" x="196" y="228" font-size="104">M</text>
-        <text class="ch" style="--i:1" x="256" y="228" font-size="104" fill="#C62828">C</text>
-        <text class="ch" style="--i:2" x="316" y="228" font-size="104">S</text>
-      </g>
-      <text id="wordmark" x="256" y="404" text-anchor="middle" fill="#F1EFEC"
-            font-family="Fraunces, Georgia, serif" font-size="43" font-weight="400"
-            letter-spacing="-1">Meuble Confort &amp; Style</text>
-      <text id="subline" x="256" y="446" text-anchor="middle" fill="#8C8681"
-            font-family="'IBM Plex Mono', monospace" font-size="16"
-            letter-spacing="4.6">{E(tag.upper())}</text>
-    </svg>
+    <img src="/assets/img/logo-light-900.png" width="900" height="267" alt="">
+    <span class="splash-rule"></span>
+    <span class="splash-sub">{E(tag.upper())}</span>
   </div>
 </div>"""
 
