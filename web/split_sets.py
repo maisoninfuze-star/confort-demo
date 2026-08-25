@@ -1,0 +1,140 @@
+# -*- coding: utf-8 -*-
+"""Split multi-piece products so a set is priced as a set and a piece as a piece.
+
+The store's Shopify variants mix two different ideas. On Nexus they are the
+*components* of a 3-piece suite — "Set pcs $4200", "Sofa $2000", "Love $1500",
+"Fauteuil $900" — not options of one product. The grid showed the cheapest
+variant, so a $4,200 suite advertised itself at $900 and the product page then
+said $4,200.
+
+So: the parent keeps the set lines and is priced as the set; every component
+becomes its own product in its own category, with its own price. Components of
+the same kind in different sizes stay one product with size variants.
+"""
+import json, os, re, collections, unicodedata
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+SET_RX = re.compile(r'(\bset\b|\bensemble\b|\d+\s*pcs?\b|\bpcs\b|\bpi[eè]ces?\b)', re.I)
+
+# label pattern -> (sub key, FR label, EN label)
+PIECES = [
+    (r'\bsectionn?el|\bsectional',      ('sectionnel', 'Sectionnels', 'Sectionals')),
+    (r'\bsofa.?bed|canap[eé].?lit',     ('canape-lit', 'Canapés-lits', 'Sofa beds')),
+    (r'\bsofa\b|\bcanap[eé]\b',         ('canape', 'Canapés', 'Sofas')),
+    (r'\blove\b|\bloveseat\b|causeuse', ('causeuse', 'Causeuses', 'Loveseats')),
+    (r'fauteuil|\brecliner\b|\barmchair\b', ('fauteuil', 'Fauteuils', 'Armchairs')),
+    (r'table de nuit|chevet|night.?stand', ('chevet', 'Tables de chevet', 'Nightstands')),
+    (r'commode|dresser|\bchest\b',      ('commode', 'Commodes', 'Dressers')),
+    (r'miroir|mirror',                  ('decor', 'Miroirs', 'Mirrors')),
+    (r'\bbanc\b|\bbench\b',             ('decor', 'Bancs', 'Benches')),
+    (r't[eê]te de lit|headboard',       ('lit', 'Lits', 'Beds')),
+    (r'\blit\b|\bbed\b|plateforme',     ('lit', 'Lits', 'Beds')),
+    (r'\bchaise\b|\bchair\b',           ('chaise', 'Chaises', 'Chairs')),
+    (r'\btable\b',                      ('table-manger', 'Tables de salle à manger', 'Dining tables')),
+    (r'\bmatelas\b|mattress',           ('matelas', 'Matelas', 'Mattresses')),
+]
+SET_SUB = {
+    'salon':          ('ensemble-salon',  'Ensembles de salon',        'Living room sets'),
+    'chambre':        ('ensemble-chambre','Ensembles de chambre',      'Bedroom sets'),
+    'salle-a-manger': ('ensemble-manger', 'Ensembles de salle à manger','Dining sets'),
+    'bureau':         ('ensemble-bureau', 'Ensembles de bureau',       'Office sets'),
+}
+SIZE_RX = re.compile(r'\b(simple|twin|double|full|queen|king)\b', re.I)
+ACCESSORY_RX = re.compile(r'vendu\s+s[ée]par[ée]ment|\boption\b|\btiroirs?\b', re.I)
+# a set's pieces read better without the word "Ensemble" dragged along
+BASE_RX = re.compile(r'^\s*ensembles?\s+(?:de\s+)?(?:chambre|salle\s+[àa]\s+manger|salon)\s*', re.I)
+
+def slugify(s):
+    s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
+    return re.sub(r'-{2,}', '-', re.sub(r'[^a-zA-Z0-9]+', '-', s).strip('-').lower())
+
+def piece_of(label):
+    for rx, meta in PIECES:
+        if re.search(rx, label or '', re.I):
+            return meta
+    return None
+
+def main():
+    p = os.path.join(HERE, 'catalogue.json')
+    cat = json.load(open(p, encoding='utf-8'))
+    out, split_report = [], []
+
+    for prod in cat:
+        vs = prod.get('variants') or []
+        if len(vs) < 2 or len({v['price'] for v in vs}) < 2:
+            out.append(prod); continue
+        sets = [v for v in vs if SET_RX.search(v['label'] or '')
+                and not ACCESSORY_RX.search(v['label'] or '')]
+        pieces = [v for v in vs if v not in sets and piece_of(v['label'])]
+        # "Ensemble de 2 tiroirs de rangement" is an add-on, not a suite. A set
+        # is never cheaper than the pieces it contains, so anything that says
+        # "ensemble" but undercuts a component is treated as a component.
+        if sets and pieces:
+            top = max(v['price'] for v in pieces)
+            demoted = [v for v in sets if v['price'] < top]
+            if demoted:
+                sets = [v for v in sets if v['price'] >= top]
+                pieces = pieces + [v for v in demoted if piece_of(v['label'])]
+        if len(pieces) < 2 and not (sets and pieces):
+            out.append(prod); continue
+
+        # group components of the same kind (a bed in two sizes is one product)
+        groups = collections.OrderedDict()
+        for v in pieces:
+            key = piece_of(v['label'])[0]
+            groups.setdefault(key, []).append(v)
+
+        made = []
+        if sets:
+            parent = dict(prod)
+            parent['variants'] = sets
+            parent['price'] = min(v['price'] for v in sets)
+            parent['price_max'] = max(v['price'] for v in sets)
+            parent['monthly'] = round(parent['price'] / 36) if parent['price'] else 0
+            key, fr, en = SET_SUB.get(prod['cat'], (prod['sub'], prod['sub_fr'], prod['sub_en']))
+            parent['sub'], parent['sub_fr'], parent['sub_en'] = key, fr, en
+            out.append(parent)
+            made.append(('set', parent['name_fr'], parent['price']))
+
+        for key, vlist in groups.items():
+            meta = piece_of(vlist[0]['label'])
+            child = dict(prod)
+            child['variants'] = vlist
+            child['price'] = min(v['price'] for v in vlist)
+            child['price_max'] = max(v['price'] for v in vlist)
+            child['monthly'] = round(child['price'] / 36) if child['price'] else 0
+            child['sub'], child['sub_fr'], child['sub_en'] = meta
+            base = BASE_RX.sub('', prod['name_fr']).strip() or prod['name_fr']
+            base = re.sub(r'\s*[—-]\s*$', '', base)
+            child['name_fr'] = f"{base} — {meta[1].rstrip('s')}"
+            child['name_en'] = f"{prod['name_en']} — {meta[2].rstrip('s')}"
+            child['slug'] = slugify(child['name_fr'])
+            child['slug_en'] = slugify(child['name_en'])
+            child['compare'] = None
+            child['variant_sizes'] = [m.group(1).title() for v in vlist
+                                      if (m := SIZE_RX.search(v['label'] or ''))]
+            out.append(child)
+            made.append(('piece', child['name_fr'], child['price']))
+
+        if made:
+            split_report.append((prod['name_fr'], min(v['price'] for v in vs), made))
+
+    # slugs must stay unique now that products have been added
+    for field in ('slug', 'slug_en'):
+        seen = collections.Counter()
+        for x in out:
+            seen[x[field]] += 1
+            if seen[x[field]] > 1:
+                x[field] = f"{x[field]}-{seen[x[field]]}"
+
+    json.dump(out, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    print(f'{len(cat)} products in, {len(out)} out  (+{len(out)-len(cat)})')
+    print(f'{len(split_report)} sets split\n')
+    for name, oldcard, made in split_report[:6]:
+        print(f'  {name[:34]:34} card was {oldcard:8.2f}')
+        for kind, n, pr in made:
+            print(f'      {kind:5} {n[:44]:44} {pr:9.2f}')
+
+if __name__ == '__main__':
+    main()
