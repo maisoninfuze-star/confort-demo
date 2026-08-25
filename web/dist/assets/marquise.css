@@ -516,19 +516,19 @@ html:not(.intro-skip) body:has(.splash:not(.done)){overflow:hidden}
 }
 @media (prefers-reduced-motion:reduce){ .splash{display:none} }
 
-/* ── IFDC dealer catalogue ───────────────────────────
+/* ── supplier catalogue ───────────────────────────
    Photo and code only — deliberately not dressed up as a product page,
    because there is no price, dimension or description behind it yet. */
-.ifdc-bar{display:flex; align-items:center; gap:14px 20px; flex-wrap:wrap; justify-content:space-between;
+.cat-bar{display:flex; align-items:center; gap:14px 20px; flex-wrap:wrap; justify-content:space-between;
   padding:20px 0 18px; border-bottom:1px solid var(--line); margin-bottom:clamp(18px,2.4vw,30px)}
-.ifdc-bar .opts .row{gap:7px}
-.ifdc-bar .opt .n{font-family:var(--f-mono); font-size:10px; color:var(--ink-3); margin-left:5px}
-.ifdc-bar .opt[aria-pressed="true"] .n{color:var(--brand-ink); opacity:.75}
-.ifdc-search{font-family:var(--f-mono); font-size:12px; letter-spacing:.04em; padding:10px 13px;
+.cat-bar .opts .row{gap:7px}
+.cat-bar .opt .n{font-family:var(--f-mono); font-size:10px; color:var(--ink-3); margin-left:5px}
+.cat-bar .opt[aria-pressed="true"] .n{color:var(--brand-ink); opacity:.75}
+.cat-search{font-family:var(--f-mono); font-size:12px; letter-spacing:.04em; padding:10px 13px;
   border:1px solid var(--line-2); background:var(--field); color:var(--ink); border-radius:var(--r); min-width:210px}
-.ifdc-grid{display:grid; gap:clamp(12px,1.6vw,22px); grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.cat-grid{display:grid; gap:clamp(12px,1.6vw,22px); grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
 .ic{display:flex; flex-direction:column; gap:9px}
-/* IFDC shoot their catalogue on white, so the tile is white in both themes —
+/* supplier shoot their catalogue on white, so the tile is white in both themes —
    letterboxing a white cutout against a dark ground looks like a loading error. */
 .ic-shot{aspect-ratio:1/1; background:#FFFFFF; overflow:hidden; border:1px solid var(--line)}
 .ic-shot img{width:100%; height:100%; object-fit:contain; transition:transform .6s var(--ease)}

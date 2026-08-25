@@ -42,12 +42,12 @@ CAT = {
  'salle-a-manger': {'fr': ('Salle à manger', 'salle-a-manger'), 'en': ('Dining room', 'dining-room')},
  'bureau':         {'fr': ('Bureau', 'bureau'),             'en': ('Home office', 'home-office')},
 }
-# The IFDC dealer catalogue. Their product pages carry a code and a photograph
+# The supplier's full dealer catalogue. Those product pages carry a code and a photo
 # and nothing else — no description, dimensions, category or price — so these
 # cannot become full product pages without gutting what a product page means
 # here (no fit check, no filters, no price). They live in one browsable index
 # instead, clearly marked price-on-request, until the margins land.
-IFDC_FAMILIES = [
+SUPPLIER_FAMILIES = [
     ('IF', {'fr': 'Salon — sofas, sectionnels, fauteuils', 'en': 'Living — sofas, sectionals, chairs'}),
     ('T',  {'fr': 'Tables de salle à manger',              'en': 'Dining tables'}),
     ('C',  {'fr': 'Chaises',                               'en': 'Chairs'}),
@@ -62,7 +62,7 @@ PAGES = {
  'salle-de-montre':{'fr': ('La salle de montre', 'salle-de-montre'), 'en': ('The showroom', 'showroom')},
  'retours':        {'fr': ('Retours et garantie', 'retours'),'en': ('Returns & warranty', 'returns')},
  'a-propos':       {'fr': ('À propos', 'a-propos'),         'en': ('About us', 'about')},
- 'catalogue':      {'fr': ('Catalogue IFDC', 'catalogue'),  'en': ('IFDC catalogue', 'catalogue')},
+ 'catalogue':      {'fr': ('Catalogue complet', 'catalogue'), 'en': ('Full catalogue', 'catalogue')},
 }
 CAT_BLURB = {
  'salon': {
@@ -118,12 +118,12 @@ COPY = {
    bnpl_mo='× %s mois, à partir de 0 %%',
    bnpl_more='Comment payer en versements →',
    pay_h='Modes de paiement',
-   ifdc_eyebrow='Distributeur autorisé IFDC',
-   ifdc_intro='La gamme complète de notre fournisseur IFDC — au-delà de ce qui est en stock au magasin. Repérez un code, appelez-nous, on vous donne le prix et le délai.',
-   ifdc_search='Chercher un code (ex. IF-6401)',
-   ifdc_ask='Prix sur demande',
-   ifdc_none='Aucun modèle ne correspond. Appelez-nous au 514-279-4600.',
-   ifdc_note='Ces modèles se commandent : ils ne sont pas au magasin aujourd’hui. Les photos et les codes viennent directement d’IFDC. Les prix, les dimensions et les descriptions complètes arrivent avec la mise à jour du catalogue — d’ici là, un appel donne la réponse en une minute.',
+   cat_eyebrow='Distributeur autorisé',
+   cat_intro='Toute la gamme que nous pouvons commander — au-delà de ce qui est en stock au magasin. Repérez un code, appelez-nous, on vous donne le prix et le délai.',
+   cat_search='Chercher un code (ex. IF-6401)',
+   cat_ask='Prix sur demande',
+   cat_none='Aucun modèle ne correspond. Appelez-nous au 514-279-4600.',
+   cat_note='Ces modèles se commandent : ils ne sont pas au magasin aujourd’hui. Les prix, les dimensions et les descriptions complètes arrivent avec la mise à jour du catalogue — d’ici là, un appel donne la réponse en une minute.',
  ),
  'en': dict(
    tagline='Furniture · Mattresses · Montréal',
@@ -164,12 +164,12 @@ COPY = {
    bnpl_mo='× %s months, from 0%%',
    bnpl_more='How instalments work →',
    pay_h='Ways to pay',
-   ifdc_eyebrow='Authorised IFDC dealer',
-   ifdc_intro='Our supplier IFDC’s full range — beyond what is in stock at the store. Spot a code, call us, and we’ll give you the price and the lead time.',
-   ifdc_search='Search a code (e.g. IF-6401)',
-   ifdc_ask='Price on request',
-   ifdc_none='Nothing matches. Call us at 514-279-4600.',
-   ifdc_note='These are made to order — they are not in the store today. The photographs and codes come straight from IFDC. Prices, dimensions and full descriptions arrive with the catalogue update; until then a phone call answers it in a minute.',
+   cat_eyebrow='Authorised dealer',
+   cat_intro='The full range we can order — beyond what is in stock at the store. Spot a code, call us, and we’ll give you the price and the lead time.',
+   cat_search='Search a code (e.g. IF-6401)',
+   cat_ask='Price on request',
+   cat_none='Nothing matches. Call us at 514-279-4600.',
+   cat_note='These are made to order — they are not in the store today. Prices, dimensions and full descriptions arrive with the catalogue update; until then a phone call answers it in a minute.',
  ),
 }
 # ── Buy now, pay later ──────────────────────────────────────────────────────
@@ -193,13 +193,13 @@ BNPL = [
 ]
 BNPL_TERM = 12   # months used for the Affirm monthly illustration
 
-# IFDC supply the dealer COST, not retail. Retail = cost × margin, and the
+# supplier supply the dealer COST, not retail. Retail = cost × margin, and the
 # margin is the store's to set — so nothing derived from that file is published
 # until this is a number. Observed across the 33 products already priced against
 # a known cost: median ×2.00, quartiles ×1.76–×2.00.
-#   IFDC_MARGIN = None -> catalogue stays "prix sur demande" (current)
-#   IFDC_MARGIN = 2.0  -> catalogue prices itself at keystone
-IFDC_MARGIN = None
+#   supplier_MARGIN = None -> catalogue stays "prix sur demande" (current)
+#   supplier_MARGIN = 2.0  -> catalogue prices itself at keystone
+supplier_MARGIN = None
 
 # Date-certain delivery ("At your place Wednesday 26 August") is switched off.
 # It needs two things the business does not have yet: inventory that is true at
@@ -1130,11 +1130,11 @@ PROSE = {
 <p>""" + ADDR + """, """ + CITY + """<br>""" + PHONE + """ · """ + PHONE2 + """</p>"""},
 }
 
-def load_ifdc():
-    p = os.path.join(HERE, 'ifdc-raw.json')
+def load_supplier_catalogue():
+    p = os.path.join(HERE, 'supplier-raw.json')
     if not os.path.exists(p):
         return []
-    pf = os.path.join(HERE, 'ifdc-prices.json')
+    pf = os.path.join(HERE, 'supplier-prices.json')
     prices = json.load(open(pf, encoding='utf-8')) if os.path.exists(pf) else {}
     rows = [r for r in json.load(open(p, encoding='utf-8'))
             if not r.get('error') and r.get('image')]
@@ -1150,40 +1150,40 @@ def load_ifdc():
 
 def build_catalogue(lang):
     c = COPY[lang]
-    rows = load_ifdc()
+    rows = load_supplier_catalogue()
     other = 'en' if lang == 'fr' else 'fr'
     counts = collections.Counter(r['fam'] for r in rows)
     chips = ''.join(
         f'<button class="opt" data-fam="{k}" aria-pressed="false">{E(lab[lang])}'
         f' <span class="n">{counts.get(k,0)}</span></button>'
-        for k, lab in IFDC_FAMILIES if counts.get(k))
+        for k, lab in SUPPLIER_FAMILIES if counts.get(k))
     cards = ''.join(
         f'<article class="ic" data-fam="{r["fam"]}" data-code="{E(r["code"].lower())}">'
         f'<div class="ic-shot"><img loading="lazy" src="{E(r["image"])}" '
         f'alt="{E(r["code"])}" width="600" height="600"></div>'
         f'<div class="ic-code">{E(r["code"])}</div>'
         + (f'<div class="ic-price">{money(r["price"], lang)}</div>'
-           if r.get('price') else f'<div class="ic-ask">{E(c["ifdc_ask"])}</div>')
+           if r.get('price') else f'<div class="ic-ask">{E(c["cat_ask"])}</div>')
         + '</article>'
         for r in rows)
 
     body = f'''<div class="wrap">
  <nav class="crumbs"><a href="{url(lang)}">{E(c['crumb_home'])}</a> · {E(PAGES['catalogue'][lang][0])}</nav>
  <div style="padding-bottom:8px">
-   <p class="eyebrow">{E(c['ifdc_eyebrow'])}</p>
+   <p class="eyebrow">{E(c['cat_eyebrow'])}</p>
    <h1 style="font-size:clamp(30px,4.4vw,46px)">{E(PAGES['catalogue'][lang][0])}</h1>
-   <p style="color:var(--ink-2);max-width:62ch;margin-top:12px">{E(c['ifdc_intro'])}</p>
+   <p style="color:var(--ink-2);max-width:62ch;margin-top:12px">{E(c['cat_intro'])}</p>
  </div>
- <div class="ifdc-bar">
+ <div class="cat-bar">
    <div class="opts"><div class="row">{chips}</div></div>
-   <input class="ifdc-search" id="ifdc-search" type="search" placeholder="{E(c['ifdc_search'])}"
-          aria-label="{E(c['ifdc_search'])}">
-   <span class="count" id="ifdc-count">{len(rows)}</span>
+   <input class="cat-search" id="cat-search" type="search" placeholder="{E(c['cat_search'])}"
+          aria-label="{E(c['cat_search'])}">
+   <span class="count" id="cat-count">{len(rows)}</span>
  </div>
- <div class="ifdc-grid" id="ifdc-grid">{cards}</div>
- <p id="ifdc-empty" hidden style="padding:40px 0;color:var(--ink-2)">{E(c['ifdc_none'])}</p>
+ <div class="cat-grid" id="cat-grid">{cards}</div>
+ <p id="cat-empty" hidden style="padding:40px 0;color:var(--ink-2)">{E(c['cat_none'])}</p>
  <div class="box" style="margin:36px 0 8px;max-width:62ch">
-   <p>{E(c['ifdc_note'])}</p>
+   <p>{E(c['cat_note'])}</p>
  </div>
 </div>'''
     ld = {"@context": "https://schema.org", "@type": "CollectionPage",
@@ -1193,7 +1193,7 @@ def build_catalogue(lang):
           "numberOfItems": len(rows)}
     return shell(lang, f"{PAGES['catalogue'][lang][0]} — {len(rows)} modèles" if lang == 'fr'
                  else f"{PAGES['catalogue'][lang][0]} — {len(rows)} models",
-                 c['ifdc_intro'], url(lang, PAGES['catalogue'][lang][1]),
+                 c['cat_intro'], url(lang, PAGES['catalogue'][lang][1]),
                  url(other, PAGES['catalogue'][other][1]), body, ld)
 
 def build_prose(key, lang):

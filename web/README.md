@@ -195,10 +195,10 @@ their trademarks.
    hero rooms are AI-generated stand-ins (see above) and the 23 single-image
    products still need a real shoot.
 
-## The IFDC catalogue
+## The supplier catalogue
 
-`ifdc_fetch.py` harvests International Furniture Distribution Centre's dealer
-catalogue from their sitemap into `ifdc-raw.json` — **976 products, 948 of which
+`supplier_fetch.py` harvests the supplier's dealer catalogue from their sitemap
+into `supplier-raw.json` — **976 products, 948 of which
 are not on the site today.**
 
 Their product pages are a Wix store and carry a JSON-LD block with a code and a
@@ -213,7 +213,7 @@ filterable by SKU family and searchable by code, every tile marked *prix sur
 demande*. It shows the range honestly without pretending to be a shop.
 
 Families are derived from the SKU prefix (`IF` upholstery, `T` tables, `C`
-chairs, `B` bunk beds, `ST`, plus named collections), because IFDC's own room
+chairs, `B` bunk beds, `ST`, plus named collections), because the supplier's own room
 categories are not in the page source.
 
 **When the margins arrive**, these graduate into the main catalogue: add price
@@ -246,7 +246,7 @@ being cropped to a ratio they were never shot for. Re-run `measure_images.py`
 whenever products are added.
 
 **Photographs are hotlinked**, not hosted: 1,495 from the store's Shopify CDN and
-973 from IFDC's Wix CDN. All 2,475 resolve today, but that is two third parties
+973 from the supplier's Wix CDN. All 2,475 resolve today, but that is two third parties
 who can move or remove a file. Self-hosting the 171 primary product photos would
 cost roughly 10 MB in the repo and remove that risk on the shoppable range; the
-IFDC index is better left pointing at IFDC.
+the supplier index is better left pointing at the supplier.

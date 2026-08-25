@@ -11,8 +11,8 @@ web/gen/*.png
 .DS_Store
 **/.DS_Store
 
-# IFDC's wholesale price list and everything derived from it. These are dealer
+# The supplier's wholesale price list and everything derived from it. These are dealer
 # COST prices — publishing them would hand the store's margin to its customers
 # and its competitors. They stay on the machine that builds the site.
-web/ifdc-cost.json
+web/supplier-cost.json
 web/*.xlsx

@@ -337,16 +337,16 @@
   }
 
 
-  /* ── IFDC catalogue: family chips + code search ─────────────────── */
-  var icGrid = document.getElementById('ifdc-grid');
+  /* ── supplier catalogue: family chips + code search ─────────────────── */
+  var icGrid = document.getElementById('cat-grid');
   if (icGrid) {
     var icCards = [].slice.call(icGrid.querySelectorAll('.ic'));
-    var icCount = document.getElementById('ifdc-count');
-    var icEmpty = document.getElementById('ifdc-empty');
-    var icSearch = document.getElementById('ifdc-search');
+    var icCount = document.getElementById('cat-count');
+    var icEmpty = document.getElementById('cat-empty');
+    var icSearch = document.getElementById('cat-search');
     // scope to the filter bar: the cards carry data-fam too, and selecting
     // them all wires a click handler onto every one of the 975 tiles
-    var fams = [].slice.call(document.querySelectorAll('.ifdc-bar [data-fam]'));
+    var fams = [].slice.call(document.querySelectorAll('.cat-bar [data-fam]'));
     var active = null;
 
     var applyIc = function () {

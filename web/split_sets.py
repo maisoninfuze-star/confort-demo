@@ -50,7 +50,7 @@ def slugify(s):
     s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
     return re.sub(r'-{2,}', '-', re.sub(r'[^a-zA-Z0-9]+', '-', s).strip('-').lower())
 
-# IFDC codes name the piece on their own: T-1449 is a table, C-1712 a chair.
+# supplier codes name the piece on their own: T-1449 is a table, C-1712 a chair.
 # Without this a set whose variants are bare codes prices itself off a single
 # chair — "7 pc ensemble $699 / T-1449 $300 / C-1712 $70" showed $70.
 CODE_PIECES = [

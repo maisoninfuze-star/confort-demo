@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Harvest the IFDC dealer catalogue into ifdc-raw.json.
+"""Harvest the supplier's dealer catalogue into supplier-raw.json.
 
-IFDC is a Wix store: each product page carries one JSON-LD Product block with a
+The supplier runs a Wix store: each product page carries one JSON-LD Product block with a
 name and an image, and nothing else — descriptions, dimensions and categories
 are loaded client-side and are not in the HTML. So this gets the code and the
 photograph, which is what the site can honestly show until the dealer margins
@@ -10,7 +10,7 @@ arrive and real product data comes with them.
 import re, json, gzip, io, urllib.request, concurrent.futures as cf, sys, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SITEMAP = 'https://www.ifdc.ca/store-products-sitemap.xml'
+SITEMAP = 'https://www.supplier.ca/store-products-sitemap.xml'
 UA = {'User-Agent': 'Mozilla/5.0 (compatible; MCS-dealer-import/1.0)',
       'Accept-Encoding': 'gzip'}
 
@@ -48,10 +48,11 @@ def one(url):
         if it.get('@type') == 'Product':
             off = it.get('offers') or {}
             if isinstance(off, list): off = off[0] if off else {}
+            # the source URL is deliberately not stored: this file is committed,
+            # and the supplier's domain does not belong in a public repository
             return {'slug': slug, 'name': it.get('name'),
                     'image': big(first_image(it.get('image'))),
-                    'available': 'InStock' in str(off.get('availability', '')),
-                    'url': url}
+                    'available': 'InStock' in str(off.get('availability', ''))}
     return {'slug': slug, 'error': 'no Product'}
 
 def main():
@@ -64,7 +65,7 @@ def main():
             out.append(r)
             if i % 100 == 0:
                 print(f'  {i}/{len(urls)}', flush=True)
-    json.dump(out, open(os.path.join(HERE, 'ifdc-raw.json'), 'w', encoding='utf-8'),
+    json.dump(out, open(os.path.join(HERE, 'supplier-raw.json'), 'w', encoding='utf-8'),
               ensure_ascii=False, indent=1)
     ok = [r for r in out if not r.get('error')]
     print(f'done: {len(ok)} products, {len(out)-len(ok)} failed', flush=True)

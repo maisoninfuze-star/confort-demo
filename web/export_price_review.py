@@ -32,7 +32,7 @@ def load():
         if prices:
             live[x['handle']] = min(prices)
     prices_list = {}
-    p = os.path.join(HERE, 'ifdc-prices.json')
+    p = os.path.join(HERE, 'supplier-prices.json')
     if os.path.exists(p):
         prices_list = json.load(open(p, encoding='utf-8'))
     return cat, live, prices_list
@@ -89,7 +89,7 @@ def main():
         if is_child:
             src = 'Nouvelle fiche — pièce d’un ensemble'
         else:
-            src = ('Liste IFDC 2026' if (p.get('sku') and norm(p['sku']) in plist)
+            src = ('Liste du fournisseur' if (p.get('sku') and norm(p['sku']) in plist)
                    else 'Prix boutique actuel')
         delta = (p['price'] - prev) / prev if prev else None
         note = ' ; '.join(fl.get(id(p), []))
@@ -156,7 +156,7 @@ def main():
         ('Prix sur le site — ce que la démo affiche aujourd’hui.', False),
         ('Prix actuel en ligne — ce que meubleconfort.com affiche présentement.', False),
         ('Écart — la différence entre les deux.', False),
-        ('Source du prix — « Liste IFDC 2026 » si le prix vient du fichier de prix fourni,', False),
+        ('Source du prix — « Liste supplier 2026 » si le prix vient du fichier de prix fourni,', False),
         ('    « Prix boutique actuel » si le prix de la boutique a été conservé.', False),
         ('Prix corrigé — colonne vide : inscrivez le bon prix s’il y a lieu.', False),
         ('À vérifier — pourquoi la ligne est signalée.', False),

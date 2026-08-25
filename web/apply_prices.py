@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Apply the IFDC price list as RETAIL prices.
+"""Apply the supplier price list as RETAIL prices.
 
 The spreadsheet's column is headed "Cost", but the client confirms these are
 their selling prices, margin already included. So they are written straight to
-the catalogue and to the IFDC index as retail.
+the catalogue and to the supplier index as retail.
 
 Every change is reported before it ships — a price list applied to the wrong
 column silently halves a catalogue, and that is not something to discover from
@@ -13,7 +13,7 @@ import json, os, re, openpyxl, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 XLSX = os.path.expanduser(
-    '~/Downloads/IFDC 2026 Price List-New Items + New Additions (v3) 03.03.26 (R).xlsx')
+    '~/Downloads/supplier 2026 Price List-New Items + New Additions (v3) 03.03.26 (R).xlsx')
 
 def norm(s):
     return re.sub(r'[^A-Z0-9]', '', (s or '').upper())
@@ -135,9 +135,9 @@ def main():
     json.dump(cat, open(os.path.join(HERE, 'catalogue.json'), 'w', encoding='utf-8'),
               ensure_ascii=False, indent=1)
 
-    # prices for the IFDC index — the cheapest line per code
+    # prices for the supplier index — the cheapest line per code
     idx = {k: round(min(e['price'] for e in v), 2) for k, v in by.items()}
-    json.dump(idx, open(os.path.join(HERE, 'ifdc-prices.json'), 'w'), indent=0)
+    json.dump(idx, open(os.path.join(HERE, 'supplier-prices.json'), 'w'), indent=0)
 
     print(f'price list: {len(by)} codes')
     print(f'catalogue : {len(cat)-unmatched} matched, {unmatched} left on their existing price')
