@@ -1,11 +1,44 @@
 {
- "_comment": "Which gallery image shows which piece, read by eye from contact sheets. Key = the original Shopify handle; then subcategory -> index into that product's image list. A piece with no entry has no photo of its own in the gallery and keeps the set shot.",
+ "_comment": "Which gallery image shows which piece. Read by eye from contact sheets of all 50 split sets — an automated \"isolated on white\" test was tried first and was wrong in both directions: it missed a recliner photographed in a room and passed a set of three chairs as if one were a table. Key = the original Shopify handle, then subcategory -> index into that gallery.",
  "map": {
   "amelia-black": {
    "_set": "Amelia-Black",
    "lit": 1,
    "commode": 2,
    "chevet": 5
+  },
+  "t-1402-c-1782": {
+   "_set": "Chaise Christophe — métal gris",
+   "chaise": 1,
+   "table-manger": 4
+  },
+  "chambre-moderne-blanche": {
+   "_set": "Chambre Moderne Blanche",
+   "lit": 2,
+   "commode": 3
+  },
+  "dylan": {
+   "_set": "Dylan",
+   "chevet": 1,
+   "commode": 3
+  },
+  "t-1274-c-1250": {
+   "_set": "Ensemble de salle à manger Casgrain — velours gris",
+   "table-manger": 1,
+   "chaise": 2
+  },
+  "t-1079-c-1084": {
+   "_set": "Ensemble de salle à manger Gaspé — tissu gris",
+   "chaise": 1
+  },
+  "t-1274-c-1261": {
+   "_set": "Ensemble de salle à manger Waverly — velours gris",
+   "table-manger": 1,
+   "chaise": 2
+  },
+  "t-1275-c-1285": {
+   "_set": "Gaspé — velours beige — Tables de salle à manger",
+   "chaise": 1
   },
   "harper-seville": {
    "_set": "Harper \"Seville\"",
@@ -29,13 +62,20 @@
   "lucia-blanc": {
    "_set": "Lucia — Blanc",
    "lit": 2,
-   "commode": 4
+   "commode": 4,
+   "chevet": 1
   },
   "luna-riley-finition-argentee": {
    "_set": "Luna Riley – Finition argentée",
    "lit": 1,
    "commode": 2,
    "chevet": 4
+  },
+  "madisson-100": {
+   "_set": "Madisson 100",
+   "lit": 2,
+   "commode": 1,
+   "chevet": 3
   },
   "t-1510-c-1513": {
    "_set": "Meuble Beaubien — tissu gris",
@@ -70,10 +110,32 @@
    "_set": "Monaco Dining Set",
    "table-manger": 1
   },
+  "if-8140-pouce-en-cuir-match-power": {
+   "_set": "Nexus",
+   "fauteuil": 1
+  },
   "olivia-austin": {
    "_set": "Olivia “Austin",
-   "commode": 3,
-   "chevet": 2
+   "chevet": 2,
+   "commode": 3
+  },
+  "pompei-gris-metallise": {
+   "_set": "Pompéi – Gris métallisé",
+   "lit": 1,
+   "commode": 2,
+   "chevet": 4
+  },
+  "if-8030-en-tissu-gris-fabric-power": {
+   "_set": "Prestige — Causeuse",
+   "fauteuil": 1
+  },
+  "if-8130-alimentation-en-cuir": {
+   "_set": "Skyline",
+   "fauteuil": 3
+  },
+  "ensemble-chambre-teddy-bear-blanc": {
+   "_set": "Teddy Bear Blanc — Lit",
+   "decor": 1
   }
  }
 }
