@@ -1,0 +1,79 @@
+{
+ "_comment": "Which gallery image shows which piece, read by eye from contact sheets. Key = the original Shopify handle; then subcategory -> index into that product's image list. A piece with no entry has no photo of its own in the gallery and keeps the set shot.",
+ "map": {
+  "amelia-black": {
+   "_set": "Amelia-Black",
+   "lit": 1,
+   "commode": 2,
+   "chevet": 5
+  },
+  "harper-seville": {
+   "_set": "Harper \"Seville\"",
+   "lit": 1,
+   "commode": 6,
+   "chevet": 4
+  },
+  "jordyn-blanc": {
+   "_set": "Jordyn – Blanc",
+   "lit": 2,
+   "commode": 4
+  },
+  "if-9280-if-9281-sectionnel-avec-ottoman": {
+   "_set": "Kova — Sectionnel",
+   "decor": 2
+  },
+  "logan-silver": {
+   "_set": "Logan – Silver",
+   "lit": 1
+  },
+  "lucia-blanc": {
+   "_set": "Lucia — Blanc",
+   "lit": 2,
+   "commode": 4
+  },
+  "luna-riley-finition-argentee": {
+   "_set": "Luna Riley – Finition argentée",
+   "lit": 1,
+   "commode": 2,
+   "chevet": 4
+  },
+  "t-1510-c-1513": {
+   "_set": "Meuble Beaubien — tissu gris",
+   "table-manger": 1,
+   "chaise": 2
+  },
+  "t-1415-c-1416": {
+   "_set": "Meuble Boyer — métal gris",
+   "table-manger": 4,
+   "chaise": 1
+  },
+  "t-1540-c-1541": {
+   "_set": "Meuble Chabanel — métal gris",
+   "chaise": 1
+  },
+  "t-1510-c-1511": {
+   "_set": "Meuble Fabre — velours beige",
+   "table-manger": 2,
+   "chaise": 3
+  },
+  "t-1545-c-1546": {
+   "_set": "Meuble Iberville — métal noir",
+   "table-manger": 3,
+   "chaise": 1
+  },
+  "t-1510-c-1512": {
+   "_set": "Meuble Papineau — tissu gris",
+   "table-manger": 1,
+   "chaise": 2
+  },
+  "monaco-dining-set": {
+   "_set": "Monaco Dining Set",
+   "table-manger": 1
+  },
+  "olivia-austin": {
+   "_set": "Olivia “Austin",
+   "commode": 3,
+   "chevet": 2
+  }
+ }
+}

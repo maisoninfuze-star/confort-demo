@@ -60,6 +60,15 @@
       ],
       "port": 4310,
       "autoPort": true
+    },
+    {
+      "name": "bms",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-lc",
+        "exec python3 -m http.server \"${PORT:-8790}\" --directory '/Users/inder/Claude/Projects/BMS Restaurant/site'"
+      ],
+      "port": 8790
     }
   ]
 }

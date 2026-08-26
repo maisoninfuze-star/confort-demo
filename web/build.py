@@ -118,6 +118,8 @@ COPY = {
    bnpl_mo='× %s mois, à partir de 0 %%',
    bnpl_more='Comment payer en versements →',
    pay_h='Modes de paiement',
+   set_photo='Photo de l’ensemble',
+   set_photo_note='La photo montre l’ensemble complet. Cette fiche ne vend que la pièce nommée ci-contre — appelez-nous au 514-279-4600 pour une photo de la pièce seule.',
    cat_eyebrow='Distributeur autorisé',
    cat_intro='Toute la gamme que nous pouvons commander — au-delà de ce qui est en stock au magasin. Repérez un code, appelez-nous, on vous donne le prix et le délai.',
    cat_search='Chercher un code (ex. IF-6401)',
@@ -164,6 +166,8 @@ COPY = {
    bnpl_mo='× %s months, from 0%%',
    bnpl_more='How instalments work →',
    pay_h='Ways to pay',
+   set_photo='Photo of the full set',
+   set_photo_note='The photograph shows the complete set. This page sells only the piece named opposite — call 514-279-4600 for a photo of the piece on its own.',
    cat_eyebrow='Authorised dealer',
    cat_intro='The full range we can order — beyond what is in stock at the store. Spot a code, call us, and we’ll give you the price and the lead time.',
    cat_search='Search a code (e.g. IF-6401)',
@@ -474,6 +478,7 @@ def card(p, lang, rank=0, lazy=True):
    data-instock="{1 if p['available'] else 0}" data-sale="{1 if sale else 0}" data-rank="{rank}">
  <div class="pc-shot{fit_class(p)}">{f'<div class="pc-flags">{flags}</div>' if flags else ''}
    <img {'loading="lazy" ' if lazy else ''}src="{E(img(p['images'][0], 700))}" alt="{E(p_name(p, lang))}" width="700" height="500">
+   {f'<span class="setshot">{E(c["set_photo"])}</span>' if p.get('set_photo') else ''}
  </div>
  <div class="pc-body">
    <div class="pc-sub">{E(p['sub_fr'] if lang=='fr' else p['sub_en'])}</div>
@@ -896,6 +901,7 @@ def build_pdp(p, cat, lang):
    <div class="gal">
      <div class="gal-main{fit_class(p)}"><img src="{E(img(imgs[0], 1200))}" alt="{E(p_name(p, lang))}" width="1200" height="857" fetchpriority="high"></div>
      <div class="gal-thumbs">{thumbs}</div>
+     {f'<p class="setshot-note">{E(c["set_photo_note"])}</p>' if p.get('set_photo') else ''}
    </div>
    <div class="desc" style="margin-top:30px">
      <h2 style="margin-top:0">{E(c['desc_h'])}</h2>
