@@ -53,7 +53,8 @@
   },
   "if-9280-if-9281-sectionnel-avec-ottoman": {
    "_set": "Kova — Sectionnel",
-   "decor": 2
+   "decor": 2,
+   "sectionnel": 3
   },
   "logan-silver": {
    "_set": "Logan – Silver",
@@ -62,8 +63,7 @@
   "lucia-blanc": {
    "_set": "Lucia — Blanc",
    "lit": 2,
-   "commode": 4,
-   "chevet": 1
+   "commode": 4
   },
   "luna-riley-finition-argentee": {
    "_set": "Luna Riley – Finition argentée",
@@ -73,7 +73,6 @@
   },
   "madisson-100": {
    "_set": "Madisson 100",
-   "lit": 2,
    "commode": 1,
    "chevet": 3
   },
@@ -136,6 +135,12 @@
   "ensemble-chambre-teddy-bear-blanc": {
    "_set": "Teddy Bear Blanc — Lit",
    "decor": 1
+  },
+  "ava-jordyn-gris": {
+   "_set": "Ava Jordyn – Gris",
+   "lit": 3,
+   "commode": 4,
+   "chevet": 6
   }
  }
 }

@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 """Give each split piece the photograph of that piece.
 
-Splitting a set gave every piece the parent's whole gallery, so each one opened
-on whichever image happened to be first — a $210 nightstand showing a dresser.
-image-map.json records which image actually shows which piece, read off contact
-sheets by eye, because the galleries are not in a consistent order.
+image-map.json records which gallery image shows which piece, read by eye from
+contact sheets of all 50 split sets — the galleries are in no consistent order,
+and an automated backdrop test was wrong in both directions.
 
-Pieces with no entry have no photo of their own anywhere in the gallery. They
-are marked so the page can say the picture is of the whole set rather than
-implying it is the piece.
+Two hard lessons encoded here:
+- The mapping always reads from the ORIGINAL gallery order. This script once
+  reordered galleries in place and was run twice, which shifted every mapping
+  by one — nightstands became beds on 15 sets.
+- The first product of a parentless group (a split with no set line) is a
+  piece too, not a parent. It used to keep the set shot silently, with no
+  label saying so.
 """
 import json, os, collections
 
@@ -29,21 +32,25 @@ def main():
             continue
         m = spec.get(h, {})
         for x in ps:
-            if x is ps[0]:
-                continue                       # the parent keeps the set shot
+            # idempotence: map from the gallery as it came from the store
+            orig = x.get('orig_images') or list(x.get('images') or [])
+            x['orig_images'] = orig
+            if x['sub'].startswith('ensemble'):
+                x['images'] = list(orig)          # the set keeps the set shot
+                x['set_photo'] = False
+                continue
             idx = m.get(x['sub'])
-            imgs = x.get('images') or []
-            if idx is not None and idx < len(imgs):
-                x['images'] = [imgs[idx]] + [u for i, u in enumerate(imgs) if i != idx]
+            if idx is not None and idx < len(orig):
+                x['images'] = [orig[idx]] + [u for i, u in enumerate(orig) if i != idx]
                 x['set_photo'] = False
                 fixed += 1
             else:
-                # no photograph of this piece exists in the gallery
+                x['images'] = list(orig)
                 x['set_photo'] = True
                 flagged += 1
 
     json.dump(cat, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-    print(f'{fixed} pieces given their own photo, {flagged} still showing the set shot')
+    print(f'{fixed} pieces given their own photo, {flagged} labelled as showing the set')
 
 if __name__ == '__main__':
     main()

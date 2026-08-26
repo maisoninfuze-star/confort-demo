@@ -171,9 +171,26 @@ def main():
             want_set = bool(SET_RX.search(lbl))
             pool = [e for e in src if bool(SET_RX.search(e['desc'])) == want_set] or src
             vs = size_of(lbl) or v.get('size')
-            line = next((e for e in pool if vs and e['size'] == vs), None) \
-                   or (min(pool, key=lambda e: e['price']) if pool else None)
-            v['price'] = round(line['price'], 2) if line else new
+            line = next((e for e in pool if vs and e['size'] == vs), None)
+            if line is None:
+                # match the piece the variant names to the piece the line names
+                KIND = [(r'fauteuil|recliner\b(?!.*sofa)', r'\bchair\b'),
+                        (r'love|causeuse', r'\blove'),
+                        (r'sofa|canap[eé]', r'\bsofa\b'),
+                        (r'sectionn', r'section'),
+                        (r'\btable\b', r'\btable\b'),
+                        (r'\bchaise\b|\bchair\b', r'\bchair\b')]
+                for vrx, drx in KIND:
+                    if re.search(vrx, lbl, re.I):
+                        line = next((e for e in pool if re.search(drx, e['desc'], re.I)), None)
+                        break
+                else:
+                    line = min(pool, key=lambda e: e['price']) if pool else None
+            # A variant with no line of its own keeps the store's price. The
+            # supplier marks discontinued pieces DISC — stamping the sofa's
+            # line onto a $1,000 armchair doubled it.
+            if line is not None:
+                v['price'] = round(line['price'], 2)
             v['compare'] = None
     json.dump(cat, open(os.path.join(HERE, 'catalogue.json'), 'w', encoding='utf-8'),
               ensure_ascii=False, indent=1)

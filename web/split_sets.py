@@ -80,6 +80,13 @@ def main():
         sets = [v for v in vs if SET_RX.search(v['label'] or '')
                 and not ACCESSORY_RX.search(v['label'] or '')]
         pieces = [v for v in vs if v not in sets and piece_of(v['label'])]
+        # a variant that is nothing but the product's own code — "IF-8030"
+        # beside "Fauteuil IF-8030" — is the main piece of its category
+        BARE = re.compile(r'^\s*(?:IF|I|T|C|B|ST)[\s-]?\d{3,4}[A-Z]?\s*$', re.I)
+        if pieces:
+            for v in vs:
+                if v not in sets and v not in pieces and BARE.match(v['label'] or ''):
+                    pieces.append(v)
         # "Ensemble de 2 tiroirs de rangement" is an add-on, not a suite. A set
         # is never cheaper than the pieces it contains, so anything that says
         # "ensemble" but undercuts a component is treated as a component.
@@ -99,9 +106,14 @@ def main():
             out.append(prod); continue
 
         # group components of the same kind (a bed in two sizes is one product)
+        DEFAULT_META = {'salon': ('canape', 'Canapés', 'Sofas'),
+                        'chambre': ('lit', 'Lits', 'Beds'),
+                        'salle-a-manger': ('table-manger', 'Tables de salle à manger', 'Dining tables')}
         groups, group_meta = collections.OrderedDict(), {}
         for v in pieces:
-            meta = piece_of(v['label'])
+            meta = piece_of(v['label']) or DEFAULT_META.get(prod['cat'])
+            if meta is None:
+                continue
             groups.setdefault(meta[0], []).append(v)
             group_meta[meta[0]] = meta
 
@@ -146,10 +158,19 @@ def main():
             child['price'] = min(v['price'] for v in vlist)
             child['price_max'] = max(v['price'] for v in vlist)
             child['monthly'] = round(child['price'] / 36) if child['price'] else 0
+            # an accent chair in a living-room set is a fauteuil, not a
+            # dining chair
+            if meta[0] == 'chaise' and prod['cat'] == 'salon':
+                meta = ('fauteuil', 'Fauteuils', 'Armchairs')
             child['sub'], child['sub_fr'], child['sub_en'] = meta
             base = BASE_RX.sub('', prod['name_fr']).strip() or prod['name_fr']
             base = re.sub(r'\s*[—-]\s*$', '', base)
-            child['name_fr'] = f"{base} — {meta[1].rstrip('s')}"
+            piece_word = meta[1].rstrip('s')
+            # "Canapé Ahuntsic — Canapé" says it twice; the base already names it
+            if base.split()[0].lower() == piece_word.lower():
+                child['name_fr'] = base
+            else:
+                child['name_fr'] = f"{base} — {piece_word}"
             child['name_en'] = f"{prod['name_en']} — {meta[2].rstrip('s')}"
             child['slug'] = slugify(child['name_fr'])
             child['slug_en'] = slugify(child['name_en'])
@@ -181,6 +202,13 @@ def main():
                for v in vs):
             key, fr, en = SET_SUB.get(x['cat'], (x['sub'], x['sub_fr'], x['sub_en']))
             x['sub'], x['sub_fr'], x['sub_en'] = key, fr, en
+
+    # a set named after its old single-piece title reads absurdly —
+    # "Chaise Christophe" selling a whole dining set
+    for x in out:
+        if x['sub'].startswith('ensemble') and re.match(r'^(Chaise|Canapé|Table basse)\b', x['name_fr']):
+            x['name_fr'] = re.sub(r'^(Chaise|Canapé|Table basse)\b', 'Ensemble', x['name_fr'])
+            x['name_en'] = 'Set ' + x['name_en'] if not x['name_en'].lower().startswith('set') else x['name_en']
 
     # a "was" price only means something if it belongs to the variants this
     # product actually keeps — inherited ones produce 699 marked down from 90

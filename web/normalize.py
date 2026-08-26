@@ -161,10 +161,13 @@ CODE_RUN = re.compile(r'\b' + CODE + r'(?:\s*[/&,+]\s*' + CODE + r')*', re.I)
 EMOJI = re.compile('[\U0001F300-\U0001FAFF\u2600-\u27BF\uFE0F\u2B00-\u2BFF]')
 LEAD_JUNK = re.compile(r'^[\s\-–—:|/·.]+|[\s\-–—:|/·.]+$')
 
+def fix_caps(t):
+    return t.replace('ATlas', 'Atlas')
+
 def strip_codes(title):
     """Return (clean title, the codes that were in it)."""
     codes = [m.group(0).strip() for m in CODE_RUN.finditer(title)]
-    clean = EMOJI.sub('', title)
+    clean = EMOJI.sub('', fix_caps(title))
     clean = CODE_RUN.sub(' ', clean)
     clean = re.sub(r'\s{2,}', ' ', clean)
     clean = LEAD_JUNK.sub('', clean)
@@ -191,13 +194,20 @@ def humanize(title, sub_fr, sub_en, colours, materials, idx):
     """Codes and emoji come out. Whatever real words remain become the name; if
     nothing remains, the piece is named after a Montréal street."""
     clean, sku = strip_codes(title)
+    # "(Fabric-Power)" and friends are spec noise, not a name
+    clean = re.sub(r'\([^)]*\)', ' ', clean)
+    clean = re.sub(r'\s{2,}', ' ', clean).strip(' -–—·|')
     # Keep a leftover only if it reads like a product name: enough letters, but
     # not a marketing sentence lifted out of the description.
     letters = len(re.sub(r'[^A-Za-zÀ-ÿ]', '', clean))
     words = len(clean.split())
     sentence = bool(re.search(r"\b(est|sont|incarne|offre|apporte|combine|vous|votre|ce|cette)\b",
                               clean, re.I))
-    meaningful = letters >= 4 and words <= 7 and not sentence
+    meaningful = letters >= 4 and not sentence
+    if meaningful and words > 7:
+        # keep the name, drop the spec tail
+        cut = re.split(r'\s*[|–—-]\s*', clean)[0].strip()
+        clean = cut if len(cut.split()) >= 2 else ' '.join(clean.split()[:7])
     if meaningful:
         if clean.isupper():
             clean = clean.title()
@@ -294,9 +304,19 @@ def main():
         hay = ' '.join([p['title'], body, ' '.join(p['tags']), p.get('product_type') or ''])
 
         sub = None
+        # the title outranks the description: a velvet chair whose copy
+        # mentions "matelas" is a chair, not a mattress
         for key, fr, en, rx in SUBS:
-            if re.search(rx, hay, re.I):
+            if re.search(rx, p['title'], re.I):
                 sub = (key, fr, en); break
+        if not sub:
+            for key, fr, en, rx in SUBS:
+                if re.search(rx, hay, re.I):
+                    sub = (key, fr, en); break
+        # "Table : … Chaises : …" is a dining set whatever else matched
+        if re.search(r'Tableau?\s*[:T-]|Table\s*:', body) and re.search(r'Chaises?\s*[:C-]|Chaises\s*:', body) \
+           and (not sub or sub[0] in ('chaise', 'table-manger', 'decor')):
+            sub = ('ensemble-manger', 'Ensembles de salle à manger', 'Dining sets')
         if not sub:
             sub = ('decor', 'Décoration', 'Decor')
         cat = SUB_PARENT.get(sub[0], 'salon')
