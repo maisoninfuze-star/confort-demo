@@ -215,6 +215,10 @@ section.band{padding:clamp(56px,8.5vw,124px) 0; border-bottom:1px solid var(--li
 
 /* ── product grid ───────────────────────────────────── */
 .grid{display:grid; gap:var(--gut) clamp(14px,1.8vw,26px); grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+/* The filter hides cards with the `hidden` attribute. An author display
+   (.pc{display:flex}) OVERRIDES the UA's [hidden]{display:none} — so the
+   filters counted correctly while hiding nothing. Never again. */
+.pc[hidden],.ic[hidden]{display:none!important}
 .pc{display:flex; flex-direction:column; background:transparent; border-radius:var(--r)}
 .pc-shot{position:relative; aspect-ratio:7/5; background:var(--sunk); overflow:hidden}
 /* a piece shot portrait is shown whole rather than cropped to a ratio it was
