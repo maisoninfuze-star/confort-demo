@@ -1,10 +1,5 @@
 {
-  "_comment": "Manual price corrections, applied last. Use this for the client's returned 'Prix corrigé' column and for defects in the store's own data. Match on 'name' (exact product name after the split) or 'sku'. Every entry needs a reason so the correction can be audited later.",
-  "overrides": [
-    {
-      "name": "Zénith — Canapé",
-      "price": 1800.00,
-      "reason": "Typo in the store's Shopify data: the variant reads $200 while the suite's own loveseat is $1,500 and its armchair $900. Two independent checks give $1,800 — the set arithmetic (4200 - 1500 - 900) and every sibling suite with a $4,200 set (Royal, Véga, Sérénity), all of which price the canapé at $1,800."
-    }
-  ]
+ "_comment": "Manual price corrections, applied last. Use this for the client's returned 'Prix corrigé' column and for defects in the store's own data. Match on 'name' (exact product name after the split) or 'sku'. Every entry needs a reason so the correction can be audited later.",
+ "overrides": [],
+ "_history": "Zénith — Canapé was overridden to 1800.00 on 25 Aug, derived from sibling suites, while the store's variant read a typo'd 200.00. The supplier list now reaches this product and prices the sofa line at 999.99 x2 = 1999.98 — the authoritative number — so the override is retired."
 }

@@ -687,17 +687,27 @@ def build_listing(cat, k, lang):
         f'<span class="n">{sum(1 for p in ps if band_of(p["price"])==b)}</span></label>'
         for b, fr, en, lo, hi in BANDS if any(band_of(p['price']) == b for p in ps))
 
+    # a checkbox that can only empty the grid is worse than no checkbox:
+    # "En rabais · 0" reads as a broken filter
+    inst = sum(1 for p in ps if p['available'])
+    sale = sum(1 for p in ps if p['compare'] and p['compare'] > p['price'])
+    stock_rows = ''
+    if 0 < inst < len(ps):
+        stock_rows += (f'<label><input type="checkbox" name="stock" value="instock">'
+                       f'<span>{E(c["in_stock"])}</span><span class="n">{inst}</span></label>')
+    if sale:
+        stock_rows += (f'<label><input type="checkbox" name="stock" value="sale">'
+                       f'<span>{E(c["on_sale"])}</span><span class="n">{sale}</span></label>')
+    stockbox = (f'<fieldset class="facet"><legend>{E(c["f_stock"])}</legend>{stock_rows}</fieldset>'
+                if stock_rows else '')
+
     facets = f'''<form class="facets" id="facets">
   {box('sub', c['f_sub'], subs)}
   {box('colour', c['f_colour'], cols, True)}
   {box('material', c['f_material'], mats)}
   <fieldset class="facet"><legend>{E(c['f_price'])}</legend>{bandbox}</fieldset>
-  <fieldset class="facet"><legend>{E(c['f_stock'])}</legend>
-    <label><input type="checkbox" name="stock" value="instock"><span>{E(c['in_stock'])}</span>
-      <span class="n">{sum(1 for p in ps if p['available'])}</span></label>
-    <label><input type="checkbox" name="stock" value="sale"><span>{E(c['on_sale'])}</span>
-      <span class="n">{sum(1 for p in ps if p['compare'] and p['compare']>p['price'])}</span></label>
-  </fieldset>
+  {stockbox}
+  <button type="button" class="btn btn-primary facet-apply" id="facet-apply">{E(c['filters'])}</button>
 </form>'''
 
     body = f'''<div class="wrap">

@@ -55,10 +55,30 @@
       "name": "grand-optical",
       "runtimeExecutable": "sh",
       "runtimeArgs": [
-        "-c",
-        "cd '/Users/inder/Claude/Projects/optical go/app' && exec npx next dev -p \"${PORT:-4310}\""
+        "-lc",
+        "cd '/Users/inder/Claude/Projects/optical go' && exec npx next dev -p \"${PORT:-4310}\""
       ],
       "port": 4310,
+      "autoPort": true
+    },
+    {
+      "name": "antico-salumi",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "exec python3 '/Users/inder/Claude/Projects/Antico Salumi/serve.py' \"${PORT:-8795}\""
+      ],
+      "port": 8795,
+      "autoPort": true
+    },
+    {
+      "name": "antico-next",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-lc",
+        "cd '/Users/inder/Claude/Projects/Antico Salumi/antico-web' && exec npx next dev -p \"${PORT:-4390}\""
+      ],
+      "port": 4390,
       "autoPort": true
     },
     {

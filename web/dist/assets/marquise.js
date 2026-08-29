@@ -416,10 +416,32 @@
       });
       arr.forEach(function (c) { list.appendChild(c); });
     }
-    form.addEventListener('change', apply);
+    // On a phone the grid updates out of sight below the open drawer, which
+    // reads as "the filter does nothing". The button inside the drawer says
+    // how many results the current choice gives, and jumps to them.
+    var applyBtn = document.getElementById('facet-apply');
+    var toggleBtn = document.getElementById('facet-toggle');
+    function feedback() {
+      var shown = cards.filter(function (c) { return !c.hidden; }).length;
+      var active = form.querySelectorAll('input:checked').length;
+      if (applyBtn) applyBtn.textContent = T.results(shown);
+      if (toggleBtn) {
+        toggleBtn.classList.toggle('is-active', active > 0);
+        toggleBtn.textContent = active > 0 ? toggleBtn.dataset.base + ' · ' + active
+                                           : toggleBtn.dataset.base;
+      }
+    }
+    if (toggleBtn) toggleBtn.dataset.base = toggleBtn.textContent.trim();
+    if (applyBtn) applyBtn.addEventListener('click', function () {
+      form.classList.remove('open');
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    form.addEventListener('change', function () { apply(); feedback(); });
+    feedback();
     sortEl.addEventListener('change', function () { sort(); apply(); });
     var clear = document.getElementById('clearf');
-    if (clear) clear.addEventListener('click', function () { form.reset(); apply(); });
+    if (clear) clear.addEventListener('click', function () { form.reset(); apply(); feedback(); });
     var tog = document.getElementById('facet-toggle');
     if (tog) tog.addEventListener('click', function () { form.classList.toggle('open'); });
 

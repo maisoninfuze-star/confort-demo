@@ -135,7 +135,6 @@
 /products/if-8140-pouce-en-cuir-match-power	/fr/salon/nexus-canape/
 /products/if-8140-pouce-en-cuir-match-power	/fr/salon/nexus-causeuse/
 /products/if-8140-pouce-en-cuir-match-power	/fr/salon/nexus-fauteuil/
-/products/if-8130-alimentation-en-cuir	/fr/salon/skyline/
 /products/if-8130-alimentation-en-cuir	/fr/salon/skyline-canape/
 /products/if-8130-alimentation-en-cuir	/fr/salon/skyline-causeuse/
 /products/if-8130-alimentation-en-cuir	/fr/salon/skyline-fauteuil/
@@ -202,19 +201,15 @@
 /products/matelas-breeze-cool-max-fermete-moyenne-ressorts-quantum-edge-et-technologie-rafraichissante	/fr/chambre/matelas-breeze-cool-max-fermete-moyenne/
 /products/matelas-bella-tight-top-copper-series-fermete-ferme-ressorts-ensaches-et-mousse-infusee-au-cuivre	/fr/chambre/matelas-bella-tight-top/
 /products/matelas-bella-copper-series	/fr/chambre/matelas-bella-euro-top-copper-series/
-/products/ensemble-3-pieces-inclinable-electrique-if-8141-cuir-gris-pale-avec-usb-et-plateau-escamotable	/fr/salon/zenith/
 /products/ensemble-3-pieces-inclinable-electrique-if-8141-cuir-gris-pale-avec-usb-et-plateau-escamotable	/fr/salon/zenith-canape/
 /products/ensemble-3-pieces-inclinable-electrique-if-8141-cuir-gris-pale-avec-usb-et-plateau-escamotable	/fr/salon/zenith-causeuse/
 /products/ensemble-3-pieces-inclinable-electrique-if-8141-cuir-gris-pale-avec-usb-et-plateau-escamotable	/fr/salon/zenith-fauteuil/
-/products/ensemble-3-pieces-inclinable-electrique-if-8172-cuir-creme-chaud-avec-usb-et-porte-gobelets	/fr/salon/serenity/
 /products/ensemble-3-pieces-inclinable-electrique-if-8172-cuir-creme-chaud-avec-usb-et-porte-gobelets	/fr/salon/serenity-canape/
 /products/ensemble-3-pieces-inclinable-electrique-if-8172-cuir-creme-chaud-avec-usb-et-porte-gobelets	/fr/salon/serenity-causeuse/
 /products/ensemble-3-pieces-inclinable-electrique-if-8172-cuir-creme-chaud-avec-usb-et-porte-gobelets	/fr/salon/serenity-fauteuil/
-/products/ensemble-3-pieces-inclinable-electrique-if-8160-cuir-chocolat-avec-ports-usb-et-porte-gobelets	/fr/salon/nuvola/
 /products/ensemble-3-pieces-inclinable-electrique-if-8160-cuir-chocolat-avec-ports-usb-et-porte-gobelets	/fr/salon/nuvola-canape/
 /products/ensemble-3-pieces-inclinable-electrique-if-8160-cuir-chocolat-avec-ports-usb-et-porte-gobelets	/fr/salon/nuvola-causeuse/
 /products/ensemble-3-pieces-inclinable-electrique-if-8160-cuir-chocolat-avec-ports-usb-et-porte-gobelets	/fr/salon/nuvola-fauteuil/
-/products/ensemble-salon-if-8025-tissu-performance-gris	/fr/salon/hudson/
 /products/ensemble-salon-if-8025-tissu-performance-gris	/fr/salon/hudson-canape/
 /products/ensemble-salon-if-8025-tissu-performance-gris	/fr/salon/hudson-causeuse/
 /products/ensemble-salon-if-8025-tissu-performance-gris	/fr/salon/hudson-fauteuil/

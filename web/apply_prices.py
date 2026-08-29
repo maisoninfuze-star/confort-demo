@@ -101,6 +101,26 @@ def pick(entries, product):
         if singles:
             pool = singles
 
+    # a split piece must reach its own line: a nightstand product takes the
+    # Nightstand line, not the cheapest line of the whole collection
+    PIECE_LINE = [('chevet', r'night\s*stand'), ('commode', r'dresser|chest'),
+                  ('lit', r'\bbed\b'), ('chaise', r'\bchair\b'),
+                  ('table-manger', r'\btable\b'), ('canape', r'\bsofa\b'),
+                  ('causeuse', r'\blove'), ('fauteuil', r'\bchair\b|recliner'),
+                  ('sectionnel', r'section')]
+    for sub, rx in PIECE_LINE:
+        if is_set:
+            break          # a set prices from its set line; the guard below is for lone pieces
+        if product.get('sub') == sub:
+            hit = [e for e in pool if re.search(rx, e['desc'], re.I)]
+            if hit:
+                pool = hit
+            elif any(re.search(r2, e['desc'], re.I) for _, r2 in PIECE_LINE for e in pool):
+                # the lines name pieces, just not THIS piece (it is DISC) —
+                # a causeuse must not borrow the chair's line
+                return None
+            break
+
     sizes = {s.upper() for s in (product.get('variant_sizes') or [])}
     want = size_of(hay) or (list(sizes)[0] if sizes else None)
     if want:
@@ -114,12 +134,24 @@ def main():
     cat = json.load(open(os.path.join(HERE, 'catalogue.json'), encoding='utf-8'))
     changes, unmatched = [], 0
     for p in cat:
-        if not p.get('sku'):
-            unmatched += 1; continue
-        k = norm(p['sku'])
-        if k not in by:
+        # "Nexus" carries no code in its title — the codes are in its variant
+        # labels ("IF-8140 Sofa") and body. Try the SKU, then any code found
+        # in the variants or copy that the list actually knows.
+        k = None
+        if p.get('sku') and norm(p['sku']) in by:
+            k = norm(p['sku'])
+        else:
+            hay = ' '.join([v.get('label') or '' for v in p.get('variants', [])]) \
+                  + ' ' + p.get('name_fr', '') + ' ' + p.get('body_fr', '')[:400]
+            for m in re.finditer(r'\b([A-Za-z]{1,3})[\s-]?(\d{3,4})\b', hay):
+                cand = norm(m.group(1) + m.group(2))
+                if cand in by:
+                    k = cand; break
+        if k is None:
             unmatched += 1; continue
         row = pick(by[k], p)
+        if row is None:
+            unmatched += 1; continue     # piece discontinued on the list
         old = p['price']
         new = round(row['price'], 2)
         if abs(new - old) > 0.005:
@@ -206,7 +238,7 @@ def main():
     downs = [c for c in changes if c[3] < c[2]]
     print(f'  {len(downs)} go DOWN, {len(ups)} go UP\n')
     for s, n, o, w, d in sorted(changes, key=lambda c: (c[3]-c[2])/c[2])[:14]:
-        print(f'  {s:12} {n:36} {o:8.2f} -> {w:8.2f}  {(w-o)/o*100:+6.0f}%  {d}')
+        print(f'  {(s or chr(8212)):12} {n:36} {o:8.2f} -> {w:8.2f}  {(w-o)/o*100:+6.0f}%  {d}')
     if len(changes) > 14:
         print(f'  … and {len(changes)-14} more')
 
