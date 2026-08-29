@@ -475,7 +475,8 @@ def card(p, lang, rank=0, lazy=True):
    data-sub="{E(p['sub'])}" data-price="{p['price']:.0f}" data-band="{band_of(p['price'])}"
    data-colour="{E(' '.join(x['key'] for x in p['colours']))}"
    data-material="{E(' '.join(x['key'] for x in p['materials']))}"
-   data-instock="{1 if p['available'] else 0}" data-sale="{1 if sale else 0}" data-rank="{rank}">
+   data-instock="{1 if p['available'] else 0}" data-sale="{1 if sale else 0}"
+   data-setshot="{1 if p.get('set_photo') else 0}" data-rank="{rank}">
  <div class="pc-shot{fit_class(p)}">{f'<div class="pc-flags">{flags}</div>' if flags else ''}
    <img {'loading="lazy" ' if lazy else ''}src="{E(img(p['images'][0], 700))}" alt="{E(p_name(p, lang))}" width="700" height="500">
    {f'<span class="setshot">{E(c["set_photo"])}</span>' if p.get('set_photo') else ''}
@@ -665,7 +666,9 @@ def build_home(cat, lang):
 def build_listing(cat, k, lang):
     c = COPY[lang]
     ps = [p for p in cat if p['cat'] == k]
-    ps.sort(key=lambda p: (not p['available'], p['price']))
+    # pieces that can only show the set photo sink below products that show
+    # themselves — a "Nightstands" filter should open on nightstands
+    ps.sort(key=lambda p: (not p['available'], bool(p.get('set_photo')), p['price']))
     subs, cols, mats = {}, {}, {}
     for p in ps:
         subs.setdefault(p['sub'], [p['sub_fr'] if lang=='fr' else p['sub_en'], 0])[1] += 1

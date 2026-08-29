@@ -171,7 +171,12 @@ def main():
                 child['name_fr'] = base
             else:
                 child['name_fr'] = f"{base} — {piece_word}"
-            child['name_en'] = f"{prod['name_en']} — {meta[2].rstrip('s')}"
+            base_en = BASE_RX.sub('', prod['name_en']).strip() or prod['name_en']
+            piece_en = meta[2].rstrip('s')
+            if base_en.split()[0].lower() == piece_en.lower():
+                child['name_en'] = base_en
+            else:
+                child['name_en'] = f"{base_en} — {piece_en}"
             child['slug'] = slugify(child['name_fr'])
             child['slug_en'] = slugify(child['name_en'])
             child['compare'] = None

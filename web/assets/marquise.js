@@ -409,9 +409,12 @@
     function sort() {
       var v = sortEl.value;
       var arr = cards.slice().sort(function (a, b) {
-        if (v === 'price-asc') return a.dataset.price - b.dataset.price;
-        if (v === 'price-desc') return b.dataset.price - a.dataset.price;
-        if (v === 'soon') return (b.dataset.instock - a.dataset.instock) || (a.dataset.price - b.dataset.price);
+        // whatever the sort, a card that can only show the set photo yields
+        // to one that shows the product itself
+        var set = (a.dataset.setshot - b.dataset.setshot);
+        if (v === 'price-asc') return (a.dataset.price - b.dataset.price) || set;
+        if (v === 'price-desc') return (b.dataset.price - a.dataset.price) || set;
+        if (v === 'soon') return (b.dataset.instock - a.dataset.instock) || set || (a.dataset.price - b.dataset.price);
         return a.dataset.rank - b.dataset.rank;
       });
       arr.forEach(function (c) { list.appendChild(c); });
