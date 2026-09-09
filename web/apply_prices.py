@@ -72,7 +72,9 @@ def read_list():
         by[r['key']].append(r)
     return by
 
-SET_RX = re.compile(r'\b(\d+\s*pc|piece|set|ensemble|dinette)\b', re.I)
+# 'pcs?' — the plural cost real money: '7pcs T-1448 C-1263' read as not-a-set
+# and each chair choice of a $940 dining set was priced from the table-only line
+SET_RX = re.compile(r'\b(\d+\s*pcs?|piece|set|ensemble|dinette)\b', re.I)
 # A dining set is often only identifiable from the French copy or from the two
 # codes paired in the title — "T-1448 C-1263", "Table : … Chaises : …".
 PAIR_RX = re.compile(r'\bT[\s-]?\d{3,4}\b\W{0,4}\bC[\s-]?\d{3,4}\b', re.I)
@@ -199,8 +201,9 @@ def main():
                                 own = by[cand]; break
             src = own if own else by[k]
             # a set variant takes a set line, a single takes a single line —
-            # otherwise a "Set 7pcs" is priced off the table-only row
-            want_set = bool(SET_RX.search(lbl))
+            # otherwise a "Set 7pcs" is priced off the table-only row. A label
+            # like 'T-1442 C-1878' names a table AND its chairs: also a set.
+            want_set = bool(SET_RX.search(lbl) or PAIR_RX.search(lbl))
             pool = [e for e in src if bool(SET_RX.search(e['desc'])) == want_set] or src
             vs = size_of(lbl) or v.get('size')
             line = next((e for e in pool if vs and e['size'] == vs), None)

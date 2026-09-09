@@ -1,5 +1,12 @@
 {
  "_comment": "Manual price corrections, applied last. Use this for the client's returned 'Prix corrigé' column and for defects in the store's own data. Match on 'name' (exact product name after the split) or 'sku'. Every entry needs a reason so the correction can be audited later.",
- "overrides": [],
+ "overrides": [
+  {"sku": "T-1448", "price": 939.98,
+   "reason": "7-piece dining set: the four chair-choice variants were priced from the supplier's table-only line (339.98) because the label '7pcs' eluded SET_RX (now fixed to match 'pcs'). Every chair choice is the same 939.98 set."},
+  {"sku": "T-1442", "price": 999.98,
+   "reason": "Same defect as T-1448: variants 'T-1442 C-187x' carry no set word, so each took the table-only line (419.98). One 999.98 set, three chair choices."},
+  {"name": "Chambre Moderne Blanche — Commode", "price": 800.0,
+   "reason": "Cross-product Shopify rows 'Commode $ dressers' (1660.00) mix the full bedroom set's scope into the commode piece; the piece itself sells at 800.00, every variant."}
+ ],
  "_history": "Zénith — Canapé was overridden to 1800.00 on 25 Aug, derived from sibling suites, while the store's variant read a typo'd 200.00. The supplier list now reaches this product and prices the sofa line at 999.99 x2 = 1999.98 — the authoritative number — so the override is retired."
 }

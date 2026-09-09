@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.shopify.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/marquise.css?v=36d5d679">
+<link rel="stylesheet" href="/assets/marquise.css?v=7df5554b">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Skyline — Armchair", "image": ["https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_b2ffaf5e15074fafa46135aa57e46bcc_mv2.avif?v=1770935543&width=1000", "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_a4c0c4e35bb24c60b4e0419b39a60a21_mv2_2.jpg?v=1770935543&width=1000", "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_a4c0c4e35bb24c60b4e0419b39a60a21_mv2.avif?v=1770935543&width=1000", "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_d5e28b8d4506466a8911c8680b9d0639_mv2.avif?v=1770935543&width=1000"], "description": "Skyline — Armchair — a armchair in leather, finished in grey. Features: reclining, usb outlets. Measures 83&quot; W × 37&quot; D × 41&quot; H. In our Montréal showroom on Plaza Saint-Hubert. Free delivery, assembled, to Montréal, Laval and Longueuil.", "sku": "9158955434220", "brand": {"@type": "Brand", "name": "Meuble Confort & Style"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "79"}, "offers": {"@type": "Offer", "url": "https://confort-demo.vercel.app/en/living-room/skyline-armchair/", "priceCurrency": "CAD", "price": "900.00", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "seller": {"@type": "Organization", "name": "Meuble Confort & Style"}}}</script>
 
 </head>
@@ -45,7 +45,7 @@
       <a href="/fr/salon/skyline-fauteuil/">FR</a>
       <a href="/en/living-room/skyline-armchair/" aria-current="true">EN</a>
     </span>
-    <button class="cart" type="button" data-cart-note>Cart <span data-cart-count>0</span></button>
+    <button class="cart" type="button" data-cart-open>Cart <span data-cart-count>0</span></button>
   </div>
 </div></header>
 <div class="promise"><div class="wrap">
@@ -84,7 +84,9 @@
    <span class="chip boxed go" style="align-self:flex-start">
      <span class="dot"></span><span data-deliver="instock">In stock in Montréal</span></span>
    
-   <button class="btn btn-primary btn-block" data-add type="button">Add to cart</button>
+   <button class="btn btn-primary btn-block" data-add type="button"
+     data-id="skyline-fauteuil" data-name="Skyline — Armchair" data-img="https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_b2ffaf5e15074fafa46135aa57e46bcc_mv2.avif?v=1770935543&amp;width=170"
+     data-url="/en/living-room/skyline-armchair/" data-price="900.0">Add to cart</button>
    <a class="btn btn-ghost btn-block" href="tel:+15142794600">Call us · 514-279-4600</a>
    <div class="box fitrow" id="fitcheck">
   <h2>Will it fit through your door?</h2>
@@ -255,7 +257,23 @@
    <span>Prototype — prices and stock come from the current live catalogue.</span>
  </div>
 </div></footer>
-<script>window.MQ_CART_NOTE="Cart and checkout arrive at launch.";</script>
-<script src="/assets/marquise.js?v=708f52a0" defer></script>
+<div class="cart-veil" id="cartveil" hidden></div>
+<aside class="cart-drawer" id="cartdrawer" aria-label="Cart" aria-hidden="true">
+ <div class="cart-head">
+   <h2>Your cart</h2>
+   <button class="cart-x" type="button" data-cart-close aria-label="Close">×</button>
+ </div>
+ <div class="cart-items" id="cartitems"></div>
+ <div class="cart-empty" id="cartempty">
+   <p>Your cart is empty.</p>
+   <a class="btn btn-ghost" href="/en/">Browse the collections</a>
+ </div>
+ <div class="cart-foot" id="cartfoot" hidden>
+   <div class="cart-sub"><span>Subtotal</span><b id="cartsum"></b></div>
+   <button class="btn btn-primary btn-block" id="cartpay" type="button">Proceed to payment</button>
+   <p class="cart-note">Demo — Stripe test checkout. No real charge is ever made.</p>
+ </div>
+</aside>
+<script src="/assets/marquise.js?v=9529cbc1" defer></script>
 </body>
 </html>

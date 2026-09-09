@@ -98,7 +98,13 @@ COPY = {
    fin_cta='Voir le financement',
    add='Ajouter au panier', call='Appeler', mo='ou %s $/mois', was='Prix régulier',
    filters='Filtres', sort='Trier', clear='Tout effacer', cart='Panier',
-   cart_soon='Le panier et le paiement arrivent avec la mise en ligne.',
+   cart_h='Votre panier', cart_empty='Votre panier est vide.',
+   cart_browse='Découvrir les collections', cart_sub='Sous-total',
+   cart_pay='Passer au paiement', cart_close='Fermer',
+   cart_demo='Démo — paiement Stripe en mode test. Aucun montant réel n’est débité.',
+   merci_h='Merci — votre commande est confirmée',
+   merci_p='Votre paiement test a été accepté. En production, vous recevriez ici la confirmation par courriel, puis un appel pour planifier la livraison — gratuite, montée, jusque dans vos escaliers.',
+   merci_badge='Paiement accepté', merci_cta='Retour à l’accueil',
    sort_pop='Les plus populaires', sort_soon='En stock d’abord',
    sort_asc='Prix croissant', sort_desc='Prix décroissant',
    f_sub='Type', f_colour='Couleur', f_material='Matériau', f_price='Prix', f_stock='Disponibilité',
@@ -146,7 +152,13 @@ COPY = {
    fin_cta='See financing',
    add='Add to cart', call='Call us', mo='or $%s/month', was='Regular price',
    filters='Filters', sort='Sort', clear='Clear all', cart='Cart',
-   cart_soon='Cart and checkout arrive at launch.',
+   cart_h='Your cart', cart_empty='Your cart is empty.',
+   cart_browse='Browse the collections', cart_sub='Subtotal',
+   cart_pay='Proceed to payment', cart_close='Close',
+   cart_demo='Demo — Stripe test checkout. No real charge is ever made.',
+   merci_h='Thank you — your order is confirmed',
+   merci_p='Your test payment went through. In production you would get an email confirmation here, then a call to book your delivery — free, assembled, up your stairs.',
+   merci_badge='Payment accepted', merci_cta='Back to the home page',
    sort_pop='Most popular', sort_soon='In stock first',
    sort_asc='Price, low to high', sort_desc='Price, high to low',
    f_sub='Type', f_colour='Colour', f_material='Material', f_price='Price', f_stock='Availability',
@@ -374,7 +386,7 @@ def shell(lang, title, desc, path, alt_path, body, jsonld=None, og_img=None, hea
 {body}
 </main>
 {footer(lang)}
-<script>window.MQ_CART_NOTE={json.dumps(COPY[lang]['cart_soon'], ensure_ascii=False)};</script>
+{cart_drawer(lang)}
 <script src="{asset('/assets/marquise.js')}" defer></script>
 </body>
 </html>'''
@@ -409,7 +421,7 @@ def header(lang, path, alt_path):
       <a href="{path if lang=='fr' else alt_path}"{' aria-current="true"' if lang=='fr' else ''}>FR</a>
       <a href="{alt_path if lang=='fr' else path}"{' aria-current="true"' if lang=='en' else ''}>EN</a>
     </span>
-    <button class="cart" type="button" data-cart-note>{E(c['cart'])} <span data-cart-count>0</span></button>
+    <button class="cart" type="button" data-cart-open>{E(c['cart'])} <span data-cart-count>0</span></button>
   </div>
 </div></header>
 <div class="promise"><div class="wrap">
@@ -417,6 +429,29 @@ def header(lang, path, alt_path):
   <span><span class="dot"></span>{E(c['stock'])}</span>
   <span><span class="dot"></span>{E(c['fin'])}</span>
 </div></div>'''
+
+def cart_drawer(lang):
+    """The cart panel, on every page. All markup is static; the script fills
+    the item list from localStorage and posts it to /api/checkout, where the
+    real prices live."""
+    c = COPY[lang]
+    return f'''<div class="cart-veil" id="cartveil" hidden></div>
+<aside class="cart-drawer" id="cartdrawer" aria-label="{E(c['cart'])}" aria-hidden="true">
+ <div class="cart-head">
+   <h2>{E(c['cart_h'])}</h2>
+   <button class="cart-x" type="button" data-cart-close aria-label="{E(c['cart_close'])}">×</button>
+ </div>
+ <div class="cart-items" id="cartitems"></div>
+ <div class="cart-empty" id="cartempty">
+   <p>{E(c['cart_empty'])}</p>
+   <a class="btn btn-ghost" href="{url(lang)}">{E(c['cart_browse'])}</a>
+ </div>
+ <div class="cart-foot" id="cartfoot" hidden>
+   <div class="cart-sub"><span>{E(c['cart_sub'])}</span><b id="cartsum"></b></div>
+   <button class="btn btn-primary btn-block" id="cartpay" type="button">{E(c['cart_pay'])}</button>
+   <p class="cart-note">{E(c['cart_demo'])}</p>
+ </div>
+</aside>'''
 
 def footer(lang):
     c = COPY[lang]
@@ -824,31 +859,18 @@ def build_pdp(p, cat, lang):
         f'<img loading="lazy" src="{E(img(s, 170))}" alt="{E(p_name(p, lang))} — {i+1}" width="170" height="170"></button>'
         for i, s in enumerate(imgs))
 
-    # variant options, split back into the attributes they should always have been
-    colours = [v for v in dict.fromkeys(x['colour'] if lang=='fr' else x['colour_en']
-                                        for x in p['variants'] if x['colour'])]
-    sizes = [v for v in dict.fromkeys(x['size'] if lang=='fr' else x['size_en']
-                                      for x in p['variants'] if x['size'])]
+    colours, kind, opts = pdp_options(p, lang)
     optblocks = ''
     if colours:
-        row = ''.join(f'<button class="opt" data-fit-opt aria-pressed="{str(i==0).lower()}">{E(v)}</button>'
+        row = ''.join(f'<button class="opt" data-fit-opt data-vlabel="{E(v)}" aria-pressed="{str(i==0).lower()}">{E(v)}</button>'
                       for i, v in enumerate(colours))
         optblocks += f'<div class="opts" data-optgroup><span class="lbl">{E(c["colour"])}</span><div class="row">{row}</div></div>'
-    if sizes:
-        row = ''
-        for i, v in enumerate(sizes):
-            pr = next((x['price'] for x in p['variants']
-                       if (x['size'] if lang=='fr' else x['size_en']) == v), p['price'])
-            row += (f'<button class="opt" data-price="{pr}" aria-pressed="{str(i==0).lower()}">'
-                    f'{E(v)} · {money(pr, lang)}</button>')
-        optblocks += f'<div class="opts" data-optgroup><span class="lbl">{E(c["size"])}</span><div class="row">{row}</div></div>'
-    # an add-on must never sit in the price picker: choosing "Option de
-    # rangement" would drop a $780 bed to $180 on screen
-    sellable = [v for v in p['variants'] if not v.get('accessory')]
-    if not colours and not sizes and len(sellable) > 1:
-        row = ''.join(f'<button class="opt" data-price="{v["price"]}" aria-pressed="{str(i==0).lower()}">'
-                      f'{E(v["label"])}</button>' for i, v in enumerate(sellable[:6]))
-        optblocks += f'<div class="opts" data-optgroup><span class="lbl">{E(c["config"])}</span><div class="row">{row}</div></div>'
+    if opts:
+        row = ''.join(f'<button class="opt" data-price="{pr}" data-vlabel="{E(v)}" aria-pressed="{str(i==0).lower()}">'
+                      f'{E(v)}{f" · {money(pr, lang)}" if kind == "size" else ""}</button>'
+                      for i, (v, pr) in enumerate(opts))
+        optblocks += (f'<div class="opts" data-optgroup><span class="lbl">'
+                      f'{E(c["size"] if kind == "size" else c["config"])}</span><div class="row">{row}</div></div>')
 
     fit = fit_payload(p, cat, lang)
     fitblock = ''
@@ -902,7 +924,9 @@ def build_pdp(p, cat, lang):
    <span class="chip boxed {'go' if p['available'] else 'plain'}" style="align-self:flex-start">
      <span class="dot"></span><span data-deliver="{deliver_mode(p)}">{E(deliver_text(p, lang))}</span></span>
    {optblocks}
-   <button class="btn btn-primary btn-block" data-add type="button">{E(c['add'])}</button>
+   <button class="btn btn-primary btn-block" data-add type="button"
+     data-id="{E(p['slug'])}" data-name="{E(p_name(p, lang))}" data-img="{E(img(imgs[0], 170))}"
+     data-url="{p_url(p, lang)}" data-price="{p['price']}">{E(c['add'])}</button>
    <a class="btn btn-ghost btn-block" href="tel:+1{PHONE.replace('-','')}">{E(c['call'])} · {PHONE}</a>
    {fitblock}
    <script type="application/json" id="bnpldata">{json.dumps({'options': BNPL, 'term': BNPL_TERM}, ensure_ascii=False)}</script>
@@ -1237,6 +1261,81 @@ def build_prose(key, lang):
     return shell(lang, f'{name} | Meuble Confort & Style', txt[:180],
                  url(lang, PAGES[key][lang][1]), url(other, PAGES[key][other][1]), body, ld)
 
+def pdp_options(p, lang):
+    """The priced option rows of a PDP — ONE source for both the page and the
+    checkout price map, so what the customer sees and what Stripe charges can
+    never disagree. Returns (colours, kind, opts) with opts as (label, price).
+
+    The first option is pre-selected on the page, so it must carry the price
+    the card and the headline lead with — the list is stably reordered to put
+    that option first, and the build fails if no option carries it."""
+    colours = [v for v in dict.fromkeys(x['colour'] if lang == 'fr' else x['colour_en']
+                                        for x in p['variants'] if x['colour'])]
+    sizes = [v for v in dict.fromkeys(x['size'] if lang == 'fr' else x['size_en']
+                                      for x in p['variants'] if x['size'])]
+    # an add-on must never sit in the price picker: choosing "Option de
+    # rangement" would drop a $780 bed to $180 on screen
+    sellable = [v for v in p['variants'] if not v.get('accessory')]
+    kind, opts = None, []
+    if sizes:
+        kind = 'size'
+        for s in sizes:
+            pr = next((x['price'] for x in p['variants']
+                       if (x['size'] if lang == 'fr' else x['size_en']) == s), p['price'])
+            opts.append((s, pr))
+    elif not colours and len(sellable) > 1:
+        kind = 'config'
+        opts = [(v['label'], v['price']) for v in sellable[:6]]
+    opts.sort(key=lambda t: abs(t[1] - p['price']) > 0.005)   # stable: leading price first
+    assert not opts or abs(opts[0][1] - p['price']) < 0.005, \
+        f"{p['slug']} ({lang}): no option carries the leading price {p['price']}: {opts}"
+    return colours, kind, opts
+
+def build_merci(lang):
+    """Where Stripe sends people after a successful test payment. The inline
+    script empties the cart before marquise.js paints the count."""
+    c = COPY[lang]
+    path = url(lang, 'merci' if lang == 'fr' else 'thank-you')
+    alt = url('en' if lang == 'fr' else 'fr', 'thank-you' if lang == 'fr' else 'merci')
+    body = f'''<div class="wrap merci">
+ <span class="chip boxed go"><span class="dot"></span>{E(c['merci_badge'])}</span>
+ <h1>{E(c['merci_h'])}</h1>
+ <p>{E(c['merci_p'])}</p>
+ <p class="cart-note">{E(c['cart_demo'])}</p>
+ <a class="btn btn-primary" href="{url(lang)}">{E(c['merci_cta'])}</a>
+</div>
+<script>try{{localStorage.removeItem('mqCart')}}catch(e){{}}</script>'''
+    return shell(lang, f"{c['merci_h']} | Meuble Confort & Style", c['merci_p'][:180],
+                 path, alt, body)
+
+def write_price_map(cat):
+    """api/prices.json — what the checkout function charges from. Keyed by
+    slug (split-set pieces share their parent's Shopify id; the slug is the
+    one key unique per product). The variant map holds EXACTLY the option
+    labels pdp_options() renders, in both languages — the same code path that
+    paints the button prices — so the label the browser reports resolves to
+    the price the customer was shown, or to nothing at all."""
+    nrm = lambda s: re.sub(r'[^a-z0-9]', '', (s or '').lower())
+    pm = {}
+    for p in cat:
+        v = {}
+        for lang in ('fr', 'en'):
+            for lbl, pr in pdp_options(p, lang)[2]:
+                k = nrm(lbl)
+                if not k:
+                    continue
+                assert v.get(k, round(pr * 100)) == round(pr * 100), \
+                    f"{p['slug']}: option '{lbl}' would map to two different prices"
+                v[k] = round(pr * 100)
+        pm[p['slug']] = {'fr': p['name_fr'], 'en': p['name_en'],
+                            'img': img(p['images'][0], 400),
+                            'p': round(p['price'] * 100), 'v': v}
+    api_dir = os.path.join(HERE, '..', 'api')
+    os.makedirs(api_dir, exist_ok=True)
+    with open(os.path.join(api_dir, 'prices.json'), 'w', encoding='utf-8') as f:
+        json.dump(pm, f, ensure_ascii=False, separators=(',', ':'))
+    return len(pm)
+
 # ── write ───────────────────────────────────────────────────────────────────
 def write(path, content):
     full = os.path.join(DIST, path.strip('/'), 'index.html') if not path.endswith('.xml') \
@@ -1273,6 +1372,8 @@ def main():
         for p in cat:
             write(p_url(p, lang), build_pdp(p, cat, lang))
             urls.append(p_url(p, lang)); n += 1
+        # the post-payment page — deliberately not in the sitemap
+        write(url(lang, 'merci' if lang == 'fr' else 'thank-you'), build_merci(lang)); n += 1
 
     # root: send people to French, the store's primary language
     write('/', '<!doctype html><html lang="fr"><head><meta charset="utf-8">'
@@ -1301,9 +1402,12 @@ def main():
         redirects.append(f'/products/{p["handle_old"]}\t{p_url(p, "fr")}')
     write('redirects.txt', '\n'.join(redirects))
 
+    priced = write_price_map(cat)
+
     built = sum(1 for r, _, fs in os.walk(DIST) for f in fs if f == 'index.html')
     assert built == n + 1, f'wrote {n}+1 pages but dist/ holds {built} — orphans left behind'
     print(f'{n} pages written to dist/ (no orphans)')
+    print(f'  api/prices.json: {priced} products for the checkout function')
     print(f'  {len(cat)} products × 2 languages')
     print(f'  sitemap: {len(urls)} URLs')
     print(f'  redirects: {len(redirects)-1} rules')

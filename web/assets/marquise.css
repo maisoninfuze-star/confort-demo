@@ -554,3 +554,56 @@ html:not(.intro-skip) body:has(.splash:not(.done)){overflow:hidden}
   .facet-apply{display:flex; position:sticky; bottom:8px; width:100%; margin-top:6px}
   .facet-toggle.is-active{border-color:var(--brand); color:var(--brand)}
 }
+
+/* ── cart drawer ─────────────────────────────────────────────────
+   The veil, foot and empty-state toggle via [hidden]; the author display
+   below would defeat the UA rule, so the guard is explicit — same lesson
+   as .pc[hidden]. */
+.cart-veil[hidden],.cart-foot[hidden],.cart-empty[hidden]{display:none!important}
+.cart-veil{position:fixed;inset:0;z-index:150;background:rgba(12,8,6,.52);backdrop-filter:blur(2px)}
+.cart-drawer{position:fixed;top:0;right:0;height:100dvh;width:min(430px,100vw);z-index:160;
+  display:flex;flex-direction:column;background:var(--surface);color:var(--ink);
+  box-shadow:-18px 0 50px rgba(0,0,0,.28);transform:translateX(103%);visibility:hidden;
+  transition:transform .32s cubic-bezier(.22,.8,.24,1),visibility 0s .32s}
+.cart-drawer.open{transform:none;visibility:visible;
+  transition:transform .32s cubic-bezier(.22,.8,.24,1)}
+.cart-head{display:flex;align-items:center;justify-content:space-between;
+  padding:18px 22px;border-bottom:1px solid var(--line)}
+.cart-head h2{margin:0;font-size:21px}
+.cart-x{background:transparent;color:var(--ink);border:0;font-size:26px;line-height:1;
+  cursor:pointer;padding:2px 8px}
+.cart-items{flex:1;overflow-y:auto;padding:4px 22px}
+.cart-item{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:start;
+  padding:15px 0;border-bottom:1px solid var(--line)}
+.ci-shot img{display:block;width:64px;height:64px;object-fit:cover;border-radius:3px;
+  background:var(--paper)}
+.ci-name{display:block;font-weight:600;font-size:13.5px;line-height:1.35;
+  color:var(--ink);text-decoration:none}
+.ci-name:hover{text-decoration:underline}
+.ci-opts{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.04em;
+  color:var(--ink-3);margin-top:3px}
+.ci-row{display:flex;align-items:center;justify-content:space-between;margin-top:9px}
+.ci-qty{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line-2);
+  border-radius:3px;padding:2px 7px}
+.ci-qty button{background:transparent;color:var(--ink);border:0;font-size:15px;
+  line-height:1;cursor:pointer;padding:2px 4px}
+.ci-qty b{font-size:12.5px;min-width:1em;text-align:center}
+.ci-price{font-size:13.5px;white-space:nowrap}
+.ci-x{background:transparent;color:var(--ink-3);border:0;font-size:17px;line-height:1;
+  cursor:pointer;padding:0 2px}
+.ci-x:hover{color:var(--ink)}
+.cart-empty{padding:34px 22px;display:flex;flex-direction:column;gap:16px;
+  align-items:flex-start}
+.cart-empty p{margin:0;color:var(--ink-2)}
+.cart-foot{padding:16px 22px 20px;border-top:1px solid var(--line);
+  display:flex;flex-direction:column;gap:12px}
+.cart-sub{display:flex;justify-content:space-between;align-items:baseline;font-size:14px}
+.cart-sub b{font-size:16.5px}
+.cart-note{margin:0;font-family:var(--f-mono);font-size:10.5px;line-height:1.55;
+  color:var(--ink-3)}
+.cart-lock{overflow:hidden}
+
+/* post-payment page */
+.merci{padding:72px 0 96px;max-width:640px;display:flex;flex-direction:column;
+  gap:18px;align-items:flex-start}
+.merci h1{margin:0}

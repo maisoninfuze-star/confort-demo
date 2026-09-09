@@ -10,6 +10,10 @@
       results: function (n) { return n + (n === 1 ? ' produit' : ' produits'); },
       none: 'Aucun produit ne correspond. Retirez un filtre, ou appelez-nous au 514-279-4600 — on l’a peut-être en entrepôt.',
       added: 'Ajouté au panier',
+      remove: 'Retirer',
+      qless: 'Diminuer la quantité', qmore: 'Augmenter la quantité',
+      paywait: 'Redirection vers le paiement…',
+      payerr: 'Le paiement n’a pas pu démarrer. Réessayez, ou appelez-nous au 514-279-4600.',
       fits: 'Ça rentre', tight: 'Serré — mais ça passe', nofit: 'Ne rentre pas par là',
       fitsB: 'Livré monté, rien à faire.',
       tightB: function (p, w, flat) { return flat
@@ -27,6 +31,10 @@
       results: function (n) { return n + (n === 1 ? ' product' : ' products'); },
       none: 'Nothing matches. Drop a filter, or call 514-279-4600 — we may have it in the warehouse.',
       added: 'Added to cart',
+      remove: 'Remove',
+      qless: 'Decrease quantity', qmore: 'Increase quantity',
+      paywait: 'Opening secure checkout…',
+      payerr: 'Checkout could not start. Try again, or call us at 514-279-4600.',
       fits: 'It fits', tight: 'Tight — but it goes', nofit: 'Won’t go that way',
       fitsB: 'Delivered assembled — nothing for you to do.',
       tightB: function (p, w, flat) { return flat
@@ -111,12 +119,6 @@
     [].forEach.call(dated, function (el) { el.textContent = T.at + DATE; });
   }
 
-  /* ── cart (prototype: a counter, no checkout) ───────────────── */
-  var count = parseInt(localStorage.getItem('mq-cart') || '0', 10);
-  function paintCart() {
-    [].forEach.call(document.querySelectorAll('[data-cart-count]'), function (e) { e.textContent = count; });
-  }
-  paintCart();
   function toast(msg) {
     var t = document.createElement('div');
     t.textContent = msg;
@@ -126,18 +128,175 @@
     document.body.appendChild(t);
     setTimeout(function () { t.remove(); }, 2200);
   }
-  // The header cart has nowhere to go on a site with no checkout. Rather than
-  // a link that silently does nothing, say what is missing.
-  [].forEach.call(document.querySelectorAll('[data-cart-note]'), function (b) {
-    b.addEventListener('click', function () {
-      toast(window.MQ_CART_NOTE || 'Cart and checkout arrive at launch.');
+
+  /* ── cart ───────────────────────────────────────────────────────
+     Items live in localStorage; the drawer renders them, and checkout POSTs
+     them to /api/checkout. The prices stored here are display only — the
+     function reprices every line from its own map before charging. */
+  var CART_KEY = 'mqCart';
+  function cartLoad() {
+    try {
+      var c = JSON.parse(localStorage.getItem(CART_KEY));
+      return Array.isArray(c) ? c : [];
+    } catch (e) { return []; }
+  }
+  function cartSave(c) {
+    try {
+      localStorage.setItem(CART_KEY, JSON.stringify(c));
+      localStorage.removeItem('mq-cart'); // the old prototype counter
+    } catch (e) {}
+  }
+  var drawer = document.getElementById('cartdrawer');
+  var veil = document.getElementById('cartveil');
+
+  function renderCart() {
+    var c = cartLoad();
+    var nItems = c.reduce(function (s, i) { return s + i.q; }, 0);
+    [].forEach.call(document.querySelectorAll('[data-cart-count]'), function (e) { e.textContent = nItems; });
+    if (!drawer) return;
+    var box = document.getElementById('cartitems');
+    var sum = 0;
+    box.innerHTML = '';
+    c.forEach(function (i, idx) {
+      sum += i.p * i.q;
+      var row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML =
+        '<a class="ci-shot"><img alt="" width="64" height="64" loading="lazy"></a>' +
+        '<div class="ci-body"><a class="ci-name"></a><div class="ci-opts"></div>' +
+        '<div class="ci-row"><span class="ci-qty">' +
+        '<button type="button" data-dq="-1">−</button><b></b>' +
+        '<button type="button" data-dq="1">+</button></span>' +
+        '<b class="ci-price"></b></div></div>' +
+        '<button class="ci-x" type="button" data-rm>×</button>';
+      // everything from storage goes in as text or a property, never as markup
+      row.querySelector('.ci-shot').href = i.url;
+      row.querySelector('.ci-shot img').src = i.img;
+      var nameEl = row.querySelector('.ci-name');
+      nameEl.href = i.url; nameEl.textContent = i.name;
+      var optsEl = row.querySelector('.ci-opts');
+      if (i.opts) { optsEl.textContent = i.opts; } else { optsEl.remove(); }
+      row.querySelector('.ci-qty b').textContent = i.q;
+      row.querySelector('.ci-price').textContent = money2(i.p * i.q);
+      row.querySelector('[data-rm]').setAttribute('aria-label', T.remove);
+      row.querySelector('[data-dq="-1"]').setAttribute('aria-label', T.qless);
+      row.querySelector('[data-dq="1"]').setAttribute('aria-label', T.qmore);
+      row.addEventListener('click', function (e) {
+        var b = e.target.closest('button'); if (!b) return;
+        // find the line by key, not by render-time index — another tab (or
+        // the merci page) may have reshaped the cart since this row painted
+        var cc = cartLoad(), pos = -1;
+        cc.forEach(function (x, j) { if (pos < 0 && x.k === i.k) pos = j; });
+        if (pos < 0) { renderCart(); return; }
+        if (b.hasAttribute('data-rm')) { cc.splice(pos, 1); }
+        else { cc[pos].q = Math.max(1, Math.min(9, cc[pos].q + parseInt(b.dataset.dq, 10))); }
+        cartSave(cc); renderCart();
+      });
+      box.appendChild(row);
     });
+    document.getElementById('cartempty').hidden = c.length > 0;
+    document.getElementById('cartfoot').hidden = !c.length;
+    var sumEl = document.getElementById('cartsum');
+    if (sumEl) sumEl.textContent = money2(sum);
+  }
+
+  var cartOpener = null;
+  function openCart() {
+    if (!drawer) return;
+    renderCart();
+    cartOpener = document.activeElement;
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    veil.hidden = false;
+    document.documentElement.classList.add('cart-lock');
+    var x = drawer.querySelector('.cart-x');
+    if (x) x.focus();
+  }
+  function closeCart() {
+    if (!drawer) return;
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    veil.hidden = true;
+    document.documentElement.classList.remove('cart-lock');
+    if (cartOpener && cartOpener.focus) { cartOpener.focus(); cartOpener = null; }
+  }
+  [].forEach.call(document.querySelectorAll('[data-cart-open]'), function (b) {
+    b.addEventListener('click', openCart);
+  });
+  [].forEach.call(document.querySelectorAll('[data-cart-close]'), function (b) {
+    b.addEventListener('click', closeCart);
+  });
+  if (veil) veil.addEventListener('click', closeCart);
+  addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) closeCart();
   });
 
   [].forEach.call(document.querySelectorAll('[data-add]'), function (b) {
     b.addEventListener('click', function () {
-      count++; localStorage.setItem('mq-cart', count); paintCart(); toast(T.added);
+      var opts = [], pv = '';
+      // the stored price comes from the pressed priced option itself — the
+      // add button's dataset is only the fallback for one-price products
+      var price = parseFloat(b.dataset.price) || 0;
+      [].forEach.call(document.querySelectorAll('[data-optgroup]'), function (g) {
+        var sel = g.querySelector('.opt[aria-pressed="true"]');
+        if (!sel) return;
+        var lbl = sel.dataset.vlabel || sel.textContent.trim();
+        opts.push(lbl);
+        if (sel.dataset.price) { pv = lbl; price = parseFloat(sel.dataset.price); }
+      });
+      var c = cartLoad();
+      var key = b.dataset.id + '|' + opts.join(' · ');
+      var hit = null;
+      c.forEach(function (i) { if (i.k === key) hit = i; });
+      if (hit) { hit.q = Math.min(9, hit.q + 1); }
+      else {
+        c.push({ k: key, id: b.dataset.id, name: b.dataset.name, img: b.dataset.img,
+                 url: b.dataset.url, opts: opts.join(' · '), pv: pv,
+                 p: price, q: 1 });
+      }
+      cartSave(c);
+      openCart();
     });
+  });
+
+  var payBtn = document.getElementById('cartpay');
+  var payBase = payBtn ? payBtn.textContent : '';
+  if (payBtn) payBtn.addEventListener('click', function () {
+    var c = cartLoad();
+    if (!c.length) return;
+    var base = payBtn.textContent;
+    payBtn.disabled = true;
+    payBtn.textContent = T.paywait;
+    // the slashed path is the canonical one under trailingSlash — calling it
+    // directly saves the 308 hop the unslashed POST provokes
+    fetch('/api/checkout/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lang: L, items: c.map(function (i) {
+        return { id: i.id, pv: i.pv, opts: i.opts, q: i.q };
+      }) })
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      if (d && d.url) { location.href = d.url; }
+      else { throw new Error('checkout'); }
+    }).catch(function () {
+      payBtn.disabled = false;
+      payBtn.textContent = base;
+      toast(T.payerr);
+    });
+  });
+
+  renderCart();
+
+  // Back from Stripe restores this page from bfcache with the pay button
+  // still disabled and the old cart painted — reset both.
+  addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    if (payBtn) { payBtn.disabled = false; payBtn.textContent = payBase; }
+    renderCart();
+  });
+  // another tab edited the cart (or the merci page cleared it)
+  addEventListener('storage', function (e) {
+    if (e.key === CART_KEY || e.key === null) renderCart();
   });
 
   /* ── variant options ────────────────────────────────────────── */
@@ -151,6 +310,9 @@
       if (p) p.textContent = money(price);
       var m = document.querySelector('[data-price-mo]');
       if (m) m.textContent = Math.round(price / 36);
+      // the add button carries what the cart will store
+      var add = document.querySelector('[data-add]');
+      if (add) add.dataset.price = price;
       paintBnpl(price);
     });
   });

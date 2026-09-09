@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.shopify.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/marquise.css?v=36d5d679">
+<link rel="stylesheet" href="/assets/marquise.css?v=7df5554b">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Matelas DREAM-O-PEDIC & Tissu bambou", "image": ["https://cdn.shopify.com/s/files/1/0812/6093/7452/files/preview_Dreamopedic_Side-PhotoRoom_1.png?v=1770664596&width=1000", "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/Dream-O-Pedic.webp?v=1770739379&width=1000"], "description": "Matelas DREAM-O-PEDIC 8’’ – Confort moyen haut de gamme Le matelas DREAM-O-PEDIC 8 pouces est conçu pour offrir un sommeil frais, confortable et bien soutenu. Grâce à sa mousse infusée Super Cooling , il régule la température corporelle et réduit les points de pression pour un repos profond et réparateur. Idéal pour les dormeurs sur le dos, le côté ou le ventre, ce matelas combine confort moyen e", "sku": "9156965859564", "brand": {"@type": "Brand", "name": "Meuble Confort & Style"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "79"}, "offers": {"@type": "Offer", "url": "https://confort-demo.vercel.app/fr/chambre/matelas-dream-o-pedic-tissu-bambou/", "priceCurrency": "CAD", "price": "250.00", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "seller": {"@type": "Organization", "name": "Meuble Confort & Style"}}}</script>
 
 </head>
@@ -45,7 +45,7 @@
       <a href="/fr/chambre/matelas-dream-o-pedic-tissu-bambou/" aria-current="true">FR</a>
       <a href="/en/bedroom/matelas-dream-o-pedic-tissu-bambou/">EN</a>
     </span>
-    <button class="cart" type="button" data-cart-note>Panier <span data-cart-count>0</span></button>
+    <button class="cart" type="button" data-cart-open>Panier <span data-cart-count>0</span></button>
   </div>
 </div></header>
 <div class="promise"><div class="wrap">
@@ -83,8 +83,10 @@
     </div>
    <span class="chip boxed go" style="align-self:flex-start">
      <span class="dot"></span><span data-deliver="instock">En stock à Montréal</span></span>
-   <div class="opts" data-optgroup><span class="lbl">Taille</span><div class="row"><button class="opt" data-price="250.0" aria-pressed="true">Simple · 250 $</button><button class="opt" data-price="310.0" aria-pressed="false">Double · 310 $</button><button class="opt" data-price="360.0" aria-pressed="false">Queen · 360 $</button><button class="opt" data-price="560.0" aria-pressed="false">King · 560 $</button></div></div>
-   <button class="btn btn-primary btn-block" data-add type="button">Ajouter au panier</button>
+   <div class="opts" data-optgroup><span class="lbl">Taille</span><div class="row"><button class="opt" data-price="250.0" data-vlabel="Simple" aria-pressed="true">Simple · 250 $</button><button class="opt" data-price="310.0" data-vlabel="Double" aria-pressed="false">Double · 310 $</button><button class="opt" data-price="360.0" data-vlabel="Queen" aria-pressed="false">Queen · 360 $</button><button class="opt" data-price="560.0" data-vlabel="King" aria-pressed="false">King · 560 $</button></div></div>
+   <button class="btn btn-primary btn-block" data-add type="button"
+     data-id="matelas-dream-o-pedic-tissu-bambou" data-name="Matelas DREAM-O-PEDIC &amp; Tissu bambou" data-img="https://cdn.shopify.com/s/files/1/0812/6093/7452/files/preview_Dreamopedic_Side-PhotoRoom_1.png?v=1770664596&amp;width=170"
+     data-url="/fr/chambre/matelas-dream-o-pedic-tissu-bambou/" data-price="250.0">Ajouter au panier</button>
    <a class="btn btn-ghost btn-block" href="tel:+15142794600">Appeler · 514-279-4600</a>
    
    <script type="application/json" id="bnpldata">{"options": [{"id": "klarna", "name": "Klarna", "kind": "pay4", "lo": 35, "hi": 1500, "fr": "4 versements égaux, sans intérêts, aux 2 semaines", "en": "4 equal payments, interest-free, every 2 weeks"}, {"id": "afterpay", "name": "Afterpay", "kind": "pay4", "lo": 35, "hi": 2000, "fr": "4 versements égaux, sans intérêts, aux 2 semaines", "en": "4 equal payments, interest-free, every 2 weeks"}, {"id": "affirm", "name": "Affirm", "kind": "monthly", "lo": 50, "hi": 30000, "fr": "Versements mensuels — taux de 0 % à 36 % selon le dossier", "en": "Monthly payments — 0% to 36% APR depending on approval"}], "term": 12}</script>
@@ -246,7 +248,23 @@
    <span>Prototype — les prix et les stocks proviennent du catalogue en ligne actuel.</span>
  </div>
 </div></footer>
-<script>window.MQ_CART_NOTE="Le panier et le paiement arrivent avec la mise en ligne.";</script>
-<script src="/assets/marquise.js?v=708f52a0" defer></script>
+<div class="cart-veil" id="cartveil" hidden></div>
+<aside class="cart-drawer" id="cartdrawer" aria-label="Panier" aria-hidden="true">
+ <div class="cart-head">
+   <h2>Votre panier</h2>
+   <button class="cart-x" type="button" data-cart-close aria-label="Fermer">×</button>
+ </div>
+ <div class="cart-items" id="cartitems"></div>
+ <div class="cart-empty" id="cartempty">
+   <p>Votre panier est vide.</p>
+   <a class="btn btn-ghost" href="/fr/">Découvrir les collections</a>
+ </div>
+ <div class="cart-foot" id="cartfoot" hidden>
+   <div class="cart-sub"><span>Sous-total</span><b id="cartsum"></b></div>
+   <button class="btn btn-primary btn-block" id="cartpay" type="button">Passer au paiement</button>
+   <p class="cart-note">Démo — paiement Stripe en mode test. Aucun montant réel n’est débité.</p>
+ </div>
+</aside>
+<script src="/assets/marquise.js?v=9529cbc1" defer></script>
 </body>
 </html>

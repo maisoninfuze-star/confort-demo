@@ -16,3 +16,5 @@ web/gen/*.png
 # and its competitors. They stay on the machine that builds the site.
 web/supplier-cost.json
 web/*.xlsx
+.vercel
+.env*

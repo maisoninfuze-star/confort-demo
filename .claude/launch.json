@@ -89,6 +89,16 @@
         "exec python3 -m http.server \"${PORT:-8790}\" --directory '/Users/inder/Claude/Projects/BMS Restaurant/site'"
       ],
       "port": 8790
+    },
+    {
+      "name": "electro-gh",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/inder/Claude/Projects/gh' && exec npx next dev -p \"${PORT:-3310}\""
+      ],
+      "port": 3310,
+      "autoPort": true
     }
   ]
 }

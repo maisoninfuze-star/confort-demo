@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.shopify.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/marquise.css?v=36d5d679">
+<link rel="stylesheet" href="/assets/marquise.css?v=7df5554b">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Ensemble de 2 tables modernes", "image": ["https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_10165e9017c74a19937630a1f81c62aa_mv2.jpg?v=1772310774&width=1000", "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ea7cd17bd7e14bbc94fd8ae217c5ecf5_mv2.jpg?v=1772310774&width=1000", "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_ef9409c0ade54f8aa9cd64c78bffe584_mv2.jpg?v=1772310774&width=1000"], "description": "Ensemble de 2 tables modernes — a coffee table in metal, marble, finished in black, silver. Measures 28&quot; W × 28&quot; D × 16&quot; H. In our Montréal showroom on Plaza Saint-Hubert. Free delivery, assembled, to Montréal, Laval and Longueuil.", "sku": "9170564645100", "brand": {"@type": "Brand", "name": "Meuble Confort & Style"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "79"}, "offers": {"@type": "Offer", "url": "https://confort-demo.vercel.app/en/living-room/ensemble-de-2-tables-modernes/", "priceCurrency": "CAD", "price": "239.98", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "seller": {"@type": "Organization", "name": "Meuble Confort & Style"}}}</script>
 
 </head>
@@ -45,7 +45,7 @@
       <a href="/fr/salon/ensemble-de-2-tables-modernes/">FR</a>
       <a href="/en/living-room/ensemble-de-2-tables-modernes/" aria-current="true">EN</a>
     </span>
-    <button class="cart" type="button" data-cart-note>Cart <span data-cart-count>0</span></button>
+    <button class="cart" type="button" data-cart-open>Cart <span data-cart-count>0</span></button>
   </div>
 </div></header>
 <div class="promise"><div class="wrap">
@@ -84,7 +84,9 @@
    <span class="chip boxed go" style="align-self:flex-start">
      <span class="dot"></span><span data-deliver="instock">In stock in Montréal</span></span>
    
-   <button class="btn btn-primary btn-block" data-add type="button">Add to cart</button>
+   <button class="btn btn-primary btn-block" data-add type="button"
+     data-id="ensemble-de-2-tables-modernes" data-name="Ensemble de 2 tables modernes" data-img="https://cdn.shopify.com/s/files/1/0812/6093/7452/files/c1a65e_10165e9017c74a19937630a1f81c62aa_mv2.jpg?v=1772310774&amp;width=170"
+     data-url="/en/living-room/ensemble-de-2-tables-modernes/" data-price="239.98">Add to cart</button>
    <a class="btn btn-ghost btn-block" href="tel:+15142794600">Call us · 514-279-4600</a>
    <div class="box fitrow" id="fitcheck">
   <h2>Will it fit through your door?</h2>
@@ -254,7 +256,23 @@
    <span>Prototype — prices and stock come from the current live catalogue.</span>
  </div>
 </div></footer>
-<script>window.MQ_CART_NOTE="Cart and checkout arrive at launch.";</script>
-<script src="/assets/marquise.js?v=708f52a0" defer></script>
+<div class="cart-veil" id="cartveil" hidden></div>
+<aside class="cart-drawer" id="cartdrawer" aria-label="Cart" aria-hidden="true">
+ <div class="cart-head">
+   <h2>Your cart</h2>
+   <button class="cart-x" type="button" data-cart-close aria-label="Close">×</button>
+ </div>
+ <div class="cart-items" id="cartitems"></div>
+ <div class="cart-empty" id="cartempty">
+   <p>Your cart is empty.</p>
+   <a class="btn btn-ghost" href="/en/">Browse the collections</a>
+ </div>
+ <div class="cart-foot" id="cartfoot" hidden>
+   <div class="cart-sub"><span>Subtotal</span><b id="cartsum"></b></div>
+   <button class="btn btn-primary btn-block" id="cartpay" type="button">Proceed to payment</button>
+   <p class="cart-note">Demo — Stripe test checkout. No real charge is ever made.</p>
+ </div>
+</aside>
+<script src="/assets/marquise.js?v=9529cbc1" defer></script>
 </body>
 </html>
