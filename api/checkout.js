@@ -3,6 +3,7 @@
 // web/build.py from the very code path that renders the option buttons). A
 // number typed into localStorage must never become a charge.
 const PRICES = require('./prices.json');
+const { stripeKey } = require('./_stripe');
 
 const own = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -17,7 +18,7 @@ module.exports = async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   try {
     if (req.method !== 'POST') return send(res, 405, { error: 'method' });
-    const key = process.env.STRIPE_SECRET_KEY || process.env.SK_TEST;
+    const { key } = stripeKey();
     if (!key) return send(res, 500, { error: 'not configured' });
 
     let body = req.body;
@@ -33,6 +34,12 @@ module.exports = async (req, res) => {
     p.set('success_url', site + (lang === 'fr' ? '/fr/merci/' : '/en/thank-you/') + '?sid={CHECKOUT_SESSION_ID}');
     p.set('cancel_url', site + '/' + lang + '/');
     p.append('shipping_address_collection[allowed_countries][]', 'CA');
+    // Capture every buyer — guest or Link account — as a saved Stripe Customer,
+    // and collect the fields GoHighLevel needs for the contact record.
+    p.set('customer_creation', 'always');
+    p.set('billing_address_collection', 'required');
+    p.set('phone_number_collection[enabled]', 'true');
+    p.set('metadata[lang]', lang);
 
     for (let n = 0; n < items.length; n++) {
       const it = items[n] || {};
