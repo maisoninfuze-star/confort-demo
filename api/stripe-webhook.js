@@ -130,6 +130,38 @@ module.exports = async (req, res) => {
       return send(res, out && out.error ? 502 : 200, { selftest: out && out.error ? 'failed' : 'ok', ...out });
     }
 
+    // {"type":"setup-webhook"} — one-time, owner-authorized: register THIS
+    // endpoint on the LIVE Stripe account so paid orders reach GHL. A
+    // configuration call only; it can never move money. Idempotent: an
+    // existing registration is reported, not duplicated.
+    if (evt && evt.type === 'setup-webhook') {
+      const live = process.env.SK_LIVE || process.env.SK_Live;
+      if (!live) return send(res, 500, { setup: 'failed', why: 'no live key' });
+      const host = req.headers.host || 'confort-demo.vercel.app';
+      const auth = { Authorization: 'Basic ' + Buffer.from(live + ':').toString('base64') };
+      const listR = await fetch('https://api.stripe.com/v1/webhook_endpoints?limit=100', { headers: auth });
+      const list = await listR.json().catch(() => null);
+      if (!listR.ok || !list) {
+        return send(res, 502, { setup: 'failed', why: 'list', detail: list && list.error && list.error.message });
+      }
+      const mine = (list.data || []).find((w) => (w.url || '').startsWith('https://' + host + '/api/stripe-webhook/'));
+      if (mine) return send(res, 200, { setup: 'exists', id: mine.id, status: mine.status });
+      const q = new URLSearchParams();
+      q.set('url', 'https://' + host + '/api/stripe-webhook/?key=' + process.env.HOOK_SECRET);
+      q.append('enabled_events[]', 'checkout.session.completed');
+      q.set('description', 'Commandes du site -> GoHighLevel');
+      const mkR = await fetch('https://api.stripe.com/v1/webhook_endpoints', {
+        method: 'POST',
+        headers: { ...auth, 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: q.toString(),
+      });
+      const mk = await mkR.json().catch(() => null);
+      if (!mkR.ok || !mk || !mk.id) {
+        return send(res, 502, { setup: 'failed', why: 'create', detail: mk && mk.error && mk.error.message });
+      }
+      return send(res, 200, { setup: 'created', id: mk.id, status: mk.status });
+    }
+
     if (!evt || evt.type !== 'checkout.session.completed') return send(res, 200, { ignored: true });
 
     const sessionId = evt.data && evt.data.object && evt.data.object.id;
