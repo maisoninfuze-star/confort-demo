@@ -13,7 +13,7 @@ from openpyxl.utils import get_column_letter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'exports', 'revision-prix.xlsx')
-SITE = 'https://confort-demo.vercel.app'
+SITE = 'https://www.meubleconfort.com'
 CATS = {'salon': 'salon', 'chambre': 'chambre',
         'salle-a-manger': 'salle-a-manger', 'bureau': 'bureau'}
 

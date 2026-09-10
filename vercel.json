@@ -13,18 +13,869 @@
       "source": "/",
       "destination": "/fr/",
       "permanent": false
+    },
+    {
+      "source": "/collections/chanbre",
+      "destination": "/fr/chambre/",
+      "permanent": true
+    },
+    {
+      "source": "/collections/salon",
+      "destination": "/fr/salon/",
+      "permanent": true
+    },
+    {
+      "source": "/collections/chambre",
+      "destination": "/fr/chambre/",
+      "permanent": true
+    },
+    {
+      "source": "/collections/salle-a-manger",
+      "destination": "/fr/salle-a-manger/",
+      "permanent": true
+    },
+    {
+      "source": "/collections/bureau",
+      "destination": "/fr/bureau/",
+      "permanent": true
+    },
+    {
+      "source": "/products/luxora-led-storage-bed",
+      "destination": "/fr/chambre/luxora-led-storage-bed/",
+      "permanent": true
+    },
+    {
+      "source": "/products/bureau-70",
+      "destination": "/fr/bureau/bureau-70/",
+      "permanent": true
+    },
+    {
+      "source": "/products/bureau-1",
+      "destination": "/fr/bureau/bureau-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/bureau",
+      "destination": "/fr/bureau/bureau-gris-2/",
+      "permanent": true
+    },
+    {
+      "source": "/products/bureau-espresso-de-coin-cote-droit-ou-gauche",
+      "destination": "/fr/bureau/bureau-espresso-de-coin-cote-droit/",
+      "permanent": true
+    },
+    {
+      "source": "/products/chene-blanchi-rustique",
+      "destination": "/fr/chambre/chene-blanchi-rustique/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-queen-chene-rustique-tiroir",
+      "destination": "/fr/chambre/lit-queen-chene-rustique-tiroir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/chambre-a-coucher-lit-queen-chene-moyen-2-tiroir-item-i-5275q",
+      "destination": "/fr/chambre/lit-queen-avec-rangement/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-queen-beige-chene-gris",
+      "destination": "/fr/chambre/lit-queen-beige-chene-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/tissu-gris-finition-noyer",
+      "destination": "/fr/chambre/ensemble-chambre/",
+      "permanent": true
+    },
+    {
+      "source": "/products/harper-seville",
+      "destination": "/fr/chambre/harper-seville/",
+      "permanent": true
+    },
+    {
+      "source": "/products/ensemble-chambre-teddy-bear-blanc",
+      "destination": "/fr/chambre/teddy-bear-blanc-lit/",
+      "permanent": true
+    },
+    {
+      "source": "/products/bureau-42l",
+      "destination": "/fr/bureau/bureau-42-l/",
+      "permanent": true
+    },
+    {
+      "source": "/products/bureau-de-coin-cote-droit-ou-gauche",
+      "destination": "/fr/bureau/bureau-de-coin-cote-droit-ou-gauche/",
+      "permanent": true
+    },
+    {
+      "source": "/products/bureau-gris-metal-noir-en-coin",
+      "destination": "/fr/bureau/bureau-gris-metal-noir-en/",
+      "permanent": true
+    },
+    {
+      "source": "/products/table-basse-if-2631",
+      "destination": "/fr/salon/table-basse/",
+      "permanent": true
+    },
+    {
+      "source": "/products/table-basse-moderne-if-3225",
+      "destination": "/fr/salon/table-basse-moderne-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/products/ensemble-de-2-tables-modernes",
+      "destination": "/fr/salon/ensemble-de-2-tables-modernes/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-moderne-bas",
+      "destination": "/fr/chambre/lit-moderne-bas/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-en-velours",
+      "destination": "/fr/chambre/lit-en-velours/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-en-velours-gris",
+      "destination": "/fr/chambre/lit-en-velours-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-king-en-velours-bleu",
+      "destination": "/fr/chambre/lit-king-en-velours-bleu/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-queen-en-velours-gris",
+      "destination": "/fr/chambre/lit-queen-en-velours-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1449-c-1712",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-saint-urbain-bois-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/fauteuil-lit-convertible",
+      "destination": "/fr/salon/fauteuil-lit-convertible/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sofa-lit",
+      "destination": "/fr/salon/sofa-lit/",
+      "permanent": true
+    },
+    {
+      "source": "/products/charlotte",
+      "destination": "/fr/chambre/charlotte/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-superpose-2",
+      "destination": "/fr/chambre/lit-superpose-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-superpose-1",
+      "destination": "/fr/chambre/lit-superpose-blanc/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-superpose",
+      "destination": "/fr/chambre/lit-superpose-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/table-et-4-chaises-2",
+      "destination": "/fr/salle-a-manger/table-et-4-chaises/",
+      "permanent": true
+    },
+    {
+      "source": "/products/table-et-4-chaises-1",
+      "destination": "/fr/salle-a-manger/table-et-4-chaises-2/",
+      "permanent": true
+    },
+    {
+      "source": "/products/table-et-4-chaises",
+      "destination": "/fr/salle-a-manger/table-et-4-chaises-3/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-velours-gris-avec-rangement",
+      "destination": "/fr/chambre/lit-velours-gris-avec-rangement/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-avec-tiroirs-de-rangement",
+      "destination": "/fr/chambre/lit-avec-tiroirs-de-rangement/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-5408-lit-avec-rangement",
+      "destination": "/fr/chambre/lit-avec-rangement/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-5940-lit-moderne",
+      "destination": "/fr/chambre/lit-moderne/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-5120-lit-contemporain-en-velours-gris",
+      "destination": "/fr/chambre/lit-contemporain-en-velours-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-5407",
+      "destination": "/fr/chambre/lit-fabre-velours-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/products/olivia-austin",
+      "destination": "/fr/chambre/olivia-austin/",
+      "permanent": true
+    },
+    {
+      "source": "/products/dylan",
+      "destination": "/fr/chambre/dylan/",
+      "permanent": true
+    },
+    {
+      "source": "/products/logan-silver",
+      "destination": "/fr/chambre/logan-silver/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1811-c-1835",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-drolet/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1811-c-1826",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-christophe/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1442-c-1878",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-marquette-verre-blanc/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1079-c-1084",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-gaspe-tissu-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/monaco-dining-set",
+      "destination": "/fr/salle-a-manger/monaco-dining-set/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-wing-en-velours-noir",
+      "destination": "/fr/chambre/lit-wing-en-velours-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/velours-bleu-royal",
+      "destination": "/fr/chambre/velours-bleu-royal/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-5710",
+      "destination": "/fr/chambre/lit-jeanne-mance-tissu-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/velours-dusty-pink",
+      "destination": "/fr/chambre/velours-dusty-pink/",
+      "permanent": true
+    },
+    {
+      "source": "/products/velours-gris-avec-ailes",
+      "destination": "/fr/chambre/velours-gris-avec-ailes/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-en-tissu-gris-avec-rangement-hydraulique",
+      "destination": "/fr/chambre/lit-en-tissu-gris-avec-rangement-hydraulique/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-avec-rangement-hydraulique",
+      "destination": "/fr/chambre/lit-avec-rangement-hydraulique/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-1056-ensemble-salle-a-manger-5-pieces",
+      "destination": "/fr/salle-a-manger/ensemble-salle-a-manger-5-pieces/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-176",
+      "destination": "/fr/chambre/lit-jarry-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-174",
+      "destination": "/fr/chambre/lit-everett-blanc/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-175",
+      "destination": "/fr/chambre/lit-dante-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-5430",
+      "destination": "/fr/chambre/lit-verdun-tissu-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8162-fauteuil-inclinable-electrique",
+      "destination": "/fr/salon/fauteuil-inclinable-electrique/",
+      "permanent": true
+    },
+    {
+      "source": "/products/vase-decoratif-circulaire-noir-design-moderne",
+      "destination": "/fr/salon/vase-decoratif-circulaire-noir-design-moderne/",
+      "permanent": true
+    },
+    {
+      "source": "/products/new-york-d-m-commode-avec-miroir",
+      "destination": "/fr/chambre/new-york-d-m-commode-avec-miroir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/luccia-table-de-chevet-blanche",
+      "destination": "/fr/chambre/luccia-table-de-chevet-blanche/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8030-en-tissu-gris-fabric-power",
+      "destination": "/fr/salon/prestige-causeuse/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8161",
+      "destination": "/fr/salon/elite/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8171-s-en-cuir-noir-midnight",
+      "destination": "/fr/salon/royal/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8170-en-cuir-brun-chocolat",
+      "destination": "/fr/salon/vega/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8162-ensemble-inclinable-electrique-3-pieces-en-cuir-creme-beige",
+      "destination": "/fr/salon/opera/",
+      "permanent": true
+    },
+    {
+      "source": "/products/c-1541-chaise-moderne-en-pu-gris",
+      "destination": "/fr/salle-a-manger/chaise-moderne-en-pu-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/c-1546-chaise-moderne",
+      "destination": "/fr/salle-a-manger/chaise-moderne/",
+      "permanent": true
+    },
+    {
+      "source": "/products/c-1416-chaise-moderne-en-pu-gris-avec-pattes-noires",
+      "destination": "/fr/salle-a-manger/chaise-moderne-en-pu/",
+      "permanent": true
+    },
+    {
+      "source": "/products/c-1253-chaise-en-velours-creme-avec-knocker-tete-de-lion-chrome",
+      "destination": "/fr/salle-a-manger/chaise-en-velours-creme-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/products/c-1263-chaise-cadre-chrome-poli",
+      "destination": "/fr/salle-a-manger/chaise-cadre-chrome-poli/",
+      "permanent": true
+    },
+    {
+      "source": "/products/c-1453-chaise-en-velours-creme-avec-cadre-dore-poli",
+      "destination": "/fr/salle-a-manger/chaise-en-velours-creme-beige-2/",
+      "permanent": true
+    },
+    {
+      "source": "/products/la-chaise-c-1285-incarne-l-elegance",
+      "destination": "/fr/salle-a-manger/chaise-casgrain-velours-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/products/chaise-en-pattes-chromees",
+      "destination": "/fr/salle-a-manger/chaise-en-pattes-chromees/",
+      "permanent": true
+    },
+    {
+      "source": "/products/chaise-avec-pattes-chromees",
+      "destination": "/fr/salle-a-manger/chaise-avec-pattes-chromees/",
+      "permanent": true
+    },
+    {
+      "source": "/products/meuble-tv-72l-brun-simili-bois-avec-dentreposage",
+      "destination": "/fr/salon/meuble-tele-72-l-brun/",
+      "permanent": true
+    },
+    {
+      "source": "/products/meuble-tv-60l-faux-bois-brun-3-tiroirs",
+      "destination": "/fr/salon/meuble-tele-60-l/",
+      "permanent": true
+    },
+    {
+      "source": "/products/meuble-tv-72l-noir-metal-avec-2-portes-simili-bois-i-2752",
+      "destination": "/fr/salon/meuble-tele-72-l/",
+      "permanent": true
+    },
+    {
+      "source": "/products/meuble-tv-63l-blanc-lustre-avec-verre-trempe-i-3548",
+      "destination": "/fr/salon/meuble-tele-63-l/",
+      "permanent": true
+    },
+    {
+      "source": "/products/meuble-tv-60l-blanc-lustre-avec-verre-trempe-i-3535",
+      "destination": "/fr/salon/meuble-tele-60-l-1/",
+      "permanent": true
+    },
+    {
+      "source": "/products/meuble-tv-72l-brun-simili-bois-i-2718",
+      "destination": "/fr/salon/meuble-tele-72-l-brun-2/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8150-pu-alimentation",
+      "destination": "/fr/salon/volta/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8140-pouce-en-cuir-match-power",
+      "destination": "/fr/salon/nexus/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8130-alimentation-en-cuir",
+      "destination": "/fr/salon/skyline-canape/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8030-fabric-power",
+      "destination": "/fr/salon/canape-ahuntsic-tissu-gris-fauteuil/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8032-gelifice-cuir",
+      "destination": "/fr/salon/atlas-canape/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1448-c-1264",
+      "destination": "/fr/salle-a-manger/meuble-lachine-verre-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1442-c-1879-t-1442-c-1878",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-cartier-verre-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1510-c-1513",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-beaubien-tissu-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1510-c-1512",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-papineau-tissu-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1510-c-1511",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-fabre-velours-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1540-c-1541",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-chabanel-metal-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1545-c-1546",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-iberville-metal-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1415-c-1416",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-boyer-metal-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-1620",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-drolet-tissu/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1402-c-1782",
+      "destination": "/fr/salle-a-manger/chaise-christophe-metal-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/table-a-manger-bois-plaque-noyer-brun",
+      "destination": "/fr/salle-a-manger/table-a-manger-noyer-brun/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1275-c-1285",
+      "destination": "/fr/salle-a-manger/gaspe-velours-beige-tables-de-salle-a-manger/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1274-c-1250",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-casgrain-velours-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/t-1274-c-1261",
+      "destination": "/fr/salle-a-manger/ensemble-de-salle-a-manger-waverly-velours-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sofa-lit-rangement-g-d-tissu-bleu-pale-lumos-83-item-8a14l83",
+      "destination": "/fr/salon/sofa-lit-8a14l83/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sofa-lit-rangement-g-d-tissu-orange-lumos-68-item-8a14l68",
+      "destination": "/fr/salon/sofa-lit-1/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sofa-lit-rangement-g-d-tissu-brun-pale-lumos-31-item-8a14l31",
+      "destination": "/fr/salon/sofa-lit-brun/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sofa-lit-rangement-g-d-tissu-rouille-lumos-44-item-8a14l44",
+      "destination": "/fr/salon/sofa-lit-2/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sofa-lit-rangement-g-d-tissu-gris-lumos-13-item-8a14l13",
+      "destination": "/fr/salon/sofa-lit-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sofa-chaise-longue-g-d-avec-2-coussins-gris-lumos-17",
+      "destination": "/fr/salon/sofa-chaise-longue-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sofa-chaise-longue-g-d-avec-2-coussins-rouille-lumos-44-item-8j14l44",
+      "destination": "/fr/salon/sofa-chaise-longue-brun/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sofa-chaise-longue-g-d-avec-2-coussins-orange-lumos-68",
+      "destination": "/fr/salon/sofa-chaise-longue-brun-2/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-plateforme-if-5793-avec-rangement-velours-noir-tete-capitonnee-profonde",
+      "destination": "/fr/chambre/lit-plateforme-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-plateforme-if-5790-avec-rangement-velours-gris-tete-capitonnee-profonde",
+      "destination": "/fr/chambre/lit-plateforme-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-plateforme-if-5792-avec-rangement-velours-creme-tete-capitonnee-profonde",
+      "destination": "/fr/chambre/lit-plateforme-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-plateforme-if-5295-avec-rangement-tissu-gris-fonce",
+      "destination": "/fr/chambre/lit-plateforme-gris-2/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-plateforme-if-5565-style-transitionnel-tete-capitonnee-losange-velours-beige",
+      "destination": "/fr/chambre/lit-plateforme-beige-2/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-plateforme-moderne-if-5560-tete-capitonnee-chanel-velours-gris",
+      "destination": "/fr/chambre/lit-ahuntsic-velours-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lit-plateforme-moderne-avec-tete-de-lit-capitonnee-chanel-beige-bois",
+      "destination": "/fr/chambre/lit-plateforme-moderne/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matelas-rest-o-pedic-euro-top-confort-moyen-plateau-coussin-9-5",
+      "destination": "/fr/chambre/matelas-rest-o-pedic-semi-ferme/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matelas-orthopedic-deluxe-confort-moyen-plateau-serre-ressorts-bonnell-9-po",
+      "destination": "/fr/chambre/matelas-orthopedic-deluxe-confort-moyen/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matelas-ortho-care-confort-semi-ferme-support-orthopedique",
+      "destination": "/fr/chambre/matelas-ortho-care-confort-semi-ferme/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matelas-high-density-tight-top-8-semi-ferme-reversible-tissu-bambou-fabrique-au-canada",
+      "destination": "/fr/chambre/matelas-high-density-tight-top-8/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matelas-dream-o-pedic-8-pouces-confort-moyen-mousse-super-cooling-tissu-bambou-fabrique-au-canada",
+      "destination": "/fr/chambre/matelas-dream-o-pedic-tissu-bambou/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matelas-hailey-euro-deluxe-4-ressorts-ensaches-tri-zones-mousse-haute-densite-et-tissu-bambou",
+      "destination": "/fr/chambre/matelas-hailey-euro-deluxe-4/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matelas-alisha-hybrid-gel-foam-mousse-de-soya-8-soutien-trusupport-et-tissu-bambou-respirant",
+      "destination": "/fr/chambre/matelas-alisha-hybrid-gel-foam/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matelas-breeze-cool-max-fermete-moyenne-ressorts-quantum-edge-et-technologie-rafraichissante",
+      "destination": "/fr/chambre/matelas-breeze-cool-max-fermete-moyenne/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matelas-bella-tight-top-copper-series-fermete-ferme-ressorts-ensaches-et-mousse-infusee-au-cuivre",
+      "destination": "/fr/chambre/matelas-bella-tight-top/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matelas-bella-copper-series",
+      "destination": "/fr/chambre/matelas-bella-euro-top-copper-series/",
+      "permanent": true
+    },
+    {
+      "source": "/products/ensemble-3-pieces-inclinable-electrique-if-8141-cuir-gris-pale-avec-usb-et-plateau-escamotable",
+      "destination": "/fr/salon/zenith-canape/",
+      "permanent": true
+    },
+    {
+      "source": "/products/ensemble-3-pieces-inclinable-electrique-if-8172-cuir-creme-chaud-avec-usb-et-porte-gobelets",
+      "destination": "/fr/salon/serenity-canape/",
+      "permanent": true
+    },
+    {
+      "source": "/products/ensemble-3-pieces-inclinable-electrique-if-8160-cuir-chocolat-avec-ports-usb-et-porte-gobelets",
+      "destination": "/fr/salon/nuvola-canape/",
+      "permanent": true
+    },
+    {
+      "source": "/products/ensemble-salon-if-8025-tissu-performance-gris",
+      "destination": "/fr/salon/hudson-canape/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8020-tissu-performance-doux-coussins-hautes-densite",
+      "destination": "/fr/salon/clarence/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9081-rhf-gris-avec-rangement",
+      "destination": "/fr/salon/chester/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9035-rhf-gris-avec-rangement",
+      "destination": "/fr/salon/flex/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9023-lhf-tissu-boucle-gris-avec-rangement",
+      "destination": "/fr/salon/stash/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9005-lhf",
+      "destination": "/fr/salon/vault/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8026-ensemble-de-salon-moderne-en-tissu-beige-performance",
+      "destination": "/fr/salon/depot/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8010",
+      "destination": "/fr/salon/nexo-canape/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8011-ensemble-de-salon-moderne-en-cuir-brun-chocolat",
+      "destination": "/fr/salon/milo/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9280-if-9281-sectionnel-avec-ottoman",
+      "destination": "/fr/salon/kova-sectionnel/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9031-sectionnel-canape-lit-a-chaise-reversible-avec-rangement",
+      "destination": "/fr/salon/luno/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9027-sectionnel-canape-lit-a-chaise-reversible-avec-rangement",
+      "destination": "/fr/salon/drift/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9040-sectionnel-canape-lit-a-chaise-reversible-avec-rangement",
+      "destination": "/fr/salon/nido/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9025",
+      "destination": "/fr/salon/grey-refuge/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9024-reversible-chaise",
+      "destination": "/fr/salon/black-refuge/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9026-sectionnel-canape-lit",
+      "destination": "/fr/salon/refuge/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9010-rhf",
+      "destination": "/fr/salon/solace/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9050-if-9051-sectionnel-canape-lit",
+      "destination": "/fr/salon/sectionnel-canape-lit/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9035-rhf",
+      "destination": "/fr/salon/sectionnel-fabre-tissu-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8012-ensemble-de-salon-moderne-en-cuir-creme-beige",
+      "destination": "/fr/salon/canape-chabanel-cuir-beige/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9075-if-9076-sectionnel-canape-lit-avec",
+      "destination": "/fr/salon/sectionnel-iberville-tissu-brun/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8500-sectionnel-inclinable-en-cuir-brun-chocolat-6-pieces",
+      "destination": "/fr/salon/sectionnel-inclinable/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9085-if-9086-sectionnel-canape-lit-avec-rangement",
+      "destination": "/fr/salon/sectionnel-drolet-boucle-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8007-9283-ensemble-de-salon-en-velours-noir",
+      "destination": "/fr/salon/canape-christophe-velours-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9095-chaise-longue-gauche-lhf",
+      "destination": "/fr/salon/chaise-longue-gauche-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-9090-chaise-longue-gauche-lhf",
+      "destination": "/fr/salon/chaise-longue-gauche-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/if-8120",
+      "destination": "/fr/salon/canape-casgrain-cuir-noir/",
+      "permanent": true
+    },
+    {
+      "source": "/products/amelia-black",
+      "destination": "/fr/chambre/amelia-black/",
+      "permanent": true
+    },
+    {
+      "source": "/products/lucia-blanc",
+      "destination": "/fr/chambre/lucia-blanc/",
+      "permanent": true
+    },
+    {
+      "source": "/products/luna-riley-finition-argentee",
+      "destination": "/fr/chambre/luna-riley-finition-argentee/",
+      "permanent": true
+    },
+    {
+      "source": "/products/ava-jordyn-gris",
+      "destination": "/fr/chambre/ava-jordyn-gris/",
+      "permanent": true
+    },
+    {
+      "source": "/products/pompei-gris-metallise",
+      "destination": "/fr/chambre/pompei-gris-metallise/",
+      "permanent": true
+    },
+    {
+      "source": "/products/jordyn-blanc",
+      "destination": "/fr/chambre/jordyn-blanc/",
+      "permanent": true
+    },
+    {
+      "source": "/products/madisson-100",
+      "destination": "/fr/chambre/madisson-100/",
+      "permanent": true
+    },
+    {
+      "source": "/products/chambre-moderne-blanche",
+      "destination": "/fr/chambre/chambre-moderne-blanche/",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:path*",
+      "destination": "/fr/",
+      "permanent": false
+    },
+    {
+      "source": "/products/:path*",
+      "destination": "/fr/",
+      "permanent": false
     }
   ],
   "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
     {
       "source": "/assets/img/(.*)",
       "headers": [

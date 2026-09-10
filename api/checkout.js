@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
     const lang = body && body.lang === 'en' ? 'en' : 'fr';
     const items = body && Array.isArray(body.items) ? body.items : [];
     if (!items.length || items.length > 20) return send(res, 400, { error: 'cart' });
-    const site = 'https://' + (req.headers.host || 'confort-demo.vercel.app');
+    const site = 'https://' + (req.headers.host || 'www.meubleconfort.com');
 
     const p = new URLSearchParams();
     p.set('mode', 'payment');

@@ -14,7 +14,9 @@ DIST = os.path.join(HERE, 'dist')
 # in every link someone pastes into Messenger.
 #   production : python3 build.py
 #   demo       : SITE_URL=https://confort-demo.vercel.app python3 build.py
-SITE = os.environ.get('SITE_URL', 'https://meubleconfort.com').rstrip('/')
+# www is the primary host on Vercel — the apex 308s to it, so every canonical,
+# hreflang and sitemap URL must carry www or Google is told about a redirect.
+SITE = os.environ.get('SITE_URL', 'https://www.meubleconfort.com').rstrip('/')
 PHONE = '514-279-4600'
 PHONE2 = '438-879-8019'
 ADDR = '7566 rue Saint-Hubert'
@@ -483,7 +485,6 @@ def footer(lang):
  <div class="fine">
    <span>© 2026 Meuble Confort &amp; Style</span>
    <span>{ADDR}, {CITY}</span>
-   <span>{'Prototype — les prix et les stocks proviennent du catalogue en ligne actuel.' if lang=='fr' else 'Prototype — prices and stock come from the current live catalogue.'}</span>
  </div>
 </div></footer>'''
 
