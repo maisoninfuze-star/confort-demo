@@ -10,7 +10,13 @@
 // "paid" status always come from Stripe, never from the caller.
 const { stripeKey } = require('./_stripe');
 
-const GHL_BASE = 'https://rest.gohighlevel.com/v1';
+// GoHighLevel v2 (LeadConnector). Auth is a Private Integration token
+// (starts "pit-"); every call carries the Version header, and contacts calls
+// carry the location id. The owner stored the token as GHL_API.
+const GHL_BASE = 'https://services.leadconnectorhq.com';
+const ghlToken = () => process.env.GHL_TOKEN || process.env.GHL_API || process.env.GHL_API_KEY || null;
+const ghlLocation = () => process.env.GHL_LOCATION_ID || null;
+
 const send = (res, status, obj) => { res.statusCode = status; res.end(JSON.stringify(obj)); };
 
 function money(cents, cur) {
@@ -29,8 +35,10 @@ async function ghl(method, path, body) {
   const r = await fetch(GHL_BASE + path, {
     method,
     headers: {
-      Authorization: 'Bearer ' + process.env.GHL_API_KEY,
+      Authorization: 'Bearer ' + ghlToken(),
+      Version: '2021-07-28',
       'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
     body: body ? JSON.stringify(body) : undefined,
   });
@@ -44,41 +52,29 @@ async function pushToGHL(s) {
   const ship = (s.shipping_details && s.shipping_details.address) || cd.address || {};
   const name = (cd.name || (s.shipping_details && s.shipping_details.name) || '').trim();
   const sp = name.split(/\s+/);
-  const firstName = sp[0] || '';
-  const lastName = sp.slice(1).join(' ');
   const email = cd.email || '';
   const phone = cd.phone || '';
   if (!email && !phone) return { skipped: 'no email or phone' };
 
-  const orderTag = process.env.GHL_ORDER_TAG || 'commande-site';
-  const portalTag = process.env.GHL_PORTAL_TAG || 'portal-invite';
-  const tags = [orderTag, portalTag];
+  // a self-test contact must not fire the real portal-invite workflow
+  const tags = s._selftest
+    ? ['selftest-site']
+    : [process.env.GHL_ORDER_TAG || 'commande-site',
+       process.env.GHL_PORTAL_TAG || 'portal-invite'];
 
-  const fields = {
-    email, phone, firstName, lastName,
+  const up = await ghl('POST', '/contacts/upsert', {
+    locationId: ghlLocation(),
+    firstName: sp[0] || '', lastName: sp.slice(1).join(' '),
+    email, phone,
     address1: ship.line1 || '', city: ship.city || '',
     state: ship.state || '', postalCode: ship.postal_code || '',
     country: ship.country || 'CA',
     source: 'Site web — Confort & Style',
     tags,
-  };
-
-  // upsert by email: look first so a repeat buyer is updated, not duplicated
-  let contactId = null;
-  if (email) {
-    const look = await ghl('GET', '/contacts/lookup?email=' + encodeURIComponent(email));
-    if (look.ok && look.json && Array.isArray(look.json.contacts) && look.json.contacts[0]) {
-      contactId = look.json.contacts[0].id;
-    }
-  }
-  if (contactId) {
-    await ghl('PUT', '/contacts/' + contactId, fields);
-    await ghl('POST', '/contacts/' + contactId + '/tags/', { tags });
-  } else {
-    const made = await ghl('POST', '/contacts/', fields);
-    contactId = made.json && (made.json.contact ? made.json.contact.id : made.json.id);
-  }
-  if (!contactId) return { error: 'contact not created' };
+  });
+  if (!up.ok) return { error: 'ghl upsert', status: up.status, detail: up.json };
+  const contactId = up.json && up.json.contact && up.json.contact.id;
+  if (!contactId) return { error: 'no contact id', detail: up.json };
 
   const items = (s.line_items && s.line_items.data) || [];
   const lines = items.map((li) => ` - ${li.description} × ${li.quantity} — ${money(li.amount_total, s.currency)}`).join('\n');
@@ -90,10 +86,25 @@ async function pushToGHL(s) {
     addr ? 'Livraison : ' + addr : '',
     'Stripe : ' + s.id,
   ].filter(Boolean).join('\n');
-  await ghl('POST', '/contacts/' + contactId + '/notes/', { body: note });
+  // best-effort: the contact + tags are what drive the CRM and the invite; a
+  // note hiccup should not make Stripe retry a saved order
+  const noteRes = await ghl('POST', '/contacts/' + contactId + '/notes', { body: note });
 
-  return { contactId };
+  return { contactId, isNew: !!(up.json && up.json.new), noteSaved: noteRes.ok };
 }
+
+// what the self-test writes into GHL: obviously fake, tagged selftest-site,
+// safe to delete from the CRM afterwards
+const SELFTEST_SESSION = {
+  id: 'selftest', livemode: false, _selftest: true,
+  currency: 'cad', amount_total: 0, payment_status: 'paid',
+  customer_details: { email: 'verification.site@exemple.com', name: 'Vérification Site Web', phone: '' },
+  shipping_details: {
+    name: 'Vérification Site Web',
+    address: { line1: '7566 rue Saint-Hubert', city: 'Montréal', state: 'QC', postal_code: 'H2R 2N6', country: 'CA' },
+  },
+  line_items: { data: [{ description: 'TEST — vérification de la connexion GoHighLevel', quantity: 1, amount_total: 0 }] },
+};
 
 module.exports = async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
@@ -109,6 +120,16 @@ module.exports = async (req, res) => {
 
     let evt = req.body;
     if (typeof evt === 'string') { try { evt = JSON.parse(evt); } catch (e) { evt = null; } }
+
+    // {"type":"selftest"} exercises the exact GHL write path with fake data —
+    // no Stripe involved, no charge, one deletable contact in the CRM
+    if (evt && evt.type === 'selftest') {
+      if (!ghlToken()) return send(res, 500, { selftest: 'failed', why: 'GHL token env var missing' });
+      if (!ghlLocation()) return send(res, 500, { selftest: 'failed', why: 'GHL_LOCATION_ID env var missing' });
+      const out = await pushToGHL(SELFTEST_SESSION);
+      return send(res, out && out.error ? 502 : 200, { selftest: out && out.error ? 'failed' : 'ok', ...out });
+    }
+
     if (!evt || evt.type !== 'checkout.session.completed') return send(res, 200, { ignored: true });
 
     const sessionId = evt.data && evt.data.object && evt.data.object.id;
@@ -122,7 +143,7 @@ module.exports = async (req, res) => {
     if (!s) return send(res, 502, { error: 'stripe fetch' });
     if (s.payment_status !== 'paid') return send(res, 200, { skipped: 'unpaid' });
 
-    if (!process.env.GHL_API_KEY) return send(res, 200, { ok: true, ghl: 'not configured' });
+    if (!ghlToken() || !ghlLocation()) return send(res, 200, { ok: true, ghl: 'not configured' });
     const out = await pushToGHL(s);
     // a GHL failure returns 500 so Stripe retries; success/skip is 200
     if (out && out.error) return send(res, 500, out);
