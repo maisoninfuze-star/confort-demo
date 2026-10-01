@@ -383,6 +383,7 @@ footer.site a{display:block; padding:6px 0; font-size:14.5px; color:var(--footer
 footer.site a:hover{color:#fff}
 footer.site .fine{display:flex; gap:12px 30px; flex-wrap:wrap; justify-content:space-between; padding-top:26px;
   font-family:var(--f-mono); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--footer-dim)}
+footer.site .fine a{display:inline; padding:0; font-size:inherit; color:inherit}
 .skip{position:absolute; left:-9999px}
 .skip:focus{left:14px; top:14px; z-index:99; background:var(--paper); color:var(--ink); padding:12px 16px}
 

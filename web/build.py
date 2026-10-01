@@ -485,6 +485,7 @@ def footer(lang):
  <div class="fine">
    <span>© 2026 Meuble Confort &amp; Style</span>
    <span>{ADDR}, {CITY}</span>
+   <span>{'Propulsé par' if lang=='fr' else 'Powered by'} <a href="https://b12ventures.com" target="_blank" rel="noopener">B12 Ventures</a></span>
  </div>
 </div></footer>'''
 
