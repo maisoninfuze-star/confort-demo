@@ -16,7 +16,9 @@ DIST = os.path.join(HERE, 'dist')
 #   demo       : SITE_URL=https://confort-demo.vercel.app python3 build.py
 # www is the primary host on Vercel — the apex 308s to it, so every canonical,
 # hreflang and sitemap URL must carry www or Google is told about a redirect.
-SITE = os.environ.get('SITE_URL', 'https://www.meubleconfort.com').rstrip('/')
+# The store moved to meublesconfortstyles.com on 7 Oct 2026; the old
+# meubleconfort.com never had its DNS cut over and now resolves to Shopify.
+SITE = os.environ.get('SITE_URL', 'https://www.meublesconfortstyles.com').rstrip('/')
 PHONE = '514-279-4600'
 PHONE2 = '438-879-8019'
 ADDR = '7566 rue Saint-Hubert'

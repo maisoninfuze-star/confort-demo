@@ -2,7 +2,7 @@
 """Build a spreadsheet the store owner can actually review prices in.
 
 One row per product as the site now shows it, with the price it had on the
-current meubleconfort.com beside it, where the new figure came from, and an
+current meublesconfortstyles.com beside it, where the new figure came from, and an
 empty column to write a correction in. Anything the audit could not settle is
 flagged and sorted to the top.
 """
@@ -13,7 +13,7 @@ from openpyxl.utils import get_column_letter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'exports', 'revision-prix.xlsx')
-SITE = 'https://www.meubleconfort.com'
+SITE = 'https://www.meublesconfortstyles.com'
 CATS = {'salon': 'salon', 'chambre': 'chambre',
         'salle-a-manger': 'salle-a-manger', 'bureau': 'bureau'}
 
@@ -154,7 +154,7 @@ def main():
         (f'{len(rows)} produits. Les lignes surlignées demandent une vérification.', False),
         ('', False),
         ('Prix sur le site — ce que la démo affiche aujourd’hui.', False),
-        ('Prix actuel en ligne — ce que meubleconfort.com affiche présentement.', False),
+        ('Prix actuel en ligne — ce que meublesconfortstyles.com affiche présentement.', False),
         ('Écart — la différence entre les deux.', False),
         ('Source du prix — « Liste supplier 2026 » si le prix vient du fichier de prix fourni,', False),
         ('    « Prix boutique actuel » si le prix de la boutique a été conservé.', False),

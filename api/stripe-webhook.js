@@ -137,7 +137,7 @@ module.exports = async (req, res) => {
     if (evt && evt.type === 'setup-webhook') {
       const live = process.env.SK_LIVE || process.env.SK_Live;
       if (!live) return send(res, 500, { setup: 'failed', why: 'no live key' });
-      const host = req.headers.host || 'www.meubleconfort.com';
+      const host = req.headers.host || 'www.meublesconfortstyles.com';
       const auth = { Authorization: 'Basic ' + Buffer.from(live + ':').toString('base64') };
       const listR = await fetch('https://api.stripe.com/v1/webhook_endpoints?limit=100', { headers: auth });
       const list = await listR.json().catch(() => null);
