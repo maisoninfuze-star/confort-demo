@@ -130,6 +130,40 @@ module.exports = async (req, res) => {
       return send(res, out && out.error ? 502 : 200, { selftest: out && out.error ? 'failed' : 'ok', ...out });
     }
 
+    // {"type":"tax-status"} — read-only: report how tax is set up on the live
+    // account, so checkout can opt into the mechanism that actually exists.
+    // Dashboard configuration alone changes nothing: a Session collects tax
+    // only when it asks, via automatic_tax or per-line tax_rates.
+    if (evt && evt.type === 'tax-status') {
+      const live = process.env.SK_LIVE || process.env.SK_Live;
+      if (!live) return send(res, 500, { tax: 'failed', why: 'no live key' });
+      const auth = { Authorization: 'Basic ' + Buffer.from(live + ':').toString('base64') };
+      const grab = async (path) => {
+        const r = await fetch('https://api.stripe.com' + path, { headers: auth });
+        const j = await r.json().catch(() => null);
+        return { ok: r.ok, j };
+      };
+      const rates = await grab('/v1/tax_rates?limit=100&active=true');
+      const regs = await grab('/v1/tax/registrations?limit=100');
+      const settings = await grab('/v1/tax/settings');
+      return send(res, 200, {
+        tax: 'report',
+        taxRates: rates.ok && rates.j && rates.j.data
+          ? rates.j.data.map((t) => ({
+              id: t.id, display: t.display_name, pct: t.percentage,
+              inclusive: t.inclusive, juris: t.jurisdiction, country: t.country, state: t.state,
+            }))
+          : { error: rates.j && rates.j.error && rates.j.error.message },
+        stripeTaxRegistrations: regs.ok && regs.j && regs.j.data
+          ? regs.j.data.map((r2) => ({ id: r2.id, country: r2.country, state: r2.state, status: r2.status }))
+          : { error: regs.j && regs.j.error && regs.j.error.message },
+        stripeTaxStatus: settings.ok && settings.j
+          ? { status: settings.j.status, defaultCode: settings.j.defaults && settings.j.defaults.tax_code,
+              headOffice: !!settings.j.head_office }
+          : { error: settings.j && settings.j.error && settings.j.error.message },
+      });
+    }
+
     // {"type":"setup-webhook"} — one-time, owner-authorized: register THIS
     // endpoint on the LIVE Stripe account so paid orders reach GHL. A
     // configuration call only; it can never move money. Idempotent: an
