@@ -608,3 +608,7 @@ html:not(.intro-skip) body:has(.splash:not(.done)){overflow:hidden}
 .merci{padding:72px 0 96px;max-width:640px;display:flex;flex-direction:column;
   gap:18px;align-items:flex-start}
 .merci h1{margin:0}
+
+/* prices are shown tax-in; say so next to the number, quietly */
+.taxnote{font-family:var(--f-mono); font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); align-self:center}

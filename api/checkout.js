@@ -40,11 +40,9 @@ module.exports = async (req, res) => {
     p.set('billing_address_collection', 'required');
     p.set('phone_number_collection[enabled]', 'true');
     p.set('metadata[lang]', lang);
-    // Québec GST/QST. Stripe only computes tax when the Session asks for it —
-    // activating Stripe Tax in the dashboard does nothing on its own — and it
-    // only charges in jurisdictions the account is REGISTERED in, so this
-    // stays at zero until a Canada/Québec registration exists.
-    p.set('automatic_tax[enabled]', 'true');
+    // Prices already include Québec TPS + TVQ — the figure on the page is the
+    // figure charged. Automatic tax stays OFF on purpose: switching it on
+    // would stack a second tax on top of one already in the amount.
 
     for (let n = 0; n < items.length; n++) {
       const it = items[n] || {};
@@ -69,8 +67,8 @@ module.exports = async (req, res) => {
       const name = (prod[lang] + (opts ? ' — ' + opts : '')).slice(0, 250);
       p.set(`line_items[${n}][quantity]`, String(qty));
       p.set(`line_items[${n}][price_data][currency]`, 'cad');
-      // shelf prices are pre-tax: tax is added on top, never carved out
-      p.set(`line_items[${n}][price_data][tax_behavior]`, 'exclusive');
+      // the amount already carries TPS + TVQ
+      p.set(`line_items[${n}][price_data][tax_behavior]`, 'inclusive');
       p.set(`line_items[${n}][price_data][unit_amount]`, String(cents));
       p.set(`line_items[${n}][price_data][product_data][name]`, name);
       if (prod.img) p.append(`line_items[${n}][price_data][product_data][images][]`, prod.img);

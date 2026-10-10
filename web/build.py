@@ -103,7 +103,8 @@ COPY = {
    add='Ajouter au panier', call='Appeler', mo='Financement disponible', was='Prix régulier',
    filters='Filtres', sort='Trier', clear='Tout effacer', cart='Panier',
    cart_h='Votre panier', cart_empty='Votre panier est vide.',
-   cart_browse='Découvrir les collections', cart_sub='Sous-total',
+   cart_browse='Découvrir les collections', cart_sub='Total',
+   tax_incl='TPS et TVQ incluses',
    cart_pay='Passer au paiement', cart_close='Fermer',
    cart_demo='Démo — paiement Stripe en mode test. Aucun montant réel n’est débité.',
    merci_h='Merci — votre commande est confirmée',
@@ -157,7 +158,8 @@ COPY = {
    add='Add to cart', call='Call us', mo='Financing available', was='Regular price',
    filters='Filters', sort='Sort', clear='Clear all', cart='Cart',
    cart_h='Your cart', cart_empty='Your cart is empty.',
-   cart_browse='Browse the collections', cart_sub='Subtotal',
+   cart_browse='Browse the collections', cart_sub='Total',
+   tax_incl='GST and QST included',
    cart_pay='Proceed to payment', cart_close='Close',
    cart_demo='Demo — Stripe test checkout. No real charge is ever made.',
    merci_h='Thank you — your order is confirmed',
@@ -285,6 +287,35 @@ REVIEWS = [
   'en':"Mattress bought at a good price with the manufacturer’s warranty. Delivered on the scheduled day, good communication.",
   'who':'Google · ★★★★★'},
 ]
+
+# Québec TPS 5% + TVQ 9,975%. The store shows one number: what you actually
+# pay. Every catalogue price is converted once, here, before anything renders —
+# the page, the JSON-LD, the cart and the amount sent to Stripe all read the
+# same already-taxed figure, so the shelf price and the charge cannot drift.
+# Rounded to the dollar so the displayed price IS the charged price to the cent.
+TAX_RATE = 0.14975
+
+def with_tax(v):
+    return float(round(v * (1 + TAX_RATE))) if v else v
+
+def apply_tax_inclusive(cat):
+    """Fold tax into every price the build will ever read. Run once, early."""
+    for p in cat:
+        p['price'] = with_tax(p['price'])
+        if p.get('price_max'):
+            p['price_max'] = with_tax(p['price_max'])
+        if p.get('compare'):
+            p['compare'] = with_tax(p['compare'])
+            # a "was" that no longer beats the price is not a discount
+            if p['compare'] <= p['price']:
+                p['compare'] = None
+        for v in p.get('variants', []):
+            if v.get('price'):
+                v['price'] = with_tax(v['price'])
+            if v.get('compare'):
+                v['compare'] = None
+        p['monthly'] = round(p['price'] / FIN_TERM) if p['price'] else 0
+    return cat
 
 def money(v, lang):
     v = round(v)
@@ -473,6 +504,7 @@ def cart_drawer(lang):
  </div>
  <div class="cart-foot" id="cartfoot" hidden>
    <div class="cart-sub"><span>{E(c['cart_sub'])}</span><b id="cartsum"></b></div>
+   <p class="cart-note">{E(c['tax_incl'])}</p>
    <button class="btn btn-primary btn-block" id="cartpay" type="button">{E(c['cart_pay'])}</button>
    <p class="cart-note">{E(c['cart_demo'])}</p>
  </div>
@@ -508,6 +540,7 @@ def footer(lang):
  <div class="fine">
    <span>© 2026 Meuble Confort &amp; Style</span>
    <span>{ADDR}, {CITY}</span>
+   <span>{'Tous les prix incluent la TPS et la TVQ.' if lang=='fr' else 'All prices include GST and QST.'}</span>
    <span>{'Propulsé par' if lang=='fr' else 'Powered by'} <a href="https://b12ventures.com" target="_blank" rel="noopener">B12 Ventures</a></span>
  </div>
 </div></footer>'''
@@ -939,6 +972,7 @@ def build_pdp(p, cat, lang):
    <div class="priceline">
      <span class="now" data-price-now>{money(p['price'], lang)}</span>
      {f'<span class="was">{money(p["compare"], lang)}</span>' if sale else ''}
+     <span class="taxnote">{E(c['tax_incl'])}</span>
    </div>
    {finline(p, lang)}
    {bnpl_block(p['price'], lang)}
@@ -1369,6 +1403,8 @@ def main():
 
     cat = json.load(open(os.path.join(HERE, 'catalogue.json'), encoding='utf-8'))
     cat = [p for p in cat if p['images']]
+    # before any page, any price map, any structured data
+    cat = apply_tax_inclusive(cat)
     urls, n = [], 0
 
     for lang in ('fr', 'en'):
