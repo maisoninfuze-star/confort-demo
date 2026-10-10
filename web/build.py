@@ -100,7 +100,7 @@ COPY = {
    fin_h='Ou payez-le par mois', 
    fin_p='Approbation en 3 minutes, en ligne ou en magasin. Paiements mensuels simples, sans mauvaise surprise.',
    fin_cta='Voir le financement',
-   add='Ajouter au panier', call='Appeler', mo='ou %s $/mois', was='Prix régulier',
+   add='Ajouter au panier', call='Appeler', mo='Financement disponible', was='Prix régulier',
    filters='Filtres', sort='Trier', clear='Tout effacer', cart='Panier',
    cart_h='Votre panier', cart_empty='Votre panier est vide.',
    cart_browse='Découvrir les collections', cart_sub='Sous-total',
@@ -124,8 +124,8 @@ COPY = {
    no_dims='Dimensions sur demande — appelez-nous au ' + PHONE + ', on les a en magasin.',
    ret='14 jours pour changer d’avis. On vient le rechercher.',
    foot_shop='Magasiner', foot_help='Aide', foot_store='Le magasin', foot_hours='Ouvert 7 jours',
-   bnpl_pay4='× 4 sans intérêts, aux 2 semaines',
-   bnpl_mo='× %s mois, à partir de 0 %%',
+   bnpl_pay4='Payez en 4 versements, sans intérêts',
+   bnpl_mo='Versements mensuels, à partir de 0 %',
    bnpl_more='Comment payer en versements →',
    pay_h='Modes de paiement',
    set_photo='Photo de l’ensemble',
@@ -154,7 +154,7 @@ COPY = {
    fin_h='Or pay monthly',
    fin_p='Approved in 3 minutes, online or in store. Simple monthly payments, no surprises.',
    fin_cta='See financing',
-   add='Add to cart', call='Call us', mo='or $%s/month', was='Regular price',
+   add='Add to cart', call='Call us', mo='Financing available', was='Regular price',
    filters='Filters', sort='Sort', clear='Clear all', cart='Cart',
    cart_h='Your cart', cart_empty='Your cart is empty.',
    cart_browse='Browse the collections', cart_sub='Subtotal',
@@ -178,8 +178,8 @@ COPY = {
    no_dims='Dimensions on request — call ' + PHONE + ', we have them in store.',
    ret='14 days to change your mind. We come and pick it up.',
    foot_shop='Shop', foot_help='Help', foot_store='The store', foot_hours='Open 7 days',
-   bnpl_pay4='× 4 interest-free, every 2 weeks',
-   bnpl_mo='× %s months, from 0%%',
+   bnpl_pay4='Pay in 4 instalments, interest-free',
+   bnpl_mo='Monthly instalments, from 0%',
    bnpl_more='How instalments work →',
    pay_h='Ways to pay',
    set_photo='Photo of the full set',
@@ -229,11 +229,9 @@ def finline(p, lang):
     variant that lifts the price over it can reveal the same node, rather than
     the script having to build one that was never in the markup."""
     show = monthly_of(p) is not None
-    lead = 'ou ' if lang == 'fr' else 'or $'
-    tail = ' $/mois · ' if lang == 'fr' else '/month · '
+    lead = 'Financement disponible · ' if lang == 'fr' else 'Financing available · '
     cta = 'approbation en 3 min' if lang == 'fr' else 'approved in 3 min'
     return (f'<div class="fin" data-fin{"" if show else " hidden"}>{lead}'
-            f'<span data-price-mo>{p["monthly"]}</span>{tail}'
             f'<a href="{url(lang, PAGES["financement"][lang][1])}">{cta}</a></div>')
 
 # supplier supply the dealer COST, not retail. Retail = cost × margin, and the
@@ -551,7 +549,7 @@ def card(p, lang, rank=0, lazy=True):
      <span class="now">{money(p['price'], lang)}</span>
      {f'<span class="was">{money(p["compare"], lang)}</span>' if sale else ''}
    </div>
-   {f'<div class="pc-mo">{c["mo"] % p["monthly"]}</div>' if monthly_of(p) else ''}
+   {f'<div class="pc-mo">{c["mo"]}</div>' if monthly_of(p) else ''}
    <span class="chip boxed {'go' if p['available'] else 'plain'}" style="align-self:flex-start">
      <span class="dot"></span><span data-deliver="{deliver_mode(p)}">{E(deliver_text(p, lang))}</span></span>
  </div></a>'''
@@ -700,9 +698,9 @@ def build_home(cat, lang):
       <p style="color:var(--ink-2);max-width:46ch">{E(c['fin_p'])}</p>
       <a class="btn btn-primary" href="{url(lang, PAGES['financement'][lang][1])}">{E(c['fin_cta'])}</a></div>
     <div class="box" style="padding:26px">
-      <p class="eyebrow">{'Exemple' if lang=='fr' else 'Example'}</p>
-      <div style="font-family:var(--f-display);font-size:38px;font-weight:600;letter-spacing:-.04em">{c['mo'] % 61}</div>
-      <p style="margin-top:8px">{'Sur un sectionnel de 2 200 $, sur ' if lang=='fr' else 'On a $2,200 sectional, over '}{TERM}{' mois.' if lang=='fr' else ' months.'}</p>
+      <p class="eyebrow">{'Financement' if lang=='fr' else 'Financing'}</p>
+      <div style="font-family:var(--f-display);font-size:32px;font-weight:600;letter-spacing:-.03em;line-height:1.1">{'Payez en plusieurs versements' if lang=='fr' else 'Pay in instalments'}</div>
+      <p style="margin-top:8px">{'Approbation en 3 minutes, en ligne ou en magasin. Les modalités vous sont présentées avant que vous confirmiez.' if lang=='fr' else 'Approved in 3 minutes, online or in store. The terms are shown to you before you confirm.'}</p>
     </div>
   </div>
 </div></section>'''
@@ -821,18 +819,14 @@ def bnpl_block(price, lang):
         return ''
     rows = ''
     if pay4:
-        per = price / 4
         names = ' · '.join(b['name'] for b in pay4)
         rows += f"""<div class="bnpl-row">
-        <span class="bnpl-amt" data-bnpl-pay4>{money4(per, lang)}</span>
-        <span class="bnpl-txt">{E(c['bnpl_pay4'])}</span>
+        <span class="bnpl-txt" data-bnpl-pay4>{E(c['bnpl_pay4'])}</span>
         <span class="bnpl-marks">{E(names)}</span>
       </div>"""
     if monthly:
-        per = price / BNPL_TERM
         rows += f"""<div class="bnpl-row">
-        <span class="bnpl-amt" data-bnpl-mo>{money4(per, lang)}</span>
-        <span class="bnpl-txt">{E(c['bnpl_mo'] % BNPL_TERM)}</span>
+        <span class="bnpl-txt" data-bnpl-mo>{E(c['bnpl_mo'])}</span>
         <span class="bnpl-marks">Affirm</span>
       </div>"""
     return f"""<div class="bnpl" data-bnpl>
@@ -997,9 +991,9 @@ def build_pdp(p, cat, lang):
                     "seller":{"@type":"Organization","name":"Meuble Confort & Style"}}}
     desc = (f"{p_name(p, lang)} — {money(p['price'], lang)}. "
             + (("En stock à Montréal, livré gratuitement, monté et à l’étage."
-                + (f" Ou {p['monthly']} $/mois." if monthly_of(p) else "")) if lang == 'fr' else
+                + (" Financement disponible." if monthly_of(p) else "")) if lang == 'fr' else
                ("In stock in Montréal, delivered free, assembled and up your stairs."
-                + (f" Or ${p['monthly']}/month." if monthly_of(p) else ""))))
+                + (" Financing available." if monthly_of(p) else ""))))
     # Trim the brand, never the product name: two pieces can differ only by the
     # finish at the end of the name, and cutting it makes their <title>s
     # identical.
@@ -1049,7 +1043,7 @@ PROSE = {
 
  'financement': {'fr': """
 <h1>Financement</h1>
-<p>Un sectionnel à 2 200 $, c’est <strong>61 $ par mois</strong>. C’est comme ça que la plupart de nos clients meublent une pièce au complet d’un coup plutôt qu’une pièce à la fois.</p>
+<p>Le financement vous permet d’étaler votre achat sur plusieurs versements. C’est comme ça que la plupart de nos clients meublent une pièce au complet d’un coup plutôt qu’une pièce à la fois.</p>
 <h2>Comment ça marche</h2>
 <ul>
 <li><strong>Approbation en 3 minutes</strong>, en ligne ou au comptoir.</li>
@@ -1083,15 +1077,11 @@ PROSE = {
 <li><strong>Le Québec encadre ces produits comme du crédit à la consommation.</strong> Contrairement au reste du Canada, la <em>Loi sur la protection du consommateur</em> traite plusieurs offres « achetez maintenant, payez plus tard » comme du crédit — ce qui entraîne des obligations de divulgation, en français. Faites valider la page et l’affichage sur les fiches produits par un conseiller juridique québécois avant de les activer.</li>
 </ul>
 <p class="fineprint">Les frais marchands pour ce type de service se situent généralement entre 3 % et 7 % de la transaction. Sur une marge de meuble, ce n’est pas négligeable : à valider avant de tout activer.</p>
-<h2>Exemples</h2>
-<ul>
-<li>Ensemble de chambre 1 400 $ → <strong>39 $/mois</strong> sur 36 mois</li>
-<li>Sectionnel 2 200 $ → <strong>61 $/mois</strong> sur 36 mois</li>
-<li>Ensemble de salle à manger 900 $ → <strong>25 $/mois</strong> sur 36 mois</li>
-</ul>""",
+<h2>Combien ça coûte</h2>
+<p>Le montant de vos versements dépend du prix, de la durée choisie et du taux auquel vous êtes approuvé. Le détail complet — montant, durée et taux — vous est présenté avant que vous confirmiez quoi que ce soit, sans engagement.</p>""",
  'en': """
 <h1>Financing</h1>
-<p>A $2,200 sectional is <strong>$61 a month</strong>. It’s how most of our customers furnish a whole room at once instead of a piece at a time.</p>
+<p>Financing lets you spread your purchase over several instalments. It’s how most of our customers furnish a whole room at once instead of a piece at a time.</p>
 <h2>How it works</h2>
 <ul>
 <li><strong>Approved in 3 minutes</strong>, online or at the counter.</li>
@@ -1125,12 +1115,8 @@ PROSE = {
 <li><strong>Québec regulates these as consumer credit.</strong> Unlike the rest of Canada, the <em>Consumer Protection Act</em> treats many buy-now-pay-later offers as credit — which brings disclosure obligations, in French. Have a Québec lawyer review this page and the product-page messaging before switching it on.</li>
 </ul>
 <p class="fineprint">Merchant fees for these services generally run 3% to 7% of the transaction. Against furniture margins that is not a rounding error — worth confirming before you enable everything.</p>
-<h2>Examples</h2>
-<ul>
-<li>$1,400 bedroom set → <strong>$39/month</strong> over 36 months</li>
-<li>$2,200 sectional → <strong>$61/month</strong> over 36 months</li>
-<li>$900 dining set → <strong>$25/month</strong> over 36 months</li>
-</ul>"""},
+<h2>What it costs</h2>
+<p>Your instalment depends on the price, the term you pick and the rate you are approved at. The full details — amount, term and rate — are shown to you before you confirm anything, with no obligation.</p>"""},
 
  'salle-de-montre': {'fr': """
 <h1>La salle de montre</h1>
