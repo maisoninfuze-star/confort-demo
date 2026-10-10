@@ -308,8 +308,14 @@
       var price = parseFloat(b.dataset.price);
       var p = document.querySelector('[data-price-now]');
       if (p) p.textContent = money(price);
+      // The financing offer has a floor, so a variant can cross it in either
+      // direction: show the line only while the chosen price clears it.
       var m = document.querySelector('[data-price-mo]');
-      if (m) m.textContent = Math.round(price / 36);
+      var finBox = document.querySelector('[data-fin]');
+      var finMin = (BNPL && BNPL.finMin) || 0;
+      var finTerm = (BNPL && BNPL.finTerm) || 36;
+      if (m) m.textContent = Math.round(price / finTerm);
+      if (finBox) finBox.hidden = price < finMin;
       // the add button carries what the cart will store
       var add = document.querySelector('[data-add]');
       if (add) add.dataset.price = price;

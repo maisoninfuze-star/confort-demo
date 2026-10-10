@@ -213,6 +213,29 @@ BNPL = [
 ]
 BNPL_TERM = 12   # months used for the Affirm monthly illustration
 
+# Smallest basket the 36-month in-store financing is actually offered on.
+# Without a floor the line renders on a $270 dining chair as "ou 8 $/mois" —
+# arithmetically right, commercially absurd, and a promise no lender honours
+# at that size. Below this the price simply stands on its own.
+FIN_MIN = 500
+FIN_TERM = 36
+
+def monthly_of(p):
+    """What the financing line may claim, or None when it may not appear."""
+    return p['monthly'] if p['price'] >= FIN_MIN else None
+
+def finline(p, lang):
+    """The product-page financing line. Rendered hidden below the floor so a
+    variant that lifts the price over it can reveal the same node, rather than
+    the script having to build one that was never in the markup."""
+    show = monthly_of(p) is not None
+    lead = 'ou ' if lang == 'fr' else 'or $'
+    tail = ' $/mois · ' if lang == 'fr' else '/month · '
+    cta = 'approbation en 3 min' if lang == 'fr' else 'approved in 3 min'
+    return (f'<div class="fin" data-fin{"" if show else " hidden"}>{lead}'
+            f'<span data-price-mo>{p["monthly"]}</span>{tail}'
+            f'<a href="{url(lang, PAGES["financement"][lang][1])}">{cta}</a></div>')
+
 # supplier supply the dealer COST, not retail. Retail = cost × margin, and the
 # margin is the store's to set — so nothing derived from that file is published
 # until this is a number. Observed across the 33 products already priced against
@@ -528,7 +551,7 @@ def card(p, lang, rank=0, lazy=True):
      <span class="now">{money(p['price'], lang)}</span>
      {f'<span class="was">{money(p["compare"], lang)}</span>' if sale else ''}
    </div>
-   <div class="pc-mo">{c['mo'] % p['monthly']}</div>
+   {f'<div class="pc-mo">{c["mo"] % p["monthly"]}</div>' if monthly_of(p) else ''}
    <span class="chip boxed {'go' if p['available'] else 'plain'}" style="align-self:flex-start">
      <span class="dot"></span><span data-deliver="{deliver_mode(p)}">{E(deliver_text(p, lang))}</span></span>
  </div></a>'''
@@ -923,7 +946,7 @@ def build_pdp(p, cat, lang):
      <span class="now" data-price-now>{money(p['price'], lang)}</span>
      {f'<span class="was">{money(p["compare"], lang)}</span>' if sale else ''}
    </div>
-   <div class="fin">{('ou ' if lang=='fr' else 'or $')}<span data-price-mo>{p['monthly']}</span>{(' $/mois · ' if lang=='fr' else '/month · ')}<a href="{url(lang, PAGES['financement'][lang][1])}">{'approbation en 3 min' if lang=='fr' else 'approved in 3 min'}</a></div>
+   {finline(p, lang)}
    {bnpl_block(p['price'], lang)}
    <span class="chip boxed {'go' if p['available'] else 'plain'}" style="align-self:flex-start">
      <span class="dot"></span><span data-deliver="{deliver_mode(p)}">{E(deliver_text(p, lang))}</span></span>
@@ -933,7 +956,7 @@ def build_pdp(p, cat, lang):
      data-url="{p_url(p, lang)}" data-price="{p['price']}">{E(c['add'])}</button>
    <a class="btn btn-ghost btn-block" href="tel:+1{PHONE.replace('-','')}">{E(c['call'])} · {PHONE}</a>
    {fitblock}
-   <script type="application/json" id="bnpldata">{json.dumps({'options': BNPL, 'term': BNPL_TERM}, ensure_ascii=False)}</script>
+   <script type="application/json" id="bnpldata">{json.dumps({'options': BNPL, 'term': BNPL_TERM, 'finMin': FIN_MIN, 'finTerm': FIN_TERM}, ensure_ascii=False)}</script>
    <div class="box">
      <p><strong>{E(c['ship'])}</strong><br>{E(c['ret'])}</p>
    </div>
@@ -973,10 +996,10 @@ def build_pdp(p, cat, lang):
                     "itemCondition":"https://schema.org/NewCondition",
                     "seller":{"@type":"Organization","name":"Meuble Confort & Style"}}}
     desc = (f"{p_name(p, lang)} — {money(p['price'], lang)}. "
-            + ("En stock à Montréal, livré gratuitement, monté et à l’étage. Ou "
-               f"{p['monthly']} $/mois." if lang == 'fr' else
-               "In stock in Montréal, delivered free, assembled and up your stairs. Or "
-               f"${p['monthly']}/month."))
+            + (("En stock à Montréal, livré gratuitement, monté et à l’étage."
+                + (f" Ou {p['monthly']} $/mois." if monthly_of(p) else "")) if lang == 'fr' else
+               ("In stock in Montréal, delivered free, assembled and up your stairs."
+                + (f" Or ${p['monthly']}/month." if monthly_of(p) else ""))))
     # Trim the brand, never the product name: two pieces can differ only by the
     # finish at the end of the name, and cutting it makes their <title>s
     # identical.
