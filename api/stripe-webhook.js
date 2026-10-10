@@ -146,8 +146,19 @@ module.exports = async (req, res) => {
       const rates = await grab('/v1/tax_rates?limit=100&active=true');
       const regs = await grab('/v1/tax/registrations?limit=100');
       const settings = await grab('/v1/tax/settings');
+      // the newest Session proves what the deployed checkout actually asked for
+      const last = await grab('/v1/checkout/sessions?limit=1');
+      const sess = last.ok && last.j && last.j.data && last.j.data[0];
       return send(res, 200, {
         tax: 'report',
+        lastSession: sess ? {
+          id: sess.id,
+          automaticTax: sess.automatic_tax,
+          subtotal: sess.amount_subtotal,
+          tax: sess.total_details && sess.total_details.amount_tax,
+          total: sess.amount_total,
+          currency: sess.currency,
+        } : null,
         taxRates: rates.ok && rates.j && rates.j.data
           ? rates.j.data.map((t) => ({
               id: t.id, display: t.display_name, pct: t.percentage,
