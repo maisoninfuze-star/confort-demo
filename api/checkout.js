@@ -13,6 +13,54 @@ const send = (res, status, obj) => {
   res.end(JSON.stringify(obj));
 };
 
+// Québec tax, shown rather than hidden. Prices already include it, so these
+// rates are INCLUSIVE: Stripe breaks TPS and TVQ out of the amount for the
+// receipt instead of adding anything, and the total the customer sees on the
+// page is the total they are charged. Resolved once per cold start, created
+// on the account if absent, and never allowed to block a sale: if Stripe
+// cannot hand back a rate the order still goes through at the right total,
+// just without the itemised line.
+const TAX_DEFS = [
+  { tag: 'tps', display: 'TPS/GST', pct: 5, desc: 'TPS 5 %' },
+  { tag: 'tvq', display: 'TVQ/QST', pct: 9.975, desc: 'TVQ 9,975 %' },
+];
+let taxRateCache = null;
+
+async function taxRateIds(key) {
+  if (taxRateCache) return taxRateCache;
+  const auth = { Authorization: 'Basic ' + Buffer.from(key + ':').toString('base64') };
+  const found = {};
+  const r = await fetch('https://api.stripe.com/v1/tax_rates?limit=100&active=true', { headers: auth });
+  if (r.ok) {
+    const j = await r.json().catch(() => null);
+    for (const t of (j && j.data) || []) {
+      const tag = t.metadata && t.metadata.mcs;
+      if (tag && t.inclusive) found[tag] = t.id;
+    }
+  }
+  const ids = [];
+  for (const d of TAX_DEFS) {
+    if (found[d.tag]) { ids.push(found[d.tag]); continue; }
+    const q = new URLSearchParams();
+    q.set('display_name', d.display);
+    q.set('description', d.desc);
+    q.set('percentage', String(d.pct));
+    q.set('inclusive', 'true');
+    q.set('country', 'CA');
+    q.set('state', 'QC');
+    q.set('metadata[mcs]', d.tag);
+    const mk = await fetch('https://api.stripe.com/v1/tax_rates', {
+      method: 'POST',
+      headers: { ...auth, 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: q.toString(),
+    });
+    const mj = await mk.json().catch(() => null);
+    if (mk.ok && mj && mj.id) ids.push(mj.id);
+  }
+  if (ids.length === TAX_DEFS.length) taxRateCache = ids;
+  return ids;
+}
+
 module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('Content-Type', 'application/json');
@@ -27,6 +75,8 @@ module.exports = async (req, res) => {
     const items = body && Array.isArray(body.items) ? body.items : [];
     if (!items.length || items.length > 20) return send(res, 400, { error: 'cart' });
     const site = 'https://' + (req.headers.host || 'www.meublesconfortstyles.com');
+
+    const taxIds = await taxRateIds(key).catch(() => []);
 
     const p = new URLSearchParams();
     p.set('mode', 'payment');
@@ -67,10 +117,9 @@ module.exports = async (req, res) => {
       const name = (prod[lang] + (opts ? ' — ' + opts : '')).slice(0, 250);
       p.set(`line_items[${n}][quantity]`, String(qty));
       p.set(`line_items[${n}][price_data][currency]`, 'cad');
-      // the amount already carries TPS + TVQ
-      p.set(`line_items[${n}][price_data][tax_behavior]`, 'inclusive');
       p.set(`line_items[${n}][price_data][unit_amount]`, String(cents));
       p.set(`line_items[${n}][price_data][product_data][name]`, name);
+      for (const t of taxIds) p.append(`line_items[${n}][tax_rates][]`, t);
       if (prod.img) p.append(`line_items[${n}][price_data][product_data][images][]`, prod.img);
     }
 

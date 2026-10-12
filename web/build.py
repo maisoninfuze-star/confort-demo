@@ -96,7 +96,7 @@ COPY = {
    revs_h='79 familles montréalaises nous ont donné 5 sur 5',
    store_h='Venez vous asseoir dessus', 
    store_p='La salle de montre est sur la Plaza Saint-Hubert, sous la marquise. On vous laisse essayer, on ne vous suit pas dans les allées.',
-   store_cta='Réservez un essai — 20 min', dir='Itinéraire',
+   store_cta='Voir la salle de montre', dir='Itinéraire',
    fin_h='Ou payez-le par mois', 
    fin_p='Approbation en 3 minutes, en ligne ou en magasin. Paiements mensuels simples, sans mauvaise surprise.',
    fin_cta='Voir le financement',
@@ -151,7 +151,7 @@ COPY = {
    revs_h='79 Montréal families have given us 5 out of 5',
    store_h='Come sit on it',
    store_p='The showroom is on Plaza Saint-Hubert, under the marquee. You get to try things without being followed down the aisle.',
-   store_cta='Book a 20-minute visit', dir='Directions',
+   store_cta='See the showroom', dir='Directions',
    fin_h='Or pay monthly',
    fin_p='Approved in 3 minutes, online or in store. Simple monthly payments, no surprises.',
    fin_cta='See financing',
@@ -1157,9 +1157,6 @@ PROSE = {
 <p>7566 rue Saint-Hubert, sur la Plaza — sous la marquise, entre Saint-Zotique et Bélanger. Le 99 et le 30 s’arrêtent devant, et il y a du stationnement sur Saint-Hubert et dans les rues transversales.</p>
 <h2>Heures</h2>
 <ul><li>Lundi au vendredi — 10 h à 18 h</li><li>Samedi — 10 h à 18 h</li><li>Dimanche — 11 h à 17 h</li></ul>
-<h2>Réservez un essai — 20 minutes</h2>
-<p>Dites-nous ce que vous avez vu sur le site et à quelle heure vous passez. On sort les modèles, on prépare les tissus, et vous avez la place pour vous asseoir dessus sans qu’on vous suive dans les allées.</p>
-<p><a class="btn btn-primary" href="tel:+1""" + PHONE.replace('-','') + """" style="margin-top:8px">Appeler le """ + PHONE + """</a></p>
 <h2>Ce qui est en magasin</h2>
 <p>Le site montre ce qui est en stock à l’entrepôt. La salle de montre en a plus — surtout en matelas et en tissus. Si vous ne trouvez pas une couleur ici, appelez : on l’a peut-être sur le plancher.</p>""",
  'en': """
@@ -1167,9 +1164,6 @@ PROSE = {
 <p>7566 rue Saint-Hubert, on the Plaza — under the marquee, between Saint-Zotique and Bélanger. The 99 and the 30 stop out front, and there’s parking on Saint-Hubert and the side streets.</p>
 <h2>Hours</h2>
 <ul><li>Monday to Friday — 10am to 6pm</li><li>Saturday — 10am to 6pm</li><li>Sunday — 11am to 5pm</li></ul>
-<h2>Book a 20-minute visit</h2>
-<p>Tell us what you saw on the site and when you’re coming. We’ll pull the models out, have the fabrics ready, and give you room to sit on them without being followed down the aisle.</p>
-<p><a class="btn btn-primary" href="tel:+1""" + PHONE.replace('-','') + """" style="margin-top:8px">Call """ + PHONE + """</a></p>
 <h2>What’s in the store</h2>
 <p>The site shows what’s in stock at the warehouse. The showroom holds more — especially mattresses and fabrics. If you can’t find a colour here, call: it may be on the floor.</p>"""},
 
