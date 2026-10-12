@@ -21,7 +21,7 @@
         : 'On le démonte en ' + p + ' modules — le plus large fait ' + w + ' po — et on le remonte chez vous, sans frais.'; },
       nofitB: function (w) { return 'Il faut ' + w + ' po de dégagement au minimum.'; },
       alts: 'Ceux-ci rentrent chez vous :',
-      noalts: 'On n’a rien d’assez étroit en ligne pour cette entrée. Appelez-nous au 514-279-4600 — la salle de montre en a plus que le site.',
+      noalts: 'On n’a rien d’assez étroit en ligne pour cette entrée. Appelez-nous au 514-279-4600 — on vérifie ce qui rentre avec vous.',
       est: 'Estimation à partir des dimensions du fabricant. Un doute ? Appelez-nous, on vérifie avec vous.'
     },
     en: {
@@ -42,7 +42,7 @@
         : 'We take it apart into ' + p + ' modules — the widest is ' + w + '" — and rebuild it inside, free.'; },
       nofitB: function (w) { return 'You need at least ' + w + '" of clearance.'; },
       alts: 'These will fit:',
-      noalts: 'We have nothing narrow enough online for that entrance. Call 514-279-4600 — the showroom holds more than the site.',
+      noalts: 'We have nothing narrow enough online for that entrance. Call 514-279-4600 — we’ll work out what fits with you.',
       est: 'Estimated from the manufacturer’s dimensions. Not sure? Call us and we’ll check it with you.'
     }
   }[L];

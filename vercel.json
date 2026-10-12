@@ -15,6 +15,16 @@
       "permanent": false
     },
     {
+      "source": "/en/showroom/",
+      "destination": "/en/delivery/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/salle-de-montre/",
+      "destination": "/fr/livraison/",
+      "permanent": true
+    },
+    {
       "source": "/collections/chanbre/",
       "destination": "/fr/chambre/",
       "permanent": true

@@ -63,7 +63,6 @@ SUPPLIER_FAMILIES = [
 PAGES = {
  'livraison':      {'fr': ('Livraison', 'livraison'),       'en': ('Delivery', 'delivery')},
  'financement':    {'fr': ('Financement', 'financement'),   'en': ('Financing', 'financing')},
- 'salle-de-montre':{'fr': ('La salle de montre', 'salle-de-montre'), 'en': ('The showroom', 'showroom')},
  'retours':        {'fr': ('Retours et garantie', 'retours'),'en': ('Returns & warranty', 'returns')},
  'a-propos':       {'fr': ('À propos', 'a-propos'),         'en': ('About us', 'about')},
  'catalogue':      {'fr': ('Catalogue complet', 'catalogue'), 'en': ('Full catalogue', 'catalogue')},
@@ -89,16 +88,16 @@ COPY = {
    stock='En stock à Montréal', fin='Financement — approbation en 3 minutes',
    hero_h='Votre salon fini.<br>Livré et <em>monté</em>.',
    hero_p='Des meubles qui sont déjà dans notre entrepôt à Montréal. Livraison gratuite, montés, à l’étage — Montréal, Laval et Longueuil.',
-   hero_cta='Voir ce qui est en stock', hero_cta2='Visiter la salle de montre',
+   hero_cta='Voir ce qui est en stock', hero_cta2='Comment on livre',
    rooms_h='Magasinez par pièce', rooms_p='Chaque pièce, meublée au complet, sans louer de camion.',
    week_h='En stock à Montréal', week_p='Déjà dans notre entrepôt, prêt à livrer. On vous appelle pour fixer la livraison dès la commande passée.',
    deals_h='Vraies aubaines', deals_p='Seulement ce qui est réellement réduit — pas une liquidation permanente.',
    revs_h='79 familles montréalaises nous ont donné 5 sur 5',
-   store_h='Venez vous asseoir dessus', 
-   store_p='La salle de montre est sur la Plaza Saint-Hubert, sous la marquise. On vous laisse essayer, on ne vous suit pas dans les allées.',
-   store_cta='Voir la salle de montre', dir='Itinéraire',
+   store_h='Une boutique en ligne, livrée chez vous', 
+   store_p='Tout se passe en ligne : vous commandez, on livre et on monte chez vous. Une question sur un tissu ou une dimension ? Appelez-nous, on vérifie à l’entrepôt.',
+   store_cta='Comment on livre', dir='Nous appeler',
    fin_h='Ou payez-le par mois', 
-   fin_p='Approbation en 3 minutes, en ligne ou en magasin. Paiements mensuels simples, sans mauvaise surprise.',
+   fin_p='Approbation en 3 minutes, en ligne. Paiements mensuels simples, sans mauvaise surprise.',
    fin_cta='Voir le financement',
    add='Ajouter au panier', call='Appeler', mo='Financement disponible', was='Prix régulier',
    filters='Filtres', sort='Trier', clear='Tout effacer', cart='Panier',
@@ -122,9 +121,9 @@ COPY = {
    colour='Couleur', material='Matériau', seat='Hauteur d’assise', cat_l='Catégorie',
    also_h='Complétez la pièce', also_p='Ce qui va avec, du même arrivage.',
    crumb_home='Accueil', size='Taille', config='Configuration',
-   no_dims='Dimensions sur demande — appelez-nous au ' + PHONE + ', on les a en magasin.',
+   no_dims='Dimensions sur demande — appelez-nous au ' + PHONE + ', on les a à l’entrepôt.',
    ret='14 jours pour changer d’avis. On vient le rechercher.',
-   foot_shop='Magasiner', foot_help='Aide', foot_store='Le magasin', foot_hours='Ouvert 7 jours',
+   foot_shop='Magasiner', foot_help='Aide', foot_store='Nous joindre', foot_hours='Service téléphonique',
    bnpl_pay4='Payez en 4 versements, sans intérêts',
    bnpl_mo='Versements mensuels, à partir de 0 %',
    bnpl_more='Comment payer en versements →',
@@ -144,16 +143,16 @@ COPY = {
    stock='In stock in Montréal', fin='Financing — approved in 3 minutes',
    hero_h='Your living room,<br>delivered and <em>assembled</em>.',
    hero_p='Furniture that is already in our Montréal warehouse. Free delivery, assembled, up your stairs — Montréal, Laval and Longueuil.',
-   hero_cta='See what\u2019s in stock', hero_cta2='Visit the showroom',
+   hero_cta='See what\u2019s in stock', hero_cta2='How delivery works',
    rooms_h='Shop by room', rooms_p='A whole room, furnished, without renting a truck.',
    week_h='In stock in Montréal', week_p='Already in our warehouse, ready to go out. We call you to book the delivery as soon as you order.',
    deals_h='Real markdowns', deals_p='Only what is genuinely reduced — not a permanent liquidation.',
    revs_h='79 Montréal families have given us 5 out of 5',
-   store_h='Come sit on it',
-   store_p='The showroom is on Plaza Saint-Hubert, under the marquee. You get to try things without being followed down the aisle.',
-   store_cta='See the showroom', dir='Directions',
+   store_h='An online store, delivered to you',
+   store_p='It all happens online: you order, we deliver and assemble it in your home. Question about a fabric or a dimension? Call us and we check it at the warehouse.',
+   store_cta='How delivery works', dir='Call us',
    fin_h='Or pay monthly',
-   fin_p='Approved in 3 minutes, online or in store. Simple monthly payments, no surprises.',
+   fin_p='Approved in 3 minutes, online. Simple monthly payments, no surprises.',
    fin_cta='See financing',
    add='Add to cart', call='Call us', mo='Financing available', was='Regular price',
    filters='Filters', sort='Sort', clear='Clear all', cart='Cart',
@@ -177,9 +176,9 @@ COPY = {
    colour='Colour', material='Material', seat='Seat height', cat_l='Category',
    also_h='Finish the room', also_p='What goes with it, from the same shipment.',
    crumb_home='Home', size='Size', config='Configuration',
-   no_dims='Dimensions on request — call ' + PHONE + ', we have them in store.',
+   no_dims='Dimensions on request — call ' + PHONE + ', we have them at the warehouse.',
    ret='14 days to change your mind. We come and pick it up.',
-   foot_shop='Shop', foot_help='Help', foot_store='The store', foot_hours='Open 7 days',
+   foot_shop='Shop', foot_help='Help', foot_store='Contact', foot_hours='Phone support',
    bnpl_pay4='Pay in 4 instalments, interest-free',
    bnpl_mo='Monthly instalments, from 0%',
    bnpl_more='How instalments work →',
@@ -380,15 +379,24 @@ def en_description(p):
         d = p['dims']
         bits.append(f"Measures {d['w']:g}\" W × {d['d']:g}\" D × {d['h']:g}\" H"
                     + (f", seat height {p['seat_h']:g}\"." if p['seat_h'] else "."))
-    bits.append("In our Montréal showroom on Plaza Saint-Hubert. Free delivery, assembled, "
+    bits.append("In stock in our Montréal warehouse. Free delivery, assembled, "
                 "to Montréal, Laval and Longueuil.")
     return '\n'.join('<p>' + E(b) + '</p>' for b in bits)
+
+# The supplier's own copy says things like "Disponible en magasin et en ligne".
+# There is no magasin any more, so the claim is dropped wherever it appears —
+# at build time, because a re-scrape would bring it straight back.
+STORE_CLAIM_RX = re.compile(
+    r'(disponible\s+(en\s+magasin|in\s+store)|en\s+magasin\s+et\s+en\s+ligne'
+    r'|in\s+store\s+and\s+online|visitez\s+(notre|nos)\s+magasin'
+    r'|salle\s+de\s+montre|showroom)', re.I)
 
 def fr_description(p):
     out, buf = [], []
     for line in p['body_fr'].split('\n'):
         line = line.strip()
         if not line: continue
+        if STORE_CLAIM_RX.search(line): continue
         if len(line) < 60 and (line.isupper() or line.rstrip(':').lower() in
               ('description','dimensions','caractéristiques','caractéristiques principales',
                'features and benefits','matériaux','entretien')):
@@ -463,12 +471,11 @@ def header(lang, path, alt_path):
         f'{E(cat_name(k, lang))}</a>' for k in CATS)
     # the nav label stays short; the page keeps its full name in the <h1>
     nav += f'<a href="{url(lang, PAGES["catalogue"][lang][1])}">{"Catalogue" if lang == "fr" else "Catalogue"}</a>'
-    nav += f'<a href="{url(lang, PAGES["salle-de-montre"][lang][1])}">{E(PAGES["salle-de-montre"][lang][0])}</a>'
     nav += f'<a href="{url(lang, PAGES["financement"][lang][1])}">{E(PAGES["financement"][lang][0])}</a>'
     return f'''<div class="topbar"><div class="wrap">
   <span><b>{PHONE}</b> · {PHONE2}</span><span class="sep">|</span>
-  <span>{ADDR}, Montréal</span><span class="sep">|</span>
-  <span>{E(c['foot_hours'])} · 10 h – 18 h</span>
+  <span>{'Livraison Montréal · Laval · Longueuil' if lang=='fr' else 'Delivery Montréal · Laval · Longueuil'}</span><span class="sep">|</span>
+  <span>{'Boutique en ligne' if lang=='fr' else 'Online store'}</span>
 </div></div>
 <header class="site"><div class="wrap">
   <a class="brand" href="{url(lang)}">
@@ -527,14 +534,13 @@ def footer(lang):
   <div><h2 class="fh">{E(c['foot_shop'])}</h2>{shop}</div>
   <div><h2 class="fh">{E(c['foot_help'])}</h2>{help_}</div>
   <div><h2 class="fh">{E(c['foot_store'])}</h2>
-    <a href="{url(lang, PAGES['salle-de-montre'][lang][1])}">{ADDR}<br>{CITY}</a>
     <a href="tel:+1{PHONE.replace('-','')}">{PHONE}</a>
     <a href="tel:+1{PHONE2.replace('-','')}">{PHONE2}</a>
     <a href="https://www.facebook.com/p/Meuble-Confort-Style-61554149881969/" rel="noopener">Facebook</a>
   </div>
   <div><h2 class="fh">{E(c['foot_hours'])}</h2>
-    <a href="{url(lang, PAGES['salle-de-montre'][lang][1])}">{'Lundi au samedi 10 h – 18 h' if lang=='fr' else 'Monday to Saturday 10am – 6pm'}</a>
-    <a href="{url(lang, PAGES['salle-de-montre'][lang][1])}">{'Dimanche 11 h – 17 h' if lang=='fr' else 'Sunday 11am – 5pm'}</a>
+    <span>{'Lundi au samedi 10 h – 18 h' if lang=='fr' else 'Monday to Saturday 10am – 6pm'}</span>
+    <span>{'Dimanche 11 h – 17 h' if lang=='fr' else 'Sunday 11am – 5pm'}</span>
   </div>
  </div>
  <div class="paybar">
@@ -542,7 +548,7 @@ def footer(lang):
    <span class="paymark">Visa</span><span class="paymark">Mastercard</span>
    <span class="paymark">Interac</span><span class="paymark">Klarna</span>
    <span class="paymark">Afterpay</span><span class="paymark">Affirm</span>
-   <span class="paymark">{'Financement en magasin' if lang=='fr' else 'In-store financing'}</span>
+   <span class="paymark">{'Financement' if lang=='fr' else 'Financing'}</span>
  </div>
  <div class="fine">
    <span>© 2026 Meuble Confort &amp; Style</span>
@@ -678,7 +684,7 @@ def build_home(cat, lang):
       <p class="shero-lede">{E(c['hero_p'])}</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="{url(lang, cat_slug('salon', lang))}?stock=instock">{E(c['hero_cta'])}</a>
-        <a class="btn btn-ghost" href="{url(lang, PAGES['salle-de-montre'][lang][1])}">{E(c['hero_cta2'])}</a>
+        <a class="btn btn-ghost" href="{url(lang, PAGES['livraison'][lang][1])}">{E(c['hero_cta2'])}</a>
       </div>
       <div class="shero-caps">{caps}
       </div>
@@ -709,19 +715,19 @@ def build_home(cat, lang):
 
 <section class="band"><div class="wrap">
   <div class="store">
-    <div class="store-shot"><img loading="lazy" src="{E(img(cat[3]['images'][0], 900))}" alt="{'Salle de montre' if lang=='fr' else 'Showroom'}" width="900" height="675"></div>
+    <div class="store-shot"><img loading="lazy" src="{E(img(cat[3]['images'][0], 900))}" alt="{'Salon livré et monté' if lang=='fr' else 'Living room delivered and assembled'}" width="900" height="675"></div>
     <div>
-      <p class="eyebrow">Plaza Saint-Hubert</p>
+      <p class="eyebrow">{'Montréal · Laval · Longueuil' if lang=='fr' else 'Montréal · Laval · Longueuil'}</p>
       <h2>{E(c['store_h'])}</h2>
       <p style="color:var(--ink-2);max-width:48ch">{E(c['store_p'])}</p>
       <table class="hours">
-        <tr><td>{'Lundi – vendredi' if lang=='fr' else 'Monday – Friday'}</td><td>10 h – 18 h</td></tr>
-        <tr><td>{'Samedi' if lang=='fr' else 'Saturday'}</td><td>10 h – 18 h</td></tr>
+        <tr><td colspan="2" style="padding-bottom:4px">{'On répond au téléphone' if lang=='fr' else 'We answer the phone'}</td></tr>
+        <tr><td>{'Lundi – samedi' if lang=='fr' else 'Monday – Saturday'}</td><td>10 h – 18 h</td></tr>
         <tr><td>{'Dimanche' if lang=='fr' else 'Sunday'}</td><td>11 h – 17 h</td></tr>
       </table>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="{url(lang, PAGES['salle-de-montre'][lang][1])}">{E(c['store_cta'])}</a>
-        <a class="btn btn-ghost" href="https://maps.google.com/?q={E(ADDR + ', ' + CITY)}" rel="noopener">{E(c['dir'])}</a>
+        <a class="btn btn-primary" href="{url(lang, PAGES['livraison'][lang][1])}">{E(c['store_cta'])}</a>
+        <a class="btn btn-ghost" href="tel:+1{PHONE.replace('-','')}">{E(c['dir'])}</a>
       </div>
     </div>
   </div>
@@ -740,21 +746,20 @@ def build_home(cat, lang):
     <div class="box" style="padding:26px">
       <p class="eyebrow">{'Financement' if lang=='fr' else 'Financing'}</p>
       <div style="font-family:var(--f-display);font-size:32px;font-weight:600;letter-spacing:-.03em;line-height:1.1">{'Payez en plusieurs versements' if lang=='fr' else 'Pay in instalments'}</div>
-      <p style="margin-top:8px">{'Approbation en 3 minutes, en ligne ou en magasin. Les modalités vous sont présentées avant que vous confirmiez.' if lang=='fr' else 'Approved in 3 minutes, online or in store. The terms are shown to you before you confirm.'}</p>
+      <p style="margin-top:8px">{'Approbation en 3 minutes, en ligne. Les modalités vous sont présentées avant que vous confirmiez.' if lang=='fr' else 'Approved in 3 minutes, online. The terms are shown to you before you confirm.'}</p>
     </div>
   </div>
 </div></section>'''
 
-    ld = {"@context":"https://schema.org","@type":"FurnitureStore",
+    # Online only: no premises to visit, so no street address and no opening
+    # hours. Claiming either would put a closed door on Google Maps.
+    ld = {"@context":"https://schema.org","@type":"OnlineStore",
           "name":"Meuble Confort & Style","url":SITE,
           "telephone":"+1-514-279-4600","priceRange":"$$",
-          "address":{"@type":"PostalAddress","streetAddress":ADDR,"addressLocality":"Montréal",
-                     "addressRegion":"QC","postalCode":"H2R 2N6","addressCountry":"CA"},
+          "address":{"@type":"PostalAddress","addressLocality":"Montréal",
+                     "addressRegion":"QC","addressCountry":"CA"},
           "aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"79"},
-          "areaServed":["Montréal","Laval","Longueuil"],
-          "openingHoursSpecification":[
-            {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"18:00"},
-            {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:00","closes":"17:00"}]}
+          "areaServed":["Montréal","Laval","Longueuil"]}
     title = ('Meubles à Montréal — livrés, montés, à l’étage'
              if lang == 'fr' else
              'Furniture in Montréal — delivered, assembled, up your stairs')
@@ -1087,7 +1092,7 @@ PROSE = {
 <p>Le financement vous permet d’étaler votre achat sur plusieurs versements. C’est comme ça que la plupart de nos clients meublent une pièce au complet d’un coup plutôt qu’une pièce à la fois.</p>
 <h2>Comment ça marche</h2>
 <ul>
-<li><strong>Approbation en 3 minutes</strong>, en ligne ou au comptoir.</li>
+<li><strong>Approbation en 3 minutes</strong>, en ligne.</li>
 <li>Paiements mensuels fixes sur 12, 24 ou 36 mois.</li>
 <li>Pas de pénalité si vous remboursez d’avance.</li>
 <li>Le montant mensuel est affiché sur chaque produit du site.</li>
@@ -1108,9 +1113,9 @@ PROSE = {
 <tr><td><strong>Klarna</strong></td><td>4 versements égaux, aux 2 semaines</td><td>Sans intérêts si payé à temps</td></tr>
 <tr><td><strong>Afterpay</strong></td><td>4 versements égaux, aux 2 semaines</td><td>Sans intérêts si payé à temps</td></tr>
 <tr><td><strong>Affirm</strong></td><td>Versements mensuels, 3 à 36 mois</td><td>De 0 % à 36 % selon le dossier</td></tr>
-<tr><td><strong>Financement en magasin</strong></td><td>12, 24 ou 36 mois, approuvé au comptoir</td><td>À confirmer</td></tr>
+<tr><td><strong>Financement</strong></td><td>12, 24 ou 36 mois, approuvé en ligne</td><td>À confirmer</td></tr>
 </tbody></table>
-<p>Klarna et Afterpay conviennent aux achats plus petits — une table, un matelas, un ensemble de chaises. Pour un sectionnel ou un ensemble de chambre complet, c’est Affirm ou le financement en magasin qui s’appliquent, parce que les paiements en 4 versements ont un plafond.</p>
+<p>Klarna et Afterpay conviennent aux achats plus petits — une table, un matelas, un ensemble de chaises. Pour un sectionnel ou un ensemble de chambre complet, c’est Affirm ou le financement qui s’appliquent, parce que les paiements en 4 versements ont un plafond.</p>
 <div class="callout"><p><strong>À régler avant la mise en ligne.</strong> Trois choses, et aucune n’est facultative :</p></div>
 <ul>
 <li><strong>Les comptes marchands n’existent pas encore.</strong> Klarna, Afterpay et Affirm demandent chacun une demande distincte, avec approbation. Tant que ce n’est pas fait, ces options sont de l’affichage, pas un moyen de paiement.</li>
@@ -1159,21 +1164,6 @@ PROSE = {
 <h2>What it costs</h2>
 <p>Your instalment depends on the price, the term you pick and the rate you are approved at. The full details — amount, term and rate — are shown to you before you confirm anything, with no obligation.</p>"""},
 
- 'salle-de-montre': {'fr': """
-<h1>La salle de montre</h1>
-<p>7566 rue Saint-Hubert, sur la Plaza — sous la marquise, entre Saint-Zotique et Bélanger. Le 99 et le 30 s’arrêtent devant, et il y a du stationnement sur Saint-Hubert et dans les rues transversales.</p>
-<h2>Heures</h2>
-<ul><li>Lundi au vendredi — 10 h à 18 h</li><li>Samedi — 10 h à 18 h</li><li>Dimanche — 11 h à 17 h</li></ul>
-<h2>Ce qui est en magasin</h2>
-<p>Le site montre ce qui est en stock à l’entrepôt. La salle de montre en a plus — surtout en matelas et en tissus. Si vous ne trouvez pas une couleur ici, appelez : on l’a peut-être sur le plancher.</p>""",
- 'en': """
-<h1>The showroom</h1>
-<p>7566 rue Saint-Hubert, on the Plaza — under the marquee, between Saint-Zotique and Bélanger. The 99 and the 30 stop out front, and there’s parking on Saint-Hubert and the side streets.</p>
-<h2>Hours</h2>
-<ul><li>Monday to Friday — 10am to 6pm</li><li>Saturday — 10am to 6pm</li><li>Sunday — 11am to 5pm</li></ul>
-<h2>What’s in the store</h2>
-<p>The site shows what’s in stock at the warehouse. The showroom holds more — especially mattresses and fabrics. If you can’t find a colour here, call: it may be on the floor.</p>"""},
-
  'retours': {'fr': """
 <h1>Retours et garantie</h1>
 <div class="callout"><p><strong>Cette page est un gabarit.</strong> La politique réelle du magasin n’a jamais été écrite nulle part — ni sur le site actuel, ni ailleurs. Les termes ci-dessous sont une proposition raisonnable pour un détaillant de meubles au Québec ; ils doivent être confirmés par le propriétaire avant la mise en ligne.</p></div>
@@ -1203,8 +1193,8 @@ PROSE = {
 
  'a-propos': {'fr': """
 <h1>À propos</h1>
-<p>Meuble Confort &amp; Style est un magasin de meubles familial sur la Plaza Saint-Hubert, à Montréal. On vend des sectionnels, des matelas, des ensembles de chambre et de salle à manger — et on les livre nous-mêmes.</p>
-<h2>Pourquoi acheter ici plutôt qu’en ligne</h2>
+<p>Meuble Confort &amp; Style est une entreprise de meubles familiale de Montréal. On vend en ligne des sectionnels, des matelas, des ensembles de chambre et de salle à manger — et on les livre nous-mêmes.</p>
+<h2>Pourquoi acheter ici</h2>
 <p>Un grand détaillant en ligne vous vendra le même sofa avec un délai de trois à cinq semaines et une livraison au trottoir. Nous, le sofa est à quinze minutes de chez vous, dans notre entrepôt, et il peut être dans votre salon en quelques jours — monté, à l’étage, par deux personnes que vous pourrez rappeler s’il y a un problème.</p>
 <h2>79 avis, 5 sur 5</h2>
 <p>C’est notre note Google. On la met sur le site parce que c’est la chose la plus vraie qu’on peut dire sur nous, et elle a été écrite par nos clients, pas par nous.</p>
@@ -1212,8 +1202,8 @@ PROSE = {
 <p>""" + ADDR + """, """ + CITY + """<br>""" + PHONE + """ · """ + PHONE2 + """</p>""",
  'en': """
 <h1>About us</h1>
-<p>Meuble Confort &amp; Style is a family furniture store on Plaza Saint-Hubert in Montréal. We sell sectionals, mattresses, bedroom sets and dining sets — and we deliver them ourselves.</p>
-<h2>Why buy here instead of online</h2>
+<p>Meuble Confort &amp; Style is a family furniture business in Montréal. We sell sectionals, mattresses, bedroom sets and dining sets online — and we deliver them ourselves.</p>
+<h2>Why buy here</h2>
 <p>A large online retailer will sell you the same sofa with a three-to-five-week wait and a curbside drop. Ours is fifteen minutes away, in our warehouse, and it can be in your living room within days — assembled, up your stairs, by two people you can call back if something is wrong.</p>
 <h2>79 reviews, 5 out of 5</h2>
 <p>That’s our Google rating. We put it on the site because it’s the truest thing we can say about ourselves, and our customers wrote it, not us.</p>
@@ -1296,11 +1286,10 @@ def build_prose(key, lang):
           "name": name, "inLanguage": 'fr-CA' if lang == 'fr' else 'en-CA',
           "url": SITE + url(lang, PAGES[key][lang][1]),
           "isPartOf": {"@type": "WebSite", "name": "Meuble Confort & Style", "url": SITE},
-          "about": {"@type": "FurnitureStore", "name": "Meuble Confort & Style",
+          "about": {"@type": "OnlineStore", "name": "Meuble Confort & Style",
                     "telephone": "+1-514-279-4600",
-                    "address": {"@type": "PostalAddress", "streetAddress": ADDR,
-                                "addressLocality": "Montréal", "addressRegion": "QC",
-                                "postalCode": "H2R 2N6", "addressCountry": "CA"}},
+                    "address": {"@type": "PostalAddress", "addressLocality": "Montréal",
+                                "addressRegion": "QC", "addressCountry": "CA"}},
           "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [
               {"@type": "ListItem", "position": 1, "name": COPY[lang]['crumb_home'],
                "item": SITE + url(lang)},
