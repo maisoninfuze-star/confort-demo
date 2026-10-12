@@ -612,3 +612,8 @@ html:not(.intro-skip) body:has(.splash:not(.done)){overflow:hidden}
 /* prices are shown tax-in; say so next to the number, quietly */
 .taxnote{font-family:var(--f-mono); font-size:10px; letter-spacing:.1em;
   text-transform:uppercase; color:var(--ink-3); align-self:center}
+
+/* tax broken out under the cart total — the total itself does not change */
+.cart-tax{display:flex; flex-direction:column; gap:3px; margin-top:-4px}
+.cart-taxrow{display:flex; justify-content:space-between; font-family:var(--f-mono);
+  font-size:10.5px; letter-spacing:.05em; color:var(--ink-3)}

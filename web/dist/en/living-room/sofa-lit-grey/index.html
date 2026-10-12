@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.shopify.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/marquise.css?v=aa8ebea6">
+<link rel="stylesheet" href="/assets/marquise.css?v=b500df91">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Sofa Lit — Grey", "image": ["https://cdn.shopify.com/s/files/1/0812/6093/7452/files/8A14L13_F7.jpg?v=1770769941&width=1000", "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/8A14L13_F9.jpg?v=1770769941&width=1000", "https://cdn.shopify.com/s/files/1/0812/6093/7452/files/8A14L13.jpg?v=1770769954&width=1000"], "description": "Sofa Lit — Grey — a sofa in fabric, wood, finished in grey. Features: storage, converts to a bed. In our Montréal showroom on Plaza Saint-Hubert. Free delivery, assembled, to Montréal, Laval and Longueuil.", "sku": "9157274697964", "brand": {"@type": "Brand", "name": "Meuble Confort & Style"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "79"}, "offers": {"@type": "Offer", "url": "https://www.meublesconfortstyles.com/en/living-room/sofa-lit-grey/", "priceCurrency": "CAD", "price": "1207.00", "availability": "https://schema.org/InStock", "itemCondition": "https://schema.org/NewCondition", "seller": {"@type": "Organization", "name": "Meuble Confort & Style"}}}</script>
 
 </head>
@@ -263,11 +263,12 @@
  </div>
  <div class="cart-foot" id="cartfoot" hidden>
    <div class="cart-sub"><span>Total</span><b id="cartsum"></b></div>
-   <p class="cart-note">GST and QST included</p>
+   <div class="cart-tax" id="carttax"></div>
    <button class="btn btn-primary btn-block" id="cartpay" type="button">Proceed to payment</button>
    <p class="cart-note">Demo — Stripe test checkout. No real charge is ever made.</p>
  </div>
+ <script type="application/json" id="taxdata">{"rate": 0.14975, "parts": [{"label": "GST (5% included)", "pct": 0.05}, {"label": "QST (9.975% included)", "pct": 0.09975}]}</script>
 </aside>
-<script src="/assets/marquise.js?v=255eaea5" defer></script>
+<script src="/assets/marquise.js?v=8eb64057" defer></script>
 </body>
 </html>

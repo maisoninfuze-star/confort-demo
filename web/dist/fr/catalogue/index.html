@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.shopify.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/marquise.css?v=aa8ebea6">
+<link rel="stylesheet" href="/assets/marquise.css?v=b500df91">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Catalogue complet", "inLanguage": "fr-CA", "url": "https://www.meublesconfortstyles.com/fr/catalogue/", "numberOfItems": 975}</script>
 
 </head>
@@ -116,11 +116,12 @@
  </div>
  <div class="cart-foot" id="cartfoot" hidden>
    <div class="cart-sub"><span>Total</span><b id="cartsum"></b></div>
-   <p class="cart-note">TPS et TVQ incluses</p>
+   <div class="cart-tax" id="carttax"></div>
    <button class="btn btn-primary btn-block" id="cartpay" type="button">Passer au paiement</button>
    <p class="cart-note">Démo — paiement Stripe en mode test. Aucun montant réel n’est débité.</p>
  </div>
+ <script type="application/json" id="taxdata">{"rate": 0.14975, "parts": [{"label": "TPS (5 % incluse)", "pct": 0.05}, {"label": "TVQ (9,975 % incluse)", "pct": 0.09975}]}</script>
 </aside>
-<script src="/assets/marquise.js?v=255eaea5" defer></script>
+<script src="/assets/marquise.js?v=8eb64057" defer></script>
 </body>
 </html>

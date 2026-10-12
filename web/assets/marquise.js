@@ -198,6 +198,39 @@
     document.getElementById('cartfoot').hidden = !c.length;
     var sumEl = document.getElementById('cartsum');
     if (sumEl) sumEl.textContent = money2(sum);
+    paintCartTax(c);
+  }
+
+  /* The prices already contain TPS and TVQ, so the tax is extracted from the
+     total rather than added to it — the figure beside "Total" never moves.
+     Rounded per line, the way Stripe rounds it, so this breakdown and the one
+     on the Stripe page agree to the cent instead of drifting by one. */
+  var TAX = null;
+  var taxEl = document.getElementById('taxdata');
+  if (taxEl) { try { TAX = JSON.parse(taxEl.textContent); } catch (e) { TAX = null; } }
+
+  function paintCartTax(c) {
+    var box = document.getElementById('carttax');
+    if (!box) return;
+    if (!TAX || !TAX.parts || !TAX.rate) { box.textContent = ''; return; }
+    var totals = TAX.parts.map(function () { return 0; });
+    c.forEach(function (i) {
+      var net = (i.p * i.q) / (1 + TAX.rate);
+      TAX.parts.forEach(function (part, k) {
+        totals[k] += Math.round(net * part.pct * 100) / 100;
+      });
+    });
+    box.innerHTML = '';
+    TAX.parts.forEach(function (part, k) {
+      var row = document.createElement('div');
+      row.className = 'cart-taxrow';
+      var l = document.createElement('span');
+      l.textContent = part.label;
+      var v = document.createElement('span');
+      v.textContent = money2(Math.round(totals[k] * 100) / 100);
+      row.appendChild(l); row.appendChild(v);
+      box.appendChild(row);
+    });
   }
 
   var cartOpener = null;

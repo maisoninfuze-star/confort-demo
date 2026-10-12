@@ -294,6 +294,12 @@ REVIEWS = [
 # same already-taxed figure, so the shelf price and the charge cannot drift.
 # Rounded to the dollar so the displayed price IS the charged price to the cent.
 TAX_RATE = 0.14975
+# Must stay in step with the inclusive rates api/checkout.js puts on the
+# Stripe line items, or the cart and the Stripe page would itemise differently.
+TAX_PARTS = [
+    dict(pct=0.05,     fr='TPS (5 % incluse)',      en='GST (5% included)'),
+    dict(pct=0.09975,  fr='TVQ (9,975 % incluse)',  en='QST (9.975% included)'),
+]
 
 def with_tax(v):
     return float(round(v * (1 + TAX_RATE))) if v else v
@@ -504,10 +510,11 @@ def cart_drawer(lang):
  </div>
  <div class="cart-foot" id="cartfoot" hidden>
    <div class="cart-sub"><span>{E(c['cart_sub'])}</span><b id="cartsum"></b></div>
-   <p class="cart-note">{E(c['tax_incl'])}</p>
+   <div class="cart-tax" id="carttax"></div>
    <button class="btn btn-primary btn-block" id="cartpay" type="button">{E(c['cart_pay'])}</button>
    <p class="cart-note">{E(c['cart_demo'])}</p>
  </div>
+ <script type="application/json" id="taxdata">{json.dumps({'rate': TAX_RATE, 'parts': [{'label': t[lang], 'pct': t['pct']} for t in TAX_PARTS]}, ensure_ascii=False)}</script>
 </aside>'''
 
 def footer(lang):
