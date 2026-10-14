@@ -129,6 +129,77 @@
     setTimeout(function () { t.remove(); }, 2200);
   }
 
+  /* ── Meta measurement, consent first ────────────────────────────
+     The page head defines a queue-only fbq stub. Nothing reaches Meta until
+     the visitor accepts: only then is fbevents.js injected, and it sends what
+     the queue holds. A refusal is remembered and the script never loads.
+     Storage can throw (private mode, blocked site data) — then we simply ask
+     again on the next page rather than assume either answer. */
+  var CONSENT_KEY = 'mcsConsent';
+  var consentBox = document.getElementById('consent');
+  function consentGet() { try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; } }
+  function consentSet(v) { try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {} }
+  var pixelLoaded = false;
+  function loadPixel() {
+    if (pixelLoaded || typeof window.fbq !== 'function') return;
+    pixelLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    document.head.appendChild(s);
+  }
+  function consented() { return consentGet() === 'yes'; }
+  if (consented()) loadPixel();
+  else if (consentGet() !== 'no' && consentBox) consentBox.hidden = false;
+  if (consentBox) consentBox.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-consent]'); if (!b) return;
+    consentSet(b.dataset.consent === 'yes' ? 'yes' : 'no');
+    consentBox.hidden = true;
+    if (consented()) loadPixel();
+  });
+  [].forEach.call(document.querySelectorAll('[data-consent-open]'), function (b) {
+    b.addEventListener('click', function () { if (consentBox) consentBox.hidden = false; });
+  });
+  // Every event goes through here. Values are the tax-inclusive prices on the
+  // page — what the customer actually pays — in CAD.
+  function track(name, data, eventId) {
+    if (typeof window.fbq !== 'function') return;
+    data.currency = 'CAD';
+    if (eventId) window.fbq('track', name, data, { eventID: eventId });
+    else window.fbq('track', name, data);
+  }
+  function cookie(name) {
+    var m = document.cookie.match('(?:^|; )' + name + '=([^;]*)');
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
+  var viewEl = document.getElementById('mcsview');
+  if (viewEl) {
+    try {
+      var viewData = JSON.parse(viewEl.textContent);
+      track('ViewContent', { content_ids: [viewData.id], content_type: 'product',
+        content_name: viewData.name, content_category: viewData.cat, value: viewData.value });
+    } catch (e) {}
+  }
+
+  // The thank-you page. Stripe only sends people here after a payment, with
+  // the session id (sid) and the total our checkout function computed (v).
+  // The sid is also the server-side Purchase's event_id, so Meta counts the
+  // pair once; the local list stops a reload from re-sending it.
+  if (document.querySelector('[data-purchase]')) {
+    var qs = new URL(location.href).searchParams;
+    var sid = qs.get('sid'), total = parseFloat(qs.get('v'));
+    if (sid && total > 0) {
+      var sent = [];
+      try { sent = JSON.parse(localStorage.getItem('mcsPurchases')) || []; } catch (e) {}
+      if (sent.indexOf(sid) < 0) {
+        track('Purchase', { value: Math.round(total * 100) / 100, content_type: 'product' }, sid);
+        sent.push(sid);
+        try { localStorage.setItem('mcsPurchases', JSON.stringify(sent.slice(-20))); } catch (e) {}
+      }
+    }
+  }
+
   /* ── cart ───────────────────────────────────────────────────────
      Items live in localStorage; the drawer renders them, and checkout POSTs
      them to /api/checkout. The prices stored here are display only — the
@@ -288,6 +359,8 @@
                  p: price, q: 1 });
       }
       cartSave(c);
+      track('AddToCart', { content_ids: [b.dataset.id], content_type: 'product',
+        content_name: b.dataset.name, contents: [{ id: b.dataset.id, quantity: 1 }], value: price });
       openCart();
     });
   });
@@ -300,12 +373,19 @@
     var base = payBtn.textContent;
     payBtn.disabled = true;
     payBtn.textContent = T.paywait;
+    track('InitiateCheckout', {
+      content_ids: c.map(function (i) { return i.id; }), content_type: 'product',
+      contents: c.map(function (i) { return { id: i.id, quantity: i.q }; }),
+      num_items: c.reduce(function (s, i) { return s + i.q; }, 0),
+      value: Math.round(c.reduce(function (s, i) { return s + i.p * i.q; }, 0) * 100) / 100 });
     // the slashed path is the canonical one under trailingSlash — calling it
-    // directly saves the 308 hop the unslashed POST provokes
+    // directly saves the 308 hop the unslashed POST provokes. The Meta browser
+    // ids ride along only with consent, for the server-side Purchase.
+    var meta = consented() ? { consent: 'yes', fbp: cookie('_fbp'), fbc: cookie('_fbc') } : { consent: 'no' };
     fetch('/api/checkout/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ lang: L, items: c.map(function (i) {
+      body: JSON.stringify({ lang: L, meta: meta, items: c.map(function (i) {
         return { id: i.id, pv: i.pv, opts: i.opts, q: i.q };
       }) })
     }).then(function (r) { return r.json(); }).then(function (d) {

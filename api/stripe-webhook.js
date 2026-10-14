@@ -19,6 +19,76 @@ const ghlLocation = () => process.env.GHL_LOCATION_ID || null;
 
 const send = (res, status, obj) => { res.statusCode = status; res.end(JSON.stringify(obj)); };
 
+// Meta Conversions API — the server half of Purchase. The thank-you page fires
+// the browser half with the same event_id (the Stripe session id), so Meta
+// counts the pair once. Sent only when the buyer accepted Meta cookies at
+// checkout and META_CAPI_TOKEN is set, and only for live payments unless a
+// test code routes it to Events Manager's Test events tab. A Meta failure is
+// reported, never retried through Stripe: the order itself is what matters.
+const crypto = require('crypto');
+const META_DATASET = () => process.env.META_PIXEL_ID || '1164650748537760';
+const META_GRAPH = () => process.env.META_GRAPH_VERSION || 'v23.0';
+const sha = (v) => crypto.createHash('sha256').update(String(v).trim().toLowerCase()).digest('hex');
+const hashed = (v) => (v ? [sha(v)] : undefined);
+
+function capiEvent(s, site) {
+  const md = s.metadata || {};
+  const cd = s.customer_details || {};
+  const ship = (s.shipping_details && s.shipping_details.address) || cd.address || {};
+  const name = (cd.name || (s.shipping_details && s.shipping_details.name) || '').trim().split(/\s+/);
+  let digits = String(cd.phone || '').replace(/\D/g, '');
+  if (digits.length === 10) digits = '1' + digits;
+  const items = (s.line_items && s.line_items.data) || [];
+  return {
+    event_name: 'Purchase',
+    event_time: Math.floor(Date.now() / 1000),
+    event_id: s.id,
+    action_source: 'website',
+    event_source_url: site + (md.lang === 'en' ? '/en/thank-you/' : '/fr/merci/'),
+    user_data: {
+      em: hashed(cd.email),
+      ph: hashed(digits),
+      fn: hashed(name[0]),
+      ln: hashed(name.slice(1).join(' ')),
+      ct: hashed(String(ship.city || '').replace(/\s+/g, '')),
+      st: hashed(ship.state),
+      zp: hashed(String(ship.postal_code || '').replace(/\s+/g, '')),
+      country: hashed(ship.country || 'ca'),
+      external_id: hashed(typeof s.customer === 'string' ? s.customer : ''),
+      client_ip_address: md.meta_ip || undefined,
+      client_user_agent: md.meta_ua || undefined,
+      fbp: md.meta_fbp || undefined,
+      fbc: md.meta_fbc || undefined,
+    },
+    custom_data: {
+      currency: String(s.currency || 'cad').toUpperCase(),
+      value: (s.amount_total || 0) / 100,
+      content_type: 'product',
+      content_ids: md.meta_ids ? md.meta_ids.split(',') : undefined,
+      num_items: items.reduce((n, li) => n + (li.quantity || 0), 0) || undefined,
+      order_id: s.id,
+    },
+  };
+}
+
+async function sendCapi(s, site, testCode) {
+  const token = process.env.META_CAPI_TOKEN;
+  if (!token) return { skipped: 'META_CAPI_TOKEN not set' };
+  if ((s.metadata || {}).meta_consent !== 'yes') return { skipped: 'no consent' };
+  const code = testCode || process.env.META_TEST_EVENT_CODE || '';
+  if (!s.livemode && !code) return { skipped: 'test-mode payment without a test event code' };
+  const r = await fetch(`https://graph.facebook.com/${META_GRAPH()}/${META_DATASET()}/events`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    // JSON.stringify drops the undefined fields, so absent data is simply not sent
+    body: JSON.stringify({ data: [capiEvent(s, site)], test_event_code: code || undefined, access_token: token }),
+  });
+  const j = await r.json().catch(() => null);
+  return r.ok
+    ? { sent: true, events_received: j && j.events_received, fbtrace_id: j && j.fbtrace_id, test: !!code }
+    : { error: 'meta', status: r.status, detail: j && j.error && j.error.message };
+}
+
 function money(cents, cur) {
   const v = (cents || 0) / 100;
   return v.toLocaleString('fr-CA', { minimumFractionDigits: 2 }) + ' ' + String(cur || 'cad').toUpperCase();
@@ -130,6 +200,28 @@ module.exports = async (req, res) => {
       return send(res, out && out.error ? 502 : 200, { selftest: out && out.error ? 'failed' : 'ok', ...out });
     }
 
+    // {"type":"capi-selftest","test_event_code":"TEST…"} — one fake Purchase to
+    // Meta's Test events tab. The code is mandatory: without it Meta would
+    // count the fake order as a real sale, so the request is refused.
+    if (evt && evt.type === 'capi-selftest') {
+      if (!/^TEST\w+$/.test(String(evt.test_event_code || ''))) {
+        return send(res, 400, { capi: 'refused', why: 'a TEST… test_event_code from Events Manager is required' });
+      }
+      const fake = {
+        id: 'cs_selftest_' + Date.now(), livemode: false, currency: 'cad', amount_total: 37900,
+        customer: 'cus_selftest',
+        metadata: { lang: 'fr', meta_consent: 'yes', meta_ids: 'selftest',
+                    meta_ua: String(req.headers['user-agent'] || 'selftest'),
+                    meta_ip: String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || undefined },
+        customer_details: { email: SELFTEST_SESSION.customer_details.email, name: 'Vérification Site', phone: '' },
+        shipping_details: SELFTEST_SESSION.shipping_details,
+        line_items: { data: [{ quantity: 1 }] },
+      };
+      const host = req.headers.host || 'www.meublesconfortstyles.com';
+      const out = await sendCapi(fake, 'https://' + host, evt.test_event_code);
+      return send(res, out.error || out.skipped ? 502 : 200, { capi: out.sent ? 'ok' : 'failed', event_id: fake.id, ...out });
+    }
+
     // {"type":"tax-status"} — read-only: report how tax is set up on the live
     // account, so checkout can opt into the mechanism that actually exists.
     // Dashboard configuration alone changes nothing: a Session collects tax
@@ -220,11 +312,16 @@ module.exports = async (req, res) => {
     if (!s) return send(res, 502, { error: 'stripe fetch' });
     if (s.payment_status !== 'paid') return send(res, 200, { skipped: 'unpaid' });
 
-    if (!ghlToken() || !ghlLocation()) return send(res, 200, { ok: true, ghl: 'not configured' });
+    // Meta first and best-effort: a retry caused by GHL resends the same
+    // event_id, which Meta drops as a duplicate.
+    const capi = await sendCapi(s, 'https://' + (req.headers.host || 'www.meublesconfortstyles.com'))
+      .catch(() => ({ error: 'meta request failed' }));
+
+    if (!ghlToken() || !ghlLocation()) return send(res, 200, { ok: true, ghl: 'not configured', capi });
     const out = await pushToGHL(s);
     // a GHL failure returns 500 so Stripe retries; success/skip is 200
-    if (out && out.error) return send(res, 500, out);
-    return send(res, 200, { ok: true, ...out });
+    if (out && out.error) return send(res, 500, { ...out, capi });
+    return send(res, 200, { ok: true, ...out, capi });
   } catch (e) {
     return send(res, 500, { error: 'server' });
   }

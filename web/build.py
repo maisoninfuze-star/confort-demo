@@ -19,6 +19,9 @@ DIST = os.path.join(HERE, 'dist')
 # The store moved to meublesconfortstyles.com on 7 Oct 2026; the old
 # meubleconfort.com never had its DNS cut over and now resolves to Shopify.
 SITE = os.environ.get('SITE_URL', 'https://www.meublesconfortstyles.com').rstrip('/')
+# Meta dataset "Meuble Confort Style Event Data", in portfolio 1532830784423396.
+# A pixel id is public by design: it ships in the source of every page.
+META_PIXEL = os.environ.get('META_PIXEL_ID', '1164650748537760')
 PHONE = '514-279-4600'
 PHONE2 = '438-879-8019'
 ADDR = '7566 rue Saint-Hubert'
@@ -84,10 +87,10 @@ CAT_BLURB = {
 COPY = {
  'fr': dict(
    tagline='Meubles · Matelas · Montréal',
-   nav_more='Tout voir', ship='Livraison gratuite · montée · à l’étage',
+   nav_more='Tout voir', ship='Livraison gratuite dès 400 $ · montée · à l’étage',
    stock='En stock à Montréal', fin='Financement — approbation en 3 minutes',
    hero_h='Votre salon fini.<br>Livré et <em>monté</em>.',
-   hero_p='Des meubles qui sont déjà dans notre entrepôt à Montréal. Livraison gratuite, montés, à l’étage — Montréal, Laval et Longueuil.',
+   hero_p='Des meubles qui sont déjà dans notre entrepôt à Montréal. Livraison gratuite dès 400 $, montés, à l’étage — Montréal, Laval et Longueuil.',
    hero_cta='Voir ce qui est en stock', hero_cta2='Comment on livre',
    rooms_h='Magasinez par pièce', rooms_p='Chaque pièce, meublée au complet, sans louer de camion.',
    week_h='En stock à Montréal', week_p='Déjà dans notre entrepôt, prêt à livrer. On vous appelle pour fixer la livraison dès la commande passée.',
@@ -105,9 +108,9 @@ COPY = {
    cart_browse='Découvrir les collections', cart_sub='Total',
    tax_incl='TPS et TVQ incluses',
    cart_pay='Passer au paiement', cart_close='Fermer',
-   cart_demo='Démo — paiement Stripe en mode test. Aucun montant réel n’est débité.',
+   cart_demo='Paiement sécurisé par Stripe. Les prix incluent la TPS et la TVQ.',
    merci_h='Merci — votre commande est confirmée',
-   merci_p='Votre paiement test a été accepté. En production, vous recevriez ici la confirmation par courriel, puis un appel pour planifier la livraison — gratuite, montée, jusque dans vos escaliers.',
+   merci_p='Votre paiement est accepté. On vous appelle pour fixer le jour de livraison — on monte le meuble à l’étage et on l’assemble chez vous. Une question ? ' + PHONE + '.',
    merci_badge='Paiement accepté', merci_cta='Retour à l’accueil',
    sort_pop='Les plus populaires', sort_soon='En stock d’abord',
    sort_asc='Prix croissant', sort_desc='Prix décroissant',
@@ -139,10 +142,10 @@ COPY = {
  ),
  'en': dict(
    tagline='Furniture · Mattresses · Montréal',
-   nav_more='See all', ship='Free delivery · assembled · up your stairs',
+   nav_more='See all', ship='Free delivery from $400 · assembled · up your stairs',
    stock='In stock in Montréal', fin='Financing — approved in 3 minutes',
    hero_h='Your living room,<br>delivered and <em>assembled</em>.',
-   hero_p='Furniture that is already in our Montréal warehouse. Free delivery, assembled, up your stairs — Montréal, Laval and Longueuil.',
+   hero_p='Furniture that is already in our Montréal warehouse. Free delivery from $400, assembled, up your stairs — Montréal, Laval and Longueuil.',
    hero_cta='See what\u2019s in stock', hero_cta2='How delivery works',
    rooms_h='Shop by room', rooms_p='A whole room, furnished, without renting a truck.',
    week_h='In stock in Montréal', week_p='Already in our warehouse, ready to go out. We call you to book the delivery as soon as you order.',
@@ -160,9 +163,9 @@ COPY = {
    cart_browse='Browse the collections', cart_sub='Total',
    tax_incl='GST and QST included',
    cart_pay='Proceed to payment', cart_close='Close',
-   cart_demo='Demo — Stripe test checkout. No real charge is ever made.',
+   cart_demo='Secure payment by Stripe. Prices include GST and QST.',
    merci_h='Thank you — your order is confirmed',
-   merci_p='Your test payment went through. In production you would get an email confirmation here, then a call to book your delivery — free, assembled, up your stairs.',
+   merci_p='Your payment went through. We will call you to book your delivery day — we carry it up and assemble it in your home. Questions? ' + PHONE + '.',
    merci_badge='Payment accepted', merci_cta='Back to the home page',
    sort_pop='Most popular', sort_soon='In stock first',
    sort_asc='Price, low to high', sort_desc='Price, high to low',
@@ -379,7 +382,7 @@ def en_description(p):
         d = p['dims']
         bits.append(f"Measures {d['w']:g}\" W × {d['d']:g}\" D × {d['h']:g}\" H"
                     + (f", seat height {p['seat_h']:g}\"." if p['seat_h'] else "."))
-    bits.append("In stock in our Montréal warehouse. Free delivery, assembled, "
+    bits.append("In stock in our Montréal warehouse. Free delivery from $400, assembled, "
                 "to Montréal, Laval and Longueuil.")
     return '\n'.join('<p>' + E(b) + '</p>' for b in bits)
 
@@ -418,6 +421,26 @@ def fr_description(p):
     return '\n'.join(txt)
 
 # ── shell ───────────────────────────────────────────────────────────────────
+# Meta Pixel, consent first. Québec's Law 25 treats ad measurement as
+# profiling, so it must be opt-in. This stub only QUEUES calls: fbevents.js —
+# the part that talks to Meta — is injected by marquise.js after the visitor
+# accepts, and it then sends the queued PageView/ViewContent in order. Refuse,
+# and the queue never leaves the page.
+PIXEL_HEAD = ('<script>!function(w){if(w.fbq)return;var n=w.fbq=function(){n.callMethod?'
+              'n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!w._fbq)w._fbq=n;'
+              "n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);"
+              f"fbq('init','{META_PIXEL}');fbq('track','PageView');</script>")
+
+def consent_banner(lang):
+    fr = lang == 'fr'
+    return f'''<div class="consent" id="consent" role="region" aria-label="{'Témoins' if fr else 'Cookies'}" hidden>
+ <p>{'On utilise des témoins de Meta pour mesurer nos publicités. Vous pouvez refuser : le site fonctionne exactement pareil.' if fr else 'We use Meta cookies to measure our ads. You can decline — the site works exactly the same.'}</p>
+ <div class="consent-b">
+  <button class="btn btn-ghost" type="button" data-consent="no">{'Refuser' if fr else 'Decline'}</button>
+  <button class="btn btn-primary" type="button" data-consent="yes">{'Accepter' if fr else 'Accept'}</button>
+ </div>
+</div>'''
+
 def shell(lang, title, desc, path, alt_path, body, jsonld=None, og_img=None, head_extra=''):
     c = COPY[lang]
     other = 'en' if lang == 'fr' else 'fr'
@@ -447,6 +470,7 @@ def shell(lang, title, desc, path, alt_path, body, jsonld=None, og_img=None, hea
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="{asset('/assets/marquise.css')}">
 {f'<script type="application/ld+json">{ld}</script>' if ld else ''}
+{PIXEL_HEAD}
 {head_extra}
 </head>
 <body>
@@ -457,6 +481,7 @@ def shell(lang, title, desc, path, alt_path, body, jsonld=None, og_img=None, hea
 </main>
 {footer(lang)}
 {cart_drawer(lang)}
+{consent_banner(lang)}
 <script src="{asset('/assets/marquise.js')}" defer></script>
 </body>
 </html>'''
@@ -554,6 +579,7 @@ def footer(lang):
    <span>© 2026 Meuble Confort &amp; Style</span>
    <span>{ADDR}, {CITY}</span>
    <span>{'Tous les prix incluent la TPS et la TVQ.' if lang=='fr' else 'All prices include GST and QST.'}</span>
+   <button class="linkish" type="button" data-consent-open>{'Témoins' if lang=='fr' else 'Cookies'}</button>
    <span>{'Propulsé par' if lang=='fr' else 'Powered by'} <a href="https://b12ventures.com" target="_blank" rel="noopener">B12 Ventures</a></span>
  </div>
 </div></footer>'''
@@ -1036,9 +1062,9 @@ def build_pdp(p, cat, lang):
                     "itemCondition":"https://schema.org/NewCondition",
                     "seller":{"@type":"Organization","name":"Meuble Confort & Style"}}}
     desc = (f"{p_name(p, lang)} — {money(p['price'], lang)}. "
-            + (("En stock à Montréal, livré gratuitement, monté et à l’étage."
+            + (("En stock à Montréal. Livraison gratuite dès 400 $, monté et à l’étage."
                 + (" Financement disponible." if monthly_of(p) else "")) if lang == 'fr' else
-               ("In stock in Montréal, delivered free, assembled and up your stairs."
+               ("In stock in Montréal. Free delivery from $400, assembled and up your stairs."
                 + (" Financing available." if monthly_of(p) else ""))))
     # Trim the brand, never the product name: two pieces can differ only by the
     # finish at the end of the name, and cutting it makes their <title>s
@@ -1046,6 +1072,13 @@ def build_pdp(p, cat, lang):
     base = p_name(p, lang)
     suffix = " | Meuble Confort & Style"
     title = base if len(base) + len(suffix) > 60 else base + suffix
+    # ViewContent payload. The id is the slug — the same key the add button,
+    # api/prices.json and the server-side Purchase use — so Meta sees one
+    # product across all four events. The replace keeps a stray "</script>" in
+    # a product name from closing the tag early.
+    view = json.dumps({'id': p['slug'], 'name': p_name(p, lang), 'cat': cat_name(p['cat'], lang),
+                       'value': round(p['price'], 2)}, ensure_ascii=False).replace('</', '<\\/')
+    body += f'\n<script type="application/json" id="mcsview">{view}</script>'
     return shell(lang, title, desc, p_url(p, lang), p_url(p, other), body, ld, img(imgs[0], 1200))
 
 # ── prose pages ─────────────────────────────────────────────────────────────
@@ -1329,16 +1362,15 @@ def pdp_options(p, lang):
     return colours, kind, opts
 
 def build_merci(lang):
-    """Where Stripe sends people after a successful test payment. The inline
+    """Where Stripe sends people after a successful payment. The inline
     script empties the cart before marquise.js paints the count."""
     c = COPY[lang]
     path = url(lang, 'merci' if lang == 'fr' else 'thank-you')
     alt = url('en' if lang == 'fr' else 'fr', 'thank-you' if lang == 'fr' else 'merci')
-    body = f'''<div class="wrap merci">
+    body = f'''<div class="wrap merci" data-purchase>
  <span class="chip boxed go"><span class="dot"></span>{E(c['merci_badge'])}</span>
  <h1>{E(c['merci_h'])}</h1>
  <p>{E(c['merci_p'])}</p>
- <p class="cart-note">{E(c['cart_demo'])}</p>
  <a class="btn btn-primary" href="{url(lang)}">{E(c['merci_cta'])}</a>
 </div>
 <script>try{{localStorage.removeItem('mqCart')}}catch(e){{}}</script>'''

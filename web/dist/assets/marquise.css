@@ -617,3 +617,15 @@ html:not(.intro-skip) body:has(.splash:not(.done)){overflow:hidden}
 .cart-tax{display:flex; flex-direction:column; gap:3px; margin-top:-4px}
 .cart-taxrow{display:flex; justify-content:space-between; font-family:var(--f-mono);
   font-size:10.5px; letter-spacing:.05em; color:var(--ink-3)}
+
+/* ── cookie consent (Law 25: Meta measurement is opt-in) ─────────────────── */
+.consent{position:fixed; left:0; right:0; bottom:0; z-index:140; display:flex; flex-wrap:wrap; gap:12px 24px;
+  align-items:center; justify-content:space-between; padding:16px max(16px, calc((100vw - 1240px)/2));
+  background:var(--surface); color:var(--ink); border-top:1px solid var(--line-2); box-shadow:var(--shadow)}
+.consent[hidden]{display:none}
+.consent p{margin:0; flex:1 1 320px; font-size:14px; line-height:1.5; color:var(--ink)}
+.consent-b{display:flex; gap:10px; flex:0 0 auto}
+/* a native button inherits UA colours, not the footer's — set every one */
+footer.site .linkish{background:none; border:0; padding:0; margin:0; cursor:pointer; color:inherit;
+  font:inherit; letter-spacing:inherit; text-transform:inherit; text-decoration:underline; text-underline-offset:3px}
+footer.site .linkish:hover{color:#fff}
