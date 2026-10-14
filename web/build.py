@@ -22,6 +22,9 @@ SITE = os.environ.get('SITE_URL', 'https://www.meublesconfortstyles.com').rstrip
 # Meta dataset "Meuble Confort Style Event Data", in portfolio 1532830784423396.
 # A pixel id is public by design: it ships in the source of every page.
 META_PIXEL = os.environ.get('META_PIXEL_ID', '1164650748537760')
+# Meta Business Settings → Domains → meublesconfortstyles.com (id 1296697739209238).
+# Public by design, like the pixel id; it only proves who owns the domain.
+META_DOMAIN_TAG = '<meta name="facebook-domain-verification" content="7p8b8i0hyil2s1qu4309z7w7exwon0">'
 PHONE = '514-279-4600'
 PHONE2 = '438-879-8019'
 ADDR = '7566 rue Saint-Hubert'
@@ -470,6 +473,7 @@ def shell(lang, title, desc, path, alt_path, body, jsonld=None, og_img=None, hea
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Familjen+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="{asset('/assets/marquise.css')}">
 {f'<script type="application/ld+json">{ld}</script>' if ld else ''}
+{META_DOMAIN_TAG}
 {PIXEL_HEAD}
 {head_extra}
 </head>
@@ -1448,7 +1452,7 @@ def main():
 
     # root: send people to French, the store's primary language
     write('/', '<!doctype html><html lang="fr"><head><meta charset="utf-8">'
-               '<title>Meuble Confort &amp; Style</title>'
+               '<title>Meuble Confort &amp; Style</title>' + META_DOMAIN_TAG +
                '<meta http-equiv="refresh" content="0; url=/fr/">'
                '<link rel="canonical" href="' + SITE + '/fr/">'
                '</head><body><p><a href="/fr/">Français</a> · <a href="/en/">English</a></p></body></html>')
