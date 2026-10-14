@@ -79,6 +79,15 @@ SET_RX = re.compile(r'\b(\d+\s*pcs?|piece|set|ensemble|dinette)\b', re.I)
 # codes paired in the title — "T-1448 C-1263", "Table : … Chaises : …".
 PAIR_RX = re.compile(r'\bT[\s-]?\d{3,4}\b\W{0,4}\bC[\s-]?\d{3,4}\b', re.I)
 
+# A split piece keeps its parent's description, so the word "Ensemble" in that
+# copy says nothing about THIS product — a Nexus armchair is not a Nexus suite.
+# Only the subcategory the split assigned is evidence. Reading the body instead
+# hands every piece the set's line: the armchair comes out at the suite price.
+SET_SUBS = {'ensemble-salon', 'ensemble-manger', 'ensemble-chambre'}
+PIECE_SUBS = {'canape', 'causeuse', 'fauteuil', 'sectionnel', 'chaise',
+              'table-manger', 'chevet', 'commode', 'lit', 'matelas', 'meuble-tv',
+              'table-salon', 'bureau', 'decor', 'lit-superpose'}
+
 def looks_like_set(hay):
     if SET_RX.search(hay) or PAIR_RX.search(hay):
         return True
@@ -91,8 +100,13 @@ def pick(entries, product):
     seven-piece set off the table-only line is how a $1,600 set becomes $170."""
     hay = ' '.join([product.get('name_fr', ''), product.get('sub_fr', ''),
                     product.get('body_fr', '')[:500]])
-    is_set = looks_like_set(hay) or product.get('sub') in ('ensemble-manger',
-                                                           'ensemble-chambre')
+    sub = product.get('sub')
+    if sub in SET_SUBS:
+        is_set = True
+    elif sub in PIECE_SUBS:
+        is_set = False
+    else:
+        is_set = looks_like_set(hay)
     pool = entries
     if is_set:
         sets = [e for e in entries if SET_RX.search(e['desc'])]
@@ -109,12 +123,21 @@ def pick(entries, product):
                   ('lit', r'\bbed\b'), ('chaise', r'\bchair\b'),
                   ('table-manger', r'\btable\b'), ('canape', r'\bsofa\b'),
                   ('causeuse', r'\blove'), ('fauteuil', r'\bchair\b|recliner'),
-                  ('sectionnel', r'section')]
+                  ('sectionnel', r'section'), ('decor', r'ottoman|pouf|bench')]
+    # "Sofa Recliner (Power)" contains "Recliner", so an armchair happily took a
+    # sofa's line and doubled. A piece may only take a line that does not name a
+    # bigger piece: the words that outrank each kind.
+    OUTRANKS = {'fauteuil': r'\bsofa\b|\blove|section',
+                'causeuse': r'\bsofa\b|section',
+                'chaise':   r'\bsofa\b|\blove|section|\btable\b',
+                'decor':    r'\bsofa\b|\blove|section|\bchair\b'}
     for sub, rx in PIECE_LINE:
         if is_set:
             break          # a set prices from its set line; the guard below is for lone pieces
         if product.get('sub') == sub:
-            hit = [e for e in pool if re.search(rx, e['desc'], re.I)]
+            bigger = OUTRANKS.get(sub)
+            hit = [e for e in pool if re.search(rx, e['desc'], re.I)
+                   and not (bigger and re.search(bigger, e['desc'], re.I))]
             if hit:
                 pool = hit
             elif any(re.search(r2, e['desc'], re.I) for _, r2 in PIECE_LINE for e in pool):
@@ -123,6 +146,11 @@ def pick(entries, product):
                 return None
             break
 
+    # The card and the headline show the entry price; the size buttons carry the
+    # rest. Scanning the copy found "King" first and made every set open at its
+    # dearest size, so a set takes the cheapest size line it has.
+    if is_set:
+        return min(pool, key=lambda e: e['price'])
     sizes = {s.upper() for s in (product.get('variant_sizes') or [])}
     want = size_of(hay) or (list(sizes)[0] if sizes else None)
     if want:
@@ -209,18 +237,35 @@ def main():
             line = next((e for e in pool if vs and e['size'] == vs), None)
             if line is None:
                 # match the piece the variant names to the piece the line names
+                # Bedroom pieces were missing here, so a variant labelled
+                # "IF-100 Commode" matched nothing and fell to the cheapest
+                # line on the code — the $220 nightstand — while the product
+                # itself took the chest. Name every piece the labels use.
                 KIND = [(r'fauteuil|recliner\b(?!.*sofa)', r'\bchair\b'),
                         (r'love|causeuse', r'\blove'),
                         (r'sofa|canap[eé]', r'\bsofa\b'),
                         (r'sectionn', r'section'),
+                        (r'commode|dresser|bureau\b', r'dresser|chest'),
+                        (r'chevet|night\s*stand|table de nuit', r'night\s*stand'),
+                        (r'\bmatelas\b|mattress', r'mattress'),
+                        (r'\blit\b|\bbed\b', r'\bbed\b'),
                         (r'\btable\b', r'\btable\b'),
                         (r'\bchaise\b|\bchair\b', r'\bchair\b')]
                 for vrx, drx in KIND:
                     if re.search(vrx, lbl, re.I):
-                        line = next((e for e in pool if re.search(drx, e['desc'], re.I)), None)
+                        # the product takes the cheapest line of its kind, so a
+                        # variant of the same kind must too, or the headline and
+                        # the option it belongs to quote different numbers
+                        kin = [e for e in pool if re.search(drx, e['desc'], re.I)]
+                        line = min(kin, key=lambda e: e['price']) if kin else None
                         break
                 else:
-                    line = min(pool, key=lambda e: e['price']) if pool else None
+                    line = None
+                # A label naming a piece the code has no line for must not be
+                # handed the cheapest thing on the code: fall back to whatever
+                # the product itself resolved to, so price and options agree.
+                if line is None:
+                    line = row
             # A variant with no line of its own keeps the store's price. The
             # supplier marks discontinued pieces DISC — stamping the sofa's
             # line onto a $1,000 armchair doubled it.
