@@ -151,11 +151,24 @@
   function consented() { return consentGet() === 'yes'; }
   if (consented()) loadPixel();
   else if (consentGet() !== 'no' && consentBox) consentBox.hidden = false;
+  // Withdrawing consent also removes what the pixel left behind. fbevents.js
+  // writes _fbp/_fbc on the registrable domain, so clear both that and the host.
+  function clearMetaCookies() {
+    var host = location.hostname, parts = host.split('.');
+    var domains = ['', host, '.' + host];
+    if (parts.length > 2) domains.push('.' + parts.slice(-2).join('.'));
+    ['_fbp', '_fbc'].forEach(function (n) {
+      domains.forEach(function (d) {
+        document.cookie = n + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (d ? '; domain=' + d : '');
+      });
+    });
+  }
   if (consentBox) consentBox.addEventListener('click', function (e) {
     var b = e.target.closest('[data-consent]'); if (!b) return;
     consentSet(b.dataset.consent === 'yes' ? 'yes' : 'no');
     consentBox.hidden = true;
     if (consented()) loadPixel();
+    else clearMetaCookies();
   });
   [].forEach.call(document.querySelectorAll('[data-consent-open]'), function (b) {
     b.addEventListener('click', function () { if (consentBox) consentBox.hidden = false; });

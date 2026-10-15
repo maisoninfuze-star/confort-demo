@@ -29,6 +29,10 @@ PHONE = '514-279-4600'
 PHONE2 = '438-879-8019'
 ADDR = '7566 rue Saint-Hubert'
 CITY = 'Montréal, QC H2R 2N6'
+# Québec Law 25: the person in charge of personal information, published on the
+# site with a way to reach them. Confirmed by the owner's side on 14 Oct 2026.
+PRIVACY_OFFICER = 'Zacharie Bien-Aimé'
+PRIVACY_EMAIL = 'meubleconfortstyle@gmail.com'
 TERM = 36  # financing term in months, shown as "or $x/month"
 
 E = lambda s: html.escape(str(s), quote=True)
@@ -72,6 +76,7 @@ PAGES = {
  'retours':        {'fr': ('Retours et garantie', 'retours'),'en': ('Returns & warranty', 'returns')},
  'a-propos':       {'fr': ('À propos', 'a-propos'),         'en': ('About us', 'about')},
  'catalogue':      {'fr': ('Catalogue complet', 'catalogue'), 'en': ('Full catalogue', 'catalogue')},
+ 'confidentialite':{'fr': ('Politique de confidentialité', 'confidentialite'), 'en': ('Privacy policy', 'privacy')},
 }
 CAT_BLURB = {
  'salon': {
@@ -437,7 +442,8 @@ PIXEL_HEAD = ('<script>!function(w){if(w.fbq)return;var n=w.fbq=function(){n.cal
 def consent_banner(lang):
     fr = lang == 'fr'
     return f'''<div class="consent" id="consent" role="region" aria-label="{'Témoins' if fr else 'Cookies'}" hidden>
- <p>{'On utilise des témoins de Meta pour mesurer nos publicités. Vous pouvez refuser : le site fonctionne exactement pareil.' if fr else 'We use Meta cookies to measure our ads. You can decline — the site works exactly the same.'}</p>
+ <p>{'On utilise des témoins de Meta pour mesurer nos publicités. Vous pouvez refuser : le site fonctionne exactement pareil.' if fr else 'We use Meta cookies to measure our ads. You can decline — the site works exactly the same.'}
+  <a href="{url(lang, PAGES['confidentialite'][lang][1])}">{'Politique de confidentialité' if fr else 'Privacy policy'}</a></p>
  <div class="consent-b">
   <button class="btn btn-ghost" type="button" data-consent="no">{'Refuser' if fr else 'Decline'}</button>
   <button class="btn btn-primary" type="button" data-consent="yes">{'Accepter' if fr else 'Accept'}</button>
@@ -557,7 +563,7 @@ def footer(lang):
     c = COPY[lang]
     shop = ''.join(f'<a href="{url(lang, cat_slug(k, lang))}">{E(cat_name(k, lang))}</a>' for k in CATS)
     help_ = ''.join(f'<a href="{url(lang, PAGES[k][lang][1])}">{E(PAGES[k][lang][0])}</a>'
-                    for k in ('catalogue', 'livraison', 'financement', 'retours', 'a-propos'))
+                    for k in ('catalogue', 'livraison', 'financement', 'retours', 'a-propos', 'confidentialite'))
     return f'''<footer class="site"><div class="wrap">
  <div class="cols">
   <div><h2 class="fh">{E(c['foot_shop'])}</h2>{shop}</div>
@@ -1246,6 +1252,122 @@ PROSE = {
 <p>That’s our Google rating. We put it on the site because it’s the truest thing we can say about ourselves, and our customers wrote it, not us.</p>
 <h2>Reach us</h2>
 <p>""" + ADDR + """, """ + CITY + """<br>""" + PHONE + """ · """ + PHONE2 + """</p>"""},
+
+ # Québec Law 25. Every statement here describes what the code actually does:
+ # checkout (api/checkout.js → Stripe), the CRM bridge (api/stripe-webhook.js →
+ # GoHighLevel), the opt-in pixel and server-side Purchase (marquise.js, webhook),
+ # hosting on Vercel, fonts from Google, product photos from Shopify's CDN.
+ # Change the code, change this page.
+ 'confidentialite': {'fr': """
+<h1>Politique de confidentialité</h1>
+<p class="fineprint">Dernière mise à jour : 14 octobre 2026</p>
+<p>Meuble Confort &amp; Style vend des meubles en ligne et les livre à Montréal, Laval et Longueuil. Cette politique explique quels renseignements personnels nous recueillons, pourquoi, avec qui nous les partageons et comment exercer vos droits, conformément à la <em>Loi sur la protection des renseignements personnels dans le secteur privé</em> du Québec.</p>
+<h2>Responsable de la protection des renseignements personnels</h2>
+<p><strong>""" + PRIVACY_OFFICER + """</strong>, propriétaire<br>
+Courriel : <a href="mailto:""" + PRIVACY_EMAIL + """">""" + PRIVACY_EMAIL + """</a><br>
+Téléphone : """ + PHONE + """<br>
+Adresse postale : """ + ADDR + """, """ + CITY + """</p>
+<h2>Ce que nous recueillons</h2>
+<ul>
+<li><strong>Quand vous commandez</strong> : votre nom, votre courriel, votre téléphone, vos adresses de facturation et de livraison, et le détail de la commande. Le paiement est traité par Stripe : nous ne voyons ni ne conservons jamais votre numéro de carte.</li>
+<li><strong>Quand vous nous écrivez ou nous appelez</strong> (téléphone, Messenger, Instagram) : votre nom, vos coordonnées et le contenu de vos messages.</li>
+<li><strong>Quand vous naviguez sur le site</strong> : notre hébergeur conserve des journaux techniques (adresse IP, type de navigateur, pages demandées). Votre panier et votre choix concernant les témoins sont gardés dans votre propre navigateur, pas chez nous.</li>
+<li><strong>Seulement si vous acceptez les témoins</strong> : le pixel Meta enregistre les pages vues, les produits consultés, les ajouts au panier, le début du paiement et les achats.</li>
+</ul>
+<h2>Pourquoi</h2>
+<ul>
+<li>Traiter et encaisser votre commande, vous appeler pour fixer la livraison, livrer, et assurer le service après-vente et la garantie.</li>
+<li>Répondre à vos questions.</li>
+<li>Respecter nos obligations légales, notamment fiscales.</li>
+<li>Avec votre consentement seulement : mesurer l’efficacité de nos publicités sur Facebook et Instagram.</li>
+</ul>
+<p>Nous ne vendons pas vos renseignements personnels.</p>
+<h2>Témoins et publicité</h2>
+<p>Le pixel Meta est désactivé par défaut : il ne se charge que si vous cliquez sur « Accepter » dans le bandeau des témoins. Si vous acceptez puis passez une commande, notre serveur transmet aussi l’achat à Meta avec votre courriel, votre téléphone, votre nom et votre adresse sous forme hachée (SHA-256, illisible pour Meta comme pour nous), ainsi que l’adresse IP et le navigateur utilisés lors de la commande. Si vous refusez, rien de tout cela n’est envoyé.</p>
+<p>Vous pouvez changer d’avis en tout temps avec le lien « Témoins » au bas de chaque page. Si vous retirez votre consentement, le pixel cesse de se charger et les témoins de Meta déposés sur notre site sont effacés.</p>
+<h2>Avec qui nous les partageons</h2>
+<p>Seulement avec les entreprises qui nous fournissent un service, et seulement ce dont elles ont besoin :</p>
+<ul>
+<li><strong>Stripe</strong> — le paiement des commandes.</li>
+<li><strong>HighLevel (LeadConnector)</strong> — notre logiciel de gestion de la clientèle, où sont gardés vos coordonnées, vos commandes et vos messages.</li>
+<li><strong>Meta Platforms</strong> — les messages que vous nous envoyez par Messenger ou Instagram, et la mesure publicitaire si vous l’avez acceptée.</li>
+<li><strong>Vercel</strong> — l’hébergement du site.</li>
+<li><strong>Google Fonts et Shopify</strong> — les polices et les photos des produits sont chargées depuis leurs serveurs, qui reçoivent donc votre adresse IP.</li>
+</ul>
+<p>Notre équipe de livraison reçoit votre nom, votre adresse et votre téléphone pour vous livrer.</p>
+<p>Ces fournisseurs sont en grande partie situés à l’extérieur du Québec, notamment aux États-Unis : vos renseignements peuvent y être hébergés et traités. Nous ne leur communiquons que ce qui est nécessaire au service rendu.</p>
+<h2>Combien de temps nous les gardons</h2>
+<p>Seulement le temps nécessaire aux fins décrites ci-dessus ou exigé par la loi. Pour une commande, cela comprend la durée de la garantie et la période de conservation exigée par les lois fiscales, soit six ans. Les renseignements sont ensuite détruits ou rendus anonymes.</p>
+<h2>Vos droits</h2>
+<p>Vous pouvez :</p>
+<ul>
+<li>savoir quels renseignements nous détenons sur vous et en obtenir une copie, y compris dans un format technologique structuré et couramment utilisé ;</li>
+<li>les faire corriger s’ils sont inexacts, incomplets ou équivoques ;</li>
+<li>retirer votre consentement ;</li>
+<li>demander que nous cessions de les diffuser ou de les utiliser à des fins publicitaires.</li>
+</ul>
+<p>Écrivez à """ + PRIVACY_OFFICER + """ à <a href="mailto:""" + PRIVACY_EMAIL + """">""" + PRIVACY_EMAIL + """</a>. Nous répondons dans les 30 jours. Si vous n’êtes pas satisfait de notre réponse, vous pouvez vous adresser à la <a href="https://www.cai.gouv.qc.ca/" rel="noopener">Commission d’accès à l’information du Québec</a>.</p>
+<h2>Sécurité</h2>
+<p>Le site est servi en connexion chiffrée (HTTPS) et l’accès à vos renseignements est limité aux personnes qui en ont besoin pour vous servir. Si un incident de confidentialité présente un risque de préjudice sérieux, nous en avisons les personnes concernées et la Commission d’accès à l’information.</p>
+<h2>Mineurs</h2>
+<p>Le site ne s’adresse pas aux personnes de moins de 14 ans et nous ne recueillons pas sciemment leurs renseignements.</p>
+<h2>Modifications</h2>
+<p>Toute modification de cette politique sera publiée sur cette page, avec sa date.</p>""",
+ 'en': """
+<h1>Privacy policy</h1>
+<p class="fineprint">Last updated: October 14, 2026</p>
+<p>Meuble Confort &amp; Style sells furniture online and delivers it to Montréal, Laval and Longueuil. This policy explains what personal information we collect, why, who we share it with, and how to exercise your rights under Québec’s <em>Act respecting the protection of personal information in the private sector</em>.</p>
+<h2>Person in charge of personal information</h2>
+<p><strong>""" + PRIVACY_OFFICER + """</strong>, owner<br>
+Email: <a href="mailto:""" + PRIVACY_EMAIL + """">""" + PRIVACY_EMAIL + """</a><br>
+Phone: """ + PHONE + """<br>
+Mailing address: """ + ADDR + """, """ + CITY + """</p>
+<h2>What we collect</h2>
+<ul>
+<li><strong>When you order</strong>: your name, email, phone, billing and delivery addresses, and what you ordered. Payment is handled by Stripe: we never see or store your card number.</li>
+<li><strong>When you write or call us</strong> (phone, Messenger, Instagram): your name, your contact details and what you tell us.</li>
+<li><strong>When you browse the site</strong>: our host keeps technical logs (IP address, browser type, pages requested). Your cart and your cookie choice are kept in your own browser, not by us.</li>
+<li><strong>Only if you accept cookies</strong>: the Meta pixel records pages viewed, products viewed, add-to-cart, checkout start and purchases.</li>
+</ul>
+<h2>Why</h2>
+<ul>
+<li>To process and charge your order, call you to book delivery, deliver it, and provide after-sales service and warranty.</li>
+<li>To answer your questions.</li>
+<li>To meet our legal obligations, including tax law.</li>
+<li>Only with your consent: to measure how our Facebook and Instagram ads perform.</li>
+</ul>
+<p>We do not sell your personal information.</p>
+<h2>Cookies and advertising</h2>
+<p>The Meta pixel is off by default: it only loads if you click “Accept” in the cookie banner. If you accept and then order, our server also reports the purchase to Meta with your email, phone, name and address in hashed form (SHA-256, unreadable to Meta and to us), along with the IP address and browser used for the order. If you decline, none of this is sent.</p>
+<p>You can change your mind at any time with the “Cookies” link at the bottom of every page. If you withdraw consent, the pixel stops loading and the Meta cookies set on our site are deleted.</p>
+<h2>Who we share it with</h2>
+<p>Only with companies that provide a service to us, and only what they need:</p>
+<ul>
+<li><strong>Stripe</strong> — order payments.</li>
+<li><strong>HighLevel (LeadConnector)</strong> — our customer management software, which holds your contact details, orders and messages.</li>
+<li><strong>Meta Platforms</strong> — messages you send us through Messenger or Instagram, and ad measurement if you accepted it.</li>
+<li><strong>Vercel</strong> — website hosting.</li>
+<li><strong>Google Fonts and Shopify</strong> — fonts and product photos load from their servers, which therefore receive your IP address.</li>
+</ul>
+<p>Our delivery team receives your name, address and phone number to deliver your order.</p>
+<p>These providers are largely located outside Québec, notably in the United States, so your information may be stored and processed there. We only share what the service requires.</p>
+<h2>How long we keep it</h2>
+<p>Only as long as needed for the purposes above or as required by law. For an order, that includes the warranty period and the retention period required by tax law, which is six years. The information is then destroyed or anonymized.</p>
+<h2>Your rights</h2>
+<p>You can:</p>
+<ul>
+<li>find out what information we hold about you and get a copy, including in a structured, commonly used technological format;</li>
+<li>have it corrected if it is inaccurate, incomplete or ambiguous;</li>
+<li>withdraw your consent;</li>
+<li>ask us to stop disseminating it or using it for advertising.</li>
+</ul>
+<p>Write to """ + PRIVACY_OFFICER + """ at <a href="mailto:""" + PRIVACY_EMAIL + """">""" + PRIVACY_EMAIL + """</a>. We reply within 30 days. If you are not satisfied with our answer, you can contact the <a href="https://www.cai.gouv.qc.ca/" rel="noopener">Commission d’accès à l’information du Québec</a>.</p>
+<h2>Security</h2>
+<p>The site is served over an encrypted connection (HTTPS), and access to your information is limited to the people who need it to serve you. If a confidentiality incident presents a risk of serious harm, we notify the people concerned and the Commission d’accès à l’information.</p>
+<h2>Minors</h2>
+<p>The site is not directed at people under 14, and we do not knowingly collect their information.</p>
+<h2>Changes</h2>
+<p>Any change to this policy will be published on this page, with its date.</p>"""},
 }
 
 def load_supplier_catalogue():
