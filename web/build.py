@@ -434,6 +434,12 @@ def fr_description(p):
 # the part that talks to Meta — is injected by marquise.js after the visitor
 # accepts, and it then sends the queued PageView/ViewContent in order. Refuse,
 # and the queue never leaves the page.
+# Vercel Web Analytics. The npm package and `@vercel/analytics/next` are the
+# React/Next entry points; this site is static HTML with no bundler, so it uses
+# the script Vercel serves from the deployment itself. Cookieless and without
+# personal identifiers, so it sits outside the consent gate the Meta pixel needs.
+VERCEL_ANALYTICS = '<script defer src="/_vercel/insights/script.js"></script>'
+
 PIXEL_HEAD = ('<script>!function(w){if(w.fbq)return;var n=w.fbq=function(){n.callMethod?'
               'n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!w._fbq)w._fbq=n;'
               "n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);"
@@ -480,6 +486,7 @@ def shell(lang, title, desc, path, alt_path, body, jsonld=None, og_img=None, hea
 <link rel="stylesheet" href="{asset('/assets/marquise.css')}">
 {f'<script type="application/ld+json">{ld}</script>' if ld else ''}
 {META_DOMAIN_TAG}
+{VERCEL_ANALYTICS}
 {PIXEL_HEAD}
 {head_extra}
 </head>
