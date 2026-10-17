@@ -222,6 +222,35 @@ module.exports = async (req, res) => {
       return send(res, out.error || out.skipped ? 502 : 200, { capi: out.sent ? 'ok' : 'failed', event_id: fake.id, ...out });
     }
 
+    // {"type":"orders"} — read-only: did anyone actually buy? Lists recent
+    // Checkout Sessions with their payment status, so a completed order is
+    // told apart from an abandoned one and from a session opened in testing.
+    if (evt && evt.type === 'orders') {
+      const live = process.env.SK_LIVE || process.env.SK_Live;
+      if (!live) return send(res, 500, { orders: 'failed', why: 'no live key' });
+      const auth = { Authorization: 'Basic ' + Buffer.from(live + ':').toString('base64') };
+      const r = await fetch('https://api.stripe.com/v1/checkout/sessions?limit=100', { headers: auth });
+      const j = await r.json().catch(() => null);
+      if (!r.ok || !j) return send(res, 502, { orders: 'failed' });
+      const rows = (j.data || []).map((s2) => ({
+        created: new Date(s2.created * 1000).toISOString(),
+        status: s2.status,
+        paid: s2.payment_status,
+        total: (s2.amount_total || 0) / 100,
+        email: (s2.customer_details && s2.customer_details.email) || null,
+        name: (s2.customer_details && s2.customer_details.name) || null,
+      }));
+      const paid = rows.filter((x) => x.paid === 'paid');
+      return send(res, 200, {
+        orders: 'report',
+        sessionsReturned: rows.length,
+        paidCount: paid.length,
+        paidTotal: Math.round(paid.reduce((a, b) => a + b.total, 0) * 100) / 100,
+        paidOrders: paid,
+        recent: rows.slice(0, 12),
+      });
+    }
+
     // {"type":"tax-status"} — read-only: report how tax is set up on the live
     // account, so checkout can opt into the mechanism that actually exists.
     // Dashboard configuration alone changes nothing: a Session collects tax
