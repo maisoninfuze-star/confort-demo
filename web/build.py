@@ -72,7 +72,7 @@ SUPPLIER_FAMILIES = [
 
 PAGES = {
  'livraison':      {'fr': ('Livraison', 'livraison'),       'en': ('Delivery', 'delivery')},
- 'financement':    {'fr': ('Financement', 'financement'),   'en': ('Financing', 'financing')},
+ 'financement':    {'fr': ('Paiement', 'financement'),       'en': ('Payment', 'financing')},
  'retours':        {'fr': ('Retours et garantie', 'retours'),'en': ('Returns & warranty', 'returns')},
  'a-propos':       {'fr': ('À propos', 'a-propos'),         'en': ('About us', 'about')},
  'catalogue':      {'fr': ('Catalogue complet', 'catalogue'), 'en': ('Full catalogue', 'catalogue')},
@@ -96,7 +96,7 @@ COPY = {
  'fr': dict(
    tagline='Meubles · Matelas · Montréal',
    nav_more='Tout voir', ship='Livraison gratuite dès 400 $ · montée · à l’étage',
-   stock='En stock à Montréal', fin='Financement — approbation en 3 minutes',
+   stock='En stock à Montréal', fin='Paiement sécurisé',
    hero_h='Votre salon fini.<br>Livré et <em>monté</em>.',
    hero_p='Des meubles qui sont déjà dans notre entrepôt à Montréal. Livraison gratuite dès 400 $, montés, à l’étage — Montréal, Laval et Longueuil.',
    hero_cta='Voir ce qui est en stock', hero_cta2='Comment on livre',
@@ -107,10 +107,10 @@ COPY = {
    store_h='Une boutique en ligne, livrée chez vous', 
    store_p='Tout se passe en ligne : vous commandez, on livre et on monte chez vous. Une question sur un tissu ou une dimension ? Appelez-nous, on vérifie à l’entrepôt.',
    store_cta='Comment on livre', dir='Nous appeler',
-   fin_h='Ou payez-le par mois', 
-   fin_p='Approbation en 3 minutes, en ligne. Paiements mensuels simples, sans mauvaise surprise.',
-   fin_cta='Voir le financement',
-   add='Ajouter au panier', call='Appeler', mo='Financement disponible', was='Prix régulier',
+   fin_h='Payez en toute confiance',
+   fin_p='Visa, Mastercard, American Express et Apple Pay. Le paiement est traité par Stripe : votre numéro de carte ne passe jamais par notre site.',
+   fin_cta='Modes de paiement',
+   add='Ajouter au panier', call='Appeler', was='Prix régulier',
    filters='Filtres', sort='Trier', clear='Tout effacer', cart='Panier',
    cart_h='Votre panier', cart_empty='Votre panier est vide.',
    cart_browse='Découvrir les collections', cart_sub='Total',
@@ -135,9 +135,6 @@ COPY = {
    no_dims='Dimensions sur demande — appelez-nous au ' + PHONE + ', on les a à l’entrepôt.',
    ret='14 jours pour changer d’avis. On vient le rechercher.',
    foot_shop='Magasiner', foot_help='Aide', foot_store='Nous joindre', foot_hours='Service téléphonique',
-   bnpl_pay4='Payez en 4 versements, sans intérêts',
-   bnpl_mo='Versements mensuels, à partir de 0 %',
-   bnpl_more='Comment payer en versements →',
    pay_h='Modes de paiement',
    set_photo='Photo de l’ensemble',
    set_photo_note='La photo montre l’ensemble complet. Cette fiche ne vend que la pièce nommée ci-contre — appelez-nous au 514-279-4600 pour une photo de la pièce seule.',
@@ -151,7 +148,7 @@ COPY = {
  'en': dict(
    tagline='Furniture · Mattresses · Montréal',
    nav_more='See all', ship='Free delivery from $400 · assembled · up your stairs',
-   stock='In stock in Montréal', fin='Financing — approved in 3 minutes',
+   stock='In stock in Montréal', fin='Secure payment',
    hero_h='Your living room,<br>delivered and <em>assembled</em>.',
    hero_p='Furniture that is already in our Montréal warehouse. Free delivery from $400, assembled, up your stairs — Montréal, Laval and Longueuil.',
    hero_cta='See what\u2019s in stock', hero_cta2='How delivery works',
@@ -162,10 +159,10 @@ COPY = {
    store_h='An online store, delivered to you',
    store_p='It all happens online: you order, we deliver and assemble it in your home. Question about a fabric or a dimension? Call us and we check it at the warehouse.',
    store_cta='How delivery works', dir='Call us',
-   fin_h='Or pay monthly',
-   fin_p='Approved in 3 minutes, online. Simple monthly payments, no surprises.',
-   fin_cta='See financing',
-   add='Add to cart', call='Call us', mo='Financing available', was='Regular price',
+   fin_h='Pay with confidence',
+   fin_p='Visa, Mastercard, American Express and Apple Pay. Payment is handled by Stripe: your card number never touches our site.',
+   fin_cta='Ways to pay',
+   add='Add to cart', call='Call us', was='Regular price',
    filters='Filters', sort='Sort', clear='Clear all', cart='Cart',
    cart_h='Your cart', cart_empty='Your cart is empty.',
    cart_browse='Browse the collections', cart_sub='Total',
@@ -190,9 +187,6 @@ COPY = {
    no_dims='Dimensions on request — call ' + PHONE + ', we have them at the warehouse.',
    ret='14 days to change your mind. We come and pick it up.',
    foot_shop='Shop', foot_help='Help', foot_store='Contact', foot_hours='Phone support',
-   bnpl_pay4='Pay in 4 instalments, interest-free',
-   bnpl_mo='Monthly instalments, from 0%',
-   bnpl_more='How instalments work →',
    pay_h='Ways to pay',
    set_photo='Photo of the full set',
    set_photo_note='The photograph shows the complete set. This page sells only the piece named opposite — call 514-279-4600 for a photo of the piece on its own.',
@@ -204,47 +198,13 @@ COPY = {
    cat_note='These are made to order — they are not in the store today. Prices, dimensions and full descriptions arrive with the catalogue update; until then a phone call answers it in a minute.',
  ),
 }
-# ── Buy now, pay later ──────────────────────────────────────────────────────
-# Thresholds are the merchant-side caps that decide which option is even
-# offered on a given price. THESE ARE PLACEHOLDERS: every one of them has to be
-# confirmed against each provider's Canadian merchant agreement before launch,
-# because they differ by market, by merchant and by the shopper's own limit.
-BNPL = [
-    dict(id='klarna',   name='Klarna',   kind='pay4',
-         lo=35,  hi=1500,
-         fr='4 versements égaux, sans intérêts, aux 2 semaines',
-         en='4 equal payments, interest-free, every 2 weeks'),
-    dict(id='afterpay', name='Afterpay', kind='pay4',
-         lo=35,  hi=2000,
-         fr='4 versements égaux, sans intérêts, aux 2 semaines',
-         en='4 equal payments, interest-free, every 2 weeks'),
-    dict(id='affirm',   name='Affirm',   kind='monthly',
-         lo=50,  hi=30000,
-         fr='Versements mensuels — taux de 0 % à 36 % selon le dossier',
-         en='Monthly payments — 0% to 36% APR depending on approval'),
-]
-BNPL_TERM = 12   # months used for the Affirm monthly illustration
-
-# Smallest basket the 36-month in-store financing is actually offered on.
-# Without a floor the line renders on a $270 dining chair as "ou 8 $/mois" —
-# arithmetically right, commercially absurd, and a promise no lender honours
-# at that size. Below this the price simply stands on its own.
-FIN_MIN = 500
-FIN_TERM = 36
-
-def monthly_of(p):
-    """What the financing line may claim, or None when it may not appear."""
-    return p['monthly'] if p['price'] >= FIN_MIN else None
-
-def finline(p, lang):
-    """The product-page financing line. Rendered hidden below the floor so a
-    variant that lifts the price over it can reveal the same node, rather than
-    the script having to build one that was never in the markup."""
-    show = monthly_of(p) is not None
-    lead = 'Financement disponible · ' if lang == 'fr' else 'Financing available · '
-    cta = 'approbation en 3 min' if lang == 'fr' else 'approved in 3 min'
-    return (f'<div class="fin" data-fin{"" if show else " hidden"}>{lead}'
-            f'<a href="{url(lang, PAGES["financement"][lang][1])}">{cta}</a></div>')
+# ── How the customer actually pays ──────────────────────────────────────────
+# Klarna, Afterpay, Affirm and a 36-month lender plan used to be advertised
+# here. None of them was ever connected: a live checkout session for a $644
+# order offers card and Apple Pay, and nothing else. A payment method the
+# customer cannot choose is not a payment method, so the site no longer names
+# one. If a merchant account is approved later, add it here AND confirm it
+# appears on a live session before any page mentions it again.
 
 # supplier supply the dealer COST, not retail. Retail = cost × margin, and the
 # margin is the store's to set — so nothing derived from that file is published
@@ -330,7 +290,6 @@ def apply_tax_inclusive(cat):
                 v['price'] = with_tax(v['price'])
             if v.get('compare'):
                 v['compare'] = None
-        p['monthly'] = round(p['price'] / FIN_TERM) if p['price'] else 0
     return cat
 
 def money(v, lang):
@@ -588,9 +547,7 @@ def footer(lang):
  <div class="paybar">
    <span class="paybar-h">{E(c['pay_h'])}</span>
    <span class="paymark">Visa</span><span class="paymark">Mastercard</span>
-   <span class="paymark">Interac</span><span class="paymark">Klarna</span>
-   <span class="paymark">Afterpay</span><span class="paymark">Affirm</span>
-   <span class="paymark">{'Financement' if lang=='fr' else 'Financing'}</span>
+   <span class="paymark">American Express</span><span class="paymark">Apple Pay</span>
  </div>
  <div class="fine">
    <span>© 2026 Meuble Confort &amp; Style</span>
@@ -638,7 +595,6 @@ def card(p, lang, rank=0, lazy=True):
      <span class="now">{money(p['price'], lang)}</span>
      {f'<span class="was">{money(p["compare"], lang)}</span>' if sale else ''}
    </div>
-   {f'<div class="pc-mo">{c["mo"]}</div>' if monthly_of(p) else ''}
    <span class="chip boxed {'go' if p['available'] else 'plain'}" style="align-self:flex-start">
      <span class="dot"></span><span data-deliver="{deliver_mode(p)}">{E(deliver_text(p, lang))}</span></span>
  </div></a>'''
@@ -787,9 +743,9 @@ def build_home(cat, lang):
       <p style="color:var(--ink-2);max-width:46ch">{E(c['fin_p'])}</p>
       <a class="btn btn-primary" href="{url(lang, PAGES['financement'][lang][1])}">{E(c['fin_cta'])}</a></div>
     <div class="box" style="padding:26px">
-      <p class="eyebrow">{'Financement' if lang=='fr' else 'Financing'}</p>
-      <div style="font-family:var(--f-display);font-size:32px;font-weight:600;letter-spacing:-.03em;line-height:1.1">{'Payez en plusieurs versements' if lang=='fr' else 'Pay in instalments'}</div>
-      <p style="margin-top:8px">{'Approbation en 3 minutes, en ligne. Les modalités vous sont présentées avant que vous confirmiez.' if lang=='fr' else 'Approved in 3 minutes, online. The terms are shown to you before you confirm.'}</p>
+      <p class="eyebrow">{'Taxes incluses' if lang=='fr' else 'Taxes included'}</p>
+      <div style="font-family:var(--f-display);font-size:32px;font-weight:600;letter-spacing:-.03em;line-height:1.1">{'Le prix affiché est le prix payé' if lang=='fr' else 'The price shown is the price paid'}</div>
+      <p style="margin-top:8px">{'La TPS et la TVQ sont déjà comprises dans chaque prix du site. Le total de votre panier est exactement celui porté à votre carte.' if lang=='fr' else 'GST and QST are already in every price on this site. Your cart total is exactly what is charged to your card.'}</p>
     </div>
   </div>
 </div></section>'''
@@ -895,32 +851,6 @@ def build_listing(cat, k, lang):
     return shell(lang, title, CAT_BLURB[k][lang], url(lang, cat_slug(k, lang)),
                  url(other, cat_slug(k, other)), body, ld,
                  img(ps[0]['images'][0], 1200) if ps else None)
-
-def bnpl_block(price, lang):
-    """Only offer what the price is actually eligible for: pay-in-4 caps out
-    well below the price of a sectional, and showing it anyway is a promise the
-    checkout would break."""
-    c = COPY[lang]
-    pay4 = [b for b in BNPL if b['kind'] == 'pay4' and b['lo'] <= price <= b['hi']]
-    monthly = [b for b in BNPL if b['kind'] == 'monthly' and b['lo'] <= price <= b['hi']]
-    if not pay4 and not monthly:
-        return ''
-    rows = ''
-    if pay4:
-        names = ' · '.join(b['name'] for b in pay4)
-        rows += f"""<div class="bnpl-row">
-        <span class="bnpl-txt" data-bnpl-pay4>{E(c['bnpl_pay4'])}</span>
-        <span class="bnpl-marks">{E(names)}</span>
-      </div>"""
-    if monthly:
-        rows += f"""<div class="bnpl-row">
-        <span class="bnpl-txt" data-bnpl-mo>{E(c['bnpl_mo'])}</span>
-        <span class="bnpl-marks">Affirm</span>
-      </div>"""
-    return f"""<div class="bnpl" data-bnpl>
-      {rows}
-      <a class="bnpl-more" href="{url(lang, PAGES['financement'][lang][1])}">{E(c['bnpl_more'])}</a>
-    </div>"""
 
 # ── product page ────────────────────────────────────────────────────────────
 # An alternative is only useful if it is the same kind of thing. Someone who
@@ -1029,8 +959,6 @@ def build_pdp(p, cat, lang):
      {f'<span class="was">{money(p["compare"], lang)}</span>' if sale else ''}
      <span class="taxnote">{E(c['tax_incl'])}</span>
    </div>
-   {finline(p, lang)}
-   {bnpl_block(p['price'], lang)}
    <span class="chip boxed {'go' if p['available'] else 'plain'}" style="align-self:flex-start">
      <span class="dot"></span><span data-deliver="{deliver_mode(p)}">{E(deliver_text(p, lang))}</span></span>
    {optblocks}
@@ -1039,7 +967,6 @@ def build_pdp(p, cat, lang):
      data-url="{p_url(p, lang)}" data-price="{p['price']}">{E(c['add'])}</button>
    <a class="btn btn-ghost btn-block" href="tel:+1{PHONE.replace('-','')}">{E(c['call'])} · {PHONE}</a>
    {fitblock}
-   <script type="application/json" id="bnpldata">{json.dumps({'options': BNPL, 'term': BNPL_TERM, 'finMin': FIN_MIN, 'finTerm': FIN_TERM}, ensure_ascii=False)}</script>
    <div class="box">
      <p><strong>{E(c['ship'])}</strong><br>{E(c['ret'])}</p>
    </div>
@@ -1079,10 +1006,9 @@ def build_pdp(p, cat, lang):
                     "itemCondition":"https://schema.org/NewCondition",
                     "seller":{"@type":"Organization","name":"Meuble Confort & Style"}}}
     desc = (f"{p_name(p, lang)} — {money(p['price'], lang)}. "
-            + (("En stock à Montréal. Livraison gratuite dès 400 $, monté et à l’étage."
-                + (" Financement disponible." if monthly_of(p) else "")) if lang == 'fr' else
-               ("In stock in Montréal. Free delivery from $400, assembled and up your stairs."
-                + (" Financing available." if monthly_of(p) else ""))))
+            + ("En stock à Montréal. Livraison gratuite dès 400 $, monté et à l’étage. Taxes incluses."
+               if lang == 'fr' else
+               "In stock in Montréal. Free delivery from $400, assembled and up your stairs. Taxes included."))
     # Trim the brand, never the product name: two pieces can differ only by the
     # finish at the end of the name, and cutting it makes their <title>s
     # identical.
@@ -1138,85 +1064,41 @@ PROSE = {
 <p>We also deliver to Terrebonne, Brossard, Repentigny and the South Shore, with a fee based on distance. Call us for a price.</p>"""},
 
  'financement': {'fr': """
-<h1>Financement</h1>
-<p>Le financement vous permet d’étaler votre achat sur plusieurs versements. C’est comme ça que la plupart de nos clients meublent une pièce au complet d’un coup plutôt qu’une pièce à la fois.</p>
-<h2>Comment ça marche</h2>
+<h1>Modes de paiement</h1>
+<p>Tout se règle en ligne, au moment de passer la commande. Le prix affiché est le prix payé : la TPS et la TVQ sont déjà comprises, et il n’y a aucuns frais cachés.</p>
+<h2>Ce que nous acceptons</h2>
 <ul>
-<li><strong>Approbation en 3 minutes</strong>, en ligne.</li>
-<li>Paiements mensuels fixes sur 12, 24 ou 36 mois.</li>
-<li>Pas de pénalité si vous remboursez d’avance.</li>
-<li>Le montant mensuel est affiché sur chaque produit du site.</li>
+<li><strong>Visa, Mastercard et American Express</strong> — crédit et débit</li>
+<li><strong>Apple Pay</strong>, sur iPhone, iPad et Mac</li>
 </ul>
-<h2>Ce qu’il vous faut</h2>
-<ul>
-<li>Une pièce d’identité avec photo</li>
-<li>Une preuve de revenu (talon de paie ou relevé bancaire)</li>
-<li>Une adresse au Québec</li>
-</ul>
-<div class="callout"><p><strong>À confirmer avant la mise en ligne :</strong> le nom du prêteur, le taux annuel, les durées offertes et les frais éventuels doivent être écrits ici noir sur blanc. C’est une exigence légale au Québec, et c’est aussi ce que les clients cherchent en premier.</p></div>
-
-<h2>Payer en versements</h2>
-<p>Quatre façons d’étaler un achat. Le montant applicable est affiché directement sur chaque produit, avant que vous ajoutiez quoi que ce soit au panier.</p>
-<table class="paytable">
-<thead><tr><th>Option</th><th>Comment ça marche</th><th>Coût</th></tr></thead>
-<tbody>
-<tr><td><strong>Klarna</strong></td><td>4 versements égaux, aux 2 semaines</td><td>Sans intérêts si payé à temps</td></tr>
-<tr><td><strong>Afterpay</strong></td><td>4 versements égaux, aux 2 semaines</td><td>Sans intérêts si payé à temps</td></tr>
-<tr><td><strong>Affirm</strong></td><td>Versements mensuels, 3 à 36 mois</td><td>De 0 % à 36 % selon le dossier</td></tr>
-<tr><td><strong>Financement</strong></td><td>12, 24 ou 36 mois, approuvé en ligne</td><td>À confirmer</td></tr>
-</tbody></table>
-<p>Klarna et Afterpay conviennent aux achats plus petits — une table, un matelas, un ensemble de chaises. Pour un sectionnel ou un ensemble de chambre complet, c’est Affirm ou le financement qui s’appliquent, parce que les paiements en 4 versements ont un plafond.</p>
-<div class="callout"><p><strong>À régler avant la mise en ligne.</strong> Trois choses, et aucune n’est facultative :</p></div>
-<ul>
-<li><strong>Les comptes marchands n’existent pas encore.</strong> Klarna, Afterpay et Affirm demandent chacun une demande distincte, avec approbation. Tant que ce n’est pas fait, ces options sont de l’affichage, pas un moyen de paiement.</li>
-<li><strong>Les plafonds affichés sur le site sont des valeurs par défaut.</strong> Ils décident quelle option apparaît sur quel produit et doivent être remplacés par les vôtres, tirés de vos ententes marchandes canadiennes.</li>
-<li><strong>Le Québec encadre ces produits comme du crédit à la consommation.</strong> Contrairement au reste du Canada, la <em>Loi sur la protection du consommateur</em> traite plusieurs offres « achetez maintenant, payez plus tard » comme du crédit — ce qui entraîne des obligations de divulgation, en français. Faites valider la page et l’affichage sur les fiches produits par un conseiller juridique québécois avant de les activer.</li>
-</ul>
-<p class="fineprint">Les frais marchands pour ce type de service se situent généralement entre 3 % et 7 % de la transaction. Sur une marge de meuble, ce n’est pas négligeable : à valider avant de tout activer.</p>
-<h2>Combien ça coûte</h2>
-<p>Le montant de vos versements dépend du prix, de la durée choisie et du taux auquel vous êtes approuvé. Le détail complet — montant, durée et taux — vous est présenté avant que vous confirmiez quoi que ce soit, sans engagement.</p>""",
+<h2>Un paiement sécurisé</h2>
+<p>Le paiement est traité par <strong>Stripe</strong>, le service utilisé par des milliers de commerces canadiens. Votre numéro de carte ne transite jamais par notre site et nous ne le voyons jamais. La connexion est chiffrée du début à la fin.</p>
+<h2>Les taxes sont déjà incluses</h2>
+<p>Chaque prix affiché sur le site comprend la TPS (5 %) et la TVQ (9,975 %). Le détail vous est présenté ligne par ligne à la caisse : <strong>le total de votre panier est exactement le montant porté à votre carte</strong>. Aucun supplément n’apparaît à la dernière étape.</p>
+<h2>Un achat important</h2>
+<p>Pour un ensemble complet ou une commande de plusieurs pièces, appelez-nous au """ + PHONE + """ avant de commander. On confirme avec vous la disponibilité, le délai et le total, et on répond à vos questions sur le tissu ou les dimensions.</p>
+<h2>Après la commande</h2>
+<p>Vous recevez une confirmation par courriel immédiatement, puis notre appel pour fixer la livraison. La livraison est gratuite à Montréal, Laval et Longueuil dès 400 $, montée et assemblée chez vous.</p>""",
  'en': """
-<h1>Financing</h1>
-<p>Financing lets you spread your purchase over several instalments. It’s how most of our customers furnish a whole room at once instead of a piece at a time.</p>
-<h2>How it works</h2>
+<h1>Ways to pay</h1>
+<p>Everything is settled online, at the moment you place the order. The price you see is the price you pay: GST and QST are already included, and there are no hidden fees.</p>
+<h2>What we accept</h2>
 <ul>
-<li><strong>Approved in 3 minutes</strong>, online or at the counter.</li>
-<li>Fixed monthly payments over 12, 24 or 36 months.</li>
-<li>No penalty for paying it off early.</li>
-<li>The monthly figure is shown on every product on this site.</li>
+<li><strong>Visa, Mastercard and American Express</strong> — credit and debit</li>
+<li><strong>Apple Pay</strong>, on iPhone, iPad and Mac</li>
 </ul>
-<h2>What you need</h2>
-<ul>
-<li>Photo ID</li>
-<li>Proof of income (pay stub or bank statement)</li>
-<li>A Québec address</li>
-</ul>
-<div class="callout"><p><strong>To confirm before launch:</strong> the lender’s name, the annual rate, the terms offered and any fees have to be written here in plain sight. It’s a legal requirement in Québec, and it’s also the first thing customers look for.</p></div>
-
-<h2>Paying in instalments</h2>
-<p>Four ways to spread a purchase. The applicable amount is shown on each product, before you put anything in the cart.</p>
-<table class="paytable">
-<thead><tr><th>Option</th><th>How it works</th><th>Cost</th></tr></thead>
-<tbody>
-<tr><td><strong>Klarna</strong></td><td>4 equal payments, every 2 weeks</td><td>Interest-free when paid on time</td></tr>
-<tr><td><strong>Afterpay</strong></td><td>4 equal payments, every 2 weeks</td><td>Interest-free when paid on time</td></tr>
-<tr><td><strong>Affirm</strong></td><td>Monthly payments, 3 to 36 months</td><td>0% to 36% APR depending on approval</td></tr>
-<tr><td><strong>In-store financing</strong></td><td>12, 24 or 36 months, approved at the counter</td><td>To be confirmed</td></tr>
-</tbody></table>
-<p>Klarna and Afterpay suit smaller purchases — a table, a mattress, a set of chairs. For a sectional or a full bedroom set it is Affirm or in-store financing that apply, because pay-in-4 has a ceiling.</p>
-<div class="callout"><p><strong>To settle before launch.</strong> Three things, none of them optional:</p></div>
-<ul>
-<li><strong>The merchant accounts do not exist yet.</strong> Klarna, Afterpay and Affirm each require a separate application and approval. Until that is done these are display, not a payment method.</li>
-<li><strong>The thresholds on this site are defaults.</strong> They decide which option appears on which product and must be replaced with yours, from your Canadian merchant agreements.</li>
-<li><strong>Québec regulates these as consumer credit.</strong> Unlike the rest of Canada, the <em>Consumer Protection Act</em> treats many buy-now-pay-later offers as credit — which brings disclosure obligations, in French. Have a Québec lawyer review this page and the product-page messaging before switching it on.</li>
-</ul>
-<p class="fineprint">Merchant fees for these services generally run 3% to 7% of the transaction. Against furniture margins that is not a rounding error — worth confirming before you enable everything.</p>
-<h2>What it costs</h2>
-<p>Your instalment depends on the price, the term you pick and the rate you are approved at. The full details — amount, term and rate — are shown to you before you confirm anything, with no obligation.</p>"""},
+<h2>Secure payment</h2>
+<p>Payment is handled by <strong>Stripe</strong>, the service used by thousands of Canadian businesses. Your card number never travels through our site and we never see it. The connection is encrypted end to end.</p>
+<h2>Taxes are already included</h2>
+<p>Every price on this site includes GST (5%) and QST (9.975%). The breakdown is shown line by line at checkout: <strong>your cart total is exactly the amount charged to your card</strong>. Nothing is added at the last step.</p>
+<h2>A larger purchase</h2>
+<p>For a full set or an order of several pieces, call us at """ + PHONE + """ before you order. We’ll confirm availability, the lead time and the total with you, and answer any question about fabric or dimensions.</p>
+<h2>After you order</h2>
+<p>You get an email confirmation right away, then our call to arrange delivery. Delivery is free in Montréal, Laval and Longueuil from $400, carried up and assembled in your home.</p>"""},
 
  'retours': {'fr': """
 <h1>Retours et garantie</h1>
-<div class="callout"><p><strong>Cette page est un gabarit.</strong> La politique réelle du magasin n’a jamais été écrite nulle part — ni sur le site actuel, ni ailleurs. Les termes ci-dessous sont une proposition raisonnable pour un détaillant de meubles au Québec ; ils doivent être confirmés par le propriétaire avant la mise en ligne.</p></div>
+<p>Un meuble, ça s’achète pour des années. Si celui que vous recevez n’est pas le bon, voici exactement ce à quoi vous avez droit.</p>
 <h2>14 jours pour changer d’avis</h2>
 <p>Si le meuble ne vous convient pas, appelez-nous dans les 14 jours suivant la livraison. On vient le rechercher. Il doit être dans son état d’origine, sans taches ni dommages.</p>
 <h2>Ce qui n’est pas repris</h2>
@@ -1226,10 +1108,15 @@ PROSE = {
 <h2>Si c’est brisé</h2>
 <p>Inspectez avant que les livreurs repartent. Un dommage constaté à la livraison, c’est notre problème, pas le vôtre : on remporte la pièce et on la remplace.</p>
 <h2>Garantie</h2>
-<p>Un an sur la structure et les mécanismes, contre les défauts de fabrication. Les garanties du fabricant, plus longues sur certains matelas, s’appliquent en plus.</p>""",
+<p>Un an sur la structure et les mécanismes, contre les défauts de fabrication. Les garanties du fabricant, plus longues sur certains matelas, s’appliquent en plus.</p>
+<h2>Remboursements</h2>
+<p>Un retour accepté est remboursé sur le mode de paiement utilisé lors de l’achat, taxes comprises. Comptez de 5 à 10 jours ouvrables pour que votre institution financière l’affiche.</p>
+<h2>Nous joindre</h2>
+<p>Un retour, un défaut, une question : appelez-nous au """ + PHONE + """ ou au """ + PHONE2 + """. On règle ça au téléphone.</p>""",
+
  'en': """
 <h1>Returns &amp; warranty</h1>
-<div class="callout"><p><strong>This page is a template.</strong> The store’s actual policy has never been written down anywhere — not on the current site, not elsewhere. The terms below are a reasonable proposal for a Québec furniture retailer; they need the owner’s confirmation before launch.</p></div>
+<p>Furniture is bought for years. If the piece that arrives isn’t the right one, here is exactly what you’re entitled to.</p>
 <h2>14 days to change your mind</h2>
 <p>If the furniture isn’t right, call us within 14 days of delivery. We come and pick it up. It has to be in its original condition, unstained and undamaged.</p>
 <h2>What we can’t take back</h2>
@@ -1239,7 +1126,11 @@ PROSE = {
 <h2>If it arrives damaged</h2>
 <p>Inspect it before the delivery team leaves. Damage found at delivery is our problem, not yours: the piece goes back on the truck and we replace it.</p>
 <h2>Warranty</h2>
-<p>One year on frames and mechanisms against manufacturing defects. Manufacturers’ warranties, longer on some mattresses, apply on top.</p>"""},
+<p>One year on frames and mechanisms against manufacturing defects. Manufacturers’ warranties, longer on some mattresses, apply on top.</p>
+<h2>Refunds</h2>
+<p>An accepted return is refunded to the payment method used for the purchase, taxes included. Allow 5 to 10 business days for your bank to show it.</p>
+<h2>Reach us</h2>
+<p>A return, a defect, a question: call us at """ + PHONE + """ or """ + PHONE2 + """. We sort it out on the phone.</p>"""},
 
  'a-propos': {'fr': """
 <h1>À propos</h1>

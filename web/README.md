@@ -140,41 +140,25 @@ Two things worth knowing if you touch this code:
 - Captions **do not cross-fade**; the outgoing one leaves before the incoming
   one arrives. Fading text over text turns two room names into mush.
 
-## Buy now, pay later
+## Buy now, pay later — removed
 
-Klarna, Afterpay and Affirm appear on product pages, in the footer payment row,
-and as a comparison table on the financing page — in both languages.
+Klarna, Afterpay, Affirm and a 36-month lender plan used to appear on product
+pages, in the footer payment row and as a comparison table on the financing
+page. **None of them was ever connected.** A live Checkout Session for a $644
+order offers exactly two things: card (Visa, Mastercard, Amex) and Apple Pay.
 
-Eligibility is computed from the price, and recomputed when the shopper changes
-variant, because pay-in-4 caps out well below the price of a sectional:
+Advertising a method the customer cannot choose is a false claim, and in Québec
+buy-now-pay-later is regulated as consumer credit, with French disclosure
+obligations on top. So every mention is gone: the `BNPL` list, `bnpl_block()`,
+the product-page financing line, the `pc-mo` card badge, the paint logic in
+`marquise.js` and the provider names in the footer.
 
-| Price | What shows |
-|---|---|
-| $1,258 | `314,50 $` — Klarna · Afterpay, plus Affirm monthly |
-| $1,688 | `422,00 $` — Afterpay only (past Klarna's cap), plus Affirm |
-| $2,080 | Affirm monthly only — pay-in-4 disappears entirely |
+`/fr/financement/` and `/en/financing/` keep their URLs — 173 legacy redirects
+and the nav point at them — but the page is now **Modes de paiement / Ways to
+pay**: cards accepted, Apple Pay, Stripe security, taxes already in the price.
 
-Thresholds live in one `BNPL` list at the top of `build.py`. **They are
-placeholders.** They decide which option appears on which product and must be
-replaced with the real caps from your Canadian merchant agreements.
-
-Three things have to happen before this is switched on:
-
-1. **The merchant accounts do not exist.** Each of the three needs its own
-   application and approval. Until then this is display, not a payment method,
-   and the checkout would not honour it.
-2. **Québec regulates BNPL as consumer credit.** Unlike the rest of Canada, the
-   *Consumer Protection Act* treats many buy-now-pay-later offers as credit,
-   which brings disclosure obligations, in French. A Québec lawyer should review
-   both this page and the product-page messaging before it goes live. The
-   financing page says so on its face, in both languages.
-3. **Merchant fees run roughly 3–7% of the transaction.** Against furniture
-   margins that is a real number, not a rounding error.
-
-Provider names are set as **type, not logos**. Klarna, Afterpay and Affirm each
-publish a brand kit with mandatory logo, clear-space and colour rules; drop the
-official assets into `.bnpl-marks` and `.paymark` rather than approximating
-their trademarks.
+If a merchant account is approved later, the order is: enable it in Stripe,
+**confirm it renders on a live session**, and only then put it on a page.
 
 ## Known gaps — deliberate, not oversights
 
@@ -184,14 +168,13 @@ their trademarks.
 2. **English product descriptions are generated from the parsed attributes**, not
    translated. The French copy is genuinely good and stays; the English needs a
    writer, not a machine.
-3. **The cart is a counter.** There is no checkout — this is a front end. The real
-   build runs on the existing Shopify store, where checkout, inventory, tax and
-   payments already work.
-4. **The returns policy is a template.** The store has never written one down. The
-   page says so, in both languages, and needs the owner's sign-off.
-5. **Financing rates and the lender's name are blank.** Legally required in Québec
-   and the first thing customers look for. The page flags it.
-6. **Photography.** Product imagery is the store's own, from the Shopify CDN. The
+3. **The returns and warranty terms need the owner's sign-off.** The store never
+   wrote a policy down, so `/retours/` and `/returns/` were drafted here: 14 days
+   to change your mind, one year on frames and mechanisms, refund to the original
+   payment method in 5–10 business days. The page no longer says any of that is
+   provisional — it reads as policy, because a half-written policy on a live
+   store is worse than a firm one. That makes confirming it urgent, not optional.
+4. **Photography.** Product imagery is the store's own, from the Shopify CDN. The
    hero rooms are AI-generated stand-ins (see above) and the 23 single-image
    products still need a real shoot.
 

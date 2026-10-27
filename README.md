@@ -37,10 +37,16 @@ python3 build.py       # catalogue.json    -> dist/
 `web/README.md` lists the open items in full. The ones that need a decision from
 the business rather than more code:
 
-- The **returns policy** has never been written down. The page is a template.
-- **Financing rates and the lender's name** are blank — legally required in Québec.
-- **Buy-now-pay-later** (Klarna, Afterpay, Affirm) is displayed but not connected;
-  no merchant accounts exist yet, and Québec regulates these as consumer credit.
+- The **returns and warranty terms** now published — 14 days, one year on frames
+  and mechanisms, 5–10 business days for a refund — were drafted here, not
+  supplied by the store. The owner has to confirm or correct them: in Québec a
+  published policy binds the merchant.
+- **Instalment financing does not exist.** Klarna, Afterpay, Affirm and a lender
+  plan were advertised but never connected; a live checkout offers card and Apple
+  Pay only. Every mention has been removed. If a merchant account is approved,
+  confirm it appears on a live session before any page names it again — and note
+  that Québec regulates buy-now-pay-later as consumer credit, with French
+  disclosure obligations.
 - The **hero room photographs are AI-generated** stand-ins, not real inventory.
   They need replacing with a shoot of the actual showroom.
 

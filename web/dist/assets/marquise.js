@@ -434,54 +434,17 @@
       var price = parseFloat(b.dataset.price);
       var p = document.querySelector('[data-price-now]');
       if (p) p.textContent = money(price);
-      // The financing offer has a floor, so a variant can cross it in either
-      // direction: show the line only while the chosen price clears it. No
-      // amount is ever written — the page states that financing exists, not
-      // what it would cost.
-      var finBox = document.querySelector('[data-fin]');
-      if (finBox) finBox.hidden = price < ((BNPL && BNPL.finMin) || 0);
       // the add button carries what the cart will store
       var add = document.querySelector('[data-add]');
       if (add) add.dataset.price = price;
-      paintBnpl(price);
     });
   });
-  /* Eligibility follows the chosen variant: switching from a Double to a King
-     can push a price past a pay-in-4 cap, and that offer has to disappear when
-     it does. Only eligibility is painted — never an instalment amount, which
-     would be a credit quote the page is not allowed to make. */
-  var BNPL = null;
-  var bnplEl = document.getElementById('bnpldata');
-  if (bnplEl) { try { BNPL = JSON.parse(bnplEl.textContent); } catch (e) { BNPL = null; } }
 
   function money2(v) {
     return L === 'fr'
       ? v.toLocaleString('fr-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' $'
       : '$' + v.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
-  function paintBnpl(price) {
-    var box = document.querySelector('[data-bnpl]');
-    if (!box || !BNPL) return;
-    var fits = function (kind) {
-      return BNPL.options.filter(function (o) {
-        return o.kind === kind && price >= o.lo && price <= o.hi;
-      });
-    };
-    var p4 = fits('pay4'), mo = fits('monthly');
-    var row4 = box.querySelector('[data-bnpl-pay4]');
-    var rowM = box.querySelector('[data-bnpl-mo]');
-    if (row4) {
-      var r = row4.closest('.bnpl-row');
-      r.hidden = !p4.length;
-      var marks = r.querySelector('.bnpl-marks');
-      if (p4.length && marks) {
-        marks.textContent = p4.map(function (o) { return o.name; }).join(' · ');
-      }
-    }
-    if (rowM) rowM.closest('.bnpl-row').hidden = !mo.length;
-    box.hidden = !p4.length && !mo.length;
-  }
-
   function money(v) {
     return L === 'fr'
       ? v.toLocaleString('fr-CA', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' $'

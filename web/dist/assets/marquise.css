@@ -218,7 +218,7 @@ section.band{padding:clamp(56px,8.5vw,124px) 0; border-bottom:1px solid var(--li
 /* The filter hides cards with the `hidden` attribute. An author display
    (.pc{display:flex}) OVERRIDES the UA's [hidden]{display:none} — so the
    filters counted correctly while hiding nothing. Never again. */
-.pc[hidden],.ic[hidden],.fin[hidden]{display:none!important}
+.pc[hidden],.ic[hidden]{display:none!important}
 .pc{display:flex; flex-direction:column; background:transparent; border-radius:var(--r)}
 .pc-shot{position:relative; aspect-ratio:7/5; background:var(--sunk); overflow:hidden}
 /* a piece shot portrait is shown whole rather than cropped to a ratio it was
@@ -314,8 +314,6 @@ select.sort{font-family:var(--f-ui); font-size:13px; font-weight:500; padding:10
 .priceline{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
 .priceline .now{font-family:var(--f-ui); font-size:27px; font-weight:600; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:var(--brand)}
 .priceline .was{font-family:var(--f-mono); font-size:13px; color:var(--ink-3); text-decoration:line-through}
-.fin{font-family:var(--f-mono); font-size:11px; letter-spacing:.06em; color:var(--ink-2)}
-.fin a{border-bottom:1px solid var(--brand)}
 .opts{display:flex; flex-direction:column; gap:11px}
 .opts .lbl{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3)}
 .opts .row{display:flex; flex-wrap:wrap; gap:8px}
@@ -449,21 +447,6 @@ footer.site .fine a{display:inline; padding:0; font-size:inherit; color:inherit}
   .shero-slide:first-child{opacity:1}
   .shero-scrollcue{display:none}
 }
-
-/* ── buy now, pay later ──────────────────────────────
-   Provider names are set as type, deliberately. Klarna, Afterpay and Affirm
-   each publish a brand kit with mandatory logo, clear-space and colour rules;
-   swap the official assets in here rather than approximating their marks. */
-.bnpl{border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-  padding:15px 0; display:flex; flex-direction:column; gap:11px}
-.bnpl-row{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; line-height:1.4}
-.bnpl-amt{font-family:var(--f-ui); font-size:15px; font-weight:600; letter-spacing:-.01em; font-variant-numeric:tabular-nums; color:var(--brand)}
-.bnpl-txt{font-family:var(--f-ui); font-size:14px; font-weight:500; color:var(--ink)}
-.bnpl-marks{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--ink-3); margin-left:auto; white-space:nowrap}
-.bnpl-more{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--ink); border-bottom:1px solid var(--brand); padding-bottom:3px; align-self:flex-start}
-@media(max-width:420px){ .bnpl-marks{margin-left:0; width:100%} }
 
 /* footer payment row */
 .paybar{display:flex; align-items:center; gap:9px 12px; flex-wrap:wrap; padding:22px 0 0}
