@@ -8,12 +8,12 @@
       months: ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'],
       at: 'Chez vous ', order: 'Sur commande — 2 à 3 semaines',
       results: function (n) { return n + (n === 1 ? ' produit' : ' produits'); },
-      none: 'Aucun produit ne correspond. Retirez un filtre, ou appelez-nous au 514-279-4600 — on l’a peut-être en entrepôt.',
+      none: 'Aucun produit ne correspond. Retirez un filtre, ou appelez-nous au 438-879-8019 — on l’a peut-être en entrepôt.',
       added: 'Ajouté au panier',
       remove: 'Retirer',
       qless: 'Diminuer la quantité', qmore: 'Augmenter la quantité',
       paywait: 'Redirection vers le paiement…',
-      payerr: 'Le paiement n’a pas pu démarrer. Réessayez, ou appelez-nous au 514-279-4600.',
+      payerr: 'Le paiement n’a pas pu démarrer. Réessayez, ou appelez-nous au 438-879-8019.',
       fits: 'Ça rentre', tight: 'Serré — mais ça passe', nofit: 'Ne rentre pas par là',
       fitsB: 'Livré monté, rien à faire.',
       tightB: function (p, w, flat) { return flat
@@ -21,7 +21,7 @@
         : 'On le démonte en ' + p + ' modules — le plus large fait ' + w + ' po — et on le remonte chez vous, sans frais.'; },
       nofitB: function (w) { return 'Il faut ' + w + ' po de dégagement au minimum.'; },
       alts: 'Ceux-ci rentrent chez vous :',
-      noalts: 'On n’a rien d’assez étroit en ligne pour cette entrée. Appelez-nous au 514-279-4600 — on vérifie ce qui rentre avec vous.',
+      noalts: 'On n’a rien d’assez étroit en ligne pour cette entrée. Appelez-nous au 438-879-8019 — on vérifie ce qui rentre avec vous.',
       est: 'Estimation à partir des dimensions du fabricant. Un doute ? Appelez-nous, on vérifie avec vous.'
     },
     en: {
@@ -29,12 +29,12 @@
       months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
       at: 'At your place ', order: 'Made to order — 2 to 3 weeks',
       results: function (n) { return n + (n === 1 ? ' product' : ' products'); },
-      none: 'Nothing matches. Drop a filter, or call 514-279-4600 — we may have it in the warehouse.',
+      none: 'Nothing matches. Drop a filter, or call 438-879-8019 — we may have it in the warehouse.',
       added: 'Added to cart',
       remove: 'Remove',
       qless: 'Decrease quantity', qmore: 'Increase quantity',
       paywait: 'Opening secure checkout…',
-      payerr: 'Checkout could not start. Try again, or call us at 514-279-4600.',
+      payerr: 'Checkout could not start. Try again, or call us at 438-879-8019.',
       fits: 'It fits', tight: 'Tight — but it goes', nofit: 'Won’t go that way',
       fitsB: 'Delivered assembled — nothing for you to do.',
       tightB: function (p, w, flat) { return flat
@@ -42,7 +42,7 @@
         : 'We take it apart into ' + p + ' modules — the widest is ' + w + '" — and rebuild it inside, free.'; },
       nofitB: function (w) { return 'You need at least ' + w + '" of clearance.'; },
       alts: 'These will fit:',
-      noalts: 'We have nothing narrow enough online for that entrance. Call 514-279-4600 — we’ll work out what fits with you.',
+      noalts: 'We have nothing narrow enough online for that entrance. Call 438-879-8019 — we’ll work out what fits with you.',
       est: 'Estimated from the manufacturer’s dimensions. Not sure? Call us and we’ll check it with you.'
     }
   }[L];

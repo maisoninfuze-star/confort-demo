@@ -25,8 +25,7 @@ META_PIXEL = os.environ.get('META_PIXEL_ID', '1164650748537760')
 # Meta Business Settings → Domains → meublesconfortstyles.com (id 1296697739209238).
 # Public by design, like the pixel id; it only proves who owns the domain.
 META_DOMAIN_TAG = '<meta name="facebook-domain-verification" content="7p8b8i0hyil2s1qu4309z7w7exwon0">'
-PHONE = '514-279-4600'
-PHONE2 = '438-879-8019'
+PHONE = '438-879-8019'
 ADDR = '7566 rue Saint-Hubert'
 CITY = 'Montréal, QC H2R 2N6'
 # Québec Law 25: the person in charge of personal information, published on the
@@ -137,12 +136,12 @@ COPY = {
    foot_shop='Magasiner', foot_help='Aide', foot_store='Nous joindre', foot_hours='Service téléphonique',
    pay_h='Modes de paiement',
    set_photo='Photo de l’ensemble',
-   set_photo_note='La photo montre l’ensemble complet. Cette fiche ne vend que la pièce nommée ci-contre — appelez-nous au 514-279-4600 pour une photo de la pièce seule.',
+   set_photo_note='La photo montre l’ensemble complet. Cette fiche ne vend que la pièce nommée ci-contre — appelez-nous au ' + PHONE + ' pour une photo de la pièce seule.',
    cat_eyebrow='Distributeur autorisé',
    cat_intro='Toute la gamme que nous pouvons commander — au-delà de ce qui est en stock au magasin. Repérez un code, appelez-nous, on vous donne le prix et le délai.',
    cat_search='Chercher un code (ex. IF-6401)',
    cat_ask='Prix sur demande',
-   cat_none='Aucun modèle ne correspond. Appelez-nous au 514-279-4600.',
+   cat_none='Aucun modèle ne correspond. Appelez-nous au ' + PHONE + '.',
    cat_note='Ces modèles se commandent : ils ne sont pas au magasin aujourd’hui. Les prix, les dimensions et les descriptions complètes arrivent avec la mise à jour du catalogue — d’ici là, un appel donne la réponse en une minute.',
  ),
  'en': dict(
@@ -189,12 +188,12 @@ COPY = {
    foot_shop='Shop', foot_help='Help', foot_store='Contact', foot_hours='Phone support',
    pay_h='Ways to pay',
    set_photo='Photo of the full set',
-   set_photo_note='The photograph shows the complete set. This page sells only the piece named opposite — call 514-279-4600 for a photo of the piece on its own.',
+   set_photo_note='The photograph shows the complete set. This page sells only the piece named opposite — call ' + PHONE + ' for a photo of the piece on its own.',
    cat_eyebrow='Authorised dealer',
    cat_intro='The full range we can order — beyond what is in stock at the store. Spot a code, call us, and we’ll give you the price and the lead time.',
    cat_search='Search a code (e.g. IF-6401)',
    cat_ask='Price on request',
-   cat_none='Nothing matches. Call us at 514-279-4600.',
+   cat_none='Nothing matches. Call us at ' + PHONE + '.',
    cat_note='These are made to order — they are not in the store today. Prices, dimensions and full descriptions arrive with the catalogue update; until then a phone call answers it in a minute.',
  ),
 }
@@ -474,7 +473,7 @@ def header(lang, path, alt_path):
     nav += f'<a href="{url(lang, PAGES["catalogue"][lang][1])}">{"Catalogue" if lang == "fr" else "Catalogue"}</a>'
     nav += f'<a href="{url(lang, PAGES["financement"][lang][1])}">{E(PAGES["financement"][lang][0])}</a>'
     return f'''<div class="topbar"><div class="wrap">
-  <span><b>{PHONE}</b> · {PHONE2}</span><span class="sep">|</span>
+  <span><b>{PHONE}</b></span><span class="sep">|</span>
   <span>{'Livraison Montréal · Laval · Longueuil' if lang=='fr' else 'Delivery Montréal · Laval · Longueuil'}</span><span class="sep">|</span>
   <span>{'Boutique en ligne' if lang=='fr' else 'Online store'}</span>
 </div></div>
@@ -536,7 +535,6 @@ def footer(lang):
   <div><h2 class="fh">{E(c['foot_help'])}</h2>{help_}</div>
   <div><h2 class="fh">{E(c['foot_store'])}</h2>
     <a href="tel:+1{PHONE.replace('-','')}">{PHONE}</a>
-    <a href="tel:+1{PHONE2.replace('-','')}">{PHONE2}</a>
     <a href="https://www.facebook.com/p/Meuble-Confort-Style-61554149881969/" rel="noopener">Facebook</a>
   </div>
   <div><h2 class="fh">{E(c['foot_hours'])}</h2>
@@ -754,7 +752,7 @@ def build_home(cat, lang):
     # hours. Claiming either would put a closed door on Google Maps.
     ld = {"@context":"https://schema.org","@type":"OnlineStore",
           "name":"Meuble Confort & Style","url":SITE,
-          "telephone":"+1-514-279-4600","priceRange":"$$",
+          "telephone":"+1-" + PHONE,"priceRange":"$$",
           "address":{"@type":"PostalAddress","addressLocality":"Montréal",
                      "addressRegion":"QC","addressCountry":"CA"},
           "aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"79"},
@@ -1112,7 +1110,7 @@ PROSE = {
 <h2>Remboursements</h2>
 <p>Un retour accepté est remboursé sur le mode de paiement utilisé lors de l’achat, taxes comprises. Comptez de 5 à 10 jours ouvrables pour que votre institution financière l’affiche.</p>
 <h2>Nous joindre</h2>
-<p>Un retour, un défaut, une question : appelez-nous au """ + PHONE + """ ou au """ + PHONE2 + """. On règle ça au téléphone.</p>""",
+<p>Un retour, un défaut, une question : appelez-nous au """ + PHONE + """. On règle ça au téléphone.</p>""",
 
  'en': """
 <h1>Returns &amp; warranty</h1>
@@ -1130,7 +1128,7 @@ PROSE = {
 <h2>Refunds</h2>
 <p>An accepted return is refunded to the payment method used for the purchase, taxes included. Allow 5 to 10 business days for your bank to show it.</p>
 <h2>Reach us</h2>
-<p>A return, a defect, a question: call us at """ + PHONE + """ or """ + PHONE2 + """. We sort it out on the phone.</p>"""},
+<p>A return, a defect, a question: call us at """ + PHONE + """. We sort it out on the phone.</p>"""},
 
  'a-propos': {'fr': """
 <h1>À propos</h1>
@@ -1140,7 +1138,7 @@ PROSE = {
 <h2>79 avis, 5 sur 5</h2>
 <p>C’est notre note Google. On la met sur le site parce que c’est la chose la plus vraie qu’on peut dire sur nous, et elle a été écrite par nos clients, pas par nous.</p>
 <h2>Nous joindre</h2>
-<p>""" + ADDR + """, """ + CITY + """<br>""" + PHONE + """ · """ + PHONE2 + """</p>""",
+<p>""" + ADDR + """, """ + CITY + """<br>""" + PHONE + """</p>""",
  'en': """
 <h1>About us</h1>
 <p>Meuble Confort &amp; Style is a family furniture business in Montréal. We sell sectionals, mattresses, bedroom sets and dining sets online — and we deliver them ourselves.</p>
@@ -1149,7 +1147,7 @@ PROSE = {
 <h2>79 reviews, 5 out of 5</h2>
 <p>That’s our Google rating. We put it on the site because it’s the truest thing we can say about ourselves, and our customers wrote it, not us.</p>
 <h2>Reach us</h2>
-<p>""" + ADDR + """, """ + CITY + """<br>""" + PHONE + """ · """ + PHONE2 + """</p>"""},
+<p>""" + ADDR + """, """ + CITY + """<br>""" + PHONE + """</p>"""},
 
  # Québec Law 25. Every statement here describes what the code actually does:
  # checkout (api/checkout.js → Stripe), the CRM bridge (api/stripe-webhook.js →
@@ -1344,7 +1342,7 @@ def build_prose(key, lang):
           "url": SITE + url(lang, PAGES[key][lang][1]),
           "isPartOf": {"@type": "WebSite", "name": "Meuble Confort & Style", "url": SITE},
           "about": {"@type": "OnlineStore", "name": "Meuble Confort & Style",
-                    "telephone": "+1-514-279-4600",
+                    "telephone": "+1-" + PHONE,
                     "address": {"@type": "PostalAddress", "addressLocality": "Montréal",
                                 "addressRegion": "QC", "addressCountry": "CA"}},
           "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [
