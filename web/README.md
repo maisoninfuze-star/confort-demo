@@ -160,6 +160,48 @@ pay**: cards accepted, Apple Pay, Stripe security, taxes already in the price.
 If a merchant account is approved later, the order is: enable it in Stripe,
 **confirm it renders on a live session**, and only then put it on a page.
 
+## Supplier promotions
+
+IFDC publishes a seasonal sale sheet. **Its "Reg" column is the dealer cost x2
+— the store's own markup — so the "Special" column is a RETAIL price, not a
+cost.** This was checked against `supplier-cost.json` on the 15 items that
+matched exactly before anything was published; read the other way, IF-6125
+would have gone on sale at $1,799.98 against a regular price of $1,100. Check
+it again on the next flyer. A wrong reading here halves the catalogue or
+doubles it, and neither is something to learn from a customer.
+
+`promo-bf2026.json` holds the products (pre-tax `price` = Special, `was` =
+Reg) and `apply_promo.py` merges them into `catalogue.json`. It is
+**idempotent**: it drops everything carrying `promo.id == 'bf2026'` before
+writing, so re-running it never duplicates. It also reprices IF-9027, which
+was already on the site as "Drift", instead of adding a second page for it.
+Photos are resolved from `supplier-raw.json` by the entry's **name, not its
+slug** — IFDC's slugs lie: `if-2610-1` is IF-2611 and `t-1230-c-1231` is
+IF-1230.
+
+    python3 apply_promo.py && python3 build.py
+
+Use plain `python3`, not `python3 -I`: the pipeline needs Pillow from user
+site-packages.
+
+### The sale ends by itself
+
+Each promoted product carries a `promo` block with an `ends` date.
+`apply_promo_window()` in `build.py` reads `datetime.date.today()` before any
+page, price map or structured data is written, and restores the regular price
+— per size — once that date has passed. So the date lives in one place and the
+page and `api/prices.json` can never disagree about which price is in force.
+
+A static site has no clock of its own, so **the site must be rebuilt and
+pushed once after the end date**:
+
+    cd web && git pull --ff-only && python3 build.py
+    cd .. && git add web/dist api/prices.json && git commit -m "Black Friday is over" && git push
+
+The build prints `N promotions have ended` when it does this. Any build run
+after the end date is correct whether or not anyone remembers — the risk is
+only that an old build stays deployed.
+
 ## Known gaps — deliberate, not oversights
 
 1. **88 of 171 products have no parsed dimensions**, so they get no fit check. The
