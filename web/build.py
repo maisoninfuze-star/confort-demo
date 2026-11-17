@@ -273,6 +273,31 @@ TAX_PARTS = [
 def with_tax(v):
     return float(round(v * (1 + TAX_RATE))) if v else v
 
+def apply_promo_window(cat):
+    """A supplier promotion has an end date, and a static site has no clock of
+    its own. So the date is read HERE, at build time: build after the last day
+    and every promoted product quietly returns to its regular price, with no
+    edit to the catalogue and nothing left on sale by accident. The page and
+    api/prices.json are written from this same catalogue, so they can never
+    disagree about which price is in force."""
+    today = datetime.date.today().isoformat()
+    over = 0
+    for p in cat:
+        pr = p.get('promo')
+        if not pr or today <= pr['ends']:
+            continue
+        over += 1
+        p['price'] = pr['regular']
+        p['compare'] = None
+        by = pr.get('regular_by_size') or {}
+        for v in p.get('variants', []):
+            v['price'] = by.get(v.get('size') or '', pr['regular'])
+        p['price_max'] = max([p['price']] + [v['price'] for v in p.get('variants', [])])
+        p['promo'] = None
+    if over:
+        print(f'  {over} promotions have ended — those products are back at their regular price')
+    return cat
+
 def apply_tax_inclusive(cat):
     """Fold tax into every price the build will ever read. Run once, early."""
     for p in cat:
@@ -289,6 +314,11 @@ def apply_tax_inclusive(cat):
                 v['price'] = with_tax(v['price'])
             if v.get('compare'):
                 v['compare'] = None
+        # the regular price of each size travels with it, so switching from a
+        # Queen to a King moves the struck-through figure too
+        pr = p.get('promo')
+        if pr and pr.get('regular_by_size'):
+            pr['regular_by_size'] = {k: with_tax(v) for k, v in pr['regular_by_size'].items()}
     return cat
 
 def money(v, lang):
@@ -316,7 +346,13 @@ def money4(v, lang):
     return '$' + f'{v:,.2f}'
 
 def img(src, w):
+    """Ask the CDN for the size the markup actually uses. Shopify takes a
+    ?width= query; Wix — where the supplier's own photography lives — ignores
+    it and serves whatever the path says, so the path is what gets rewritten.
+    Without this every supplier card downloads a 1200px JPEG to draw 700."""
     if not src: return ''
+    if 'wixstatic.com' in src:
+        return re.sub(r'/w_\d+,h_\d+', f'/w_{w},h_{w}', src, count=1)
     return src + ('&' if '?' in src else '?') + f'width={w}'
 def url(lang, *parts):
     p = '/'.join([x for x in parts if x])
@@ -650,7 +686,10 @@ def build_home(cat, lang):
 
     slides, caps, rails = '', '', ''
     for i, (catkey, scene) in enumerate(SCENES):
-        cnt = sum(1 for p in cat if p['cat'] == catkey)
+        # "in stock" has to mean in stock: back-ordered pieces are on the
+        # site too, and counting them here would make the number a claim we
+        # cannot keep.
+        cnt = sum(1 for p in cat if p['cat'] == catkey and p['available'])
         alt = SCENE_ALT[scene][lang]
         slides += f"""
       <figure class="shero-slide">
@@ -843,9 +882,10 @@ def build_listing(cat, k, lang):
       {"@type":"ListItem","position":1,"name":c['crumb_home'],"item":SITE+url(lang)},
       {"@type":"ListItem","position":2,"name":cat_name(k, lang),"item":SITE+url(lang, cat_slug(k, lang))}]}
     other = 'en' if lang == 'fr' else 'fr'
-    title = (f'{cat_name(k, lang)} à Montréal — {len(ps)} modèles en stock'
+    live = sum(1 for p in ps if p['available'])
+    title = (f'{cat_name(k, lang)} à Montréal — {live} modèles en stock'
              if lang=='fr' else
-             f'{cat_name(k, lang)} furniture in Montréal — {len(ps)} in stock')
+             f'{cat_name(k, lang)} furniture in Montréal — {live} in stock')
     return shell(lang, title, CAT_BLURB[k][lang], url(lang, cat_slug(k, lang)),
                  url(other, cat_slug(k, other)), body, ld,
                  img(ps[0]['images'][0], 1200) if ps else None)
@@ -903,7 +943,14 @@ def build_pdp(p, cat, lang):
                       for i, v in enumerate(colours))
         optblocks += f'<div class="opts" data-optgroup><span class="lbl">{E(c["colour"])}</span><div class="row">{row}</div></div>'
     if opts:
-        row = ''.join(f'<button class="opt" data-price="{pr}" data-vlabel="{E(v)}" aria-pressed="{str(i==0).lower()}">'
+        # the struck-through price is per size, not per product: a King that
+        # was 1 840 $ must not advertise the Queen's 1 610 $
+        was_by = (p.get('promo') or {}).get('regular_by_size') or {}
+        sz_fr = {(x['size_en'] or ''): (x['size'] or '') for x in p['variants']}
+        def _was(label):
+            w = was_by.get(label) or was_by.get(sz_fr.get(label, ''))
+            return f' data-was="{money(w, lang)}"' if w else ''
+        row = ''.join(f'<button class="opt" data-price="{pr}"{_was(v)} data-vlabel="{E(v)}" aria-pressed="{str(i==0).lower()}">'
                       f'{E(v)}{f" · {money(pr, lang)}" if kind == "size" else ""}</button>'
                       for i, (v, pr) in enumerate(opts))
         optblocks += (f'<div class="opts" data-optgroup><span class="lbl">'
@@ -1003,10 +1050,15 @@ def build_pdp(p, cat, lang):
                     "availability":"https://schema.org/InStock" if p['available'] else "https://schema.org/PreOrder",
                     "itemCondition":"https://schema.org/NewCondition",
                     "seller":{"@type":"Organization","name":"Meuble Confort & Style"}}}
-    desc = (f"{p_name(p, lang)} — {money(p['price'], lang)}. "
-            + ("En stock à Montréal. Livraison gratuite dès 400 $, monté et à l’étage. Taxes incluses."
+    # the stock line is a claim, so it follows the product rather than being
+    # printed on every page: 36 of the catalogue's pieces are ordered in
+    stock = ({True: 'En stock à Montréal.', False: 'Sur commande — 2 à 3 semaines.'}[bool(p['available'])]
+             if lang == 'fr' else
+             {True: 'In stock in Montréal.', False: 'Made to order — 2 to 3 weeks.'}[bool(p['available'])])
+    desc = (f"{p_name(p, lang)} — {money(p['price'], lang)}. " + stock
+            + (" Livraison gratuite dès 400 $, monté et à l’étage. Taxes incluses."
                if lang == 'fr' else
-               "In stock in Montréal. Free delivery from $400, assembled and up your stairs. Taxes included."))
+               " Free delivery from $400, assembled and up your stairs. Taxes included."))
     # Trim the brand, never the product name: two pieces can differ only by the
     # finish at the end of the name, and cutting it makes their <title>s
     # identical.
@@ -1284,24 +1336,40 @@ def load_supplier_catalogue():
     rows.sort(key=lambda r: (r['fam'] == '*', r['fam'], r['code']))
     return rows
 
-def build_catalogue(lang):
+def build_catalogue(cat, lang):
     c = COPY[lang]
     rows = load_supplier_catalogue()
+    # A code that has become a real product should lead to it. Everything
+    # else on this page is a price the customer would have to phone about.
+    nk = lambda s: re.sub(r'[^A-Z0-9]', '', (s or '').upper())
+    live = {nk(p['sku']): p for p in cat if p.get('sku')}
     other = 'en' if lang == 'fr' else 'fr'
     counts = collections.Counter(r['fam'] for r in rows)
     chips = ''.join(
         f'<button class="opt" data-fam="{k}" aria-pressed="false">{E(lab[lang])}'
         f' <span class="n">{counts.get(k,0)}</span></button>'
         for k, lab in SUPPLIER_FAMILIES if counts.get(k))
-    cards = ''.join(
-        f'<article class="ic" data-fam="{r["fam"]}" data-code="{E(r["code"].lower())}">'
-        f'<div class="ic-shot"><img loading="lazy" src="{E(r["image"])}" '
-        f'alt="{E(r["code"])}" width="600" height="600"></div>'
-        f'<div class="ic-code">{E(r["code"])}</div>'
-        + (f'<div class="ic-price">{money(r["price"], lang)}</div>'
-           if r.get('price') else f'<div class="ic-ask">{E(c["cat_ask"])}</div>')
-        + '</article>'
-        for r in rows)
+    def card(r):
+        p = live.get(nk(r['code']))
+        tag, href = ('a', f' href="{p_url(p, lang)}"') if p else ('article', '')
+        shot = (f'<div class="ic-shot"><img loading="lazy" src="{E(img(r["image"], 600))}" '
+                f'alt="{E(r["code"])}" width="600" height="600"></div>'
+                f'<div class="ic-code">{E(r["code"])}</div>')
+        if p:
+            # the product page is the only price that is actually for sale, and
+            # it already carries the tax
+            was = (f'<span class="ic-was">{money(p["compare"], lang)}</span>'
+                   if p.get('compare') and p['compare'] > p['price'] else '')
+            price = f'<div class="ic-price">{money(p["price"], lang)}{was}</div>'
+        elif r.get('price'):
+            # the supplier list is a pre-tax figure; every price on this site
+            # is quoted with TPS and TVQ in it, and the footer says so
+            price = f'<div class="ic-price">{money(with_tax(r["price"]), lang)}</div>'
+        else:
+            price = f'<div class="ic-ask">{E(c["cat_ask"])}</div>'
+        return (f'<{tag} class="ic{" ic-live" if p else ""}" data-fam="{r["fam"]}" '
+                f'data-code="{E(r["code"].lower())}"{href}>{shot}{price}</{tag}>')
+    cards = ''.join(card(r) for r in rows)
 
     body = f'''<div class="wrap">
  <nav class="crumbs"><a href="{url(lang)}">{E(c['crumb_home'])}</a> · {E(PAGES['catalogue'][lang][0])}</nav>
@@ -1448,6 +1516,7 @@ def main():
     cat = json.load(open(os.path.join(HERE, 'catalogue.json'), encoding='utf-8'))
     cat = [p for p in cat if p['images']]
     # before any page, any price map, any structured data
+    cat = apply_promo_window(cat)
     cat = apply_tax_inclusive(cat)
     urls, n = [], 0
 
@@ -1458,7 +1527,7 @@ def main():
             urls.append(url(lang, cat_slug(k, lang))); n += 1
         for key in PAGES:
             if key == 'catalogue':
-                write(url(lang, PAGES[key][lang][1]), build_catalogue(lang))
+                write(url(lang, PAGES[key][lang][1]), build_catalogue(cat, lang))
             else:
                 write(url(lang, PAGES[key][lang][1]), build_prose(key, lang))
             urls.append(url(lang, PAGES[key][lang][1])); n += 1

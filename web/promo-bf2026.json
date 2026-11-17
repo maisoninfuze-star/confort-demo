@@ -1,0 +1,997 @@
+[
+ {
+  "code": "T-1030 C-1031",
+  "slug": "ensemble-dinette-t-1030-tissu",
+  "slug_en": "dinette-set-t-1030-fabric",
+  "name_fr": "Ensemble dinette T-1030 — 7 pièces, sièges en tissu",
+  "name_en": "T-1030 7-Piece Dinette Set — Fabric Seats",
+  "cat": "salle-a-manger",
+  "sub": "ensemble-manger",
+  "price": 799.99,
+  "was": 1000.0,
+  "body_fr": "Table et six chaises, fini gris antique. Les chaises C-1031 ont des sièges coussinés en tissu et un dossier à barreaux verticaux. Un ensemble complet pour une salle à manger ou une cuisine ouverte, livré monté chez vous.",
+  "body_en": "Table and six chairs in an antique grey finish. The C-1031 chairs have padded fabric seats and a vertical-slat back. A complete set for a dining room or an open kitchen, delivered assembled in your home.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "bois",
+   "tissu"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_dd407bcc8a934837b8477f07e213e865~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "T-1030 C-1032",
+  "slug": "ensemble-dinette-t-1030-cuirette",
+  "slug_en": "dinette-set-t-1030-leatherette",
+  "name_fr": "Ensemble dinette T-1030 — 7 pièces, sièges en cuirette",
+  "name_en": "T-1030 7-Piece Dinette Set — PU Seats",
+  "cat": "salle-a-manger",
+  "sub": "ensemble-manger",
+  "price": 799.99,
+  "was": 1000.0,
+  "body_fr": "Même table en fini gris antique, avec les chaises C-1032 à sièges en cuirette noire. La cuirette s'essuie d'un coup de linge — le choix pratique quand il y a des enfants à table.",
+  "body_en": "The same antique grey table, with C-1032 chairs in black PU. Leatherette wipes clean in one pass — the practical choice when there are children at the table.",
+  "colours": [
+   "gris",
+   "noir"
+  ],
+  "materials": [
+   "bois",
+   "cuir"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_a10f9a95af74408392963f98b604d862~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "T-1405 C-1420",
+  "slug": "ensemble-dinette-eiffel-blanc",
+  "slug_en": "eiffel-dinette-set-white",
+  "name_fr": "Ensemble dinette Eiffel — 5 pièces, sièges blancs",
+  "name_en": "Eiffel 5-Piece Dinette Set — White Seats",
+  "cat": "salle-a-manger",
+  "sub": "ensemble-manger",
+  "price": 279.99,
+  "was": 320.0,
+  "body_fr": "Table ronde laquée sur pieds en hêtre massif et armature de métal, avec quatre chaises Eiffel à coque blanche en polypropylène moulé. Compacte, lumineuse, faite pour un petit appartement ou un coin déjeuner.",
+  "body_en": "Round lacquered table on solid beech legs with a metal frame, plus four Eiffel chairs with a white moulded polypropylene shell. Compact and light — made for a small apartment or a breakfast nook.",
+  "colours": [
+   "blanc"
+  ],
+  "materials": [
+   "bois",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_cbd35f295c8443b7b4c6e747cfae56db~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "T-1405 C-1421",
+  "slug": "ensemble-dinette-eiffel-noir",
+  "slug_en": "eiffel-dinette-set-black",
+  "name_fr": "Ensemble dinette Eiffel — 5 pièces, sièges noirs",
+  "name_en": "Eiffel 5-Piece Dinette Set — Black Seats",
+  "cat": "salle-a-manger",
+  "sub": "ensemble-manger",
+  "price": 279.99,
+  "was": 320.0,
+  "body_fr": "La même table ronde laquée sur pieds en hêtre massif, avec quatre chaises Eiffel à coque noire. Le contraste tient mieux l'usure qu'un ensemble tout blanc.",
+  "body_en": "The same round lacquered table on solid beech legs, with four black-shell Eiffel chairs. The contrast wears better than an all-white set.",
+  "colours": [
+   "noir"
+  ],
+  "materials": [
+   "bois",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_37da4fb29363441781e6536367a5176d~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-1526",
+  "slug": "ensemble-dinette-if-1526",
+  "slug_en": "dinette-set-if-1526",
+  "name_fr": "Ensemble dinette IF-1526 — 5 pièces",
+  "name_en": "IF-1526 5-Piece Dinette Set",
+  "cat": "salle-a-manger",
+  "sub": "ensemble-manger",
+  "price": 399.99,
+  "was": 500.0,
+  "body_fr": "Plateau durable à l'aspect bois gris, pattes gris foncé, et quatre chaises en tissu gris doux à sièges rembourrés. Un ensemble sobre qui ne jure avec rien.",
+  "body_en": "A durable grey wood-look tabletop on dark grey legs, with four soft grey fabric chairs on padded seats. A quiet set that clashes with nothing.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "tissu",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_8b2b15467626498ca2102f1aea440d90~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-1230",
+  "slug": "ensemble-dinette-if-1230",
+  "slug_en": "dinette-set-if-1230",
+  "name_fr": "Ensemble dinette IF-1230 — 5 pièces",
+  "name_en": "IF-1230 5-Piece Dinette Set",
+  "cat": "salle-a-manger",
+  "sub": "ensemble-manger",
+  "price": 459.99,
+  "was": 540.0,
+  "body_fr": "Plateau à l'aspect marbre noir sur pattes gunmetal, avec quatre chaises assorties à sièges rembourrés en cuirette noire. Le marbre foncé cache la poussière mieux que le pâle.",
+  "body_en": "A black marble-look tabletop on gunmetal legs, with four matching chairs on padded black PU seats. Dark marble hides dust better than pale.",
+  "colours": [
+   "noir",
+   "gris"
+  ],
+  "materials": [
+   "marbre",
+   "metal",
+   "cuir"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_ab275f98dc424d759f50d64fbf72b28b~mv2.png/v1/fit/w_1200,h_1200,q_90/file.png",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "T-1570 C-1571",
+  "slug": "ensemble-t-1570-marbre-gris",
+  "slug_en": "dining-set-t-1570-grey-marble",
+  "name_fr": "Ensemble T-1570 — 7 pièces, marbre gris",
+  "name_en": "T-1570 7-Piece Dining Set — Grey Marble",
+  "cat": "salle-a-manger",
+  "sub": "ensemble-manger",
+  "price": 999.99,
+  "was": 1460.0,
+  "body_fr": "Table en placage de marbre gris sur une base en X d'acier noir, avec six chaises C-1571 en velours noir à surpiqûres losange. La table s'allonge de 63 à 79 pouces : six personnes au quotidien, dix quand il le faut.",
+  "body_en": "A grey marble veneer table on a black X-shaped steel base, with six C-1571 chairs in black velvet with diamond stitching. The table extends from 63 to 79 inches: six every day, ten when you need it.",
+  "colours": [
+   "gris",
+   "noir"
+  ],
+  "materials": [
+   "marbre",
+   "metal",
+   "velours"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_fad2a8e3d834409baf5200bb461553cd~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": {
+   "w": 63.0,
+   "d": 36.0,
+   "h": 30.0
+  }
+ },
+ {
+  "code": "T-1570",
+  "slug": "table-t-1570-marbre-gris",
+  "slug_en": "dining-table-t-1570-grey-marble",
+  "name_fr": "Table T-1570 — marbre gris, base en X",
+  "name_en": "T-1570 Dining Table — Grey Marble",
+  "cat": "salle-a-manger",
+  "sub": "table-manger",
+  "price": 549.99,
+  "was": 860.0,
+  "body_fr": "La table seule : placage de marbre gris, base en X d'acier noir, rallonge de 63 à 79 pouces de long sur 36 de large et 30 de haut. Les chaises se commandent séparément.",
+  "body_en": "The table on its own: grey marble veneer, black X-shaped steel base, extending from 63 to 79 inches long, 36 wide and 30 high. Chairs are ordered separately.",
+  "colours": [
+   "gris",
+   "noir"
+  ],
+  "materials": [
+   "marbre",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_fad2a8e3d834409baf5200bb461553cd~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": true,
+  "dims": {
+   "w": 63.0,
+   "d": 36.0,
+   "h": 30.0
+  }
+ },
+ {
+  "code": "C-1571",
+  "slug": "chaise-c-1571-velours-noir",
+  "slug_en": "chair-c-1571-black-velvet",
+  "name_fr": "Chaise C-1571 — velours noir",
+  "name_en": "C-1571 Chair — Black Velvet",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "price": 75.0,
+  "was": 100.0,
+  "body_fr": "Chaise de salle à manger en velours noir, surpiqûres en losange sur le dossier. Se vend à l'unité : prenez-en quatre, six ou huit selon votre table.",
+  "body_en": "A black velvet dining chair with diamond stitching across the back. Sold individually: take four, six or eight to suit your table.",
+  "colours": [
+   "noir"
+  ],
+  "materials": [
+   "velours",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_6dae9627cd40498d88363b635f668813~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "C-1245",
+  "slug": "fauteuil-c-1245-velours-gris",
+  "slug_en": "accent-chair-c-1245-grey-velvet",
+  "name_fr": "Fauteuil d’appoint C-1245 — velours gris",
+  "name_en": "C-1245 Accent Chair — Grey Velvet",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "price": 189.99,
+  "was": 230.0,
+  "body_fr": "Velours gris doux au toucher, dossier capitonné à boutons et clous décoratifs sur le pourtour. Pattes chromées polies. Assez habillé pour la salle à manger, assez confortable pour la chambre.",
+  "body_en": "Soft-touch grey velvet, button-tufted back and nailhead trim around the edge, on polished chrome legs. Dressy enough for the dining room, comfortable enough for a bedroom.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "velours",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_17219ac537524d18867dcdecbeeecf32~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "C-1246",
+  "slug": "fauteuil-c-1246-velours-noir",
+  "slug_en": "accent-chair-c-1246-black-velvet",
+  "name_fr": "Fauteuil d’appoint C-1246 — velours noir",
+  "name_en": "C-1246 Accent Chair — Black Velvet",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "price": 189.99,
+  "was": 230.0,
+  "body_fr": "Velours noir doux au toucher, dossier capitonné à boutons et clous décoratifs sur le pourtour. Pattes chromées polies. Assez habillé pour la salle à manger, assez confortable pour la chambre.",
+  "body_en": "Soft-touch black velvet, button-tufted back and nailhead trim around the edge, on polished chrome legs. Dressy enough for the dining room, comfortable enough for a bedroom.",
+  "colours": [
+   "noir"
+  ],
+  "materials": [
+   "velours",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_807e91cd50384f30978052d983e893f4~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "C-1248",
+  "slug": "fauteuil-c-1248-velours-creme",
+  "slug_en": "accent-chair-c-1248-cream-velvet",
+  "name_fr": "Fauteuil d’appoint C-1248 — velours crème",
+  "name_en": "C-1248 Accent Chair — Cream Velvet",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "price": 189.99,
+  "was": 230.0,
+  "body_fr": "Velours crème doux au toucher, dossier capitonné à boutons et clous décoratifs sur le pourtour. Pattes chromées polies. Assez habillé pour la salle à manger, assez confortable pour la chambre.",
+  "body_en": "Soft-touch cream velvet, button-tufted back and nailhead trim around the edge, on polished chrome legs. Dressy enough for the dining room, comfortable enough for a bedroom.",
+  "colours": [
+   "beige"
+  ],
+  "materials": [
+   "velours",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_fa09189f8ac5490d86364c97f3b49228~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "C-1247",
+  "slug": "fauteuil-c-1247-velours-bleu",
+  "slug_en": "accent-chair-c-1247-blue-velvet",
+  "name_fr": "Fauteuil d’appoint C-1247 — velours bleu",
+  "name_en": "C-1247 Accent Chair — Blue Velvet",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "price": 189.99,
+  "was": 230.0,
+  "body_fr": "Velours bleu doux au toucher, dossier capitonné à boutons et clous décoratifs sur le pourtour. Pattes chromées polies. Assez habillé pour la salle à manger, assez confortable pour la chambre.",
+  "body_en": "Soft-touch blue velvet, button-tufted back and nailhead trim around the edge, on polished chrome legs. Dressy enough for the dining room, comfortable enough for a bedroom.",
+  "colours": [
+   "bleu"
+  ],
+  "materials": [
+   "velours",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_422e333b4e46476d9c11a5a02c34e998~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "ST-7561",
+  "slug": "tabouret-st-7561",
+  "slug_en": "bar-stool-st-7561",
+  "name_fr": "Tabouret pivotant ST-7561 — cuirette grise",
+  "name_en": "ST-7561 Swivel Bar Stool — Grey PU",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "price": 94.99,
+  "was": 115.0,
+  "body_fr": "Tabouret pivotant à 360°, armature d'acier noir et repose-pieds en acier. Hauteur réglable au vérin à gaz : il passe d'un comptoir de cuisine à un îlot haut sans outil.",
+  "body_en": "A 360° swivel stool on a black metal frame with a steel footrest. Gas-lift height adjustment takes it from a kitchen counter to a high island with no tools.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "cuir",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_22fd6e31ce0d46b2817ae5e7ff4c850c~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "ST-7800",
+  "slug": "tabouret-st-7800",
+  "slug_en": "bar-stool-st-7800",
+  "name_fr": "Tabouret pivotant ST-7800 — surpiqûres verticales",
+  "name_en": "ST-7800 Swivel Bar Stool — Vertical Stitching",
+  "cat": "salle-a-manger",
+  "sub": "chaise",
+  "price": 99.99,
+  "was": 140.0,
+  "body_fr": "Tabouret pivotant à 360°, armature d'acier noir et repose-pieds en acier. Hauteur réglable au vérin à gaz : il passe d'un comptoir de cuisine à un îlot haut sans outil.",
+  "body_en": "A 360° swivel stool on a black metal frame with a steel footrest. Gas-lift height adjustment takes it from a kitchen counter to a high island with no tools.",
+  "colours": [
+   "noir"
+  ],
+  "materials": [
+   "cuir",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_40cc3a2e21334459bca1a205345310a3~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-5720",
+  "slug": "lit-if-5720-velours-gris",
+  "slug_en": "bed-if-5720-grey-velvet",
+  "name_fr": "Lit-coffre IF-5720 — velours gris",
+  "name_en": "IF-5720 Storage Bed — Grey Velvet",
+  "cat": "chambre",
+  "sub": "lit",
+  "price": 1099.99,
+  "was": 1400.0,
+  "body_fr": "Velours gris doux et tête de lit à capitonnage en canaux. Trois coffres de rangement — deux sur les côtés, un au pied — et le support à matelas est inclus : pas de sommier à acheter.",
+  "body_en": "Soft grey velvet with a channel-tufted headboard. Three storage benches — two at the sides, one at the foot — and mattress support is included, so there is no box spring to buy.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "velours"
+  ],
+  "feats": [
+   "rangement"
+  ],
+  "sizes": [
+   {
+    "size": "Queen",
+    "size_en": "Queen",
+    "price": 1099.99,
+    "was": 1400.0
+   },
+   {
+    "size": "King",
+    "size_en": "King",
+    "price": 1199.99,
+    "was": 1600.0
+   }
+  ],
+  "image": "https://static.wixstatic.com/media/c1a65e_d4a54032c7754214ab906e109ae78064~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-5493",
+  "slug": "lit-if-5493-tissu-gris",
+  "slug_en": "bed-if-5493-grey-fabric",
+  "name_fr": "Lit IF-5493 — tissu gris",
+  "name_en": "IF-5493 Bed — Grey Fabric",
+  "cat": "chambre",
+  "sub": "lit",
+  "price": 339.99,
+  "was": 420.0,
+  "body_fr": "Tête de lit capitonnée à motif carré, en tissu gris. Livré en boîte, support à matelas inclus. Un lit queen simple et solide, sans supplément de sommier.",
+  "body_en": "A square-pattern tufted headboard in grey fabric. Ships in a box, mattress support included. A plain, solid queen bed with no box spring to add.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "tissu"
+  ],
+  "feats": [],
+  "sizes": [
+   {
+    "size": "Queen",
+    "size_en": "Queen",
+    "price": 339.99,
+    "was": 420.0
+   }
+  ],
+  "image": "https://static.wixstatic.com/media/c1a65e_1cd286516469463c8529c57a64e1bcb8~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-5490",
+  "slug": "lit-if-5490-cuirette-noire",
+  "slug_en": "bed-if-5490-black-pu",
+  "name_fr": "Lit IF-5490 — cuirette noire",
+  "name_en": "IF-5490 Bed — Black PU",
+  "cat": "chambre",
+  "sub": "lit",
+  "price": 339.99,
+  "was": 420.0,
+  "body_fr": "Le même lit à tête capitonnée en motif carré, habillé de cuirette noire. Livré en boîte, support à matelas inclus.",
+  "body_en": "The same square-pattern tufted bed, finished in black PU. Ships in a box, mattress support included.",
+  "colours": [
+   "noir"
+  ],
+  "materials": [
+   "cuir"
+  ],
+  "feats": [],
+  "sizes": [
+   {
+    "size": "Queen",
+    "size_en": "Queen",
+    "price": 339.99,
+    "was": 420.0
+   }
+  ],
+  "image": "https://static.wixstatic.com/media/c1a65e_dd1af1d19ba34aa9beb0849a4b7aae00~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-5572",
+  "slug": "lit-if-5572-velours-creme",
+  "slug_en": "bed-if-5572-cream-velvet",
+  "name_fr": "Lit plateforme IF-5572 — velours crème",
+  "name_en": "IF-5572 Platform Bed — Cream Velvet",
+  "cat": "chambre",
+  "sub": "lit",
+  "price": 439.99,
+  "was": 560.0,
+  "body_fr": "Lit plateforme en velours crème, tête de lit encadrée et rembourrage en mousse haute densité. Support à matelas inclus. Le crème éclaire une chambre sans fenêtre au sud.",
+  "body_en": "A cream velvet platform bed with a framed headboard and high-density foam padding. Mattress support included. Cream lifts a bedroom that has no south window.",
+  "colours": [
+   "beige"
+  ],
+  "materials": [
+   "velours"
+  ],
+  "feats": [],
+  "sizes": [
+   {
+    "size": "Queen",
+    "size_en": "Queen",
+    "price": 439.99,
+    "was": 560.0
+   }
+  ],
+  "image": "https://static.wixstatic.com/media/c1a65e_5955bceb9a844703933ce984a44bbcb2~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-5225",
+  "slug": "lit-if-5225-tissu-gris",
+  "slug_en": "bed-if-5225-grey-fabric",
+  "name_fr": "Lit IF-5225 — tissu gris, motif losange",
+  "name_en": "IF-5225 Bed — Grey Fabric, Diamond Pattern",
+  "cat": "chambre",
+  "sub": "lit",
+  "price": 459.99,
+  "was": 600.0,
+  "body_fr": "Tête de lit en tissu gris à capitonnage losange et boutons, sur pattes chromées. Support à matelas inclus.",
+  "body_en": "A grey fabric headboard with diamond button tufting, on chrome legs. Mattress support included.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "tissu",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": [
+   {
+    "size": "Queen",
+    "size_en": "Queen",
+    "price": 459.99,
+    "was": 600.0
+   }
+  ],
+  "image": "https://static.wixstatic.com/media/c1a65e_b7b76eb553c34fcb8529d6085a1789a9~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-5693",
+  "slug": "lit-if-5693-tissu-gris-rangement",
+  "slug_en": "bed-if-5693-grey-fabric-storage",
+  "name_fr": "Lit IF-5693 — tissu gris, 4 tiroirs",
+  "name_en": "IF-5693 Bed — Grey Fabric, 4 Drawers",
+  "cat": "chambre",
+  "sub": "lit",
+  "price": 359.99,
+  "was": 540.0,
+  "body_fr": "Lit plateforme en tissu gris, tête de lit capitonnée à boutons, et quatre tiroirs coulissants en treillis métallique sous le sommier. Support à matelas inclus. Le rangement qu'on gagne vaut une commode de plus dans une chambre de condo.",
+  "body_en": "A grey fabric platform bed with a button-tufted headboard and four pull-out wire mesh drawers underneath. Mattress support included. The storage you gain is worth an extra dresser in a condo bedroom.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "tissu"
+  ],
+  "feats": [
+   "rangement"
+  ],
+  "sizes": [
+   {
+    "size": "Double",
+    "size_en": "Full",
+    "price": 359.99,
+    "was": 540.0
+   }
+  ],
+  "image": "https://static.wixstatic.com/media/c1a65e_a0b21fbf5ed34aebba3d02ede37c4be9~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-392",
+  "slug": "lit-pliant-if-392",
+  "slug_en": "folding-bed-if-392",
+  "name_fr": "Lit pliant IF-392 — 39 po, cadre d’acier",
+  "name_en": "IF-392 Folding Bed — 39\", Steel Frame",
+  "cat": "chambre",
+  "sub": "lit",
+  "price": 179.99,
+  "was": 220.0,
+  "body_fr": "Cadre d'acier argenté qui se replie à plat pour se ranger derrière une porte. Prend un matelas simple standard. Le cadre seul — le matelas n'est pas inclus.",
+  "body_en": "A silver steel frame that folds flat to store behind a door. Takes a standard single mattress. Frame only — no mattress included.",
+  "colours": [
+   "argent"
+  ],
+  "materials": [
+   "metal"
+  ],
+  "feats": [],
+  "sizes": [
+   {
+    "size": "Simple",
+    "size_en": "Twin",
+    "price": 179.99,
+    "was": 220.0
+   }
+  ],
+  "image": "https://static.wixstatic.com/media/c1a65e_a56895fba21b4db1b83decce80b60831~mv2.png/v1/fit/w_1200,h_1200,q_90/file.png",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "Jordyn (White)",
+  "slug": "ensemble-chambre-jordyn-blanc",
+  "slug_en": "bedroom-set-jordyn-white",
+  "name_fr": "Ensemble de chambre Jordyn — blanc laqué",
+  "name_en": "Jordyn Bedroom Set — White Lacquer",
+  "cat": "chambre",
+  "sub": "ensemble-chambre",
+  "price": 3999.99,
+  "was": 4400.0,
+  "body_fr": "Fini blanc laqué, six tiroirs de rangement dans le lit. L'ensemble comprend le lit, la commode et son miroir, le chiffonnier et deux tables de chevet — une chambre complète d'un seul coup.",
+  "body_en": "A white lacquer finish with six storage drawers in the bed. The set includes the bed, the dresser and mirror, the chest and two nightstands — a whole bedroom in one go.",
+  "colours": [
+   "blanc"
+  ],
+  "materials": [
+   "bois"
+  ],
+  "feats": [
+   "rangement"
+  ],
+  "sizes": [
+   {
+    "size": "Double",
+    "size_en": "Full",
+    "price": 3999.99,
+    "was": 4400.0
+   },
+   {
+    "size": "Queen",
+    "size_en": "Queen",
+    "price": 3999.99,
+    "was": 4400.0
+   },
+   {
+    "size": "King",
+    "size_en": "King",
+    "price": 4399.99,
+    "was": 4800.0
+   }
+  ],
+  "image": "https://static.wixstatic.com/media/c1a65e_72073696edd14ff4930ff47da3c21463~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "B-122E",
+  "slug": "lit-superpose-b-122-espresso",
+  "slug_en": "bunk-bed-b-122-espresso",
+  "name_fr": "Lit superposé B-122 — espresso",
+  "name_en": "B-122 Bunk Bed — Espresso",
+  "cat": "chambre",
+  "sub": "lit-superpose",
+  "price": 799.99,
+  "was": 980.0,
+  "body_fr": "Simple au-dessus, double en dessous, fini espresso. Se sépare en deux lits distincts le jour où les enfants ne veulent plus partager. Support à matelas inclus.",
+  "body_en": "Single over double in a espresso finish. It separates into two standalone beds the day the children stop wanting to share. Mattress support included.",
+  "colours": [
+   "brun"
+  ],
+  "materials": [
+   "bois"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_894ca1311ee74a87b587ab9d2c1268ce~mv2.png/v1/fit/w_1200,h_1200,q_90/file.png",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "B-122W",
+  "slug": "lit-superpose-b-122-blanc",
+  "slug_en": "bunk-bed-b-122-white",
+  "name_fr": "Lit superposé B-122 — blanc",
+  "name_en": "B-122 Bunk Bed — White",
+  "cat": "chambre",
+  "sub": "lit-superpose",
+  "price": 799.99,
+  "was": 980.0,
+  "body_fr": "Simple au-dessus, double en dessous, fini blanc. Se sépare en deux lits distincts le jour où les enfants ne veulent plus partager. Support à matelas inclus.",
+  "body_en": "Single over double in a white finish. It separates into two standalone beds the day the children stop wanting to share. Mattress support included.",
+  "colours": [
+   "blanc"
+  ],
+  "materials": [
+   "bois"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_d32682966e07409eb423cb851bf9d20f~mv2.png/v1/fit/w_1200,h_1200,q_90/file.png",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "B-122G",
+  "slug": "lit-superpose-b-122-gris",
+  "slug_en": "bunk-bed-b-122-grey",
+  "name_fr": "Lit superposé B-122 — gris",
+  "name_en": "B-122 Bunk Bed — Grey",
+  "cat": "chambre",
+  "sub": "lit-superpose",
+  "price": 799.99,
+  "was": 980.0,
+  "body_fr": "Simple au-dessus, double en dessous, fini gris. Se sépare en deux lits distincts le jour où les enfants ne veulent plus partager. Support à matelas inclus.",
+  "body_en": "Single over double in a grey finish. It separates into two standalone beds the day the children stop wanting to share. Mattress support included.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "bois"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_47dbb4c87e984a95a14afd22e52f67d8~mv2.png/v1/fit/w_1200,h_1200,q_90/file.png",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-6232",
+  "slug": "banc-if-6232-velours-bleu",
+  "slug_en": "bench-if-6232-blue-velvet",
+  "name_fr": "Banc IF-6232 — velours bleu marine",
+  "name_en": "IF-6232 Bench — Navy Blue Velvet",
+  "cat": "chambre",
+  "sub": "decor",
+  "price": 219.99,
+  "was": 280.0,
+  "body_fr": "Velours bleu marine doux au toucher, capitonnage profond à boutons et clous décoratifs, sur pattes de bois foncé. Au pied du lit ou dans une entrée, c'est la pièce qui finit une chambre.",
+  "body_en": "Soft-touch navy blue velvet with deep button tufting and nailhead trim, on dark wood legs. At the foot of a bed or in an entryway, it is the piece that finishes a room.",
+  "colours": [
+   "bleu"
+  ],
+  "materials": [
+   "velours",
+   "bois"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_3368d9c64b2f4a2c97002390e41b7496~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-8050",
+  "slug": "klik-klak-if-8050-cuirette-noire",
+  "slug_en": "klik-klak-if-8050-black-pu",
+  "name_fr": "Sofa-lit Klik-Klak IF-8050 — cuirette noire",
+  "name_en": "IF-8050 Klik-Klak Sofa Bed — Black PU",
+  "cat": "salon",
+  "sub": "canape",
+  "price": 719.99,
+  "was": 860.0,
+  "body_fr": "Dossier et assise à sections indépendantes, appuie-bras ajustables, double coussin en mousse mémoire et pattes d'acier noir. Il s'abaisse à plat en lit d'appoint sans qu'on déplace le meuble du mur.",
+  "body_en": "Split back and seat sections, adjustable armrests, double memory foam cushioning and black steel legs. It lies flat into a guest bed without pulling the frame off the wall.",
+  "colours": [
+   "noir"
+  ],
+  "materials": [
+   "cuir",
+   "metal"
+  ],
+  "feats": [
+   "convertible"
+  ],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_33abb958983d4fdca55786966f981eb0~mv2.png/v1/fit/w_1200,h_1200,q_90/file.png",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-8040",
+  "slug": "klik-klak-if-8040-tissu-bleu",
+  "slug_en": "klik-klak-if-8040-blue-fabric",
+  "name_fr": "Sofa-lit Klik-Klak IF-8040 — tissu bleu",
+  "name_en": "IF-8040 Klik-Klak Sofa Bed — Blue Fabric",
+  "cat": "salon",
+  "sub": "canape",
+  "price": 659.99,
+  "was": 760.0,
+  "body_fr": "Tissu bleu doux, dossier et assise à sections indépendantes, coussin en mousse mémoire, accoudoirs amovibles et pattes d'acier noir. Il devient un lit d'appoint en deux gestes.",
+  "body_en": "Soft blue fabric, split back and seat sections, memory foam cushioning, removable arms and black steel legs. Two movements turn it into a guest bed.",
+  "colours": [
+   "bleu"
+  ],
+  "materials": [
+   "tissu",
+   "metal"
+  ],
+  "feats": [
+   "convertible"
+  ],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_1af002473cf8432899ce7946150cd86a~mv2.png/v1/fit/w_1200,h_1200,q_90/file.png",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-8041",
+  "slug": "klik-klak-if-8041-tissu-gris",
+  "slug_en": "klik-klak-if-8041-grey-fabric",
+  "name_fr": "Sofa-lit Klik-Klak IF-8041 — tissu gris",
+  "name_en": "IF-8041 Klik-Klak Sofa Bed — Grey Fabric",
+  "cat": "salon",
+  "sub": "canape",
+  "price": 659.99,
+  "was": 760.0,
+  "body_fr": "Tissu gris, dossier et assise à sections indépendantes, coussin en mousse mémoire, accoudoirs amovibles et pattes d'acier noir. Il devient un lit d'appoint en deux gestes.",
+  "body_en": "Grey fabric, split back and seat sections, memory foam cushioning, removable arms and black steel legs. Two movements turn it into a guest bed.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "tissu",
+   "metal"
+  ],
+  "feats": [
+   "convertible"
+  ],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_5d68cc3bfd924506946cfa8d703f5742~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-6125",
+  "slug": "fauteuil-inclinable-if-6125",
+  "slug_en": "recliner-if-6125",
+  "name_fr": "Fauteuil inclinable électrique IF-6125 — Bluetooth",
+  "name_en": "IF-6125 Dual Power Recliner — Bluetooth",
+  "cat": "salon",
+  "sub": "fauteuil",
+  "price": 899.99,
+  "was": 1100.0,
+  "body_fr": "Tissu crème moelleux, double motorisation : soutien lombaire électrique et ailes d'appuie-tête ajustables à la main. Un système de musique Bluetooth est intégré, avec commandes tactiles — le téléphone joue directement dans le fauteuil.",
+  "body_en": "Plush cream fabric with dual power: powered lumbar support and manually adjustable headrest wings. A Bluetooth music system is built in with tap controls — your phone plays straight through the chair.",
+  "colours": [
+   "beige"
+  ],
+  "materials": [
+   "tissu"
+  ],
+  "feats": [
+   "inclinable"
+  ],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_dc9af096d3b6453a8147f145fd6b2bfc~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-6325",
+  "slug": "fauteuil-bercant-if-6325",
+  "slug_en": "glider-recliner-if-6325",
+  "name_fr": "Fauteuil berçant inclinable IF-6325 — tissu gris pâle",
+  "name_en": "IF-6325 Glider Recliner — Light Grey Fabric",
+  "cat": "salon",
+  "sub": "fauteuil",
+  "price": 599.99,
+  "was": 800.0,
+  "body_fr": "Mécanisme berçant, poignée d'acier montée sur le côté, armature 100 % bois franc et coussin de mousse haute densité à soutien « seat zone ». Le fauteuil qu'on achète pour une chambre de bébé et qu'on garde vingt ans.",
+  "body_en": "A glider rocking mechanism, a side-mounted steel pull handle, a 100% hardwood frame and a high-density foam cushion with “seat zone” support. The chair you buy for a nursery and keep for twenty years.",
+  "colours": [
+   "gris"
+  ],
+  "materials": [
+   "tissu",
+   "bois"
+  ],
+  "feats": [
+   "inclinable"
+  ],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_538a3db7b41f45f49f408467861f0305~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-2610",
+  "slug": "tables-gigognes-if-2610-chrome",
+  "slug_en": "nesting-tables-if-2610-chrome",
+  "name_fr": "Tables gigognes IF-2610 — chrome",
+  "name_en": "IF-2610 Set of 2 Coffee Tables — Chrome",
+  "cat": "salon",
+  "sub": "table-salon",
+  "price": 179.99,
+  "was": 220.0,
+  "body_fr": "Deux tables rondes qui se glissent l'une sous l'autre : armature d'acier chromé et plateaux en verre trempé. Séparez-les quand il y a du monde, rangez-les quand il n'y en a plus.",
+  "body_en": "Two round tables that nest one under the other: chrome steel frames with tempered glass tops. Pull them apart when there is company, slide them back when there isn't.",
+  "colours": [
+   "argent"
+  ],
+  "materials": [
+   "metal",
+   "verre"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_54b31074a8ba42cabbc925ba81fe815c~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-2611",
+  "slug": "tables-gigognes-if-2611-noir",
+  "slug_en": "nesting-tables-if-2611-black",
+  "name_fr": "Tables gigognes IF-2611 — noir mat",
+  "name_en": "IF-2611 Set of 2 Coffee Tables — Matte Black",
+  "cat": "salon",
+  "sub": "table-salon",
+  "price": 159.99,
+  "was": 200.0,
+  "body_fr": "Deux tables rondes qui se glissent l'une sous l'autre : armature d'acier noir mat et plateaux en verre trempé. Séparez-les quand il y a du monde, rangez-les quand il n'y en a plus.",
+  "body_en": "Two round tables that nest one under the other: matte black steel frames with tempered glass tops. Pull them apart when there is company, slide them back when there isn't.",
+  "colours": [
+   "noir"
+  ],
+  "materials": [
+   "metal",
+   "verre"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_80eca32dd74d4310b4fee59d5fab4320~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-2612",
+  "slug": "tables-gigognes-if-2612-or",
+  "slug_en": "nesting-tables-if-2612-gold",
+  "name_fr": "Tables gigognes IF-2612 — or",
+  "name_en": "IF-2612 Set of 2 Coffee Tables — Gold",
+  "cat": "salon",
+  "sub": "table-salon",
+  "price": 159.99,
+  "was": 200.0,
+  "body_fr": "Deux tables rondes qui se glissent l'une sous l'autre : armature d'acier doré et plateaux en verre trempé. Séparez-les quand il y a du monde, rangez-les quand il n'y en a plus.",
+  "body_en": "Two round tables that nest one under the other: gold steel frames with tempered glass tops. Pull them apart when there is company, slide them back when there isn't.",
+  "colours": [
+   "argent"
+  ],
+  "materials": [
+   "metal",
+   "verre"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_bb42557e427a46278593cbb5ffc6f35d~mv2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ },
+ {
+  "code": "IF-2675",
+  "slug": "table-de-salon-if-2675-verre",
+  "slug_en": "coffee-table-if-2675-glass",
+  "name_fr": "Table de salon IF-2675 — dessus de verre",
+  "name_en": "IF-2675 Coffee Table — Glass Top",
+  "cat": "salon",
+  "sub": "table-salon",
+  "price": 199.99,
+  "was": 240.0,
+  "body_fr": "Plateau de verre clair sur une base sculpturale en bois et acier. Le verre laisse voir le tapis, ce qui fait paraître un petit salon plus grand qu'il n'est.",
+  "body_en": "A clear glass top on a sculptural wood and steel base. The glass lets the rug show through, which makes a small living room read larger than it is.",
+  "colours": [
+   "brun",
+   "argent"
+  ],
+  "materials": [
+   "verre",
+   "bois",
+   "metal"
+  ],
+  "feats": [],
+  "sizes": null,
+  "image": "https://static.wixstatic.com/media/c1a65e_66586375406a4781969bd436d49b9662~mv2_d_4200_3149_s_4_2.jpg/v1/fit/w_1200,h_1200,q_90/file.jpg",
+  "set_photo": false,
+  "dims": null
+ }
+]

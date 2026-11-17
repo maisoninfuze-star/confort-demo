@@ -434,6 +434,12 @@
       var price = parseFloat(b.dataset.price);
       var p = document.querySelector('[data-price-now]');
       if (p) p.textContent = money(price);
+      // the regular price belongs to the size, so it moves with it
+      var was = document.querySelector('.priceline .was');
+      if (was) {
+        if (b.dataset.was) { was.textContent = b.dataset.was; was.hidden = false; }
+        else if (b.dataset.was === '') { was.hidden = true; }
+      }
       // the add button carries what the cart will store
       var add = document.querySelector('[data-add]');
       if (add) add.dataset.price = price;
