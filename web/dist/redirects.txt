@@ -1,6 +1,6 @@
 # old path -> new path (301)
 /collections/chanbre	/fr/chambre/
-/collections/%F0%9F%94%A5-promotions	/fr/salon/?stock=sale
+/collections/%F0%9F%94%A5-promotions	/fr/vendredi-fou/
 /collections/salon	/fr/salon/
 /collections/chambre	/fr/chambre/
 /collections/salle-a-manger	/fr/salle-a-manger/

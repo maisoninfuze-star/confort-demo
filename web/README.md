@@ -184,6 +184,32 @@ IF-1230.
 Use plain `python3`, not `python3 -I`: the pipeline needs Pillow from user
 site-packages.
 
+### Where the promotion appears
+
+`build.py` treats the promotion as a **section of the site**, not as a price
+change that happens to be visible on cards. One definition — `PROMO_ID`,
+`PROMO_FROM`, `PROMO_SLUG`, `PROMO_LABEL`, `PROMO_COPY` — drives all of it:
+
+| Where | What |
+|---|---|
+| `/fr/vendredi-fou/`, `/en/black-friday/` | the section: dark masthead, the window, the deepest cut, every promoted piece grouped by room, and three notes (back-order, taxes, what happens after) |
+| top bar | takes the third slot, in place of "Boutique en ligne" |
+| main nav | an entry between the rooms and Catalogue |
+| footer | first link under Magasiner / Shop |
+| home page | its own band under the hero, 8 pieces, linking to the section |
+| product cards | a black `Vendredi fou` chip above the `-N%` chip |
+| `redirects.txt` | the old Shopify `promotions` collection points at the section |
+
+`PROMO_ON` is filled in by `main()` from the catalogue — count, deepest
+discount, end date — so the masthead cannot claim a number the grid below it
+contradicts. Everything above is gated on it: **when the window closes, every
+entry point disappears in the same build as the prices.**
+
+The section page is still built in both languages after the window closes. An
+ad, an Instagram post or a printed flyer outlives the sale, and "it ended, here
+is what is reduced now" is a better answer for those visitors than a 404. That
+version is `noindex,follow` and lists the real current markdowns.
+
 ### The sale ends by itself
 
 Each promoted product carries a `promo` block with an `ends` date.
@@ -198,9 +224,26 @@ pushed once after the end date**:
     cd web && git pull --ff-only && python3 build.py
     cd .. && git add web/dist api/prices.json && git commit -m "Black Friday is over" && git push
 
-The build prints `N promotions have ended` when it does this. Any build run
-after the end date is correct whether or not anyone remembers — the risk is
-only that an old build stays deployed.
+The build prints `N promotions have ended` when it does this, and the summary
+line changes from `Vendredi fou: 37 products...` to `no promotion running`. Any
+build run after the end date is correct whether or not anyone remembers — the
+risk is only that an old build stays deployed.
+
+To see that end state before it happens, build with a faked clock. Redirect
+**both** outputs: `DIST` alone is not enough, because `write_price_map()` wrote
+to the real `api/prices.json` until `API_DIR` was added — a dry run repriced
+the live checkout at regular price while the site was still on sale.
+
+    API_DIR=/tmp/after python3 - <<'EOF'
+    import sys, types, datetime; sys.path.insert(0, '.')
+    import build
+    class D(datetime.date):
+        @classmethod
+        def today(cls): return cls(2026, 12, 13)
+    build.datetime = types.SimpleNamespace(date=D, timedelta=datetime.timedelta)
+    build.DIST = '/tmp/after/dist'
+    build.main()
+    EOF
 
 ## Known gaps — deliberate, not oversights
 

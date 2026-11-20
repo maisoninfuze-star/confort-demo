@@ -49,6 +49,10 @@ the business rather than more code:
   disclosure obligations.
 - The **hero room photographs are AI-generated** stand-ins, not real inventory.
   They need replacing with a shoot of the actual showroom.
+- The **Vendredi fou / Black Friday section** runs to 12 December 2026. The end
+  date is baked into the build, so no build after that date can carry the sale
+  prices — but a static site has no clock, so somebody has to rebuild and push
+  **once** after the 12th. The command is in `web/README.md`.
 
 ## Not in this repository
 

@@ -617,3 +617,47 @@ footer.site .linkish{background:none; border:0; padding:0; margin:0; cursor:poin
   font:inherit; letter-spacing:inherit; text-transform:inherit; text-decoration:underline; text-underline-offset:3px}
 footer.site .linkish:hover{color:#fff}
 .consent p a{color:var(--ink); text-decoration:underline; text-underline-offset:3px; white-space:nowrap}
+
+/* ── the supplier promotion ──────────────────────────────────────────────────
+   A sale section in a system whose one rule is that red is the only chroma.
+   So the promotion is not announced in a second colour: it is announced in
+   BLACK — the masthead takes the footer's ground, which is the darkest thing
+   on the site, and the product grids below it stay on paper where the cards
+   already read correctly. Cards are transparent and inherit --ink, so putting
+   one on a dark ground would paint dark text on dark; the ONE band that
+   changes ground (.pr-band) uses --sunk, which flips with the theme exactly
+   as --ink does. */
+.chip.promo{background:var(--footer-bg); color:#FFFFFF; padding:6px 10px; letter-spacing:.12em}
+nav.main a.nav-promo{color:var(--brand)}
+nav.main a.nav-promo::after{background:var(--brand)}
+.topbar a.tb-promo{color:#FFFFFF; border-bottom:1px solid var(--brand); padding-bottom:2px}
+.topbar a.tb-promo:hover{color:var(--brand)}
+
+.pr-head{background:var(--footer-bg); color:var(--footer-ink); border-bottom:2px solid var(--brand);
+  /* the masthead is dark in BOTH themes, so it takes the dark theme's brand
+     value: #BB3500 on near-black is 2.2:1, which no 10px type survives */
+  --pr-accent:#E8724A}
+.pr-head .wrap{padding-block:4px clamp(34px,5vw,66px)}
+.pr-head .crumbs{color:var(--footer-dim)}
+.pr-head .crumbs a{color:var(--footer-dim)}
+.pr-head .crumbs a:hover{color:#FFFFFF}
+.pr-head h1{font-family:var(--f-display); font-size:clamp(42px,8vw,104px); font-weight:400;
+  letter-spacing:-.042em; line-height:.94; color:#FFFFFF; margin:0;
+  font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+.pr-eyebrow{font-family:var(--f-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(255,255,255,.72); margin:0 0 18px; display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+.pr-eyebrow::before{content:""; width:22px; height:1px; background:var(--pr-accent); flex:none}
+.pr-lede{margin:24px 0 0; max-width:62ch; font-size:17px; line-height:1.72; color:var(--footer-ink)}
+.pr-stats{display:flex; flex-wrap:wrap; gap:1px; margin-top:clamp(30px,4vw,48px); background:var(--footer-line)}
+.pr-stat{flex:1 1 190px; background:var(--footer-bg); padding:20px 24px 18px}
+.pr-stat b{display:block; font-family:var(--f-display); font-size:clamp(25px,3vw,36px); font-weight:400;
+  letter-spacing:-.028em; line-height:1.05; color:#FFFFFF; font-variation-settings:"opsz" 48,"SOFT" 0,"WONK" 0}
+.pr-stat:nth-child(2) b{color:var(--pr-accent)}
+.pr-stat span{display:block; margin-top:9px; font-family:var(--f-mono); font-size:10px;
+  letter-spacing:.17em; text-transform:uppercase; color:var(--footer-dim)}
+
+.pr-group:last-of-type{border-bottom:1px solid var(--line)}
+.pr-cols{display:grid; gap:var(--gut); grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+.pr-none{padding:44px 0; color:var(--ink-2); font-size:16.5px}
+/* the home page's promotion band — set apart by ground, not by hue */
+.pr-band{background:var(--sunk)}

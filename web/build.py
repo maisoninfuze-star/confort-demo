@@ -77,6 +77,61 @@ PAGES = {
  'catalogue':      {'fr': ('Catalogue complet', 'catalogue'), 'en': ('Full catalogue', 'catalogue')},
  'confidentialite':{'fr': ('Politique de confidentialité', 'confidentialite'), 'en': ('Privacy policy', 'privacy')},
 }
+# ── the supplier promotion, as a section of the site ────────────────────────
+# One promotion, defined once. The END of the window lives in the catalogue on
+# every promoted product, because that is what apply_promo_window() reads to
+# put the prices back; the START is the date printed on IFDC's own flyer and is
+# only ever displayed. Everything else the section claims — how many pieces,
+# how deep the discount goes — is counted off the products themselves, so the
+# masthead cannot advertise a number the grid underneath it contradicts.
+PROMO_ID    = 'bf2026'
+PROMO_FROM  = datetime.date(2026, 11, 16)
+PROMO_SLUG  = {'fr': 'vendredi-fou', 'en': 'black-friday'}
+PROMO_LABEL = {'fr': 'Vendredi fou', 'en': 'Black Friday'}
+# Filled in by main() before a single page is rendered. The shell, the nav and
+# the footer are built without ever seeing the catalogue, and the way into a
+# sale has to disappear at the same moment as the prices — not a deploy later.
+PROMO_ON = {'live': False, 'n': 0, 'off': 0, 'ends': None}
+MONTHS = {
+ 'fr': ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet',
+        'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+ 'en': ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+        'August', 'September', 'October', 'November', 'December'],
+}
+PROMO_COPY = {
+ 'fr': dict(
+   eyebrow='Promotion du fournisseur',
+   lede='Notre fournisseur IFDC a baissé ses prix pour le Vendredi fou. On passe la baisse au complet : chaque pièce de sa circulaire est ici, au prix de la promotion, taxes comprises. Le {back}, les prix réguliers reviennent d’eux-mêmes.',
+   home_p='Les prix de la circulaire de notre fournisseur, passés au complet — jusqu’au {end}.',
+   n_lab='pièces en promotion', off_lab='sur le prix régulier', until_lab='dernier jour',
+   cta='Voir toute la promotion',
+   order_h='Commandées, pas en stock',
+   order_p='Ces pièces se commandent chez le fournisseur : comptez 2 à 3 semaines avant la livraison. On vous appelle pour fixer le jour dès la commande passée, et on monte le meuble à l’étage.',
+   tax_h='Le prix affiché est le prix payé',
+   tax_p='La TPS et la TVQ sont déjà comprises dans les deux prix : celui de la promotion et le prix régulier barré à côté. Le total de votre panier est exactement celui porté à votre carte.',
+   end_h='Après le {end}',
+   end_p='Les prix remontent au régulier tout seuls, sans intervention. Une commande passée pendant la promotion garde son prix : c’est le prix payé à la commande qui compte.',
+   over_h='Le Vendredi fou est terminé',
+   over_p='Les prix réguliers sont revenus. Voici ce qui est réellement réduit en ce moment.',
+   over_none='Rien n’est réduit en ce moment. Appelez-nous au ' + PHONE + ' — on vous dira ce qui s’en vient.',
+ ),
+ 'en': dict(
+   eyebrow='Supplier promotion',
+   lede='Our supplier IFDC cut its prices for Black Friday. We pass the whole cut on: every piece on their flyer is here, at the promotion price, taxes included. On {back}, the regular prices come back on their own.',
+   home_p='Our supplier’s flyer prices, passed on in full — until {end}.',
+   n_lab='pieces on promotion', off_lab='off the regular price', until_lab='last day',
+   cta='See the whole promotion',
+   order_h='Made to order, not in stock',
+   order_p='These pieces are ordered from the supplier: allow 2 to 3 weeks before delivery. We call you to book the day as soon as you order, and we carry it up your stairs.',
+   tax_h='The price shown is the price paid',
+   tax_p='GST and QST are already in both prices: the promotion price and the struck-through regular price beside it. Your cart total is exactly what is charged to your card.',
+   end_h='After {end}',
+   end_p='Prices return to regular by themselves, with nothing to switch off. An order placed during the promotion keeps its price: what counts is the price paid at checkout.',
+   over_h='Black Friday is over',
+   over_p='Regular prices are back. Here is what is genuinely reduced right now.',
+   over_none='Nothing is reduced right now. Call us at ' + PHONE + ' — we will tell you what is coming.',
+ ),
+}
 CAT_BLURB = {
  'salon': {
   'fr': "Sectionnels, canapés, causeuses et tables de salon — en stock à Montréal, livrés montés et à l’étage.",
@@ -298,6 +353,49 @@ def apply_promo_window(cat):
         print(f'  {over} promotions have ended — those products are back at their regular price')
     return cat
 
+def promo_items(cat):
+    """The products still inside the promotion window. apply_promo_window() has
+    already cleared `promo` on everything that has ended, so an empty list here
+    is the whole gate: no section, no nav entry, no banner, no sitemap URL."""
+    return [p for p in cat if (p.get('promo') or {}).get('id') == PROMO_ID]
+
+def promo_state(cat):
+    """What the section is allowed to claim, counted off the catalogue."""
+    items = promo_items(cat)
+    offs = [round((1 - p['price'] / p['compare']) * 100)
+            for p in items if p.get('compare') and p['compare'] > p['price']]
+    ends = datetime.date.fromisoformat(items[0]['promo']['ends']) if items else None
+    assert not items or len({p['promo']['ends'] for p in items}) == 1, \
+        'the promotion has two end dates — the section can only print one'
+    return {'live': bool(items), 'n': len(items),
+            'off': max(offs) if offs else 0, 'ends': ends}
+
+def datestr(d, lang, year=True):
+    m = MONTHS[lang][d.month - 1]
+    if lang == 'fr':
+        return f'{d.day} {m}' + (f' {d.year}' if year else '')
+    return f'{m} {d.day}' + (f', {d.year}' if year else '')
+
+def promo_window(lang):
+    a, b = PROMO_FROM, PROMO_ON['ends']
+    if lang == 'fr':
+        return f'du {datestr(a, "fr", False)} au {datestr(b, "fr")}'
+    return f'{datestr(a, "en", False)} – {datestr(b, "en")}'
+
+def promo_text(key, lang):
+    """The copy, with the dates filled in from the data rather than typed in."""
+    end = PROMO_ON['ends']
+    back = end + datetime.timedelta(days=1) if end else None
+    s = PROMO_COPY[lang][key]
+    if end:
+        s = s.replace('{end}', datestr(end, lang, False))
+        s = s.replace('{back}', datestr(back, lang, False))
+    return s
+
+def promo_until(lang):
+    d = datestr(PROMO_ON['ends'], lang, False)
+    return ('jusqu’au ' + d) if lang == 'fr' else ('until ' + d)
+
 def apply_tax_inclusive(cat):
     """Fold tax into every price the build will ever read. Run once, early."""
     for p in cat:
@@ -501,17 +599,25 @@ def header(lang, path, alt_path):
     c = COPY[lang]
     other = 'en' if lang == 'fr' else 'fr'
     CUR = ' aria-current="page"'
+    tb3 = (f'<a class="tb-promo" href="{url(lang, PROMO_SLUG[lang])}">'
+           f'{E(PROMO_LABEL[lang])} — {E(promo_until(lang))} →</a>'
+           if PROMO_ON['live'] else
+           ('Boutique en ligne' if lang == 'fr' else 'Online store'))
     nav = ''.join(
         f'<a href="{url(lang, cat_slug(k, lang))}"'
         f'{CUR if path.startswith(url(lang, cat_slug(k, lang))) else ""}>'
         f'{E(cat_name(k, lang))}</a>' for k in CATS)
     # the nav label stays short; the page keeps its full name in the <h1>
+    if PROMO_ON['live']:
+        pp = url(lang, PROMO_SLUG[lang])
+        nav += (f'<a class="nav-promo" href="{pp}"'
+                f'{CUR if path.startswith(pp) else ""}>{E(PROMO_LABEL[lang])}</a>')
     nav += f'<a href="{url(lang, PAGES["catalogue"][lang][1])}">{"Catalogue" if lang == "fr" else "Catalogue"}</a>'
     nav += f'<a href="{url(lang, PAGES["financement"][lang][1])}">{E(PAGES["financement"][lang][0])}</a>'
     return f'''<div class="topbar"><div class="wrap">
   <span><b>{PHONE}</b></span><span class="sep">|</span>
   <span>{'Livraison Montréal · Laval · Longueuil' if lang=='fr' else 'Delivery Montréal · Laval · Longueuil'}</span><span class="sep">|</span>
-  <span>{'Boutique en ligne' if lang=='fr' else 'Online store'}</span>
+  <span>{tb3}</span>
 </div></div>
 <header class="site"><div class="wrap">
   <a class="brand" href="{url(lang)}">
@@ -563,6 +669,8 @@ def cart_drawer(lang):
 def footer(lang):
     c = COPY[lang]
     shop = ''.join(f'<a href="{url(lang, cat_slug(k, lang))}">{E(cat_name(k, lang))}</a>' for k in CATS)
+    if PROMO_ON['live']:
+        shop = f'<a href="{url(lang, PROMO_SLUG[lang])}">{E(PROMO_LABEL[lang])}</a>' + shop
     help_ = ''.join(f'<a href="{url(lang, PAGES[k][lang][1])}">{E(PAGES[k][lang][0])}</a>'
                     for k in ('catalogue', 'livraison', 'financement', 'retours', 'a-propos', 'confidentialite'))
     return f'''<footer class="site"><div class="wrap">
@@ -608,6 +716,10 @@ def card(p, lang, rank=0, lazy=True):
     sw = ''.join(f'<i style="background:{SWATCH.get(x,"#999")}" title="{E(x)}"></i>'
                  for x in p['variant_colours'][:5])
     flags = ''
+    # the promotion says its own name on the card: a bare -21% tells nobody
+    # why the price moved, or that it moves back
+    if p.get('promo'):
+        flags += f'<span class="chip promo">{E(PROMO_LABEL[lang])}</span>'
     if sale:
         pct = round((1 - p['price'] / p['compare']) * 100)
         flags += f'<span class="chip sale">-{pct}%</span>'
@@ -671,8 +783,12 @@ def splash(lang):
 def build_home(cat, lang):
     c = COPY[lang]
     instock = [p for p in cat if p['available']][:10]
-    deals = sorted([p for p in cat if p['compare'] and p['compare'] > p['price']],
+    # the promotion gets a band of its own below, so this one keeps its meaning
+    # only if it holds the markdowns that are NOT part of it
+    deals = sorted([p for p in cat if p['compare'] and p['compare'] > p['price']
+                    and not p.get('promo')],
                    key=lambda p: -(1 - p['price'] / p['compare']))[:5]
+    promo = promo_items(cat)[:8]
     hero = next((p for p in cat if p['sub'] == 'sectionnel' and p['images']), cat[0])
     rooms = ''
     for k in CATS:
@@ -683,6 +799,18 @@ def build_home(cat, lang):
       <div class="room-t"><b>{E(cat_name(k, lang))}</b><span>{n} {'pièces' if lang=='fr' else 'pieces'}</span></div></a>'''
     revs = ''.join(f'<blockquote class="rev"><div class="stars">★★★★★</div>'
                    f'<p>“{E(r[lang])}”</p><cite>{E(r["who"])}</cite></blockquote>' for r in REVIEWS)
+
+    promo_band = '' if not promo else (
+      '<section class="band pr-band"><div class="wrap">'
+      '<div class="band-head"><div>'
+      '<p class="eyebrow">' + E(promo_text('eyebrow', lang)) + '</p>'
+      '<h2>' + E(PROMO_LABEL[lang]) + '</h2>'
+      '<p>' + E(promo_text('home_p', lang)) + '</p></div>'
+      '<a class="more" href="' + url(lang, PROMO_SLUG[lang]) + '">'
+      + E(promo_text('cta', lang)) + '</a></div>'
+      '<div class="grid">'
+      + ''.join(card(p, lang, i) for i, p in enumerate(promo))
+      + '</div></div></section>')
 
     slides, caps, rails = '', '', ''
     for i, (catkey, scene) in enumerate(SCENES):
@@ -729,6 +857,8 @@ def build_home(cat, lang):
     <div class="shero-scrollcue"><span class="ln"></span>{'Faites défiler' if lang == 'fr' else 'Scroll'}</div>
   </div>
 </section>
+
+{promo_band}
 
 <section class="band"><div class="wrap">
   <div class="band-head"><div><p class="eyebrow">{E(c['rooms_h'])}</p>
@@ -1073,6 +1203,90 @@ def build_pdp(p, cat, lang):
                        'value': round(p['price'], 2)}, ensure_ascii=False).replace('</', '<\\/')
     body += f'\n<script type="application/json" id="mcsview">{view}</script>'
     return shell(lang, title, desc, p_url(p, lang), p_url(p, other), body, ld, img(imgs[0], 1200))
+
+def promo_group(items, k, lang):
+    """One room's worth of the promotion. Rooms rather than one wall of 37
+    cards: nobody shops a dining set and a bunk bed in the same breath."""
+    ps = [p for p in items if p['cat'] == k]
+    if not ps:
+        return ''
+    ps.sort(key=lambda p: (bool(p.get('set_photo')), p['price']))
+    n = len(ps)
+    cnt = f'{n} ' + (('pièce' if n == 1 else 'pièces') if lang == 'fr'
+                     else ('piece' if n == 1 else 'pieces'))
+    return ('<section class="band pr-group"><div class="wrap">'
+            '<div class="band-head"><div><h2>' + E(cat_name(k, lang)) + '</h2>'
+            '<p>' + E(cnt) + '</p></div>'
+            '<a class="more" href="' + url(lang, cat_slug(k, lang)) + '">'
+            + E(COPY[lang]['nav_more']) + '</a></div>'
+            '<div class="grid">'
+            + ''.join(card(p, lang, i, i > 5) for i, p in enumerate(ps))
+            + '</div></div></section>')
+
+def build_promo(cat, lang):
+    """The promotion as a section of its own: one page that holds every reduced
+    piece under a masthead stating the window and the deepest cut.
+
+    Built in both languages whether or not the window is open. An ad, a post or
+    a printed flyer outlives the sale, and "it ended, here is what is reduced
+    now" is a better answer to those visitors than a 404."""
+    c, other = COPY[lang], ('en' if lang == 'fr' else 'fr')
+    path, alt = url(lang, PROMO_SLUG[lang]), url(other, PROMO_SLUG[other])
+    label = PROMO_LABEL[lang]
+    items = promo_items(cat)
+    crumbs = ('<nav class="crumbs"><a href="' + url(lang) + '">'
+              + E(c['crumb_home']) + '</a> · ' + E(label) + '</nav>')
+
+    if not items:
+        left = sorted([p for p in cat if p['compare'] and p['compare'] > p['price']],
+                      key=lambda p: -(1 - p['price'] / p['compare']))[:12]
+        grid = ('<div class="grid">'
+                + ''.join(card(p, lang, i) for i, p in enumerate(left))
+                + '</div>') if left else \
+               ('<p class="pr-none">' + E(promo_text('over_none', lang)) + '</p>')
+        body = ('<div class="pr-head"><div class="wrap">' + crumbs
+                + '<h1>' + E(promo_text('over_h', lang)) + '</h1>'
+                + '<p class="pr-lede">' + E(promo_text('over_p', lang))
+                + '</p></div></div>'
+                '<section class="band" style="border-bottom:0"><div class="wrap">'
+                + grid + '</div></section>')
+        # nothing here deserves to be indexed once the prices it named are gone
+        return shell(lang, promo_text('over_h', lang) + ' | Meuble Confort & Style',
+                     promo_text('over_p', lang), path, alt, body,
+                     head_extra='<meta name="robots" content="noindex,follow">')
+
+    off = ('jusqu’à −' + str(PROMO_ON['off']) + ' %' if lang == 'fr'
+           else 'up to −' + str(PROMO_ON['off']) + '%')
+    stats = [(str(PROMO_ON['n']), promo_text('n_lab', lang)),
+             (off, promo_text('off_lab', lang)),
+             (datestr(PROMO_ON['ends'], lang, False), promo_text('until_lab', lang))]
+    tiles = ''.join('<div class="pr-stat"><b>' + E(v) + '</b><span>' + E(lab)
+                    + '</span></div>' for v, lab in stats)
+    notes = ''.join('<div class="box"><h3>' + E(promo_text(h, lang)) + '</h3>'
+                    '<p>' + E(promo_text(t, lang)) + '</p></div>'
+                    for h, t in (('order_h', 'order_p'), ('tax_h', 'tax_p'),
+                                 ('end_h', 'end_p')))
+    body = ('<div class="pr-head"><div class="wrap">' + crumbs
+            + '<p class="pr-eyebrow">' + E(promo_text('eyebrow', lang)) + ' · '
+            + E(promo_window(lang)) + '</p>'
+            + '<h1>' + E(label) + '</h1>'
+            + '<p class="pr-lede">' + E(promo_text('lede', lang)) + '</p>'
+            + '<div class="pr-stats">' + tiles + '</div>'
+            + '</div></div>'
+            + ''.join(promo_group(items, k, lang) for k in CATS)
+            + '<section class="band" style="border-bottom:0"><div class="wrap">'
+              '<div class="pr-cols">' + notes + '</div></div></section>')
+    ld = {"@context": "https://schema.org", "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": c['crumb_home'],
+             "item": SITE + url(lang)},
+            {"@type": "ListItem", "position": 2, "name": label, "item": SITE + path}]}
+    title = (f'{label} — {PROMO_ON["n"]} pièces à prix réduit '
+             f'jusqu’au {datestr(PROMO_ON["ends"], "fr", False)}' if lang == 'fr'
+             else f'{label} — {PROMO_ON["n"]} pieces reduced '
+                  f'until {datestr(PROMO_ON["ends"], "en", False)}')
+    return shell(lang, title, promo_text('lede', lang)[:180], path, alt, body, ld,
+                 img(items[0]['images'][0], 1200))
 
 # ── prose pages ─────────────────────────────────────────────────────────────
 PROSE = {
@@ -1489,7 +1703,11 @@ def write_price_map(cat):
         pm[p['slug']] = {'fr': p['name_fr'], 'en': p['name_en'],
                             'img': img(p['images'][0], 400),
                             'p': round(p['price'] * 100), 'v': v}
-    api_dir = os.path.join(HERE, '..', 'api')
+    # A build that is not THE build must not be able to reprice the live
+    # checkout. dist/ is redirectable (DIST), this was not: a dry run with a
+    # faked clock rewrote api/prices.json at regular price while the site was
+    # still on sale. API_DIR makes the dry run harmless.
+    api_dir = os.environ.get('API_DIR') or os.path.join(HERE, '..', 'api')
     os.makedirs(api_dir, exist_ok=True)
     with open(os.path.join(api_dir, 'prices.json'), 'w', encoding='utf-8') as f:
         json.dump(pm, f, ensure_ascii=False, separators=(',', ':'))
@@ -1518,6 +1736,7 @@ def main():
     # before any page, any price map, any structured data
     cat = apply_promo_window(cat)
     cat = apply_tax_inclusive(cat)
+    PROMO_ON.update(promo_state(cat))
     urls, n = [], 0
 
     for lang in ('fr', 'en'):
@@ -1531,6 +1750,11 @@ def main():
             else:
                 write(url(lang, PAGES[key][lang][1]), build_prose(key, lang))
             urls.append(url(lang, PAGES[key][lang][1])); n += 1
+        # the promotion's own section, in both languages, window open or not:
+        # a link in an ad or an Instagram post outlives the sale
+        write(url(lang, PROMO_SLUG[lang]), build_promo(cat, lang)); n += 1
+        if PROMO_ON['live']:
+            urls.append(url(lang, PROMO_SLUG[lang]))
         for p in cat:
             write(p_url(p, lang), build_pdp(p, cat, lang))
             urls.append(p_url(p, lang)); n += 1
@@ -1557,7 +1781,9 @@ def main():
     # redirect map for the URLs the current store retires at launch
     redirects = ['# old path -> new path (301)']
     redirects.append('/collections/chanbre\t/fr/chambre/')
-    redirects.append('/collections/%F0%9F%94%A5-promotions\t/fr/salon/?stock=sale')
+    redirects.append('/collections/%F0%9F%94%A5-promotions\t'
+                     + (url('fr', PROMO_SLUG['fr']) if PROMO_ON['live']
+                        else '/fr/salon/?stock=sale'))
     for k in CATS:
         redirects.append(f'/collections/{k}\t{url("fr", cat_slug(k, "fr"))}')
     for p in cat:
@@ -1573,6 +1799,11 @@ def main():
     print(f'  {len(cat)} products × 2 languages')
     print(f'  sitemap: {len(urls)} URLs')
     print(f'  redirects: {len(redirects)-1} rules')
+    if PROMO_ON['live']:
+        print(f'  {PROMO_LABEL["fr"]}: {PROMO_ON["n"]} products, down to -{PROMO_ON["off"]}%, '
+              f'until {PROMO_ON["ends"]}, section at {url("fr", PROMO_SLUG["fr"])}')
+    else:
+        print('  no promotion running: the section says so and is noindexed')
 
 if __name__ == '__main__':
     main()
