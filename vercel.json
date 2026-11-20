@@ -25,6 +25,11 @@
       "permanent": true
     },
     {
+      "source": "/collections/%F0%9F%94%A5-promotions/",
+      "destination": "/fr/vendredi-fou/",
+      "permanent": false
+    },
+    {
       "source": "/collections/chanbre/",
       "destination": "/fr/chambre/",
       "permanent": true
